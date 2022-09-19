@@ -1,0 +1,80 @@
+name: Mirror
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install sfml prerequisites on Ubuntu
+        run: |
+          sudo apt install -y \
+            build-essential \
+            git \
+            cmake \
+            libasound2-dev \
+            mesa-common-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            xorg-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev
+
+      - name: Install sfml on Ubuntu
+        run: |
+          sudo apt install -y libsfml-dev
+
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: |
+          mkdir build
+          cd build && cmake ..
+          cmake --build .
+
+      - name: Check Ubuntu build (desktop)
+        run: |
+          test -f r-type_client
+          test -f r-type_server
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install sfml on Windows
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git $HOME/vcpkg
+          cd $HOME/vcpkg
+          bootstrap-vcpkg.bat
+          vcpkg integrate install
+          vcpkg install sfml
+
+      - name: Build rtype on Windows (desktop)
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
+          cmake --build .
+
+      - name: Check Windows build (desktop)
+        run: |
+          Test-Path r-type_client
+          Test-Path r-type_server
+
+  mirror:
+    # needs:
+    #   - build-on-ubuntu
+    #   - build-on-windows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key: ${{ secrets.EPI_MIRRORING_KEY }}
