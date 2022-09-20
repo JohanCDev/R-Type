@@ -8,3 +8,5 @@ r-type_server
 *.gcov
 *.o
 .DS_Store
+doc/output/
+doc/warnings.txt
