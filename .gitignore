@@ -1,0 +1,10 @@
+.devcontainer/
+.vscode/
+build/
+r-type_client
+r-type_server
+*.gcda
+*.gcno
+*.gcov
+*.o
+.DS_Store
