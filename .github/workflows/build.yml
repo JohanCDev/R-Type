@@ -50,9 +50,8 @@ jobs:
 
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
-          mkdir build
-          cd build && cmake ..
-          cmake --build .
+          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+          cmake --build ${{github.workspace}}/build/ -j
 
       - name: Check Ubuntu build (desktop)
         run: |
@@ -66,9 +65,8 @@ jobs:
 
       - name: Build rtype on Windows (desktop)
         run: |
-          mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Debug
-          cmake --build .
+          cmake -B ${{github.workspace}}/build/ -DCMAKE_BUILD_TYPE=Debug
+          cmake --build ${{github.workspace}}/build/ -j
 
       - name: Check Windows build (desktop)
         run: |
