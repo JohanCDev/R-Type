@@ -24,7 +24,16 @@ jobs:
             libxi-dev \
             xorg-dev \
             libgl1-mesa-dev \
-            libglu1-mesa-dev
+            libglu1-mesa-dev \
+            libxext-dev \
+            libxrender-dev \
+            libxtst-dev \
+            libxt-dev \
+            libudev-dev \
+            libfreetype6-dev \
+            libopenal-dev \
+            libvorbis-dev \
+            libflac-dev \
 
       - name: Install sfml on Ubuntu
         run: |
