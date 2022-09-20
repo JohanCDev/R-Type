@@ -48,10 +48,6 @@ jobs:
             libvorbis-dev \
             libflac-dev \
 
-      - name: Install sfml on Ubuntu
-        run: |
-          sudo apt install -y libsfml-dev
-
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
           mkdir build
@@ -67,14 +63,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
-
-      - name: Install sfml on Windows
-        run: |
-          git clone https://github.com/Microsoft/vcpkg.git $HOME/vcpkg
-          cd $HOME/vcpkg
-          bootstrap-vcpkg.bat
-          vcpkg integrate install
-          vcpkg install sfml
 
       - name: Build rtype on Windows (desktop)
         run: |
