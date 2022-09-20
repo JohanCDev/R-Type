@@ -8,11 +8,11 @@ project(R-Type LANGUAGES CXX)
 # Add ./cmake to the module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-add_compile_options(
-    "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
-    "$<$<CONFIG:RELEASE>:-O3;-Werror>"
-    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
-)
+if(MSVC)
+    add_compile_options(/W2)
+else()
+    add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith")
+endif()
 
 add_subdirectory(src)
 
