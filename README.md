@@ -78,12 +78,12 @@ xdg-open doc/generated/html/index.html
 
 # Authors
 
-**Johan Chrillesen** - [![JohanCdev]](https://github.com/JohanCDev)
+**Johan Chrillesen** - [JohanCdev](https://github.com/JohanCDev)
 
-**Cédric Corge** - [![CedricCorge]](https://github.com/CedricCORGE)
+**Cédric Corge** - [CedricCorge](https://github.com/CedricCORGE)
 
-**Tanguy Bellicha** - [![tbellicha]](https://github.com/tbellicha)
+**Tanguy Bellicha** - [tbellicha](https://github.com/tbellicha)
 
-**Adam Djebar** - [![djadanis]](https://github.com/djadanis)
+**Adam Djebar** - [djadanis](https://github.com/djadanis)
 
-**Louis Maestre** - [![Louismaestre]](https://github.com/Louismaestre)
+**Louis Maestre** - [Louismaestre](https://github.com/Louismaestre)
