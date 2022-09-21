@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.17.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+if(NOT DEFINED CMAKE_SUPPRESS_DEVELOPER_WARNINGS)
+    set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1 CACHE INTERNAL "No dev warnings")
+endif()
+
 project(R-Type LANGUAGES CXX)
 
 # Add ./cmake to the module path
@@ -14,6 +18,7 @@ else()
     add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith")
 endif()
 
+add_subdirectory(dependencies)
 add_subdirectory(src)
 
 # Unit testing
