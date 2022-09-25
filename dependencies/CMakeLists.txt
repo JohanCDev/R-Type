@@ -6,15 +6,17 @@ if(NOT(SFML_OS_IOS OR SFML_OS_WINDOWS))
     set(BUILD_SHARED_LIBS TRUE "Building SFML shared libraries")
 endif()
 
-FetchContent_Declare(
-    sfml
-    GIT_REPOSITORY "https://github.com/SFML/SFML.git"
-    GIT_TAG "${SFML_VERSION}"
-)
+if(UNIX OR WIN32 AND NOT APPLE)
+    FetchContent_Declare(
+        sfml
+        GIT_REPOSITORY "https://github.com/SFML/SFML.git"
+        GIT_TAG "${SFML_VERSION}"
+    )
 
-FetchContent_GetProperties(sfml)
+    FetchContent_GetProperties(sfml)
 
-if(NOT sfml_POPULATED)
-    FetchContent_Populate(sfml)
-    add_subdirectory(${sfml_SOURCE_DIR} ${sfml_BINARY_DIR})
+    if(NOT sfml_POPULATED)
+        FetchContent_Populate(sfml)
+        add_subdirectory(${sfml_SOURCE_DIR} ${sfml_BINARY_DIR})
+    endif()
 endif()

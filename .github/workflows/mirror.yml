@@ -50,6 +50,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Install prerequisites on Windows
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git $HOME/vcpkg
+          cd $HOME/vcpkg
+          bootstrap-vcpkg.bat
+          vcpkg integrate install
+
       - name: Build rtype on Windows (desktop)
         run: |
           cmake -B ${{github.workspace}}/build/ -DCMAKE_BUILD_TYPE=Debug
