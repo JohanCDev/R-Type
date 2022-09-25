@@ -13,7 +13,8 @@ jobs:
 
       - name: Install sfml prerequisites on Ubuntu
         run: |
-          sudo apt install -y \
+          sudo apt-get update
+          sudo apt-get install -y \
             build-essential \
             git \
             cmake \
@@ -33,7 +34,7 @@ jobs:
             libfreetype6-dev \
             libopenal-dev \
             libvorbis-dev \
-            libflac-dev \
+            libflac-dev --fix-missing
 
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
