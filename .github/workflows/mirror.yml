@@ -60,7 +60,7 @@ jobs:
 
       - name: Build rtype on Windows (desktop)
         run: |
-          make -B ${{github.workspace}}/build/ -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE='D:\a\RTYPE\RTYPE\vcpkg\scripts\buildsystems\vcpkg.cmake' -DVCPKG_TARGET_TRIPLET=x86-windows-static
+          cmake -B ${{github.workspace}}/build/ -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE='D:\a\RTYPE\RTYPE\vcpkg\scripts\buildsystems\vcpkg.cmake' -DVCPKG_TARGET_TRIPLET=x86-windows-static
           cmake --build ${{github.workspace}}/build/ -j
 
       - name: Check Windows build (desktop)
