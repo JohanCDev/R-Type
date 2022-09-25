@@ -56,7 +56,7 @@ jobs:
         with: { committish: "${{ env.VCPKG_COMMIT }}" }
 
       - name: Install sfml
-        run: D:\a\RTYPE\RTYPE\vcpkg\vcpkg.exe install --triplet x64-windows --debug
+        run: C:\vcpkg\vcpkg.exe install --triplet x64-windows --debug
 
       - name: Build rtype on Windows (desktop)
         run: |
