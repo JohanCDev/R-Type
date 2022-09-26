@@ -69,7 +69,7 @@ jobs:
           files: "r_type-client.exe, r_type-server.exe"
 
   mirror:
-    needs: [build-on-ubuntu, build-on-windows, build-on-apple]
+    needs: [build-on-ubuntu, build-on-windows]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
