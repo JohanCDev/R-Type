@@ -68,7 +68,7 @@ jobs:
         with:
           files: "r_type-client.exe, r_type-server.exe"
 
-    build-on-apple:
+  build-on-apple:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
