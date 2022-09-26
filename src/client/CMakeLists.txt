@@ -2,8 +2,8 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
 set(SRC
-    ${SRCROOT}/main.cpp
-)
+    #${SRCROOT}/main.cpp
+ "RTypeBootstrap/Entity.h" "RTypeBootstrap/registry.h" "RTypeBootstrap/RTypeBootstrap.cpp" "RTypeBootstrap/RTypeBootstrap.h" "RTypeBootstrap/sparse_array.h" "RTypeBootstrap/Components/AccelerationComponent.h" "RTypeBootstrap/Components/ControllableComponent.h" "RTypeBootstrap/Components/DrawableComponent.h" "RTypeBootstrap/Components/HealthComponent.h" "RTypeBootstrap/Components/HitBoxComponent.h" "RTypeBootstrap/Components/MaximumVelocityComponent.h" "RTypeBootstrap/Components/PositionComponent.h" "RTypeBootstrap/Components/VelocityComponent.h" "RTypeBootstrap/Components/WeaponComponent.h" "RTypeBootstrap/Systems/InputSystem.cpp" "RTypeBootstrap/Systems/ShootingSystem.cpp")
 
 set(INCDIRS ${INCROOT})
 
@@ -11,7 +11,7 @@ source_group("client" FILES ${SRC})
 
 set(TARGET_NAME r-type_client)
 
-add_executable(${TARGET_NAME} ${SRC})
+add_executable(${TARGET_NAME} ${SRC} "RTypeBootstrap/Entity.h" "RTypeBootstrap/registry.h" "RTypeBootstrap/RTypeBootstrap.cpp" "RTypeBootstrap/RTypeBootstrap.h" "RTypeBootstrap/sparse_array.h" "RTypeBootstrap/Components/AccelerationComponent.h" "RTypeBootstrap/Components/ControllableComponent.h" "RTypeBootstrap/Components/DrawableComponent.h" "RTypeBootstrap/Components/HealthComponent.h" "RTypeBootstrap/Components/HitBoxComponent.h" "RTypeBootstrap/Components/MaximumVelocityComponent.h" "RTypeBootstrap/Components/PositionComponent.h" "RTypeBootstrap/Components/VelocityComponent.h" "RTypeBootstrap/Components/WeaponComponent.h" "RTypeBootstrap/Systems/InputSystem.cpp" "RTypeBootstrap/Systems/ShootingSystem.cpp")
 
 # target_include_directories()
 if(APPLE)
