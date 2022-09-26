@@ -55,9 +55,9 @@ jobs:
           cmake --build ${{github.workspace}}/build/ -j
 
       - name: Check Ubuntu build (desktop)
-        run: |
-          test -f r-type_client
-          test -f r-type_server
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client, r_type-server"
 
   build-on-windows:
     runs-on: windows-latest
@@ -77,6 +77,6 @@ jobs:
           cmake --build ${{github.workspace}}/build/ -j
 
       - name: Check Windows build (desktop)
-        run: |
-          Test-Path r-type_client
-          Test-Path r-type_server
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client.exe, r_type-server.exe"
