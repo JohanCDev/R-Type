@@ -80,3 +80,24 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "r_type-client.exe, r_type-server.exe"
+
+    build-on-apple:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install brew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      - name: Install sfml
+        run: brew install sfml
+
+      - name: Build rtype on MacOS (desktop)
+        run: |
+          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+          cmake --build ${{github.workspace}}/build/ -j
+
+      - name: Check MacOS build (desktop)
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client, r_type-server"
