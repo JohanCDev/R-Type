@@ -38,7 +38,7 @@ public:
 			// TODO: throw
 			return sparse_array<Component>();
 		}*/
-		return std::any_cast<sparse_array<Component>&>(_components_arrays[std::type_index(typeid(Component))]);
+		return std::any_cast<sparse_array<Component>&>(_components_arrays.at(std::type_index(typeid(Component))));
 	};
 
 	// Part 2.3
