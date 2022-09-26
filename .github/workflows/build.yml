@@ -69,7 +69,7 @@ jobs:
         with: { committish: "57d3194e702a2959e86a6748999ad71fc24f7922" }
 
       - name: Install sfml
-        run: ${{env.VCPKG_ROOT}} install --triplet x64-windows --debug
+        run: ${{env.VCPKG_ROOT}}/vcpkg.exe install --triplet x64-windows --debug
 
       - name: Build rtype on Windows (desktop)
         run: |
