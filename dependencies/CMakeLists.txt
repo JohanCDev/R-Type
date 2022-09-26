@@ -1,6 +1,6 @@
 include(FetchContent)
 
-set(SFML_VERSION "2.5.1")
+set(SFML_HASH "863fef024619da7f59b6404087b454337a172ac1")
 
 if(NOT(SFML_OS_IOS OR SFML_OS_WINDOWS))
     set(BUILD_SHARED_LIBS TRUE "Building SFML shared libraries")
@@ -10,7 +10,7 @@ if(UNIX OR WIN32 AND NOT APPLE)
     FetchContent_Declare(
         sfml
         GIT_REPOSITORY "https://github.com/SFML/SFML.git"
-        GIT_TAG "${SFML_VERSION}"
+        GIT_TAG "${SFML_HASH}"
     )
 
     FetchContent_GetProperties(sfml)
