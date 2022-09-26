@@ -1,5 +1,5 @@
 R-Type
-[![Build](https://img.shields.io/github/workflow/status/JohanCDev/R-Type/Build)](https://github.com/JohanCDev/Bomberman/actions/workflows/build.yml)
+[![Build](https://github.com/JohanCDev/R-Type/actions/workflows/mirror.yml/badge.svg)](https://github.com/JohanCDev/R-Type/actions/workflows/mirror.yml)
 [![License](https://img.shields.io/github/license/JohanCDev/R-Type)](https://github.com/JohanCDev/R-Type)
 ====
 
