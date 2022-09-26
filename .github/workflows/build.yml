@@ -7,6 +7,7 @@ on:
     paths:
       - "**/CMakeLists.txt"
       - "**/*.hpp"
+      - "**/*.h"
       - "**/*.cpp"
       - ".github/workflows/*.yml"
   pull_request:
@@ -15,6 +16,7 @@ on:
     paths:
       - "**/CMakeLists.txt"
       - "**/*.hpp"
+      - "**/*.h"
       - "**/*.cpp"
       - ".github/workflows/*.yml"
 
