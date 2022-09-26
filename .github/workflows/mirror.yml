@@ -40,6 +40,7 @@ jobs:
         run: |
           cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
           cmake --build ${{github.workspace}}/build/ -j
+          ls -lR
 
       - name: Check Ubuntu build
         uses: andstor/file-existence-action@v1
