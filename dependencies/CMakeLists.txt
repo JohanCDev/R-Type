@@ -6,7 +6,7 @@ if(NOT(SFML_OS_IOS OR SFML_OS_WINDOWS))
     set(BUILD_SHARED_LIBS TRUE "Building SFML shared libraries")
 endif()
 
-if(UNIX OR WIN32 AND NOT APPLE)
+if(NOT APPLE)
     FetchContent_Declare(
         sfml
         GIT_REPOSITORY "https://github.com/SFML/SFML.git"
