@@ -1,10 +1,12 @@
 #pragma once
 
-struct DrawableComponent {
-	// Sprite_index
-	// Sprite_offset
-	// Sprite_Size
+#include <SFML/Graphics.hpp>
 
-	DrawableComponent()
-		: {};
+struct DrawableComponent {
+	sf::Texture texture;
+	sf::Sprite sprite;
+
+	DrawableComponent(std::string path) {
+		texture.loadFromFile(path);
+	};
 };

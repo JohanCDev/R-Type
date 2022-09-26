@@ -14,6 +14,16 @@
 #include "registry.h"
 //#include "registry.cpp" // TOUJOURS PAS NORMAL
 
+#include "Components/DrawableComponent.h"
+#include "Components/PositionComponent.h"
+#include "Components/VelocityComponent.h"
+
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+void drawable_system(registry &r, sf::RenderWindow &window);
+void velocity_system(registry &r);
+
 int main()
 {
 	// Part 0
@@ -112,6 +122,30 @@ int main()
 	r.add_component<int>(newEntity, 12);
 
 	std::cout << "Int in newEntity = " << (r.get_components<int>()[2] ? *(r.get_components<int>()[2]) : 84) << std::endl;
+
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Hello From SFML");
+
+	r.register_components<DrawableComponent>();
+	r.register_components<PositionComponent>();
+	r.register_components<VelocityComponent>();
+
+	Entity sprited = r.spawn_entity();
+	r.add_component<DrawableComponent>(sprited, DrawableComponent("test2.png"));
+	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
+	r.add_component<VelocityComponent>(sprited, VelocityComponent(5, 5, 0.2));
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+        window.clear(sf::Color::Black);
+		velocity_system(r);
+		drawable_system(r, window);
+		window.display();
+    }
 
 	return 0;
 }
