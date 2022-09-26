@@ -40,7 +40,6 @@ jobs:
         run: |
           cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
           cmake --build ${{github.workspace}}/build/ -j
-          ls -lR
 
       - name: Check Ubuntu build
         uses: andstor/file-existence-action@v1
@@ -70,9 +69,7 @@ jobs:
           files: "r_type-client.exe, r_type-server.exe"
 
   mirror:
-    needs:
-      - build-on-ubuntu
-      - build-on-windows
+    needs: [build-on-ubuntu, build-on-windows]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
