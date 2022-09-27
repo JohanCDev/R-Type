@@ -142,11 +142,19 @@ int main()
 	r.add_component<VelocityComponent>(sprited, VelocityComponent(20, 20, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(sf::Keyboard::Z, sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::Q));
 
+	//Entity sprite = r.spawn_entity();
+	//r.add_component<DrawableComponent>(sprite, DrawableComponent("test2.png"));
+	//r.add_component<PositionComponent>(sprite, PositionComponent(0, 0));
+	//r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
+	//r.add_component<VelocityComponent>(sprite, VelocityComponent(20, 20, 0.2));
+	//r.add_component<ControllableComponent>(sprite, ControllableComponent(sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Right, sf::Keyboard::Left));
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-			controllable_system(r, event);
-            if (event.type == sf::Event::Closed) {
+			if (controllable_system(r, event) == 1)
+				continue;
+			if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }

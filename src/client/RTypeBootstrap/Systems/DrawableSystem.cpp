@@ -13,6 +13,7 @@ int drawable_system(registry &r, sf::RenderWindow &window)
             sf::Vector2f vec(position[index]->x, position[index]->y);
             i->sprite.setTexture(i->texture);
             i->sprite.setPosition(vec);
+            i->sprite.setScale(i->x_scale, i->y_scale);
             window.draw(i->sprite);
 		}
         index++;
