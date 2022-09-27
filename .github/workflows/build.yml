@@ -21,7 +21,7 @@ on:
       - ".github/workflows/*.yml"
 
 jobs:
-  build-on-ubuntu:
+  build-on-ubuntu-on-x86:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -82,3 +82,43 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "r_type-client.exe, r_type-server.exe"
+
+  build-on-ubunutu-arm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pguyot/arm-runner-action@v2
+      - name: Install sfml prerequisites on Ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            git \
+            cmake \
+            libasound2-dev \
+            mesa-common-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            xorg-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev \
+            libxext-dev \
+            libxrender-dev \
+            libxtst-dev \
+            libxt-dev \
+            libudev-dev \
+            libfreetype6-dev \
+            libopenal-dev \
+            libvorbis-dev \
+            libflac-dev  --fix-missing
+
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: |
+          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+          cmake --build ${{github.workspace}}/build/ -j
+
+      - name: Check Ubuntu build (desktop)
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client, r_type-server"
