@@ -17,6 +17,7 @@
 #include "Components/VelocityComponent.h"
 #include "Components/ControllableComponent.h"
 #include "Components/ImmobileComponent.h"
+#include "Components/CollideComponent.h"
 
 #include "AssetsManager.hpp"
 
@@ -24,7 +25,8 @@
 #include <SFML/Graphics.hpp>
 
 int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager);
-int velocity_system(registry &r);
+int velocity_system(registry &r, AssetsManager manager);
+int collide_system(registry &r, AssetsManager manager);
 int controllable_system(registry& r, sf::Event event);
 
 int main()
@@ -133,27 +135,32 @@ int main()
 	r.register_components<VelocityComponent>();
 	r.register_components<ImmobileComponent>();
 	r.register_components<ControllableComponent>();
+	r.register_components<CollideComponent>();
 
 	r.register_systems(&velocity_system);
-	//r.register_systems(&drawable_system);
+	r.register_systems(&collide_system);
 
 	AssetsManager manager;
 
 	manager.register_texture("test2.png");
+	manager.register_texture("chat.png");
+	manager.register_texture("panda.png");
 
 	Entity sprited = r.spawn_entity();
-	r.add_component<DrawableComponent>(sprited, DrawableComponent("test2.png"));
+	r.add_component<DrawableComponent>(sprited, DrawableComponent("chat.png", 0.2, 0.2));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
-	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(true, true));
-	r.add_component<VelocityComponent>(sprited, VelocityComponent(20, 20, 0.2));
+	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(false, false));
+	r.add_component<CollideComponent>(sprited, CollideComponent());
+	r.add_component<VelocityComponent>(sprited, VelocityComponent(5, 5, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q));
 
-	//Entity sprite = r.spawn_entity();
-	//r.add_component<DrawableComponent>(sprite, DrawableComponent("test2.png"));
-	//r.add_component<PositionComponent>(sprite, PositionComponent(0, 0));
-	//r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
-	//r.add_component<VelocityComponent>(sprite, VelocityComponent(20, 20, 0.2));
-	//r.add_component<ControllableComponent>(sprite, ControllableComponent(sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Right, sf::Keyboard::Left));
+	Entity sprite = r.spawn_entity();
+	r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", 0.2, 0.2));
+	r.add_component<PositionComponent>(sprite, PositionComponent(500, 300));
+	r.add_component<ImmobileComponent>(sprite, ImmobileComponent(false, false));
+	r.add_component<CollideComponent>(sprite, CollideComponent());
+	r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
+	r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left));
 
     while (window.isOpen()) {
         sf::Event event;
@@ -166,7 +173,7 @@ int main()
         }
         window.clear(sf::Color::White);
 		for (auto &system : r.get_systems()) {
-			system(r);
+			system(r, manager);
 		}
 		drawable_system(r, window, manager);
 		window.display();
