@@ -18,10 +18,12 @@
 #include "Components/ControllableComponent.h"
 #include "Components/ImmobileComponent.h"
 
+#include "AssetsManager.hpp"
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-int drawable_system(registry &r, sf::RenderWindow &window);
+int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager);
 int velocity_system(registry &r);
 int controllable_system(registry& r, sf::Event event);
 
@@ -135,6 +137,10 @@ int main()
 	r.register_systems(&velocity_system);
 	//r.register_systems(&drawable_system);
 
+	AssetsManager manager;
+
+	manager.register_texture("test2.png");
+
 	Entity sprited = r.spawn_entity();
 	r.add_component<DrawableComponent>(sprited, DrawableComponent("test2.png"));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
@@ -158,11 +164,11 @@ int main()
                 window.close();
             }
         }
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color::White);
 		for (auto &system : r.get_systems()) {
 			system(r);
 		}
-		drawable_system(r, window);
+		drawable_system(r, window, manager);
 		window.display();
     }
 

@@ -2,6 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
 set(SRC
+ "RTypeBootstrap/AssetsManager.hpp"
  "RTypeBootstrap/Entity.h"
  "RTypeBootstrap/registry.h"
  "RTypeBootstrap/RTypeBootstrap.cpp"
