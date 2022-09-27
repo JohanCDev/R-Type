@@ -74,7 +74,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install brew
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        run: |
+          git clone https://github.com/Homebrew/brew homebrew
+          eval "$(homebrew/bin/brew shellenv)"
+          brew update --force --quiet
+          chmod -R go-w "$(brew --prefix)/share/zsh"
 
       - name: Install sfml prerequisites on Mac
         run: |
