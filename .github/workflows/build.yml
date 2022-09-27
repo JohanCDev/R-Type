@@ -83,8 +83,41 @@ jobs:
         with:
           files: "r_type-client.exe, r_type-server.exe"
 
-  build-on-macos:
-    runs-on: macos-latest
+  build-on-aarch-ubuntu:
+    runs-on: ubuntu-latest
+    name: Build on ubuntu-20.04 aarch64
     steps:
-      - name: Check arch
-        run: arch
+      - uses: actions/checkout@v2
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        with:
+          arch: aarch64
+          distro: ubuntu20.04
+              run: |
+                uname -a
+                sudo apt-get update
+                sudo apt-get install -y \
+                  build-essential \
+                  git \
+                  cmake \
+                  libasound2-dev \
+                  mesa-common-dev \
+                  libx11-dev \
+                  libxrandr-dev \
+                  libxi-dev \
+                  xorg-dev \
+                  libgl1-mesa-dev \
+                  libglu1-mesa-dev \
+                  libxext-dev \
+                  libxrender-dev \
+                  libxtst-dev \
+                  libxt-dev \
+                  libudev-dev \
+                  libfreetype6-dev \
+                  libopenal-dev \
+                  libvorbis-dev \
+                  libflac-dev  --fix-missing
+                  echo "BUILD STARTING"
+                  cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+                  cmake --build ${{github.workspace}}/build/ -j
+                  echo "BUILD SUCCESS"
