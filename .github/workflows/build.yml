@@ -87,4 +87,4 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Check arch
-        run: uname -a
+        run: arch
