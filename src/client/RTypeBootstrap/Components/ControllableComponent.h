@@ -1,13 +1,13 @@
 #pragma once
 
-#include <SFML/Window.hpp>
+#include "../Input.hpp"
 
 struct ControllableComponent {
-	sf::Keyboard::Key up;
-	sf::Keyboard::Key down;
-	sf::Keyboard::Key right;
-	sf::Keyboard::Key left;
+	KeyboardInput up;
+	KeyboardInput down;
+	KeyboardInput right;
+	KeyboardInput left;
 
-	ControllableComponent(sf::Keyboard::Key up, sf::Keyboard::Key down, sf::Keyboard::Key right, sf::Keyboard::Key left)
+	ControllableComponent(KeyboardInput up, KeyboardInput down, KeyboardInput right, KeyboardInput left)
 		: up(up), down(down), right(right), left(left) {};
 };

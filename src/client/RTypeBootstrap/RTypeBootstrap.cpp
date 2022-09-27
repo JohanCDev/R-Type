@@ -146,7 +146,7 @@ int main()
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
 	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(true, true));
 	r.add_component<VelocityComponent>(sprited, VelocityComponent(20, 20, 0.2));
-	r.add_component<ControllableComponent>(sprited, ControllableComponent(sf::Keyboard::Z, sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::Q));
+	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q));
 
 	//Entity sprite = r.spawn_entity();
 	//r.add_component<DrawableComponent>(sprite, DrawableComponent("test2.png"));
