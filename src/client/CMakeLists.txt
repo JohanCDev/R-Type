@@ -13,7 +13,6 @@ set(TARGET_NAME r-type_client)
 
 add_executable(${TARGET_NAME} ${SRC})
 
-# target_include_directories()
 if(APPLE)
     target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT} /opt/homebrew/include/)
     target_link_libraries(${TARGET_NAME}
