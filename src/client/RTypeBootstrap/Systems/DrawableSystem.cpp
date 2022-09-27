@@ -2,7 +2,7 @@
 #include "../Components/DrawableComponent.h"
 #include "../Components/PositionComponent.h"
 
-void drawable_system(registry &r, sf::RenderWindow &window)
+int drawable_system(registry &r, sf::RenderWindow &window)
 {
     sparse_array<DrawableComponent> &drawable = r.get_components<DrawableComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
@@ -17,4 +17,5 @@ void drawable_system(registry &r, sf::RenderWindow &window)
 		}
         index++;
 	}
+    return (0);
 }

@@ -23,8 +23,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-void drawable_system(registry &r, sf::RenderWindow &window);
-void velocity_system(registry &r);
+int drawable_system(registry &r, sf::RenderWindow &window);
+int velocity_system(registry &r);
 int controllable_system(registry& r, sf::Event event);
 
 int main()
@@ -134,10 +134,13 @@ int main()
 	r.register_components<ImmobileComponent>();
 	r.register_components<ControllableComponent>();
 
+	r.register_systems(&velocity_system);
+	//r.register_systems(&drawable_system);
+
 	Entity sprited = r.spawn_entity();
 	r.add_component<DrawableComponent>(sprited, DrawableComponent("test2.png"));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
-	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(false, false));
+	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(true, true));
 	r.add_component<VelocityComponent>(sprited, VelocityComponent(20, 20, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(sf::Keyboard::Z, sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::Q));
 
@@ -150,7 +153,9 @@ int main()
             }
         }
         window.clear(sf::Color::Black);
-		velocity_system(r);
+		for (auto &system : r.get_systems()) {
+			system(r);
+		}
 		drawable_system(r, window);
 		window.display();
     }

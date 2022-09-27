@@ -9,7 +9,15 @@
 
 class registry {
 public:
-	// Part 2.2
+
+	void register_systems(std::function<int(registry&)> func) {
+		this->_system_array.push_back(func);
+	}
+
+	std::vector<std::function<int(registry&)>> get_systems() {
+		return (this->_system_array);
+	}
+
 	template <class Component>
 	sparse_array<Component>& register_components() {
 		if (_components_arrays.contains(std::type_index(typeid(Component))) == false) {
@@ -86,6 +94,8 @@ public:
 private:
 	std::unordered_map<std::type_index, std::any> _components_arrays;
 	std::vector<std::function<void(registry&, Entity const&)>> _erase_functions_array;
+
+	std::vector<std::function<int(registry&)>> _system_array;
 
 	sparse_array<Entity> _entity_array;
 	std::vector<Entity> _dead_entities_array;

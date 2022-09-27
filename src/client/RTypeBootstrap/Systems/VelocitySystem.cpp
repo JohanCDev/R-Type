@@ -3,7 +3,7 @@
 #include "../Components/VelocityComponent.h"
 #include "../Components/ImmobileComponent.h"
 
-void velocity_system(registry &r)
+int velocity_system(registry &r)
 {
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
@@ -28,4 +28,5 @@ void velocity_system(registry &r)
 		}
         index++;
 	}
+    return (0);
 }
