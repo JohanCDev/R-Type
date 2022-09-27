@@ -85,6 +85,7 @@ jobs:
 
   build-on-mac-m1:
     runs-on: self-hosted
+    steps:
       - uses: actions/checkout@v2
 
       - name: Install brew
