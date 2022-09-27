@@ -8,11 +8,9 @@
 
 // Part 1
 #include "sparse_array.h"
-//#include "sparse_array.cpp" // PAS NORMAL, DEMANDER DE L'AIDE !!!
 
 // Part 2
 #include "registry.h"
-//#include "registry.cpp" // TOUJOURS PAS NORMAL
 
 #include "Components/DrawableComponent.h"
 #include "Components/PositionComponent.h"
@@ -24,7 +22,7 @@
 
 void drawable_system(registry &r, sf::RenderWindow &window);
 void velocity_system(registry &r);
-void controllable_system(registry& r, sf::Event event);
+int controllable_system(registry& r, sf::Event event);
 
 int main()
 {
