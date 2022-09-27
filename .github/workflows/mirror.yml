@@ -69,9 +69,9 @@ jobs:
           files: "r_type-client.exe, r_type-server.exe"
   
   build-on-mac-m1:
-    steps:
     runs-on: self-hosted
-      - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v1
 
       - name: Install brew
         run: |
