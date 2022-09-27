@@ -83,41 +83,28 @@ jobs:
         with:
           files: "r_type-client.exe, r_type-server.exe"
 
-  build-on-aarch-ubuntu:
-    runs-on: ubuntu-latest
-    name: Build on ubuntu-20.04 aarch64
-    steps:
+  build-on-mac-m1:
+    runs-on: self-hosted
       - uses: actions/checkout@v2
-      - uses: uraimo/run-on-arch-action@v2
-        name: Run commands
+
+      - name: Install brew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      - name: Install sfml prerequisites on Mac
+        run: |
+          brew update
+          brew install -y \
+            build-essential \
+            git \
+            cmake --fix-missing
+            sfml
+
+      - name: Build rtype binaries on Mac (desktop)
+        run: |
+          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+          cmake --build ${{github.workspace}}/build/ -j
+
+      - name: Check MacOS build (desktop)
+        uses: andstor/file-existence-action@v1
         with:
-          arch: aarch64
-          distro: ubuntu20.04
-          run: |
-            uname -a
-            apt-get update
-            apt-get install -y \
-              build-essential \
-              git \
-              cmake \
-              libasound2-dev \
-              mesa-common-dev \
-              libx11-dev \
-              libxrandr-dev \
-              libxi-dev \
-              xorg-dev \
-              libgl1-mesa-dev \
-              libglu1-mesa-dev \
-              libxext-dev \
-              libxrender-dev \
-              libxtst-dev \
-              libxt-dev \
-              libudev-dev \
-              libfreetype6-dev \
-              libopenal-dev \
-              libvorbis-dev \
-              libflac-dev  --fix-missing
-            echo "BUILD STARTING"
-            cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-            cmake --build ${{github.workspace}}/build/ -j
-            echo "BUILD SUCCESS"
+          files: "r_type-client, r_type-server"
