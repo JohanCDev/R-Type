@@ -11,11 +11,4 @@ if(NOT APPLE)
         GIT_REPOSITORY https://github.com/SFML/SFML.git
         GIT_TAG "${SFML_HASH}")
     FetchContent_MakeAvailable(SFML)
-
-    FetchContent_GetProperties(SFML)
-
-    if(NOT SFML_POPULATED)
-        FetchContent_Populate(SFML)
-        add_subdirectory(${sfml_SOURCE_DIR} ${sfml_BINARY_DIR})
-    endif()
 endif()
