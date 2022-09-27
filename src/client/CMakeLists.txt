@@ -17,6 +17,7 @@ set(SRC
  "RTypeBootstrap/Components/PositionComponent.h"
  "RTypeBootstrap/Components/VelocityComponent.h"
  "RTypeBootstrap/Components/WeaponComponent.h"
+ "RTypeBootstrap/Components/ImmobileComponent.h"
  "RTypeBootstrap/Systems/ControllableSystem.cpp"
  "RTypeBootstrap/Systems/ShootingSystem.cpp"
  "RTypeBootstrap/Systems/DrawableSystem.cpp"

@@ -12,7 +12,7 @@ void drawable_system(registry &r, sf::RenderWindow &window)
         if (i && i.has_value()) {
             sf::Vector2f vec(position[index]->x, position[index]->y);
             i->sprite.setTexture(i->texture);
-            i->sprite.setPosition(sf::Vector2f(vec));
+            i->sprite.setPosition(vec);
             window.draw(i->sprite);
 		}
         index++;
