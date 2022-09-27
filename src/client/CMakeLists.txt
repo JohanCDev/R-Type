@@ -13,9 +13,19 @@ set(TARGET_NAME r-type_client)
 
 add_executable(${TARGET_NAME} ${SRC})
 
-# target_include_directories()
-target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT})
-target_link_libraries(${TARGET_NAME} PUBLIC sfml-graphics sfml-window sfml-audio sfml-system)
+if(APPLE)
+    target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT} /opt/homebrew/include/)
+    target_link_libraries(${TARGET_NAME}
+        /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-audio.dylib
+        /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-graphics.dylib
+        /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-network.dylib
+        /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-system.dylib
+        /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-window.dylib
+    )
+else()
+    target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT})
+    target_link_libraries(${TARGET_NAME} PRIVATE sfml-graphics sfml-window sfml-audio sfml-system)
+endif()
 
 add_custom_command(TARGET ${TARGET_NAME}
     POST_BUILD
