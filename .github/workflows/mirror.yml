@@ -67,11 +67,11 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "r_type-client.exe, r_type-server.exe"
-  
+
   build-on-mac-m1:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Install brew
         run: |
@@ -83,33 +83,7 @@ jobs:
       - name: Install sfml prerequisites on Mac
         run: |
           brew update
-          brew install -y \
-            build-essential \
-            git \
-            cmake --fix-missing
-            sfml
-
-      - name: Build rtype binaries on Mac (desktop)
-        run: |
-          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build ${{github.workspace}}/build/ -j
-
-      - name: Check MacOS build (desktop)
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "r_type-client, r_type-server"
-
-  build-on-mac-m1:
-    runs-on: self-hosted
-      - uses: actions/checkout@v2
-
-      - name: Install brew
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-      - name: Install sfml prerequisites on Mac
-        run: |
-          brew update
-          brew install -y \
+          brew install \
             build-essential \
             git \
             cmake --fix-missing

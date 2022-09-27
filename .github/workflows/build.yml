@@ -98,7 +98,7 @@ jobs:
       - name: Install sfml prerequisites on Mac
         run: |
           brew update
-          brew install -y \
+          brew install \
             build-essential \
             git \
             cmake --fix-missing
