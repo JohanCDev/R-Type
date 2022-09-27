@@ -86,7 +86,7 @@ jobs:
           brew install \
             build-essential \
             git \
-            cmake --fix-missing
+            cmake \
             sfml
 
       - name: Build rtype binaries on Mac (desktop)
