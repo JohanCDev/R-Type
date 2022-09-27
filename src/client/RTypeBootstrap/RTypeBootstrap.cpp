@@ -8,11 +8,9 @@
 
 // Part 1
 #include "sparse_array.h"
-//#include "sparse_array.cpp" // PAS NORMAL, DEMANDER DE L'AIDE !!!
 
 // Part 2
 #include "registry.h"
-//#include "registry.cpp" // TOUJOURS PAS NORMAL
 
 #include "Components/DrawableComponent.h"
 #include "Components/PositionComponent.h"
