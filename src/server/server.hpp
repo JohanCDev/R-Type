@@ -18,6 +18,13 @@
 
 using boost::asio::ip::udp;
 
+std::string make_daytime_string()
+{
+    using namespace std; // For time_t, time and ctime;
+    time_t now = time(0);
+    return ctime(&now);
+}
+
 class udp_server {
   public:
     udp_server(boost::asio::io_service &io_service) : socket_(io_service, udp::endpoint(udp::v4(), 1313))
