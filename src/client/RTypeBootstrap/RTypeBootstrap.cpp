@@ -167,9 +167,6 @@ int main()
     while (window.isOpen()) {
         sf::Event event;
 
-		for (auto &arr : r.get_components<CollideComponent>()) {
-			arr->collide = false;
-		}
         while (window.pollEvent(event)) {
 			if (controllable_system(r, event) == 1)
 				continue;
@@ -177,6 +174,11 @@ int main()
                 window.close();
             }
         }
+
+		for (auto &arr : r.get_components<CollideComponent>()) {
+			arr->collide = false;
+		}
+		
         window.clear(sf::Color::White);
 		for (auto &system : r.get_systems()) {
 			system(r, manager, clock);
