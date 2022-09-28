@@ -19,7 +19,7 @@
  */
 int main(void)
 {
-    std::string res = send_packet(4, "Player4 died");
+    std::string res = create_packet(4, "Player4 died");
     stream2hex(res, res);
     std::cout << res;
     return 0;
