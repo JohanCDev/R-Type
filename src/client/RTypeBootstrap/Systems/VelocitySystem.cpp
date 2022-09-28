@@ -5,7 +5,7 @@
 #include "../Components/CollideComponent.h"
 #include "../AssetsManager.hpp"
 
-int velocity_system(registry &r, AssetsManager manager)
+int velocity_system(registry &r, AssetsManager manager, sf::Clock clock)
 {
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
@@ -15,7 +15,7 @@ int velocity_system(registry &r, AssetsManager manager)
 
 	for (auto &i : velocity) {
         if (i && i.has_value()) {
-            sf::Time elapsedTime = i->clock.getElapsedTime();
+            sf::Time elapsedTime = clock.getElapsedTime();
             if (elapsedTime.asSeconds() > i->seconds) {
                 if (index < collide.size() && collide[index]->collide == true)
                     continue;
@@ -28,7 +28,7 @@ int velocity_system(registry &r, AssetsManager manager)
                     position[index]->x += i->x;
                     position[index]->y += i->y;
                 }
-                i->clock.restart();
+                i->seconds += i->coeff;
             }
 		}
         index++;

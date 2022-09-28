@@ -25,8 +25,8 @@
 #include <SFML/Graphics.hpp>
 
 int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager);
-int velocity_system(registry &r, AssetsManager manager);
-int collide_system(registry &r, AssetsManager manager);
+int velocity_system(registry &r, AssetsManager manager, sf::Clock clock);
+int collide_system(registry &r, AssetsManager manager, sf::Clock clock);
 int controllable_system(registry& r, sf::Event event);
 
 int main()
@@ -137,8 +137,8 @@ int main()
 	r.register_components<ControllableComponent>();
 	r.register_components<CollideComponent>();
 
-	r.register_systems(&velocity_system);
 	r.register_systems(&collide_system);
+	r.register_systems(&velocity_system);
 
 	AssetsManager manager;
 
@@ -162,8 +162,14 @@ int main()
 	r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
 	r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left));
 
+	sf::Clock clock;
+
     while (window.isOpen()) {
         sf::Event event;
+
+		for (auto &arr : r.get_components<CollideComponent>()) {
+			arr->collide = false;
+		}
         while (window.pollEvent(event)) {
 			if (controllable_system(r, event) == 1)
 				continue;
@@ -173,7 +179,7 @@ int main()
         }
         window.clear(sf::Color::White);
 		for (auto &system : r.get_systems()) {
-			system(r, manager);
+			system(r, manager, clock);
 		}
 		drawable_system(r, window, manager);
 		window.display();

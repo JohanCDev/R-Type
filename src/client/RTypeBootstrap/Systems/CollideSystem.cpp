@@ -20,7 +20,7 @@
 
 #include <iostream>
 
-int collide_system(registry &r, AssetsManager manager)
+int collide_system(registry &r, AssetsManager manager, sf::Clock clock)
 {
     auto &positions = r.get_components<PositionComponent>();
     auto &drawables = r.get_components<DrawableComponent>();

@@ -11,11 +11,11 @@
 class registry {
 public:
 
-	void register_systems(std::function<int(registry&, AssetsManager)> func) {
+	void register_systems(std::function<int(registry&, AssetsManager, sf::Clock)> func) {
 		this->_system_array.push_back(func);
 	}
 
-	std::vector<std::function<int(registry&, AssetsManager)>> get_systems() {
+	std::vector<std::function<int(registry&, AssetsManager, sf::Clock)>> get_systems() {
 		return (this->_system_array);
 	}
 
@@ -96,7 +96,7 @@ private:
 	std::unordered_map<std::type_index, std::any> _components_arrays;
 	std::vector<std::function<void(registry&, Entity const&)>> _erase_functions_array;
 
-	std::vector<std::function<int(registry&, AssetsManager)>> _system_array;
+	std::vector<std::function<int(registry&, AssetsManager, sf::Clock)>> _system_array;
 
 	sparse_array<Entity> _entity_array;
 	std::vector<Entity> _dead_entities_array;
