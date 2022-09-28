@@ -18,7 +18,6 @@ else()
     add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith")
 endif()
 
-add_subdirectory(dependencies)
 add_subdirectory(src)
 
 # Unit testing
