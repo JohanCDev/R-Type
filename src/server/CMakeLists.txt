@@ -3,6 +3,10 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 
 set(SRC
     ${SRCROOT}/main.cpp
+    ${SRCROOT}/bytes.cpp
+    ${SRCROOT}/create_packet.cpp
+    ${SRCROOT}/string2hex.cpp
+    ${INCROOT}/utils.hpp
 )
 
 set(INCDIRS ${INCROOT})

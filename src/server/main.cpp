@@ -10,6 +10,7 @@
  */
 
 #include <iostream>
+#include "utils.hpp"
 
 /**
  * @brief main function of the server
@@ -18,6 +19,8 @@
  */
 int main(void)
 {
-    std::cout << "Hello Server!" << std::endl;
+    std::string res = send_packet(4, "Player4 died");
+    stream2hex(res, res);
+    std::cout << res;
     return 0;
 }
