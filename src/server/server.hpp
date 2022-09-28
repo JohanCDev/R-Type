@@ -8,6 +8,7 @@
 #ifndef SERVER_HPP_
 #define SERVER_HPP_
 
+#include "utils.hpp"
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
@@ -18,11 +19,25 @@
 
 using boost::asio::ip::udp;
 
+std::string create_packet(size_t type, std::string content)
+{
+    char c_type[1];
+    char length[1];
+    std::string result;
+
+    push_back_byte(c_type, type);
+    push_back_byte(length, content.size());
+    result.append(c_type);
+    result.append(length);
+    // result.pop_back();
+    result.append(content);
+    return result;
+}
+
 std::string make_daytime_string()
 {
-    using namespace std; // For time_t, time and ctime;
-    time_t now = time(0);
-    return ctime(&now);
+    std::string tmp = "hello world";
+    return (tmp);
 }
 
 class udp_server {
@@ -33,35 +48,16 @@ class udp_server {
     }
 
   private:
-    void start_receive()
-    {
-        socket_.async_receive_from(boost::asio::buffer(recv_buffer_), remote_endpoint_,
-            boost::bind(&udp_server::handle_receive, this, boost::asio::placeholders::error,
-                boost::asio::placeholders::bytes_transferred));
-    }
+    void start_receive();
 
-    void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/)
-    {
-        if (!error || error == boost::asio::error::message_size) {
-            boost::shared_ptr<std::string> message(new std::string(make_daytime_string()));
+    void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
 
-            socket_.async_send_to(boost::asio::buffer(*message), remote_endpoint_,
-                boost::bind(&udp_server::handle_send, this, message, boost::asio::placeholders::error,
-                    boost::asio::placeholders::bytes_transferred));
-
-            start_receive();
-        }
-    }
-
-    void handle_send(boost::shared_ptr<std::string> msg, const boost::system::error_code & /*error*/,
-        std::size_t /*bytes_transferred*/)
-    {
-        std::cout << msg.get()->at(0) << std::endl;
-    }
+    void handle_send(boost::shared_ptr<std::string> /*msg*/, 
+    const boost::system::error_code & /*error*/, std::size_t /*bytes_transferred*/);
 
     udp::socket socket_;
     udp::endpoint remote_endpoint_;
-    boost::array<char, 1> recv_buffer_;
+    boost::array<char, 64> recv_buffer_;
 };
 
 #endif /* !SERVER_HPP_ */
