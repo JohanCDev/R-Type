@@ -33,24 +33,24 @@ public:
 		this->grow_to(pos);
 		_data.at(pos) = c;
 		return _data.at(pos);
-	};
+	}
 	reference_type insert_at(size_type pos, Component&& c) {
 		this->grow_to(pos);
 		_data.at(pos) = c;
 		return _data.at(pos);
-	};
+	}
 	template <class ... Params >
 	reference_type emplace_at(size_type pos, Params &&...args) {
 		Component c(args...);
 
 		return this->insert_at(pos, c);
-	}; // optional
+	}
 
 	void erase(size_type pos) {
 		if (this->size() > pos) {
 			_data.at(pos) = value_type();
 		}
-	};
+	}
 
 	size_type get_index(value_type const& c) const {
 		auto begin = this->begin();
@@ -59,16 +59,16 @@ public:
 			return std::distance(begin, it);
 		}
 		return 0;
-	};
+	}
 
 	void grow_to(size_type pos) {
 		while (this->size() < pos + 1) {
 			_data.push_back(value_type());
 		}
-	};
+	}
 	const_reference_type back() const {
 		return _data.back();
-	};
+	}
 private:
 	container_t _data;
 };

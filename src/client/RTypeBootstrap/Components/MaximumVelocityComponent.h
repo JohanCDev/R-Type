@@ -4,6 +4,6 @@ struct MaximumVelocityComponent {
 	int x;
 	int y;
 
-	MaximumVelocityComponent(int x, int y)
-		: x(x), y(y) {};
+	MaximumVelocityComponent(int x_velo, int y_velo)
+		: x(x_velo), y(y_velo) {};
 };

@@ -3,6 +3,6 @@
 struct HealthComponent {
 	int hp;
 
-	HealthComponent(int hp)
-		: hp(hp) {};
+	HealthComponent(int hp_value)
+		: hp(hp_value) {};
 };

@@ -15,5 +15,5 @@ struct ImmobileComponent {
 	bool x;
     bool y;
 
-	ImmobileComponent(bool x, bool y) : x(x), y(y) {};
+	ImmobileComponent(bool x_axis, bool y_axis) : x(x_axis), y(y_axis) {};
 };

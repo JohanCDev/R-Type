@@ -9,8 +9,6 @@
  * 
  */
 
-#pragma once
-
 #include "../registry.h"
 
 #include "../Components/PositionComponent.h"
@@ -18,13 +16,12 @@
 #include "../Components/CollideComponent.h"
 #include "../AssetsManager.hpp"
 
-#include <iostream>
-
 int collide_system(registry &r, AssetsManager manager, sf::Clock clock)
 {
     auto &positions = r.get_components<PositionComponent>();
     auto &drawables = r.get_components<DrawableComponent>();
     auto &collides = r.get_components<CollideComponent>();
+    (void)clock;
 
     for (size_t i = 0; i < collides.size(); ++i) {
         auto &collide = collides[i];

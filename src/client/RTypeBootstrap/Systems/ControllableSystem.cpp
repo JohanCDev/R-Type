@@ -3,7 +3,6 @@
 #include "../Components/PositionComponent.h"
 #include "../Components/VelocityComponent.h"
 #include "../Components/CollideComponent.h"
-#include <iostream>
 
 int controllable_system(registry &r, sf::Event event)
 {
@@ -20,19 +19,19 @@ int controllable_system(registry &r, sf::Event event)
 					return (0);
 				}
 			}
-			if (event.type == sf::Event::KeyPressed && event.key.code == i->up) {
+			if (event.type == sf::Event::KeyPressed && (KeyboardInput)event.key.code == i->up) {
 				position[index]->y -= velocity[index]->y;
 				return (1);
 			}
-			if (event.type == sf::Event::KeyPressed && event.key.code == i->down) {
+			if (event.type == sf::Event::KeyPressed && (KeyboardInput)event.key.code == i->down) {
 				position[index]->y += velocity[index]->y;
 				return (1);
 			}
-			if (event.type == sf::Event::KeyPressed && event.key.code == i->left) {
+			if (event.type == sf::Event::KeyPressed && (KeyboardInput)event.key.code == i->left) {
 				position[index]->x -= velocity[index]->x;
 				return (1);
 			}
-			if (event.type == sf::Event::KeyPressed && event.key.code == i->right) {
+			if (event.type == sf::Event::KeyPressed && (KeyboardInput)event.key.code == i->right) {
 				position[index]->x += velocity[index]->x;
 				return (1);
 			}

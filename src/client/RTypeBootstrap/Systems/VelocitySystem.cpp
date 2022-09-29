@@ -12,6 +12,7 @@ int velocity_system(registry &r, AssetsManager manager, sf::Clock clock)
     sparse_array<ImmobileComponent> &immobile = r.get_components<ImmobileComponent>();
     sparse_array<CollideComponent> &collide = r.get_components<CollideComponent>();
     std::size_t index = 0;
+    (void)manager;
 
 	for (auto &i : velocity) {
         if (i && i.has_value()) {

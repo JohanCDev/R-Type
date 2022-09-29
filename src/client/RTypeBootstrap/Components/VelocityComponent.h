@@ -9,7 +9,7 @@ struct VelocityComponent {
 	float seconds;
 	float coeff;
 
-	VelocityComponent(int x, int y, float seconds)
-	: x(x), y(y), seconds(seconds), coeff(seconds) {}
+	VelocityComponent(int x_velo, int y_velo, float time_as_seconds)
+	: x(x_velo), y(y_velo), seconds(time_as_seconds), coeff(time_as_seconds) {}
 
 };

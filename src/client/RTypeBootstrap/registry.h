@@ -32,7 +32,7 @@ public:
 		}
 
 		return std::any_cast<sparse_array<Component>&>(_components_arrays[std::type_index(typeid(Component))]);
-	};
+	}
 	template <class Component>
 	sparse_array<Component >& get_components() {
 		/*if (_components_arrays.contains(std::type_index(typeid(Component))) == false) {
@@ -40,7 +40,7 @@ public:
 			return sparse_array<Component>();
 		}*/
 		return std::any_cast<sparse_array<Component>&>(_components_arrays[std::type_index(typeid(Component))]);
-	};
+	}
 	template <class Component>
 	sparse_array<Component> const& get_components() const {
 		/*if (_components_arrays.contains(std::type_index(typeid(Component))) == false) {
@@ -48,7 +48,7 @@ public:
 			return sparse_array<Component>();
 		}*/
 		return std::any_cast<sparse_array<Component>&>(_components_arrays.at(std::type_index(typeid(Component))));
-	};
+	}
 
 	// Part 2.3
 	Entity spawn_entity() {
@@ -62,35 +62,35 @@ public:
 		idx = _dead_entities_array.back();
 		_dead_entities_array.pop_back();
 		return this->entity_from_index(idx);
-	};
+	}
 	Entity entity_from_index(std::size_t idx) {
 		return Entity(idx);
-	};
+	}
 	void kill_entity(Entity const& e) {
 		for (auto fct : _erase_functions_array) {
 			fct(*this, e);
 		}
 		_dead_entities_array.push_back(e);
-	};
+	}
 	template <typename Component >
 	typename sparse_array <Component>::reference_type add_component(Entity const& to, Component&& c) {
 		auto& arr = this->get_components<Component>();
 
 		arr.insert_at(to, c);
 		return arr[to];
-	};
+	}
 	template <typename Component, typename ... Params>
 	typename sparse_array <Component>::reference_type emplace_component(Entity const& to, Params &&... p) {
 		Component c(p...);
 
 		return this->add_component(to, c);
-	};
+	}
 	template <typename Component >
 	void remove_component(Entity const& from) {
 		auto& arr = this->get_components<Component>();
 
 		arr.erase(from);
-	};
+	}
 
 private:
 	std::unordered_map<std::type_index, std::any> _components_arrays;

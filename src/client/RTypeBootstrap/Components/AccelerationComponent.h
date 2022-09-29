@@ -3,6 +3,6 @@
 struct AccelerationComponent {
 	int coef;
 
-	AccelerationComponent(int coef)
-		: coef(coef) {};
+	AccelerationComponent(int coefficient)
+		: coef(coefficient) {};
 };

@@ -7,6 +7,6 @@ struct DrawableComponent {
 	float x_scale;
 	float y_scale;
 
-	DrawableComponent(std::string path, float x_scale = 1.0, float y_scale = 1.0)
-	: path(path), x_scale(x_scale), y_scale(y_scale) {}
+	DrawableComponent(std::string texture_path, float xscale = 1.0, float yscale = 1.0)
+	: path(texture_path), x_scale(xscale), y_scale(yscale) {}
 };
