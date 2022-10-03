@@ -13,19 +13,21 @@ jobs:
 
       - name: Install prerequisiteries
         run: |
-          apt-get update && \
-          apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev && \
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
           pip install conan
 
       - name: Install dependencies with conan
         run: |
-          mkdir build && cd build && \
+          mkdir build
+          cd build
           conan install .. --build=missing \
           -c tools.system.package_manager:mode=install \
           -c tools.system.package_manager:sudo=True
 
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
+          cd build
           cmake -DCMAKE_BUILD_TYPE=Release .. -G "Unix Makefiles"
           cmake --build  . -j 3
 
