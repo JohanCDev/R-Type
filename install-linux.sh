@@ -7,6 +7,5 @@ fi
 
 mkdir build && cd build && conan install .. --build=missing \
 -c tools.system.package_manager:mode=install \
--s compiler.version=13.1 \
 -c tools.system.package_manager:sudo=True && \
 cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build  . -j 3
