@@ -28,14 +28,13 @@ jobs:
 
       - name: Install prerequisiteries
         run: |
-          apt-get update
-          apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+          apt-get update && \
+          apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev && \
           pip install conan
 
       - name: Install dependencies with conan
         run: |
-          mkdir build
-          cd build
+          mkdir build && cd build && \
           conan install .. --build=missing \
           -c tools.system.package_manager:mode=install \
           -c tools.system.package_manager:sudo=True
