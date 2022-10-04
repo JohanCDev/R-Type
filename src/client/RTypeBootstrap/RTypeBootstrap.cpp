@@ -18,16 +18,18 @@
 #include "Components/ControllableComponent.h"
 #include "Components/ImmobileComponent.h"
 #include "Components/CollideComponent.h"
+#include "Components/ShapeComponent.hpp"
 
-#include "AssetsManager.hpp"
+#include "RessourcesManager.hpp"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager);
-int velocity_system(registry &r, AssetsManager manager, sf::Clock clock);
-int collide_system(registry &r, AssetsManager manager, sf::Clock clock);
-int controllable_system(registry& r, sf::Event event);
+int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager);
+int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock);
+int collide_system(registry &r, RessourcesManager manager, sf::Clock clock);
+int controllable_system(registry& r, RessourcesManager manager, sf::Event event);
+int shape_system(registry &r, sf::RenderWindow &window, RessourcesManager manager);
 
 int main()
 {
@@ -136,54 +138,66 @@ int main()
 	r.register_components<ImmobileComponent>();
 	r.register_components<ControllableComponent>();
 	r.register_components<CollideComponent>();
+	r.register_components<ShapeComponent>();
 
-	r.register_systems(&collide_system);
+	//r.register_systems(&collide_system);
 	r.register_systems(&velocity_system);
 
-	AssetsManager manager;
+	RessourcesManager manager;
 
 	manager.register_texture("test2.png");
 	manager.register_texture("chat.png");
 	manager.register_texture("panda.png");
+
+	//Entity text = r.spawn_entity();
+
+	//r.add_component<ShapeComponent>(text, ShapeComponent(shape_type::TEXT, "test", "default_font", 20));
+	//r.add_component<PositionComponent>(text, PositionComponent(10, 100));
 
 	Entity sprited = r.spawn_entity();
 	r.add_component<DrawableComponent>(sprited, DrawableComponent("chat.png", 0.2, 0.2));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
 	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(false, false));
 	r.add_component<CollideComponent>(sprited, CollideComponent());
-	r.add_component<VelocityComponent>(sprited, VelocityComponent(5, 5, 0.2));
+	r.add_component<VelocityComponent>(sprited, VelocityComponent(0, 0, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q));
 
-	Entity sprite = r.spawn_entity();
-	r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", 0.2, 0.2));
-	r.add_component<PositionComponent>(sprite, PositionComponent(500, 300));
-	r.add_component<ImmobileComponent>(sprite, ImmobileComponent(false, false));
-	r.add_component<CollideComponent>(sprite, CollideComponent());
-	r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
-	r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left));
+	//Entity sprite = r.spawn_entity();
+	//r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", 0.2, 0.2));
+	//r.add_component<PositionComponent>(sprite, PositionComponent(500, 300));
+	//r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
+	//r.add_component<CollideComponent>(sprite, CollideComponent());
+	//r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
+	//r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left));
+
+	r.create_text("test", "default_font", 20, 500, 300, -1, -1, 0.2, true);
+
 
 	sf::Clock clock;
 
     while (window.isOpen()) {
         sf::Event event;
 
+		
         while (window.pollEvent(event)) {
-			if (controllable_system(r, event) == 1)
+			if (controllable_system(r, manager, event) == 1)
 				continue;
+			//
 			if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
-
-		for (auto &arr : r.get_components<CollideComponent>()) {
-			arr->collide = false;
-		}
 		
         window.clear(sf::Color::White);
+		
 		for (auto &system : r.get_systems()) {
 			system(r, manager, clock);
 		}
+		
+		//
 		drawable_system(r, window, manager);
+		//
+		
 		window.display();
     }
 
