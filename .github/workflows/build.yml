@@ -70,10 +70,14 @@ jobs:
       - name: Install prerequisiteries
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+          sudo apt-get install -y cmake g++ libudev-dev pkg-config libgl-dev
 
       - name: Install conan
-        run: pip install conan
+        run: |
+          sudo apt install -y python3-pip
+          sudo pip3 install conan
+          which conan
+          conan --version
 
       - name: Build rtype binaries on Raspberry (desktop)
         run: |
