@@ -2,20 +2,24 @@
 
 #include "sparse_array.h"
 #include "Entity.h"
-#include "AssetsManager.hpp"
+#include "RessourcesManager.hpp"
 #include <unordered_map>
 #include <typeindex>
 #include <any>
 #include <functional>
+#include "Components/ShapeComponent.hpp"
+#include "Components/PositionComponent.h"
+#include "Components/VelocityComponent.h"
+#include "Components/CollideComponent.h"
 
 class registry {
 public:
 
-	void register_systems(std::function<int(registry&, AssetsManager, sf::Clock)> func) {
+	void register_systems(std::function<int(registry&, RessourcesManager, sf::Clock)> func) {
 		this->_system_array.push_back(func);
 	}
 
-	std::vector<std::function<int(registry&, AssetsManager, sf::Clock)>> get_systems() {
+	std::vector<std::function<int(registry&, RessourcesManager, sf::Clock)>> get_systems() {
 		return (this->_system_array);
 	}
 
@@ -92,11 +96,23 @@ public:
 		arr.erase(from);
 	}
 
+	void create_square(int x, int y, int x_velo, int y_velo, float refresh_time, bool collide) {
+		Entity ent = this->spawn_entity();
+
+		this->add_component<ShapeComponent>(ent, ShapeComponent(shape_type::RECTANGLE, 30, 30));
+		this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time));
+		this->add_component<PositionComponent>(ent, PositionComponent(x, y));
+		if (collide == true) {
+			this->add_component<CollideComponent>(ent, CollideComponent());
+		}
+
+	}
+
 private:
 	std::unordered_map<std::type_index, std::any> _components_arrays;
 	std::vector<std::function<void(registry&, Entity const&)>> _erase_functions_array;
 
-	std::vector<std::function<int(registry&, AssetsManager, sf::Clock)>> _system_array;
+	std::vector<std::function<int(registry&, RessourcesManager, sf::Clock)>> _system_array;
 
 	sparse_array<Entity> _entity_array;
 	std::vector<Entity> _dead_entities_array;
