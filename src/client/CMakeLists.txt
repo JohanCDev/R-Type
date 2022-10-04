@@ -38,6 +38,7 @@ else()
     target_link_libraries(${TARGET_NAME} CONAN_PKG::sfml)
 endif()
 
+set_property(TARGET ${TARGET_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "")
 set_target_properties(${TARGET_NAME}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/

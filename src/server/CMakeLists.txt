@@ -20,3 +20,5 @@ if(APPLE)
     target_link_libraries(${TARGET_NAME} PRIVATE "-framework Cocoa")
     target_link_libraries(${TARGET_NAME} PRIVATE "-framework OpenGL")
 endif()
+
+set_property(TARGET ${TARGET_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "")
