@@ -16,16 +16,12 @@ jobs:
       - name: Install conan
         uses: turtlebrowser/get-conan@main
 
-      - name: Install dependencies with conan
+      - name: Build rtype binaries on Ubuntu (desktop)
         run: |
           mkdir build && cd build
           conan install .. --build=missing \
           -c tools.system.package_manager:mode=install \
           -c tools.system.package_manager:sudo=True
-
-      - name: Build rtype binaries on Ubuntu (desktop)
-        run: |
-          cd build
           cmake -DCMAKE_BUILD_TYPE=Release .. -G "Unix Makefiles"
           cmake --build  . -j 3
 
