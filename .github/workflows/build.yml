@@ -3,6 +3,15 @@ name: Build
 on: push
 
 jobs:
+  lint:
+    name: clang-format Code Formatter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clang Code Formatter
+        uses: Mavrikant/clang-format-action@ubuntu-22.04
+        env:
+          GITHUB_TOKEN: ${{ secrets.EPI_MIRRORING_KEY }}
+
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -83,12 +92,13 @@ jobs:
           files: "r_type-client, r_type-server"
 
   mirror:
-    needs: [build-on-ubuntu, build-on-windows, .github/workflows/formatter.yml]
+    needs: [lint, build-on-ubuntu, build-on-windows]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - uses: lint
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url: ${{ secrets.EPI_REPO_URL }}
