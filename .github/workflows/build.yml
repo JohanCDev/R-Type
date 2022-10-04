@@ -4,7 +4,7 @@ on: push
 
 jobs:
   lint:
-    name: clang-format Code Formatter
+    name: Linter
     runs-on: ubuntu-latest
     steps:
       - name: Clang Code Formatter
