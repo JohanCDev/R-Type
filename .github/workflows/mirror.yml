@@ -58,36 +58,6 @@ jobs:
         with:
           files: "r_type-client.exe, r_type-server.exe"
 
-  build-on-mac-m1:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install brew
-        run: |
-          git clone https://github.com/Homebrew/brew homebrew
-          eval "$(homebrew/bin/brew shellenv)"
-          brew update --force --quiet
-          chmod -R go-w "$(brew --prefix)/share/zsh"
-
-      - name: Install sfml prerequisites on Mac
-        run: |
-          brew update
-          brew install \
-            git \
-            cmake \
-            sfml
-
-      - name: Build rtype binaries on Mac (desktop)
-        run: |
-          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build ${{github.workspace}}/build/ -j
-
-      - name: Check MacOS build (desktop)
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "r_type-client, r_type-server"
-
   mirror:
     needs: [build-on-ubuntu, build-on-windows]
     runs-on: ubuntu-latest
