@@ -1,16 +1,3 @@
-name: Formatter
-on: push
-jobs:
-  lint:
-    name: clang-format Code Formatter
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clang Code Formatter
-        uses: Mavrikant/clang-format-action@ubuntu-22.04
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
----
 name: Build
 
 on: push
@@ -96,7 +83,7 @@ jobs:
           files: "r_type-client, r_type-server"
 
   mirror:
-    needs: [build-on-ubuntu, build-on-windows, lint]
+    needs: [build-on-ubuntu, build-on-windows, .github/workflows/formatter.yml]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
