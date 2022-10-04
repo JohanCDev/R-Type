@@ -2,7 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
 set(SRC
- "RTypeBootstrap/AssetsManager.hpp"
+ "RTypeBootstrap/RessourcesManager.hpp"
  "RTypeBootstrap/Input.hpp"
  "RTypeBootstrap/Entity.h"
  "RTypeBootstrap/registry.h"
@@ -10,6 +10,7 @@ set(SRC
  "RTypeBootstrap/RTypeBootstrap.h"
  "RTypeBootstrap/sparse_array.h"
  "RTypeBootstrap/Components/AccelerationComponent.h"
+ "RTypeBootstrap/Components/ShapeComponent.hpp"
  "RTypeBootstrap/Components/ControllableComponent.h"
  "RTypeBootstrap/Components/DrawableComponent.h"
  "RTypeBootstrap/Components/HealthComponent.h"

@@ -3,9 +3,9 @@
 #include "../Components/VelocityComponent.h"
 #include "../Components/ImmobileComponent.h"
 #include "../Components/CollideComponent.h"
-#include "../AssetsManager.hpp"
+#include "../RessourcesManager.hpp"
 
-int velocity_system(registry &r, AssetsManager manager, sf::Clock clock)
+int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock)
 {
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
@@ -18,8 +18,6 @@ int velocity_system(registry &r, AssetsManager manager, sf::Clock clock)
         if (i && i.has_value()) {
             sf::Time elapsedTime = clock.getElapsedTime();
             if (elapsedTime.asSeconds() > i->seconds) {
-                if (index < collide.size() && collide[index]->collide == true)
-                    continue;
                 if (index < immobile.size() && immobile[index].has_value()) {
                     if (immobile[index]->x == false)
                         position[index]->x += i->x;

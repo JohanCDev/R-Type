@@ -96,10 +96,34 @@ public:
 		arr.erase(from);
 	}
 
-	void create_square(int x, int y, int x_velo, int y_velo, float refresh_time, bool collide) {
+	void create_square(int length, int width, int x, int y, int x_velo, int y_velo, float refresh_time, bool collide) {
 		Entity ent = this->spawn_entity();
 
-		this->add_component<ShapeComponent>(ent, ShapeComponent(shape_type::RECTANGLE, 30, 30));
+		this->add_component<ShapeComponent>(ent, ShapeComponent(shape_type::RECTANGLE, length, width));
+		this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time));
+		this->add_component<PositionComponent>(ent, PositionComponent(x, y));
+		if (collide == true) {
+			this->add_component<CollideComponent>(ent, CollideComponent());
+		}
+
+	}
+
+	void create_circle(int radius, int x, int y, int x_velo, int y_velo, float refresh_time, bool collide) {
+		Entity ent = this->spawn_entity();
+
+		this->add_component<ShapeComponent>(ent, ShapeComponent(shape_type::CIRCLE, radius));
+		this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time));
+		this->add_component<PositionComponent>(ent, PositionComponent(x, y));
+		if (collide == true) {
+			this->add_component<CollideComponent>(ent, CollideComponent());
+		}
+
+	}
+
+	void create_text(std::string text, std::string font_path, int char_size, int x, int y, int x_velo, int y_velo, float refresh_time, bool collide) {
+		Entity ent = this->spawn_entity();
+
+		this->add_component<ShapeComponent>(ent, ShapeComponent(shape_type::TEXT, text, font_path, char_size));
 		this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time));
 		this->add_component<PositionComponent>(ent, PositionComponent(x, y));
 		if (collide == true) {

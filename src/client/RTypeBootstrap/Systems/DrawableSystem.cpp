@@ -2,10 +2,9 @@
 #include "../Components/DrawableComponent.h"
 #include "../Components/ShapeComponent.hpp"
 #include "../Components/PositionComponent.h"
-#include "../AssetsManager.hpp"
-#include <iostream>
+#include "../RessourcesManager.hpp"
 
-int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager)
+int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager)
 {
     sparse_array<DrawableComponent> &drawable = r.get_components<DrawableComponent>();
     sparse_array<ShapeComponent> &shape = r.get_components<ShapeComponent>();
@@ -15,7 +14,7 @@ int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager
     sf::Texture texture;
 
 	for (auto &i : drawable) {
-        if (i && i.has_value() && !shape[index]) {
+        if (i && i.has_value()) {
             sf::Vector2f vec(position[index]->x, position[index]->y);
             texture = manager.get_texture(i->path);
             sprite.setTexture(texture);
@@ -41,6 +40,24 @@ int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager
                 tri.setFillColor(sf::Color::Blue);
                 window.draw(tri);
                 break;
+            }
+            if (entity->type == shape_type::CIRCLE) {
+                sf::CircleShape circle(entity->radius);
+                circle.setPosition(position[index]->x, position[index]->y);
+                circle.setFillColor(sf::Color::Blue);
+                window.draw(circle);
+                break;
+            }
+            if (entity->type == shape_type::TEXT) {
+                sf::Font font(manager.get_font(entity->font));
+                sf::Text text;
+
+                text.setCharacterSize(entity->font_size);
+                text.setFont(font);
+                text.setPosition(position[index]->x, position[index]->y);
+                text.setString(entity->text);
+                text.setFillColor(sf::Color::Black);
+                window.draw(text);
             }
         }
         index++;

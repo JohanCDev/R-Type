@@ -14,13 +14,15 @@
 #include "../Components/PositionComponent.h"
 #include "../Components/DrawableComponent.h"
 #include "../Components/CollideComponent.h"
-#include "../AssetsManager.hpp"
+#include "../Components/VelocityComponent.h"
+#include "../RessourcesManager.hpp"
 
-int collide_system(registry &r, AssetsManager manager, sf::Clock clock)
+int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)
 {
     auto &positions = r.get_components<PositionComponent>();
     auto &drawables = r.get_components<DrawableComponent>();
     auto &collides = r.get_components<CollideComponent>();
+    auto &velocities = r.get_components<VelocityComponent>();
     (void)clock;
 
     for (size_t i = 0; i < collides.size(); ++i) {
@@ -42,6 +44,7 @@ int collide_system(registry &r, AssetsManager manager, sf::Clock clock)
                     auto &otherCollide = collides[j];
                     auto &otherDrawable = drawables[j];
                     auto &otherPosition = positions[j];
+                    auto &otherVelocity = velocities[j];
 
                     if (otherDrawable.has_value()) {
                         otherSprite.setPosition(otherPosition->x, otherPosition->y);
@@ -50,8 +53,9 @@ int collide_system(registry &r, AssetsManager manager, sf::Clock clock)
                     }
 
                     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
-                        collide->collide = true;
-                        otherCollide->collide = true;
+                        //collide->collide = true;
+                        otherPosition->x -= otherVelocity->x;
+                        otherPosition->y -= otherVelocity->y;
                     }
                 }
             }

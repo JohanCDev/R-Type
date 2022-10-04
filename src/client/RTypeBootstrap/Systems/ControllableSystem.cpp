@@ -3,8 +3,11 @@
 #include "../Components/PositionComponent.h"
 #include "../Components/VelocityComponent.h"
 #include "../Components/CollideComponent.h"
+#include "../Components/DrawableComponent.h"
+#include "../Components/ImmobileComponent.h"
+#include "../RessourcesManager.hpp"
 
-int controllable_system(registry &r, sf::Event event)
+int controllable_system(registry &r, RessourcesManager manager, sf::Event event)
 {
 	sparse_array<ControllableComponent> &controllable = r.get_components<ControllableComponent>();
 	sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
@@ -14,11 +17,6 @@ int controllable_system(registry &r, sf::Event event)
 
 	for (auto const& i : controllable) {
 		if (i && i.has_value()) {
-			if (index < collide.size()) {
-				if (collide[index]->collide == true) {
-					return (0);
-				}
-			}
 			if (event.type == sf::Event::KeyPressed && (KeyboardInput)event.key.code == i->up) {
 				position[index]->y -= velocity[index]->y;
 				return (1);
