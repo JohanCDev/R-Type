@@ -15,7 +15,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
-          pip install conan
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
 
       - name: Install dependencies with conan
         run: |
@@ -41,11 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Install Pip
-        uses: logikal-io/pip-install@{22.2.2}
-
       - name: Install conan
-        run: pip install conan
+        uses: turtlebrowser/get-conan@main
 
       - name: Install dependencies
         run: |
