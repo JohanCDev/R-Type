@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 struct DrawableComponent {
 	std::string path;
 	float x_scale;
