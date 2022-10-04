@@ -84,18 +84,16 @@ jobs:
           brew update --force --quiet
           chmod -R go-w "$(brew --prefix)/share/zsh"
 
-      - name: Install sfml prerequisites on Mac
+      - name: Install conan
         run: |
           brew update
-          brew install \
-            git \
-            cmake \
-            sfml
+          brew install conan
 
       - name: Build rtype binaries on Mac (desktop)
         run: |
-          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build ${{github.workspace}}/build/ -j
+          cd build && mkdir build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
+          cmake --build  . -j 3
 
       - name: Check MacOS build (desktop)
         uses: andstor/file-existence-action@v1
