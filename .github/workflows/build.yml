@@ -73,7 +73,7 @@ jobs:
           sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
 
       - name: Install conan
-        uses: turtlebrowser/get-conan@main
+        run: pip install conan
 
       - name: Build rtype binaries on Raspberry (desktop)
         run: |
