@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Install Pip
-        uses: logikal-io/pip-install@{release}
+        uses: logikal-io/pip-install@22.1
 
       - name: Install conan
         run: pip install conan
