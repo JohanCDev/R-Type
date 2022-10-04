@@ -96,7 +96,7 @@ jobs:
 
       - name: Build rtype binaries on Mac (desktop)
         run: |
-          cd build && mkdir build
+          mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
           cmake --build  . -j 3
 
