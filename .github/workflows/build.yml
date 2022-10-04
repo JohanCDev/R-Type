@@ -62,33 +62,29 @@ jobs:
         with:
           files: "r_type-client.exe, r_type-server.exe"
 
-  build-on-mac-m1:
+  build-on-rpi-arm:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install brew
+      - name: Install prerequisiteries
         run: |
-          git clone https://github.com/Homebrew/brew homebrew
-          eval "$(homebrew/bin/brew shellenv)"
-          brew update --force --quiet
-          chmod -R go-w "$(brew --prefix)/share/zsh"
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
 
       - name: Install conan
-        run: |
-          brew update
-          brew install conan
+        uses: turtlebrowser/get-conan@main
 
-      - name: Build rtype binaries on Mac (desktop)
+      - name: Build rtype binaries on Raspberry (desktop)
         run: |
           mkdir build && cd build
           conan install .. --build=missing \
           -c tools.system.package_manager:mode=install \
           -c tools.system.package_manager:sudo=True
-          cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
+          cmake -DCMAKE_BUILD_TYPE=Release .. -G "Unix Makefiles"
           cmake --build  . -j 3
 
-      - name: Check MacOS build (desktop)
+      - name: Check Raspberry build (desktop)
         uses: andstor/file-existence-action@v1
         with:
           files: "r_type-client, r_type-server"
