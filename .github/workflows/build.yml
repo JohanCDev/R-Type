@@ -83,7 +83,7 @@ jobs:
           files: "r_type-client, r_type-server"
 
   mirror:
-    needs: [build-on-ubuntu, build-on-windows]
+    needs: [build-on-ubuntu, build-on-windows, clang-format-formatter]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
