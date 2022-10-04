@@ -82,6 +82,9 @@ jobs:
       - name: Build rtype binaries on Mac (desktop)
         run: |
           mkdir build && cd build
+          conan install .. --build=missing \
+          -c tools.system.package_manager:mode=install \
+          -c tools.system.package_manager:sudo=True
           cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
           cmake --build  . -j 3
 
