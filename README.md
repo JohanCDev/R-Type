@@ -13,25 +13,37 @@ This project is an EPITECH Project. If you are an EPITECH student, move out the 
 
 ### Prerequisites
 
-To use this project, you'll need Cmake 3.17.0 Compiler, SFML-devel library and C11.
+To use this project, you'll need CMake 3.16.3 Compiler minimum and conan package manager.
 
 ## Building
 
-### Command Line (via CMake)
+### **Command Line**
+
+### on Linux:
 
 Required tools:
 
-- CMake 3.17 (minimum)
+- libudev-dev
+- pkg-config
+- libgl-dev
 
-on Linux:
+Commands:
 
 ```sh
+# Create build directory
+mkdir build/ && cd build/
+
+# Install dependencies with conan
+conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 
 # Configure the project
-cmake -B build/ -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
 
 # Build the executable and libraries
-cmake --build build/ -j
+cmake --build  . -j 3
+
+# Return to the previous category
+cd -
 ```
 
 on Windows:
@@ -44,11 +56,14 @@ Required tools:
 # Create the build directory
 mkdir build && cd build
 
+# Install dependencies with conan
+conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+
 # Configure the project
-cmake .. -G 'Visual Studio 17 2022' -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
 
 # Build the executable and libraries
-cmake --build .
+cmake --build . -j 3
 
 # Return to previous directory
 cd -
