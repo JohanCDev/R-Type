@@ -35,6 +35,13 @@ int drawable_system(registry &r, sf::RenderWindow &window, AssetsManager manager
                 window.draw(rect);
                 break;
             }
+            if (entity->type == shape_type::TRIANGLE) {
+                sf::CircleShape tri(entity->radius, 3);
+                tri.setPosition(position[index]->x, position[index]->y);
+                tri.setFillColor(sf::Color::Blue);
+                window.draw(tri);
+                break;
+            }
         }
         index++;
     }
