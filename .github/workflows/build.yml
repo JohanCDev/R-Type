@@ -1,5 +1,5 @@
+name: Formatter
 on: push
-name: clang-format-formatter
 jobs:
   lint:
     name: clang-format Code Formatter
@@ -96,7 +96,7 @@ jobs:
           files: "r_type-client, r_type-server"
 
   mirror:
-    needs: [build-on-ubuntu, build-on-windows, clang-format-formatter]
+    needs: [build-on-ubuntu, build-on-windows, lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
