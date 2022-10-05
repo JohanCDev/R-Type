@@ -46,7 +46,7 @@ cmake --build  . -j 3
 cd -
 ```
 
-on Windows:
+### on Windows:
 
 Required tools:
 
@@ -69,15 +69,42 @@ cmake --build . -j 3
 cd -
 ```
 
-### Coding Style
+### on MacOS
+
+**Be sure to have set compiler.version to 13 in your ~/.conan/prfiles**
+
+Required tools:
+
+- libudev-dev
+- pkg-config
+- libgl-dev
+
+Commands:
+
+```sh
+# Create build directory
+take build/
+
+# Install dependencies with conan
+conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+
+# Configure the project
+cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
+
+# Build the executable and libraries
+cmake --build  . -j 3
+
+# Return to the previous category
+cd -
+```
+
+## Coding Style
 
 R-Type is developed with C++. EPITECH doesn't impose any Coding Style to this but we tried to be as clean as possible.
 
 ## Documentation
 
-### Local
-
-Required tools:
+### **Code documentation:**
 
 - Doxygen
 
@@ -90,6 +117,8 @@ doxygen
 # Open the generated pages
 xdg-open doc/generated/html/index.html
 ```
+
+### [**RFC documentation**](https://vivacious-hockey-270.notion.site/RFC-c84eaf8ef30541b2992558992e0b03bd)
 
 # Authors
 
