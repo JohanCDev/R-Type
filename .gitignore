@@ -11,3 +11,4 @@ r-type_server*
 .DS_Store
 doc/output/
 doc/warnings.txt
+Dockerfile

@@ -21,6 +21,4 @@ if(APPLE)
     target_link_libraries(${TARGET_NAME} PRIVATE "-framework OpenGL")
 endif()
 
-add_custom_command(TARGET ${TARGET_NAME}
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR})
+set_property(TARGET ${TARGET_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "")
