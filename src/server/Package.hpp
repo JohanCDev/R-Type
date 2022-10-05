@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** R-Type
-** File description:
-** Package
-*/
+/**
+ * @file Package.hpp
+ * @author your name (you@domain.com)
+ * @brief RFC class
+ * @version 0.1
+ * @date 2022-10-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef PACKAGE_HPP_
 #define PACKAGE_HPP_

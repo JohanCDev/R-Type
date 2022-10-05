@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** R-Type
-** File description:
-** server
-*/
+/**
+ * @file server.cpp
+ * @author your name (you@domain.com)
+ * @brief udp server creation
+ * @version 0.1
+ * @date 2022-10-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "server.hpp"
 #include "Package.hpp"
@@ -35,7 +39,6 @@ void udp_server::getData(boost::array<char, 64> recv_buffer_)
     std::string size;
     std::string desc = recv_buffer_.data();
 
-    // std::string tmp;
     S2C_OK _ok;
     S2C_ERROR _error;
     S2C_MOVEMENT _mvt;
@@ -58,22 +61,6 @@ void udp_server::getData(boost::array<char, 64> recv_buffer_)
     auto tmmp = mapFunc[arg1];
 
     tmmp();
-    // mapFunc.emplace(std::make_pair("hello", &S2C_OK::send));
-
-    // mapFunc["hello"];
-
-    // tempo["tempo"] = func;
-    // switch (arg1)
-    // {
-    // case "hello":
-    //     /* code */
-    //     break;
-    
-    // default:
-    //     break;
-    // }
-    // std::cout << desc.substr(arg1.size() + size.size() + 2, std::stoi(size)) << std::endl;
-    // std::cout << arg1 << std::endl;
 }
 
 void udp_server::handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/)

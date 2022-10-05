@@ -1,9 +1,13 @@
-/*
-** EPITECH PROJECT, 2022
-** R-Type
-** File description:
-** server
-*/
+/**
+ * @file server.hpp
+ * @author your name (you@domain.com)
+ * @brief class of udp server
+ * @version 0.1
+ * @date 2022-10-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef SERVER_HPP_
 #define SERVER_HPP_
