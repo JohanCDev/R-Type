@@ -11,6 +11,8 @@
 #include "Components/PositionComponent.h"
 #include "Components/VelocityComponent.h"
 #include "Components/CollideComponent.h"
+#include "Components/WeaponComponent.h"
+#include <iostream>
 
 class registry {
 public:
@@ -130,6 +132,15 @@ public:
 			this->add_component<CollideComponent>(ent, CollideComponent());
 		}
 
+	}
+
+	void create_laser(int x, int y, int x_velo, int y_velo, float refresh_time) {
+		Entity ent = this->spawn_entity();
+
+		this->add_component<ShapeComponent>(ent, ShapeComponent(shape_type::RECTANGLE, 100, 20));
+		this->add_component<WeaponComponent>(ent, WeaponComponent("laser", 5, 15, 0.2));
+		this->add_component<VelocityComponent>(ent, VelocityComponent(15, 0, refresh_time));
+		this->add_component<PositionComponent>(ent, PositionComponent(x, y));
 	}
 
 private:

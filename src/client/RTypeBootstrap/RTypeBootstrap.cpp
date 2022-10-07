@@ -19,6 +19,7 @@
 #include "Components/ImmobileComponent.h"
 #include "Components/CollideComponent.h"
 #include "Components/ShapeComponent.hpp"
+#include "Components/WeaponComponent.h"
 
 #include "RessourcesManager.hpp"
 
@@ -139,6 +140,7 @@ int main()
 	r.register_components<ControllableComponent>();
 	r.register_components<CollideComponent>();
 	r.register_components<ShapeComponent>();
+	r.register_components<WeaponComponent>();
 
 	//r.register_systems(&collide_system);
 	r.register_systems(&velocity_system);
@@ -160,7 +162,7 @@ int main()
 	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(false, false));
 	r.add_component<CollideComponent>(sprited, CollideComponent());
 	r.add_component<VelocityComponent>(sprited, VelocityComponent(0, 0, 0.2));
-	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q));
+	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 
 	//Entity sprite = r.spawn_entity();
 	//r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", 0.2, 0.2));

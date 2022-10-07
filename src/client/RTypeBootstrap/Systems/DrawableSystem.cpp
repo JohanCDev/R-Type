@@ -26,6 +26,7 @@ int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager man
 	}
     index = 0;
     for (auto &entity : shape) {
+        std::cout << index << std::endl;
         if (entity && entity.has_value()) {
             if (entity->type == shape_type::RECTANGLE) {
                 sf::RectangleShape rect(sf::Vector2f(entity->length, entity->width));

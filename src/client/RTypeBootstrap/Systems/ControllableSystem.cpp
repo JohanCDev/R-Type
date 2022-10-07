@@ -6,6 +6,7 @@
 #include "../Components/DrawableComponent.h"
 #include "../Components/ImmobileComponent.h"
 #include "../RessourcesManager.hpp"
+#include <iostream>
 
 int controllable_system(registry &r, RessourcesManager manager, sf::Event event)
 {
@@ -32,6 +33,9 @@ int controllable_system(registry &r, RessourcesManager manager, sf::Event event)
 			if (event.type == sf::Event::KeyPressed && (KeyboardInput)event.key.code == i->right) {
 				position[index]->x += velocity[index]->x;
 				return (1);
+			}
+			if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == i->shoot) {
+				r.create_laser(position[index]->x, position[index]->y, velocity[index]->x, velocity[index]->y, 0.2);
 			}
 		}
 		index++;

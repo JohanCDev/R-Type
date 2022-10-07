@@ -11,6 +11,12 @@
 
 #pragma once
 
+enum MouseInput {
+    Left_click,
+    Right_click,
+    Middle_click
+};
+
 enum KeyboardInput {
     Unknown = -1,
     A = 0,
