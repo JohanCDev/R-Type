@@ -25,9 +25,11 @@ int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager man
         index++;
 	}
     index = 0;
-    for (auto &entity : shape) {
-        std::cout << index << std::endl;
-        if (entity && entity.has_value()) {
+    for (size_t i = 0; i < shape.size(); ++i) {
+        auto &entity = shape[i];
+        //std::cout << "size " << shape.size() << std::endl;
+        if (entity.has_value()) {
+            //std::cout << "index " << i << std::endl;
             if (entity->type == shape_type::RECTANGLE) {
                 sf::RectangleShape rect(sf::Vector2f(entity->length, entity->width));
                 rect.setPosition(position[index]->x, position[index]->y);

@@ -29,7 +29,7 @@
 int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager);
 int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock);
 int collide_system(registry &r, RessourcesManager manager, sf::Clock clock);
-int controllable_system(registry& r, RessourcesManager manager, sf::Event event);
+int controllable_system(registry& r, RessourcesManager manager, sf::Event event, sf::Clock clock);
 int shape_system(registry &r, sf::RenderWindow &window, RessourcesManager manager);
 
 int main()
@@ -172,7 +172,7 @@ int main()
 	//r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
 	//r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left));
 
-	r.create_text("test", "default_font", 20, 500, 300, -1, -1, 0.2, true);
+	//r.create_text("test", "default_font", 20, 500, 300, -1, -1, 0.2, true);
 
 
 	sf::Clock clock;
@@ -182,7 +182,7 @@ int main()
 
 		
         while (window.pollEvent(event)) {
-			if (controllable_system(r, manager, event) == 1)
+			if (controllable_system(r, manager, event, clock) == 1)
 				continue;
 			//
 			if (event.type == sf::Event::Closed) {
