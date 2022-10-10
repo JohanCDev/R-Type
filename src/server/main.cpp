@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "utils.hpp"
+#include "Package.hpp"
 
 /**
  * @brief main function of the server
@@ -19,8 +20,14 @@
  */
 int main(void)
 {
-    std::string res = create_packet(4, "Player4 died");
-    stream2hex(res, res);
-    std::cout << res;
+    try {
+        boost::asio::io_service io_service;
+        udp_server server(io_service);
+        io_service.run();
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    // stream2hex(res, res);
+    // std::cout << res;
     return 0;
 }
