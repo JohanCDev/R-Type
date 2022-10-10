@@ -10,8 +10,9 @@
  */
 
 #include <iostream>
-#include "utils.hpp"
 #include "server.hpp"
+#include "utils.hpp"
+#include "Package/Packets/S2C_Error.hpp"
 
 /**
  * @brief main function of the server
