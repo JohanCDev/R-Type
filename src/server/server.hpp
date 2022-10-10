@@ -12,6 +12,14 @@
 #ifndef SERVER_HPP_
 #define SERVER_HPP_
 
+// #include "S2C_EntityHit.hpp"
+// #include "S2C_EntityNew.hpp"
+// #include "S2C_Error.hpp"
+// #include "S2C_GameEnd.hpp"
+// #include "S2C_Movement.hpp"
+// #include "S2C_Ok.hpp"
+// #include "S2C_EntityDead.hpp"
+
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
