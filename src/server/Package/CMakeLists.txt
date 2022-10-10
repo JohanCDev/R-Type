@@ -2,9 +2,12 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/server/Package)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server/Package)
 
 set(SRC
+    ${INCROOT}/Package.hpp
 )
 
 set(INCDIRS ${INCROOT})
+
+add_subdirectory(Packets)
 
 source_group("server" FILES ${SRC})
 
