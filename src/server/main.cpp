@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "utils.hpp"
-#include "Package.hpp"
+#include "server.hpp"
 
 /**
  * @brief main function of the server
@@ -27,7 +27,5 @@ int main(void)
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
-    // stream2hex(res, res);
-    // std::cout << res;
     return 0;
 }
