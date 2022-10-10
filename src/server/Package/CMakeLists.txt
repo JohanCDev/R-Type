@@ -2,7 +2,9 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/server/Package)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server/Package)
 
 set(SRC
+    ${SRC}
     ${INCROOT}/Package.hpp
+    PARENT_SCOPE
 )
 
 set(INCDIRS ${INCROOT})
