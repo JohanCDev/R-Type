@@ -30,20 +30,10 @@ Required tools:
 Commands:
 
 ```sh
-# Create build directory
-mkdir build/ && cd build/
 
-# Install dependencies with conan
-conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+# This command will install all dependencies and will generate the binaries needed for the project
+./linux_installer.sh
 
-# Configure the project
-cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
-
-# Build the executable and libraries
-cmake --build  . -j 3
-
-# Return to the previous category
-cd -
 ```
 
 ### on Windows:
@@ -82,20 +72,10 @@ Required tools:
 Commands:
 
 ```sh
-# Create build directory
-take build/
 
-# Install dependencies with conan
-conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+# This command will install all dependencies and will generate the binaries needed for the project
+./MacOS_installer.sh
 
-# Configure the project
-cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles'
-
-# Build the executable and libraries
-cmake --build  . -j 3
-
-# Return to the previous category
-cd -
 ```
 
 ## Coding Style
