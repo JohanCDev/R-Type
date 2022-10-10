@@ -40,23 +40,10 @@ Commands:
 
 Required tools:
 
-- Visual Studio 17 2022 (minimum)
+- Visual Studio 17 2022 (minimum) with "Development with C++" package installed
 
 ```sh
-# Create the build directory
-mkdir build && cd build
-
-# Install dependencies with conan
-conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
-
-# Configure the project
-cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
-
-# Build the executable and libraries
-cmake --build . -j 3
-
-# Return to previous directory
-cd -
+./windows_installer.ps1
 ```
 
 ### on MacOS
