@@ -3,7 +3,7 @@ echo "Made by Johan CHRILLESEN, Adam DJEBAR, Louis MAESTRE, Tanguy BELLICHA and 
 echo ""
 echo "To run the game we need many dependencies, this installer will install them for you."
 
-if uname -a | grep "Darwin";
+if uname -a | grep "Darwin" > /dev/null;
 then
     echo ""
 else
@@ -13,6 +13,7 @@ fi
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install cmake clang++ pip
+xcode-select --install
 
 echo "\033[0;32mINSTALLING CONAN PACKAGE MANAGER\033[0m"
 pip install conan
