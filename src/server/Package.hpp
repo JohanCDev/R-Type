@@ -13,7 +13,6 @@
 #define PACKAGE_HPP_
 
 #include <iostream>
-#include "server.hpp"
 
 enum Type { Join, Movement, Shoot, Leave };
 
@@ -32,45 +31,53 @@ class APacket : public IPacket {
     std::string _content;
 };
 
-class Packet : public APacket {
-
-};
-
 class S2C_OK : public APacket {
   public:
     void send() {
-      std::cout << "S2C OK mgl" << std::endl;
+      std::cout << "S2C OK" << std::endl;
     }
 };
 
 class S2C_ERROR : public APacket {
   public:
-    void send();
+    void send() {
+      std::cout << "S2C Error" << std::endl;
+    }
 };
 
 class S2C_MOVEMENT : public APacket {
   public:
-    void send();
+    void send() {
+      std::cout << "S2C Movement" << std::endl;
+    }
 };
 
 class S2C_ENTITY_NEW : public APacket {
   public:
-    void send();
+    void send() {
+      std::cout << "S2C New Entity" << std::endl;
+    }
 };
 
 class S2C_ENTITY_DEAD : public APacket {
   public:
-    void send();
+    void send() {
+      std::cout << "S2C dead entity" << std::endl;
+    }
 };
 
 class S2C_ENTITY_HIT : public APacket {
   public:
-    void send();
+    void send() {
+      std::cout << "S2C hit entity" << std::endl;
+    }
 };
 
 class S2C_GAME_END : public APacket {
   public:
-    void send();
+    void send() {
+      std::cout << "S2C end game" << std::endl;
+    }
 };
 
 #endif /* !PACKAGE_HPP_ */

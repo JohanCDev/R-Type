@@ -32,12 +32,12 @@ std::string make_daytime_string()
     return (tmp);
 }
 
-void udp_server::getData(boost::array<char, 64> recv_buffer_)
+void udp_server::getData(boost::array<char, 64> recv_buffer)
 {
-    std::istringstream tmp(recv_buffer_.data());
+    std::istringstream tmp(recv_buffer.data());
     std::string arg1;
     std::string size;
-    std::string desc = recv_buffer_.data();
+    // std::string desc = recv_buffer.data();
 
     S2C_OK _ok;
     S2C_ERROR _error;
