@@ -54,7 +54,8 @@ Required tools:
 
 ```sh
 # Create the build directory
-mkdir build && cd build
+mkdir build
+cd build
 
 # Install dependencies with conan
 conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
