@@ -13,7 +13,12 @@
 
 #include <string>
 
-enum shape_type { RECTANGLE, TRIANGLE, CIRCLE, TEXT };
+enum shape_type { 
+    RECTANGLE = 0,
+    TRIANGLE,
+    CIRCLE,
+    TEXT,
+};
 
 struct ShapeComponent {
     float x_scale;
@@ -26,8 +31,9 @@ struct ShapeComponent {
     std::string font;
     int font_size;
 
-    ShapeComponent(enum shape_type type_shape, int set_radius) : type(type_shape), radius(set_radius)
+    /*ShapeComponent(int set_radius) : radius(set_radius)
     {
+        type = shape_type::CIRCLE;
         x_scale = 0.0;
         y_scale = 0.0;
         length = 0;
@@ -35,11 +41,12 @@ struct ShapeComponent {
         text = "";
         font = "";
         font_size = 0;
-    }
+    }*/
 
-    ShapeComponent(enum shape_type type_shape, int length_value, int width_value)
-        : type(type_shape), length(length_value), width(width_value)
+    ShapeComponent(int length_value, int width_value)
+        : length(length_value), width(width_value)
     {
+        type = shape_type::RECTANGLE;
         x_scale = 0.0;
         y_scale = 0.0;
         radius = 0;
@@ -48,13 +55,14 @@ struct ShapeComponent {
         font_size = 0;
     }
 
-    ShapeComponent(enum shape_type type_shape, std::string text_string, std::string font_path, int char_size)
-        : type(type_shape), text(text_string), font(font_path), font_size(char_size)
+    /*ShapeComponent(std::string text_string, std::string font_path, int char_size)
+        : text(text_string), font(font_path), font_size(char_size)
     {
+        type = shape_type::TEXT;
         x_scale = 0.0;
         y_scale = 0.0;
         radius = 0;
         length = 0;
         width = 0;
-    }
+    }*/
 };

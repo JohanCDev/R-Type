@@ -16,12 +16,16 @@
 
 int shooting_system(registry &r, RessourcesManager manager, sf::Clock clock)
 {
-    auto &weapons = r.get_components<WeaponComponent>();
-    auto &positions = r.get_components<PositionComponent>();
+    //auto &weapons = r.get_components<WeaponComponent>();
+    //auto &positions = r.get_components<PositionComponent>();
 
-    for (size_t i = 0; i < weapons.size(); ++i) {
-        auto &weapon = weapons[i];
-        auto &position = positions[i];
-    }
+    r.get_components<WeaponComponent>();
+    (void)manager;
+    (void)clock;
+    //for (size_t i = 0; i < weapons.size(); ++i) {
+        //auto &weapon = weapons[i];
+        //auto &position = positions[i];
+
+    //}
     return (0);
 }

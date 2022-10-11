@@ -41,7 +41,7 @@ int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)
             for (size_t j = 0; j < collides.size(); ++j) {
                 if (j != i) {
                     sf::Sprite otherSprite;
-                    auto &otherCollide = collides[j];
+                    //auto &otherCollide = collides[j];
                     auto &otherDrawable = drawables[j];
                     auto &otherPosition = positions[j];
                     auto &otherVelocity = velocities[j];

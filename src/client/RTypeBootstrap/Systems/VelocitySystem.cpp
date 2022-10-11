@@ -10,7 +10,7 @@ int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock)
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     sparse_array<ImmobileComponent> &immobile = r.get_components<ImmobileComponent>();
-    sparse_array<CollideComponent> &collide = r.get_components<CollideComponent>();
+    //sparse_array<CollideComponent> &collide = r.get_components<CollideComponent>();
     std::size_t index = 0;
     (void)manager;
 

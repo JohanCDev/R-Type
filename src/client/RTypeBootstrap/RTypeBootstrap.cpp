@@ -150,6 +150,7 @@ int main()
 	manager.register_texture("test2.png");
 	manager.register_texture("chat.png");
 	manager.register_texture("panda.png");
+	manager.register_texture("r-typesheet1.gif");
 
 	//Entity text = r.spawn_entity();
 
@@ -157,7 +158,7 @@ int main()
 	//r.add_component<PositionComponent>(text, PositionComponent(10, 100));
 
 	Entity sprited = r.spawn_entity();
-	r.add_component<DrawableComponent>(sprited, DrawableComponent("chat.png", 0.2, 0.2));
+	r.add_component<DrawableComponent>(sprited, DrawableComponent("chat.png", Vector4(0, 0, 0, 0), 0.2, 0.2));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
 	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(false, false));
 	r.add_component<CollideComponent>(sprited, CollideComponent());

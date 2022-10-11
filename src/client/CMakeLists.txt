@@ -10,7 +10,6 @@ set(SRC
  "RTypeBootstrap/RTypeBootstrap.h"
  "RTypeBootstrap/sparse_array.h"
  "RTypeBootstrap/Components/AccelerationComponent.h"
- "RTypeBootstrap/Components/ShapeComponent.hpp"
  "RTypeBootstrap/Components/ControllableComponent.h"
  "RTypeBootstrap/Components/DrawableComponent.h"
  "RTypeBootstrap/Components/HealthComponent.h"
@@ -24,7 +23,8 @@ set(SRC
  "RTypeBootstrap/Systems/CollideSystem.cpp"
  "RTypeBootstrap/Systems/ShootingSystem.cpp"
  "RTypeBootstrap/Systems/DrawableSystem.cpp"
- "RTypeBootstrap/Systems/VelocitySystem.cpp")
+ "RTypeBootstrap/Systems/VelocitySystem.cpp"
+ "RTypeBootstrap/Components/ShapeComponent.hpp")
 
 set(INCDIRS ${INCROOT})
 
