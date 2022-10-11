@@ -13,6 +13,7 @@ opengl/system
 stb/cci.20210910
 vorbis/1.3.7
 sfml/2.5.1
+boost/1.80.0
 
 [options]
 libstd:compiler.libcxx=libstdc++20
