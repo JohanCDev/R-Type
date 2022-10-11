@@ -20,6 +20,7 @@
 #include "Components/CollideComponent.h"
 #include "Components/ShapeComponent.hpp"
 #include "Components/WeaponComponent.h"
+#include "Components/DestroyableComponent.hpp"
 
 #include "RessourcesManager.hpp"
 
@@ -142,6 +143,7 @@ int main()
 	r.register_components<CollideComponent>();
 	r.register_components<ShapeComponent>();
 	r.register_components<WeaponComponent>();
+	r.register_components<DestroyableComponent>();
 
 	r.register_systems(&shooting_system);
 	r.register_systems(&velocity_system);
@@ -152,6 +154,8 @@ int main()
 	manager.register_texture("chat.png");
 	manager.register_texture("panda.png");
 	manager.register_texture("r-typesheet1.gif");
+	manager.register_texture("r-typesheet5.gif");
+	manager.register_texture("r-typesheet39.gif");
 
 	//Entity text = r.spawn_entity();
 
@@ -159,18 +163,19 @@ int main()
 	//r.add_component<PositionComponent>(text, PositionComponent(10, 100));
 
 	Entity sprited = r.spawn_entity();
-	r.add_component<DrawableComponent>(sprited, DrawableComponent("chat.png", Vector4(0, 0, 0, 0), 0.2, 0.2));
+	r.add_component<DrawableComponent>(sprited, DrawableComponent("r-typesheet5.gif", Vector4(375, 6, 21, 24), 2.0, 2.0));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
-	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(false, false));
+	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(true, true));
 	r.add_component<CollideComponent>(sprited, CollideComponent());
-	r.add_component<VelocityComponent>(sprited, VelocityComponent(0, 0, 0.2));
+	r.add_component<VelocityComponent>(sprited, VelocityComponent(5, 5, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 
 	Entity sprite = r.spawn_entity();
-	r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", Vector4(0, 0, 0, 0), 0.2, 0.2));
+	r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", Vector4(0, 0, 900, 512), 0.2, 0.2));
 	r.add_component<PositionComponent>(sprite, PositionComponent(500, 0));
 	r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
 	r.add_component<CollideComponent>(sprite, CollideComponent());
+	r.add_component<DestroyableComponent>(sprite, DestroyableComponent(true));
 	r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
 	r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::UNDEFINED));
 

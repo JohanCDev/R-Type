@@ -17,8 +17,9 @@ int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager man
         if (i && i.has_value()) {
             sf::Vector2f vec(position[index]->x, position[index]->y);
             texture = manager.get_texture(i->path);
-            if (!(i->rect.x == 0 && i->rect.y == 0 && i->rect.x_size == 0 && i->rect.y_size == 0))
+            if (!(i->rect.x == 0 && i->rect.y == 0 && i->rect.x_size == 0 && i->rect.y_size == 0)) {
                 sprite.setTextureRect(sf::IntRect(i->rect.x, i->rect.y, i->rect.x_size, i->rect.y_size));
+            }
             sprite.setTexture(texture);
             sprite.setPosition(vec);
             sprite.setScale(i->x_scale, i->y_scale);

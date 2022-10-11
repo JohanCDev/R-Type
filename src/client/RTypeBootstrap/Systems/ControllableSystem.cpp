@@ -37,12 +37,11 @@ int controllable_system(registry &r, RessourcesManager manager, sf::Event event,
 				return (1);
 			}
 			if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == i->shoot) {
-				sf::Sprite sprite;
-				sprite.setPosition(position[index]->x, position[index]->y);
-            	sprite.setTexture(manager.get_texture(drawable[index]->path));
-            	sprite.setScale(drawable[index]->x_scale, drawable[index]->y_scale);
-            	//sprite.setTextureRect(sf::IntRect(drawable[index]->rect.x, drawable[index]->rect.y, drawable[index]->rect.x_size, drawable[index]->rect.y_size));
-				r.create_laser(position[index]->x + (sprite.getTexture()->getSize().x * drawable[index]->x_scale) + 1, position[index]->y, 15, 0, 0.2, game_clock.getElapsedTime().asSeconds());
+            	if (!(drawable[index]->rect.x == 0 && drawable[index]->rect.y == 0 && drawable[index]->rect.x_size == 0 && drawable[index]->rect.y_size == 0)) {
+					r.create_laser(position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1, position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0, 0.2, game_clock.getElapsedTime().asSeconds());
+				} else {
+					r.create_laser(position[index]->x + (manager.get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1, position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0, 0.2, game_clock.getElapsedTime().asSeconds());
+				}
 			}
 		}
 		index++;
