@@ -1,60 +1,37 @@
 name: Build
 
-on:
-  push:
-    branches-ignore:
-      - master
-    paths:
-      - "**/CMakeLists.txt"
-      - "**/*.hpp"
-      - "**/*.h"
-      - "**/*.cpp"
-      - ".github/workflows/*.yml"
-  pull_request:
-    branches:
-      - master
-    paths:
-      - "**/CMakeLists.txt"
-      - "**/*.hpp"
-      - "**/*.h"
-      - "**/*.cpp"
-      - ".github/workflows/*.yml"
+on: push
 
 jobs:
+  # lint:
+  #   name: Linter
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Clang Code Formatter
+  #       uses: Mavrikant/clang-format-action@ubuntu-22.04
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.EPI_MIRRORING_KEY }}
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install sfml prerequisites on Ubuntu
+      - name: Install prerequisiteries
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            build-essential \
-            git \
-            cmake \
-            libasound2-dev \
-            mesa-common-dev \
-            libx11-dev \
-            libxrandr-dev \
-            libxi-dev \
-            xorg-dev \
-            libgl1-mesa-dev \
-            libglu1-mesa-dev \
-            libxext-dev \
-            libxrender-dev \
-            libxtst-dev \
-            libxt-dev \
-            libudev-dev \
-            libfreetype6-dev \
-            libopenal-dev \
-            libvorbis-dev \
-            libflac-dev  --fix-missing
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
 
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
-          cmake -B ${{github.workspace}}/build/ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build ${{github.workspace}}/build/ -j
+          mkdir build && cd build
+          conan install .. --build=missing \
+          -c tools.system.package_manager:mode=install \
+          -c tools.system.package_manager:sudo=True
+          cmake -DCMAKE_BUILD_TYPE=Release .. -G "Unix Makefiles"
+          cmake --build  . -j 3
 
       - name: Check Ubuntu build (desktop)
         uses: andstor/file-existence-action@v1
@@ -66,19 +43,64 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Install vcpkg
-        uses: friendlyanon/setup-vcpkg@v1
-        with: { committish: "57d3194e702a2959e86a6748999ad71fc24f7922" }
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
 
-      - name: Install sfml
-        run: ${{env.VCPKG_ROOT}}/vcpkg.exe install --triplet x64-windows --debug
+      - name: Install dependencies
+        run: |
+          mkdir build && cd build
+          conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 
       - name: Build rtype on Windows (desktop)
         run: |
-          cmake -B ${{github.workspace}}/build/ -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE='${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake' -DVCPKG_TARGET_TRIPLET=x86-windows-static
-          cmake --build ${{github.workspace}}/build/ -j
+          cd build/
+          cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
+          cmake --build . -j 3
 
       - name: Check Windows build (desktop)
         uses: andstor/file-existence-action@v1
         with:
           files: "r_type-client.exe, r_type-server.exe"
+
+  build-on-rpi-arm:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install prerequisiteries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pkg-config libgl-dev
+
+      - name: Install conan
+        run: |
+          sudo apt install -y python3-pip
+          sudo pip3 install conan
+          which conan
+          conan --version
+
+      - name: Build rtype binaries on Raspberry (desktop)
+        run: |
+          mkdir build && cd build
+          conan install .. --build=missing \
+          -c tools.system.package_manager:mode=install \
+          -c tools.system.package_manager:sudo=True
+          cmake -DCMAKE_BUILD_TYPE=Release .. -G "Unix Makefiles"
+          cmake --build  . -j 3
+
+      - name: Check Raspberry build (desktop)
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client, r_type-server"
+
+  mirror:
+    needs: [build-on-ubuntu, build-on-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key: ${{ secrets.EPI_MIRRORING_KEY }}
