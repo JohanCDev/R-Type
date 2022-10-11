@@ -1,13 +1,15 @@
 /**
  * @file InterfacePackage.hpp
  * @author your name (you@domain.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-10-11
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
+
+#pragma once
 
 class IPacket {
   public:

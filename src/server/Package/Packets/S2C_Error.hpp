@@ -9,7 +9,9 @@
  *
  */
 
-#include "../Package.hpp"
+#pragma once
+
+#include "../APackage.hpp"
 
 class S2C_ERROR : public APacket {
   public:

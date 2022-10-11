@@ -9,7 +9,9 @@
  *
  */
 
-#include "../Package.hpp"
+#pragma once
+
+#include "../APackage.hpp"
 
 class S2C_ENTITY_DEAD : public APacket {
   public:

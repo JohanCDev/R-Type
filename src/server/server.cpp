@@ -4,21 +4,23 @@
  * @brief udp server creation
  * @version 0.1
  * @date 2022-10-05
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
+#include <functional>
+#include <map>
+
+#include "Package/IPackage.hpp"
 #include "server.hpp"
-#include "Package/InterfacePackage.hpp"
-#include "Package/Package.hpp"
+#include "Package/Packets/S2C_EntityDead.hpp"
 #include "Package/Packets/S2C_EntityHit.hpp"
 #include "Package/Packets/S2C_EntityNew.hpp"
 #include "Package/Packets/S2C_Error.hpp"
 #include "Package/Packets/S2C_GameEnd.hpp"
 #include "Package/Packets/S2C_Movement.hpp"
 #include "Package/Packets/S2C_Ok.hpp"
-#include "Package/Packets/S2C_EntityDead.hpp"
 
 std::string make_daytime_string()
 {
@@ -41,7 +43,6 @@ void udp_server::getData(boost::array<char, 64> recv_buffer)
     S2C_ENTITY_HIT _hitEntity;
     S2C_GAME_END _endGame;
     std::map<std::string, std::function<void()>> mapFunc;
-
 
     tmp >> arg1 >> size;
     mapFunc["S2C_OK"] = std::bind(&S2C_OK::send, _ok);
@@ -69,8 +70,8 @@ void udp_server::handle_receive(const boost::system::error_code &error, std::siz
     }
 }
 
-void udp_server::handle_send(boost::shared_ptr<std::string> /*msg*/, 
-const boost::system::error_code & /*error*/, std::size_t /*bytes_transferred*/)
+void udp_server::handle_send(boost::shared_ptr<std::string> /*msg*/, const boost::system::error_code & /*error*/,
+    std::size_t /*bytes_transferred*/)
 {
 }
 

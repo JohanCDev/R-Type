@@ -4,15 +4,17 @@
  * @brief package interface
  * @version 0.1
  * @date 2022-10-05
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
-#include <iostream>
-#include "InterfacePackage.hpp"
+#pragma once
 
-class APacket: public IPacket {
+#include <iostream>
+#include "IPackage.hpp"
+
+class APacket : public IPacket {
   public:
     virtual void send() = 0;
 
