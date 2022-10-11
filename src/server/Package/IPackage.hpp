@@ -1,6 +1,6 @@
 /**
- * @file InterfacePackage.hpp
- * @author your name (you@domain.com)
+ * @file IPackage.hpp
+ * @author Louis Maestre (louis.maestre@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-11

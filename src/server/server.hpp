@@ -1,16 +1,15 @@
 /**
  * @file server.hpp
- * @author your name (you@domain.com)
+ * @author Louis Maestre (louis.maestre@epitech.eu)
  * @brief class of udp server
  * @version 0.1
  * @date 2022-10-05
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
-#ifndef SERVER_HPP_
-#define SERVER_HPP_
+#pragma once
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
@@ -26,12 +25,8 @@ using boost::asio::ip::udp;
 class udp_server {
   private:
     void start_receive();
-
-    void handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/);
-
-    void handle_send(boost::shared_ptr<std::string> /*msg*/, const boost::system::error_code & /*error*/,
-        std::size_t /*bytes_transferred*/);
-
+    void handle_receive(const boost::system::error_code &error, std::size_t);
+    void handle_send(boost::shared_ptr<std::string> /*msg*/, const boost::system::error_code &, std::size_t);
 
     udp::socket socket_;
     udp::endpoint remote_endpoint_;
@@ -44,5 +39,3 @@ class udp_server {
         start_receive();
     }
 };
-
-#endif /* !SERVER_HPP_ */

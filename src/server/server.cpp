@@ -1,6 +1,6 @@
 /**
  * @file server.cpp
- * @author your name (you@domain.com)
+ * @author Louis Maestre (louis.maestre@epitech.eu)
  * @brief udp server creation
  * @version 0.1
  * @date 2022-10-05

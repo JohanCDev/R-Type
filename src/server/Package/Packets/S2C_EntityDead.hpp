@@ -1,6 +1,6 @@
 /**
  * @file S2C_EntityDead.hpp
- * @author your name (you@domain.com)
+ * @author Louis Maestre (louis.maestre@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-10
