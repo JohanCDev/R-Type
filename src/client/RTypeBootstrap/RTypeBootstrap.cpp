@@ -28,6 +28,7 @@
 
 int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager);
 int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock);
+int shooting_system(registry &r, RessourcesManager manager, sf::Clock clock);
 int collide_system(registry &r, RessourcesManager manager, sf::Clock clock);
 int controllable_system(registry& r, RessourcesManager manager, sf::Event event, sf::Clock clock);
 int shape_system(registry &r, sf::RenderWindow &window, RessourcesManager manager);
@@ -142,7 +143,7 @@ int main()
 	r.register_components<ShapeComponent>();
 	r.register_components<WeaponComponent>();
 
-	//r.register_systems(&collide_system);
+	r.register_systems(&shooting_system);
 	r.register_systems(&velocity_system);
 
 	RessourcesManager manager;
@@ -165,13 +166,13 @@ int main()
 	r.add_component<VelocityComponent>(sprited, VelocityComponent(0, 0, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 
-	//Entity sprite = r.spawn_entity();
-	//r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", 0.2, 0.2));
-	//r.add_component<PositionComponent>(sprite, PositionComponent(500, 300));
-	//r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
-	//r.add_component<CollideComponent>(sprite, CollideComponent());
-	//r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
-	//r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left));
+	Entity sprite = r.spawn_entity();
+	r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", Vector4(0, 0, 0, 0), 0.2, 0.2));
+	r.add_component<PositionComponent>(sprite, PositionComponent(500, 0));
+	r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
+	r.add_component<CollideComponent>(sprite, CollideComponent());
+	r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
+	r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::UNDEFINED));
 
 	//r.create_text("test", "default_font", 20, 500, 300, -1, -1, 0.2, true);
 

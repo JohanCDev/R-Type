@@ -14,7 +14,7 @@ int controllable_system(registry &r, RessourcesManager manager, sf::Event event,
 	sparse_array<ControllableComponent> &controllable = r.get_components<ControllableComponent>();
 	sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
 	sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
-	//sparse_array<CollideComponent> &collide = r.get_components<CollideComponent>();
+	sparse_array<DrawableComponent> &drawable = r.get_components<DrawableComponent>();
 	std::size_t index = 0;
 	(void)manager;
 
@@ -37,7 +37,12 @@ int controllable_system(registry &r, RessourcesManager manager, sf::Event event,
 				return (1);
 			}
 			if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == i->shoot) {
-				r.create_laser(position[index]->x, position[index]->y, 15, 0, 0.2, game_clock.getElapsedTime().asSeconds());
+				sf::Sprite sprite;
+				sprite.setPosition(position[index]->x, position[index]->y);
+            	sprite.setTexture(manager.get_texture(drawable[index]->path));
+            	sprite.setScale(drawable[index]->x_scale, drawable[index]->y_scale);
+            	//sprite.setTextureRect(sf::IntRect(drawable[index]->rect.x, drawable[index]->rect.y, drawable[index]->rect.x_size, drawable[index]->rect.y_size));
+				r.create_laser(position[index]->x + (sprite.getTexture()->getSize().x * drawable[index]->x_scale) + 1, position[index]->y, 15, 0, 0.2, game_clock.getElapsedTime().asSeconds());
 			}
 		}
 		index++;

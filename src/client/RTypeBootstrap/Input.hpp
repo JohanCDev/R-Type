@@ -14,7 +14,8 @@
 enum MouseInput {
     Left_click,
     Right_click,
-    Middle_click
+    Middle_click,
+    UNDEFINED
 };
 
 enum KeyboardInput {
