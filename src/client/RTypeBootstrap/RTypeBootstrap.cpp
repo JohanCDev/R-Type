@@ -21,6 +21,7 @@
 #include "Components/ShapeComponent.hpp"
 #include "Components/WeaponComponent.h"
 #include "Components/DestroyableComponent.hpp"
+#include "Components/HealthComponent.h"
 
 #include "RessourcesManager.hpp"
 
@@ -144,6 +145,7 @@ int main()
 	r.register_components<ShapeComponent>();
 	r.register_components<WeaponComponent>();
 	r.register_components<DestroyableComponent>();
+	r.register_components<HealthComponent>();
 
 	r.register_systems(&shooting_system);
 	r.register_systems(&velocity_system);
@@ -157,27 +159,44 @@ int main()
 	manager.register_texture("r-typesheet5.gif");
 	manager.register_texture("r-typesheet39.gif");
 
-	//Entity text = r.spawn_entity();
-
-	//r.add_component<ShapeComponent>(text, ShapeComponent(shape_type::TEXT, "test", "default_font", 20));
-	//r.add_component<PositionComponent>(text, PositionComponent(10, 100));
-
 	Entity sprited = r.spawn_entity();
 	r.add_component<DrawableComponent>(sprited, DrawableComponent("r-typesheet5.gif", Vector4(375, 6, 21, 24), 2.0, 2.0));
 	r.add_component<PositionComponent>(sprited, PositionComponent(0, 0));
 	r.add_component<ImmobileComponent>(sprited, ImmobileComponent(true, true));
 	r.add_component<CollideComponent>(sprited, CollideComponent());
+	r.add_component<HealthComponent>(sprited, (HealthComponent(3)));
 	r.add_component<VelocityComponent>(sprited, VelocityComponent(5, 5, 0.2));
 	r.add_component<ControllableComponent>(sprited, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 
 	Entity sprite = r.spawn_entity();
-	r.add_component<DrawableComponent>(sprite, DrawableComponent("panda.png", Vector4(0, 0, 900, 512), 0.2, 0.2));
+	r.add_component<DrawableComponent>(sprite, DrawableComponent("r-typesheet39.gif", Vector4(34, 2, 64, 64)));
 	r.add_component<PositionComponent>(sprite, PositionComponent(500, 0));
 	r.add_component<ImmobileComponent>(sprite, ImmobileComponent(true, true));
 	r.add_component<CollideComponent>(sprite, CollideComponent());
+	r.add_component<WeaponComponent>(sprite, WeaponComponent("meteor", 1, 1, 0));
 	r.add_component<DestroyableComponent>(sprite, DestroyableComponent(true));
 	r.add_component<VelocityComponent>(sprite, VelocityComponent(5, 5, 0.2));
 	r.add_component<ControllableComponent>(sprite, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::UNDEFINED));
+
+	Entity meteor2 = r.spawn_entity();
+	r.add_component<DrawableComponent>(meteor2, DrawableComponent("r-typesheet39.gif", Vector4(34, 2, 64, 64)));
+	r.add_component<PositionComponent>(meteor2, PositionComponent(800, 0));
+	r.add_component<ImmobileComponent>(meteor2, ImmobileComponent(true, true));
+	r.add_component<CollideComponent>(meteor2, CollideComponent());
+	r.add_component<WeaponComponent>(meteor2, WeaponComponent("meteor", 1, 1, 0));
+	r.add_component<DestroyableComponent>(meteor2, DestroyableComponent(true));
+	r.add_component<VelocityComponent>(meteor2, VelocityComponent(5, 5, 0.2));
+	r.add_component<ControllableComponent>(meteor2, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::UNDEFINED));
+
+	Entity meteor3 = r.spawn_entity();
+	r.add_component<DrawableComponent>(meteor3, DrawableComponent("r-typesheet39.gif", Vector4(34, 2, 64, 64)));
+	r.add_component<PositionComponent>(meteor3, PositionComponent(1100, 0));
+	r.add_component<ImmobileComponent>(meteor3, ImmobileComponent(true, true));
+	r.add_component<CollideComponent>(meteor3, CollideComponent());
+	r.add_component<WeaponComponent>(meteor3, WeaponComponent("meteor", 1, 1, 0));
+	r.add_component<DestroyableComponent>(meteor3, DestroyableComponent(true));
+	r.add_component<VelocityComponent>(meteor3, VelocityComponent(5, 5, 0.2));
+	r.add_component<ControllableComponent>(meteor3, ControllableComponent(KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::UNDEFINED));
 
 	//r.create_text("test", "default_font", 20, 500, 300, -1, -1, 0.2, true);
 
