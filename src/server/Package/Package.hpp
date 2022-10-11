@@ -10,13 +10,9 @@
  */
 
 #include <iostream>
+#include "InterfacePackage.hpp"
 
-class IPacket {
-  public:
-    virtual void send() = 0;
-};
-
-class APacket : public IPacket {
+class APacket: public IPacket {
   public:
     virtual void send() = 0;
 

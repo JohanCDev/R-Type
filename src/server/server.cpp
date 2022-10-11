@@ -10,7 +10,15 @@
  */
 
 #include "server.hpp"
-// #include "Package.hpp"
+#include "Package/InterfacePackage.hpp"
+#include "Package/Package.hpp"
+#include "Package/Packets/S2C_EntityHit.hpp"
+#include "Package/Packets/S2C_EntityNew.hpp"
+#include "Package/Packets/S2C_Error.hpp"
+#include "Package/Packets/S2C_GameEnd.hpp"
+#include "Package/Packets/S2C_Movement.hpp"
+#include "Package/Packets/S2C_Ok.hpp"
+#include "Package/Packets/S2C_EntityDead.hpp"
 
 std::string make_daytime_string()
 {
@@ -25,28 +33,28 @@ void udp_server::getData(boost::array<char, 64> recv_buffer)
     std::string size;
     std::string desc = recv_buffer.data();
 
-    // S2C_OK _ok;
-    // S2C_ERROR _error;
-    // S2C_MOVEMENT _mvt;
-    // S2C_ENTITY_NEW _newEntity;
-    // S2C_ENTITY_DEAD _deadEntity;
-    // S2C_ENTITY_HIT _hitEntity;
-    // S2C_GAME_END _endGame;
-    // std::map<std::string, std::function<void()>> mapFunc;
+    S2C_OK _ok;
+    S2C_ERROR _error;
+    S2C_MOVEMENT _mvt;
+    S2C_ENTITY_NEW _newEntity;
+    S2C_ENTITY_DEAD _deadEntity;
+    S2C_ENTITY_HIT _hitEntity;
+    S2C_GAME_END _endGame;
+    std::map<std::string, std::function<void()>> mapFunc;
 
 
-    // tmp >> arg1 >> size;
-    // mapFunc["S2C_OK"] = std::bind(&S2C_OK::send, _ok);
-    // mapFunc["S2C_ERROR"] = std::bind(&S2C_ERROR::send, _error);
-    // mapFunc["S2C_MOVEMENT"] = std::bind(&S2C_MOVEMENT::send, _mvt);
-    // mapFunc["S2C_ENTITY_NEW"] = std::bind(&S2C_ENTITY_NEW::send, _newEntity);
-    // mapFunc["S2C_ENTITY_DEAD"] = std::bind(&S2C_ENTITY_DEAD::send, _deadEntity);
-    // mapFunc["S2C_ENTITY_HIT"] = std::bind(&S2C_ENTITY_HIT::send, _hitEntity);
-    // mapFunc["S2C_GAME_END"] = std::bind(&S2C_GAME_END::send, _endGame);
+    tmp >> arg1 >> size;
+    mapFunc["S2C_OK"] = std::bind(&S2C_OK::send, _ok);
+    mapFunc["S2C_ERROR"] = std::bind(&S2C_ERROR::send, _error);
+    mapFunc["S2C_MOVEMENT"] = std::bind(&S2C_MOVEMENT::send, _mvt);
+    mapFunc["S2C_ENTITY_NEW"] = std::bind(&S2C_ENTITY_NEW::send, _newEntity);
+    mapFunc["S2C_ENTITY_DEAD"] = std::bind(&S2C_ENTITY_DEAD::send, _deadEntity);
+    mapFunc["S2C_ENTITY_HIT"] = std::bind(&S2C_ENTITY_HIT::send, _hitEntity);
+    mapFunc["S2C_GAME_END"] = std::bind(&S2C_GAME_END::send, _endGame);
 
-    // auto tmmp = mapFunc[arg1];
+    auto tmmp = mapFunc[arg1];
 
-    // tmmp();
+    tmmp();
 }
 
 void udp_server::handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/)

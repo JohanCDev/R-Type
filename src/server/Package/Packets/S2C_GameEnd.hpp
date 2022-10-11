@@ -9,7 +9,7 @@
  * 
  */
 
-#include "Package.hpp"
+#include "../Package.hpp"
 
 class S2C_GAME_END : public APacket {
   public:
