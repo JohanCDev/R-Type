@@ -16,8 +16,8 @@ sfml/2.5.1
 boost/1.80.0
 
 [options]
-libstd:compiler.libcxx=libstdc++20
 sfml:graphics=True
 sfml:window=True
 sfml:audio=True
 sfml:network=True
+libstd:compiler.libcxx=libstdc++20
