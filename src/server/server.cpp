@@ -22,14 +22,9 @@
 #include "Package/Packets/S2C_Movement.hpp"
 #include "Package/Packets/S2C_Ok.hpp"
 
-std::string make_daytime_string()
-{
-    std::string tmp = "hello world";
-    return (tmp);
-}
-
 void udp_server::getData(boost::array<char, 64> recv_buffer)
 {
+    // std::cout << recv_buffer.data() << std::endl;
     std::istringstream tmp(recv_buffer.data());
     std::string arg1;
     std::string size;
@@ -53,16 +48,18 @@ void udp_server::getData(boost::array<char, 64> recv_buffer)
     mapFunc["S2C_ENTITY_HIT"] = std::bind(&S2C_ENTITY_HIT::send, _hitEntity);
     mapFunc["S2C_GAME_END"] = std::bind(&S2C_GAME_END::send, _endGame);
 
-    auto tmmp = mapFunc[arg1];
-
-    tmmp();
+    if (mapFunc.contains(arg1) == true) {
+        mapFunc[arg1]();
+    } else {
+        std::cerr << "Invalid Command" << std::endl;
+    }
 }
 
 void udp_server::handle_receive(const boost::system::error_code &error, std::size_t /*bytes_transferred*/)
 {
     if (!error || error == boost::asio::error::message_size) {
         getData(recv_buffer_);
-        boost::shared_ptr<std::string> message(new std::string(make_daytime_string()));
+        boost::shared_ptr<std::string> message(new std::string("hello world\n"));
         socket_.async_send_to(boost::asio::buffer(*message), remote_endpoint_,
             boost::bind(&udp_server::handle_send, this, message, boost::asio::placeholders::error,
                 boost::asio::placeholders::bytes_transferred));
@@ -77,6 +74,7 @@ void udp_server::handle_send(boost::shared_ptr<std::string> /*msg*/, const boost
 
 void udp_server::start_receive()
 {
+    recv_buffer_ = {{}};
     socket_.async_receive_from(boost::asio::buffer(recv_buffer_), remote_endpoint_,
         boost::bind(&udp_server::handle_receive, this, boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
