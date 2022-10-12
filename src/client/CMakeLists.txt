@@ -56,7 +56,7 @@ if(APPLE)
         /opt/homebrew/Cellar/sfml/2.5.1_2/lib/libsfml-window.dylib
     )
 else()
-    target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT})
+    target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT} ${CONAN_INCLUDE_DIRS_SFML})
     target_link_libraries(${TARGET_NAME} PRIVATE sfml-graphics sfml-window sfml-audio sfml-system)
 
     if(WIN32 AND BUILD_SHARED_LIBS)
