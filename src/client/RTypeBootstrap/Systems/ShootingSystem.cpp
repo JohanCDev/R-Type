@@ -16,7 +16,7 @@
 #include "../Components/HealthComponent.h"
 #include "../Components/DestroyableComponent.hpp"
 
-int check_collision(registry &r, RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position, std::optional<DrawableComponent> &drawable)
+int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position, std::optional<DrawableComponent> &drawable)
 {
     sf::Sprite otherSprite;
     if (drawable.has_value()) {
@@ -62,7 +62,7 @@ int shooting_system(registry &r, RessourcesManager manager, sf::Clock clock)
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
 
-                        if (check_collision(r, manager, sprite, otherPosition, otherDrawable) == 1) {
+                        if (check_collision(manager, sprite, otherPosition, otherDrawable) == 1) {
                             r.kill_entity(r.entity_from_index(j));
                             r.kill_entity(r.entity_from_index(i));
                             break;
@@ -76,7 +76,7 @@ int shooting_system(registry &r, RessourcesManager manager, sf::Clock clock)
                     auto &otherDrawable = drawables[j];
                     auto &otherPosition = positions[j];
 
-                    if (check_collision(r, manager, sprite, otherPosition, otherDrawable) == 1) {
+                    if (check_collision(manager, sprite, otherPosition, otherDrawable) == 1) {
                         r.kill_entity(r.entity_from_index(i));
                         healths[j]->hp -= 1;
                         if (healths[j]->hp == 0) {
