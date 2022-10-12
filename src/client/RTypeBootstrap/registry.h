@@ -13,6 +13,10 @@
 #include "Components/VelocityComponent.h"
 #include "Components/CollideComponent.h"
 #include "Components/WeaponComponent.h"
+#include "Components/HealthComponent.h"
+#include "Components/ControllableComponent.h"
+#include "Components/ImmobileComponent.h"
+#include "Components/DestroyableComponent.hpp"
 #include <iostream>
 
 class registry {
@@ -142,6 +146,35 @@ public:
 		this->add_component<WeaponComponent>(ent, WeaponComponent("laser", 5, 15, 0.2));
 		this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time, elapsed_time));
 		this->add_component<PositionComponent>(ent, PositionComponent(x, y));
+	}
+
+	void create_player(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale, 
+	int pos_x, int pos_y, int hp, int speed_x, int speed_y, float refresh_time,
+	KeyboardInput up, KeyboardInput down, KeyboardInput right, KeyboardInput left, MouseInput shoot) {
+		Entity ent = this->spawn_entity();
+
+		this->add_component<DrawableComponent>(ent, DrawableComponent(texture_path, texture_rec, x_scale, y_scale));
+		this->add_component<PositionComponent>(ent, PositionComponent(pos_x, pos_y));
+		this->add_component<ImmobileComponent>(ent, ImmobileComponent(true, true));
+		this->add_component<CollideComponent>(ent, CollideComponent());
+		this->add_component<HealthComponent>(ent, (HealthComponent(hp)));
+		this->add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
+		this->add_component<ControllableComponent>(ent, ControllableComponent(up, down, right, left, shoot));
+	}
+
+	void create_enemy(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale,
+	int pos_x, int pos_y, int speed_x, int speed_y, float refresh_time,
+	KeyboardInput up, KeyboardInput down, KeyboardInput right, KeyboardInput left, MouseInput shoot) {
+		Entity ent = this->spawn_entity();
+
+		this->add_component<DrawableComponent>(ent, DrawableComponent(texture_path, texture_rec, x_scale, y_scale));
+		this->add_component<PositionComponent>(ent, PositionComponent(pos_x, pos_y));
+		this->add_component<ImmobileComponent>(ent, ImmobileComponent(false, false));
+		this->add_component<CollideComponent>(ent, CollideComponent());
+		this->add_component<WeaponComponent>(ent, WeaponComponent("meteor", 1, 1, 0));
+		this->add_component<DestroyableComponent>(ent, DestroyableComponent(true));
+		this->add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
+		this->add_component<ControllableComponent>(ent, ControllableComponent(up, down, right, left, shoot));
 	}
 
 private:
