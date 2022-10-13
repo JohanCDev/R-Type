@@ -57,7 +57,7 @@ if(APPLE)
     )
 else()
     target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT} ${CONAN_INCLUDE_DIRS_SFML})
-    target_link_libraries(${TARGET_NAME} PUBLIC -lsfml-graphics -lsfml-window -lsfml-system CONAN_PKG::sfml)
+    target_link_libraries(${TARGET_NAME} PUBLIC -lsfml-window -lsfml-graphics -lsfml-system)
 
     if(WIN32 AND BUILD_SHARED_LIBS)
         add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
