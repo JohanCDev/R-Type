@@ -22,9 +22,26 @@
 #include "Package/Packets/S2C_Movement.hpp"
 #include "Package/Packets/S2C_Ok.hpp"
 
+std::string udp_server::deserialize(std::string recv)
+{
+    for (int i = 0; i < recv.size(); i++) {
+        recv[i] = ((unsigned char)recv[i]) >> 1;
+    }
+    return (recv);
+}
+
+std::string udp_server::serialize(std::string recv)
+{
+    for (int i = 0; i < recv.size(); i++) {
+        recv[i] = ((unsigned char)recv[i]) << 1;
+    }
+    return (recv);
+}
+
 void udp_server::getData(boost::array<char, 64> recv_buffer)
 {
-    // std::cout << recv_buffer.data() << std::endl;
+    std::string recv = recv_buffer.data();
+    std::string serialization_res = serialize(recv);
     std::istringstream tmp(recv_buffer.data());
     std::string arg1;
     std::string size;

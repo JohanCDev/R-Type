@@ -27,12 +27,13 @@ class udp_server {
     void start_receive();
     void handle_receive(const boost::system::error_code &error, std::size_t);
     void handle_send(boost::shared_ptr<std::string> /*msg*/, const boost::system::error_code &, std::size_t);
-
     udp::socket socket_;
     udp::endpoint remote_endpoint_;
     boost::array<char, 64> recv_buffer_;
 
   public:
+    std::string serialize(std::string recv);
+    std::string deserialize(std::string recv);
     void getData(boost::array<char, 64>);
     udp_server(boost::asio::io_service &io_service) : socket_(io_service, udp::endpoint(udp::v4(), 1313))
     {
