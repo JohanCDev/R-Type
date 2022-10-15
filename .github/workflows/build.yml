@@ -44,8 +44,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          mkdir build && cd build
-          conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
+
 
       - name: Build rtype on Windows (desktop)
         run: |
@@ -77,12 +77,8 @@ jobs:
 
       - name: Build rtype binaries on Raspberry (desktop)
         run: |
-          mkdir build && cd build
-          conan install .. --build=missing \
-          -c tools.system.package_manager:mode=install \
-          -c tools.system.package_manager:sudo=True
-          cmake -DCMAKE_BUILD_TYPE=Release .. -G "Unix Makefiles"
-          cmake --build  . -j 3
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
+
 
       - name: Check Raspberry build (desktop)
         uses: andstor/file-existence-action@v1
