@@ -11,32 +11,60 @@
 
 #pragma once
 
+#include "../Common/locked_queue.h"
+
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
-#include <boost/bind.hpp>
-#include <ctime>
-#include <iostream>
+#include <boost/bimap.hpp>
+#include <boost/thread.hpp>
+
+#include <array>
 #include <string>
-#include "utils.hpp"
-#include <boost/shared_ptr.hpp>
 
 using boost::asio::ip::udp;
 
-class udp_server {
-  private:
-    void start_receive();
-    void handle_receive(const boost::system::error_code &error, std::size_t);
-    void handle_send(boost::shared_ptr<std::string> /*msg*/, const boost::system::error_code &, std::size_t);
-    udp::socket socket_;
-    udp::endpoint remote_endpoint_;
-    boost::array<char, 64> recv_buffer_;
+typedef boost::bimap<__int64, udp::endpoint> ClientList;
+typedef ClientList::value_type Client;
+typedef std::pair<std::string, __int64> ClientMessage;
 
+class NetworkServer {
   public:
-    std::string serialize(std::string recv);
-    std::string deserialize(std::string recv);
-    void getData(boost::array<char, 64>);
-    udp_server(boost::asio::io_service &io_service) : socket_(io_service, udp::endpoint(udp::v4(), 1313))
+    NetworkServer(unsigned short local_port);
+    ~NetworkServer();
+
+    bool HasMessages();
+    ClientMessage PopMessage();
+
+    void SendToClient(std::string message, unsigned __int64 clientID);
+    void SendToAll(std::string message);
+
+    std::vector<std::function<void(uint32_t)>> clientDisconnectedHandlers;
+
+  private:
+    boost::asio::io_service io_service;
+    udp::socket socket;
+    udp::endpoint server_endpoint;
+    udp::endpoint remote_endpoint;
+    std::array<char, 1024> recv_buffer;
+    boost::thread service_thread;
+
+    void start_receive();
+    void handle_receive(const boost::system::error_code &error, std::size_t bytes_transferred);
+    void handle_send(
+        std::string , const boost::system::error_code &, std::size_t)
     {
-        start_receive();
     }
+    void run_service();
+    unsigned __int64 get_client_id(udp::endpoint endpoint);
+
+    void send(std::string pmessage, udp::endpoint target_endpoint);
+
+    void on_client_disconnected(int32_t id);
+
+    LockedQueue<ClientMessage> incomingMessages;
+
+    ClientList clients;
+    unsigned __int64 nextClientID;
+
+    NetworkServer(NetworkServer &);
 };

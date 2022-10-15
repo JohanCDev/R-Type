@@ -10,23 +10,28 @@
  */
 
 #include <iostream>
-
 #include "server.hpp"
-#include "utils.hpp"
 
-/**
- * @brief main function of the server
- *
- * @return 0 if success or 84 if error
- */
-int main(void)
+#include <chrono>
+#include <thread>
+
+#include "../Common/Message/Message.h";
+
+int main()
 {
-    try {
-        boost::asio::io_service io_service;
-        udp_server server(io_service);
-        io_service.run();
-    } catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
+    NetworkServer server(60000);
+
+    while (1) {
+        while (server.HasMessages()) {
+            std::string txt = server.PopMessage().first;
+            std::cout << txt << std::endl;
+
+            if (txt == "bye") {
+                break;
+            }
+        };
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     }
     return 0;
 }

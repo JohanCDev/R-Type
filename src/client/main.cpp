@@ -10,6 +10,11 @@
  */
 
 #include <SFML/Window.hpp>
+#include "client.h"
+#include "../Common/Message/Message.h";
+#include <chrono>
+#include <thread>
+#include <iostream>
 
 /**
  * @brief main function of the client
@@ -18,6 +23,10 @@
  */
 int main()
 {
+    unsigned short port;
+    std::cin >> port;
+    NetworkClient client("localhost", "60000", port);
+
     sf::Window window(sf::VideoMode(800, 600), "My window");
 
     // run the program as long as the window is open

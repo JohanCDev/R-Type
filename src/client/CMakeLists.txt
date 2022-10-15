@@ -11,7 +11,7 @@ source_group("client" FILES ${SRC})
 
 set(TARGET_NAME r-type_client)
 
-add_executable(${TARGET_NAME} ${SRC})
+add_executable(${TARGET_NAME} ${SRC} "client.h")
 
 if(APPLE)
     target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT} /opt/homebrew/include/)
