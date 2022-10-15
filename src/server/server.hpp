@@ -23,9 +23,9 @@
 
 using boost::asio::ip::udp;
 
-typedef boost::bimap<__int64, udp::endpoint> ClientList;
+typedef boost::bimap<std::size_t, udp::endpoint> ClientList;
 typedef ClientList::value_type Client;
-typedef std::pair<std::string, __int64> ClientMessage;
+typedef std::pair<std::string, std::size_t> ClientMessage;
 
 class NetworkServer {
   public:
@@ -35,7 +35,7 @@ class NetworkServer {
     bool HasMessages();
     ClientMessage PopMessage();
 
-    void SendToClient(std::string message, unsigned __int64 clientID);
+    void SendToClient(std::string message, std::size_t clientID);
     void SendToAll(std::string message);
 
     std::vector<std::function<void(uint32_t)>> clientDisconnectedHandlers;
@@ -53,9 +53,9 @@ class NetworkServer {
     void handle_send(
         std::string , const boost::system::error_code &, std::size_t)
     {
-    }
+    };
     void run_service();
-    unsigned __int64 get_client_id(udp::endpoint endpoint);
+    std::size_t get_client_id(udp::endpoint endpoint);
 
     void send(std::string pmessage, udp::endpoint target_endpoint);
 
@@ -64,7 +64,7 @@ class NetworkServer {
     LockedQueue<ClientMessage> incomingMessages;
 
     ClientList clients;
-    unsigned __int64 nextClientID;
+    std::size_t nextClientID;
 
     NetworkServer(NetworkServer &);
 };

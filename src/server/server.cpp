@@ -13,26 +13,26 @@
 #include <boost/bind.hpp>
 #include "server.hpp"
 
-std::string udp_server::deserialize(std::string recv)
-{
-    for (int i = 0; i < recv.size(); i++) {
-        recv[i] = ((unsigned char)recv[i]) >> 1;
-    }
-    return (recv);
-}
+// std::string udp_server::deserialize(std::string recv)
+// {
+//     for (int i = 0; i < recv.size(); i++) {
+//         recv[i] = ((unsigned char)recv[i]) >> 1;
+//     }
+//     return (recv);
+// }
 
-std::string udp_server::serialize(std::string recv)
-{
-    for (int i = 0; i < recv.size(); i++) {
-        recv[i] = ((unsigned char)recv[i]) << 1;
-    }
-    return (recv);
-}
+// std::string udp_server::serialize(std::string recv)
+// {
+//     for (int i = 0; i < recv.size(); i++) {
+//         recv[i] = ((unsigned char)recv[i]) << 1;
+//     }
+//     return (recv);
+// }
 
 NetworkServer::NetworkServer(unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), nextClientID(0L),
       service_thread(std::bind(&NetworkServer::run_service, this)){
-      };
+      }
 
 NetworkServer::~NetworkServer()
 {
@@ -81,7 +81,7 @@ void NetworkServer::run_service()
     }
 };
 
-unsigned __int64 NetworkServer::get_client_id(udp::endpoint endpoint)
+std::size_t NetworkServer::get_client_id(udp::endpoint endpoint)
 {
     auto cit = clients.right.find(endpoint);
     if (cit != clients.right.end())
@@ -92,7 +92,7 @@ unsigned __int64 NetworkServer::get_client_id(udp::endpoint endpoint)
     return nextClientID;
 };
 
-void NetworkServer::SendToClient(std::string message, unsigned __int64 clientID)
+void NetworkServer::SendToClient(std::string message, std::size_t clientID)
 {
     try {
         send(message, clients.left.at(clientID));
