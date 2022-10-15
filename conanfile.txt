@@ -6,6 +6,7 @@ sfml/2.5.1
 boost/1.80.0
 
 [options]
+boost:thread=True
 sfml:shared=True
 sfml:graphics=True
 sfml:window=True

@@ -44,7 +44,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
+          mkdir -p build; cd build
+          conan install .. --build=missing  -s compiler.cppstd=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
+          cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
 
 
       - name: Build rtype on Windows (desktop)
