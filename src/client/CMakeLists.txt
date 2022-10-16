@@ -40,11 +40,11 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
         "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
+add_executable(${TARGET_NAME} ${SRC})
+
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
-
-add_executable(${TARGET_NAME} ${SRC})
 
 if(APPLE)
     target_include_directories(${TARGET_NAME} PUBLIC ${INCROOT} /opt/homebrew/include/ ${PROJECT_BINARY_DIR}/)
