@@ -27,8 +27,6 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
-message(STATUS "SRV=${SRC}")
-
 add_executable(${TARGET_NAME} ${SRC_SERVER})
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
