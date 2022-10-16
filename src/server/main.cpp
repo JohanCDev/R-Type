@@ -15,7 +15,7 @@
 #include <chrono>
 #include <thread>
 
-#include "../Common/Message/Message.h";
+#include "../Common/Message/Message.h"
 
 int main()
 {
@@ -30,7 +30,6 @@ int main()
                 break;
             }
         };
-
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     }
     return 0;
