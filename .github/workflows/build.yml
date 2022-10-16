@@ -52,7 +52,7 @@ jobs:
         run: |
           cd build/
           cmake -DCMAKE_BUILD_TYPE=Debug ..
-          cmake --build  . -- -j
+          cmake --build  .
 
       - name: Check Windows build (desktop)
         uses: andstor/file-existence-action@v1
