@@ -1,31 +1,30 @@
-set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
-set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
+set(INCROOT ${PROJECT_SOURCE_DIR}/src)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src)
 
 set(SRC
-    "RTypeBootstrap/RessourcesManager.hpp"
-    "RTypeBootstrap/Input.hpp"
-    "RTypeBootstrap/Entity.h"
-    "RTypeBootstrap/registry.h"
-    "RTypeBootstrap/RTypeBootstrap.cpp"
-    "RTypeBootstrap/RTypeBootstrap.h"
-    "RTypeBootstrap/sparse_array.h"
-    "RTypeBootstrap/Components/AccelerationComponent.h"
-    "RTypeBootstrap/Components/ControllableComponent.h"
-    "RTypeBootstrap/Components/DrawableComponent.h"
-    "RTypeBootstrap/Components/HealthComponent.h"
-    "RTypeBootstrap/Components/CollideComponent.h"
-    "RTypeBootstrap/Components/MaximumVelocityComponent.h"
-    "RTypeBootstrap/Components/PositionComponent.h"
-    "RTypeBootstrap/Components/VelocityComponent.h"
-    "RTypeBootstrap/Components/WeaponComponent.h"
-    "RTypeBootstrap/Components/ImmobileComponent.h"
-    "RTypeBootstrap/Components/DestroyableComponent.hpp"
-    "RTypeBootstrap/Systems/ControllableSystem.cpp"
-    "RTypeBootstrap/Systems/CollideSystem.cpp"
-    "RTypeBootstrap/Systems/ShootingSystem.cpp"
-    "RTypeBootstrap/Systems/DrawableSystem.cpp"
-    "RTypeBootstrap/Systems/VelocitySystem.cpp"
-    "RTypeBootstrap/Components/ShapeComponent.hpp")
+    "main.cpp"
+    "../ECS/RessourcesManager.hpp"
+    "../ECS/Input.hpp"
+    "../ECS/Entity.h"
+    "../ECS/registry.h"
+    "../ECS/sparse_array.h"
+    "../ECS/Components/AccelerationComponent.h"
+    "../ECS/Components/ControllableComponent.h"
+    "../ECS/Components/DrawableComponent.h"
+    "../ECS/Components/HealthComponent.h"
+    "../ECS/Components/CollideComponent.h"
+    "../ECS/Components/MaximumVelocityComponent.h"
+    "../ECS/Components/PositionComponent.h"
+    "../ECS/Components/VelocityComponent.h"
+    "../ECS/Components/WeaponComponent.h"
+    "../ECS/Components/ImmobileComponent.h"
+    "../ECS/Components/DestroyableComponent.hpp"
+    "../ECS/Systems/ControllableSystem.cpp"
+    "../ECS/Systems/CollideSystem.cpp"
+    "../ECS/Systems/ShootingSystem.cpp"
+    "../ECS/Systems/DrawableSystem.cpp"
+    "../ECS/Systems/VelocitySystem.cpp"
+    "../ECS/Components/ShapeComponent.hpp")
 
 set(INCDIRS ${INCROOT})
 set(CONAN_DISABLE_CHECK_COMPILER True CACHE BOOL "" FORCE)
