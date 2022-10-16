@@ -15,7 +15,6 @@ list(
   ${INCROOT}/ImmobileComponent.hpp
   ${INCROOT}/MaximumVelocityComponent.hpp
   ${INCROOT}/PositionComponent.hpp
-  ${INCROOT}/ShapeComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
   ${INCROOT}/WeaponComponent.hpp)
 

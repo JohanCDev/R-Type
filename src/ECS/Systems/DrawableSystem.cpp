@@ -16,7 +16,6 @@
 int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager)
 {
     sparse_array<DrawableComponent> &drawable = r.get_components<DrawableComponent>();
-    sparse_array<ShapeComponent> &shape = r.get_components<ShapeComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     std::size_t index = 0;
     sf::Sprite sprite;
