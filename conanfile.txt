@@ -2,18 +2,13 @@
 cmake
 
 [requires]
-ogg/1.3.5
-flac/1.3.3
-brotli/1.0.9
-bzip2/1.0.8
-libpng/1.6.37
-freetype/2.11.1
-openal/1.21.1
-opengl/system
-stb/cci.20210910
-vorbis/1.3.7
 sfml/2.5.1
 boost/1.80.0
 
 [options]
-libstd:compiler.libcxx=libstdc++20
+boost:multithreading=True
+sfml:shared=True
+sfml:graphics=True
+sfml:window=True
+sfml:audio=True
+sfml:network=True
