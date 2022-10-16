@@ -1,11 +1,11 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/server)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 
-list(APPEND SRC ${SRCROOT}/main2.cpp ${SRCROOT}/server.cpp
-     ${SRCROOT}/server.hpp)
+list(APPEND SRC_SERVER ${SRCROOT}/main2.cpp ${SRCROOT}/server.cpp
+     ${INCROOT}/server.hpp)
 
 set(SRC
-    "${SRC}"
+    "${SRC_SERVER}" "${SRC}"
     PARENT_SCOPE)
 
 set(INCDIRS ${INCROOT})
@@ -27,9 +27,9 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
-message(STATUS ${SRC})
+message(STATUS "SRV=${SRC}")
 
-add_executable(${TARGET_NAME} ${SRC})
+add_executable(${TARGET_NAME} ${SRC_SERVER})
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
