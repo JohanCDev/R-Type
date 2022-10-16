@@ -10,8 +10,8 @@
  */
 
 #define _WIN32_WINNT 0x0501
-#include <boost/bind.hpp>
 #include "server.hpp"
+#include <boost/bind.hpp>
 
 // std::string udp_server::deserialize(std::string recv)
 // {
@@ -31,8 +31,9 @@
 
 NetworkServer::NetworkServer(unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), nextClientID(0L),
-      service_thread(std::bind(&NetworkServer::run_service, this)){
-      }
+      service_thread(std::bind(&NetworkServer::run_service, this))
+{
+}
 
 NetworkServer::~NetworkServer()
 {

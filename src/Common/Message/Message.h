@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <cstring>
 #include <vector>
 #include "MessageHeader.h"
 #include "MessageType.h"

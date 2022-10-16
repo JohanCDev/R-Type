@@ -10,11 +10,11 @@
  */
 
 #include <SFML/Window.hpp>
-#include "client.h"
-#include "../Common/Message/Message.h";
 #include <chrono>
-#include <thread>
 #include <iostream>
+#include <thread>
+#include "../Common/Message/Message.h"
+#include "client.hpp"
 
 /**
  * @brief main function of the client
@@ -27,7 +27,7 @@ int main()
     std::cin >> port;
     NetworkClient client("localhost", "60000", port);
 
-    sf::Window window(sf::VideoMode(800, 600), "My window");
+    /*sf::Window window(sf::VideoMode(800, 600), "My window");
 
     // run the program as long as the window is open
     while (window.isOpen()) {
@@ -38,6 +38,17 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+    }*/
+
+    while (1) {
+        while (client.HasMessages()) {
+            std::string msg = client.PopMessage();
+
+            // processMessage(msg);
+        }
+        // client.Send("hi");
+
+        // std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     }
 
     return 0;

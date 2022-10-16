@@ -1,4 +1,15 @@
-#include "client.h"
+/**
+ * @file client.cpp
+ * @author your name (you@domain.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-10-16
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
+#include "client.hpp"
 
 NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), service_thread(&NetworkClient::run_service, this)

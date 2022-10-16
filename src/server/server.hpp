@@ -50,10 +50,7 @@ class NetworkServer {
 
     void start_receive();
     void handle_receive(const boost::system::error_code &error, std::size_t bytes_transferred);
-    void handle_send(
-        std::string , const boost::system::error_code &, std::size_t)
-    {
-    };
+    void handle_send(std::string, const boost::system::error_code &, std::size_t){};
     void run_service();
     std::size_t get_client_id(udp::endpoint endpoint);
 
