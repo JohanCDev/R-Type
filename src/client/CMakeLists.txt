@@ -1,10 +1,11 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
-list(APPEND SRC ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp ${SRCROOT}/client.hpp)
+list(APPEND SRC_CLIENT ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp
+     ${INCROOT}/client.hpp)
 
 set(SRC
-    "${SRC}"
+    "${SRC_CLIENT}" "${SRC}"
     PARENT_SCOPE)
 
 set(INCDIRS ${INCROOT})
@@ -26,7 +27,7 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
-message(STATUS ${SRC})
+message(STATUS "CLI=${SRC}")
 
 add_executable(${TARGET_NAME} ${SRC})
 
