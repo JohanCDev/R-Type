@@ -1,8 +1,7 @@
-set(INCROOT ${PROJECT_SOURCE_DIR}/src/server)
-set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
+set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
-list(APPEND SRC ${SRCROOT}/main2.cpp ${SRCROOT}/server.cpp
-     ${SRCROOT}/server.hpp)
+list(APPEND SRC ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp ${SRCROOT}/client.hpp)
 
 set(SRC
     "${SRC}"
@@ -13,9 +12,9 @@ set(CONAN_DISABLE_CHECK_COMPILER
     True
     CACHE BOOL "" FORCE)
 
-source_group("server" FILES ${SRC})
+source_group("client" FILES ${SRC})
 
-set(TARGET_NAME r-type_server)
+set(TARGET_NAME r-type_client)
 
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
   message(
