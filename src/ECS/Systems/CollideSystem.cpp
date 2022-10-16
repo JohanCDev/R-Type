@@ -1,19 +1,19 @@
 /**
  * @file CollideSystem.cpp
  * @author Cédric CORGE (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-09-27
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "../registry.h"
 
-#include "../Components/PositionComponent.h"
-#include "../Components/DrawableComponent.h"
 #include "../Components/CollideComponent.h"
+#include "../Components/DrawableComponent.h"
+#include "../Components/PositionComponent.h"
 #include "../Components/VelocityComponent.h"
 #include "../RessourcesManager.hpp"
 
@@ -41,7 +41,7 @@ int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)
             for (size_t j = 0; j < collides.size(); ++j) {
                 if (j != i) {
                     sf::Sprite otherSprite;
-                    //auto &otherCollide = collides[j];
+                    // auto &otherCollide = collides[j];
                     auto &otherDrawable = drawables[j];
                     auto &otherPosition = positions[j];
                     auto &otherVelocity = velocities[j];
@@ -53,13 +53,13 @@ int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)
                     }
 
                     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
-                        //collide->collide = true;
+                        // collide->collide = true;
                         otherPosition->x -= otherVelocity->x;
                         otherPosition->y -= otherVelocity->y;
                     }
                 }
             }
         }
-   }
-   return (0);
+    }
+    return (0);
 }

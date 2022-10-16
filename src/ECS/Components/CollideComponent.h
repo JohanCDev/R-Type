@@ -1,8 +1,9 @@
 #pragma once
 
 struct CollideComponent {
+    bool collide;
 
-	bool collide;
-
-	CollideComponent() : collide(false) {}
+    CollideComponent() : collide(false)
+    {
+    }
 };

@@ -1,8 +1,7 @@
 #pragma once
 
 struct AccelerationComponent {
-	int coef;
+    int coef;
 
-	AccelerationComponent(int coefficient)
-		: coef(coefficient) {};
+    AccelerationComponent(int coefficient) : coef(coefficient){};
 };

@@ -1,30 +1,33 @@
 /**
  * @file ShootingSystem.cpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-10-07
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
-#include "../registry.h"
-#include "../RessourcesManager.hpp"
-#include "../Components/WeaponComponent.h"
-#include "../Components/PositionComponent.h"
-#include "../Components/HealthComponent.h"
 #include "../Components/DestroyableComponent.hpp"
+#include "../Components/HealthComponent.h"
+#include "../Components/PositionComponent.h"
+#include "../Components/WeaponComponent.h"
+#include "../RessourcesManager.hpp"
+#include "../registry.h"
 
-int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position, std::optional<DrawableComponent> &drawable)
+int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
+    std::optional<DrawableComponent> &drawable)
 {
     sf::Sprite otherSprite;
     if (drawable.has_value()) {
         otherSprite.setPosition(position->x, position->y);
         otherSprite.setTexture(manager.get_texture(drawable->path));
         otherSprite.setScale(drawable->x_scale, drawable->y_scale);
-        if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0 && drawable->rect.y_size == 0))
-            otherSprite.setTextureRect(sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
+        if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
+                && drawable->rect.y_size == 0))
+            otherSprite.setTextureRect(
+                sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
     }
     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
         return (1);
@@ -47,14 +50,15 @@ int shooting_system(registry &r, RessourcesManager manager, sf::Clock clock)
         auto &drawable = drawables[i];
 
         if (position && drawable && weapon) {
-
             sf::Sprite sprite;
 
             sprite.setPosition(position->x, position->y);
             sprite.setTexture(manager.get_texture(drawable->path));
             sprite.setScale(drawable->x_scale, drawable->y_scale);
-            if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0 && drawable->rect.y_size == 0))
-                sprite.setTextureRect(sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
+            if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
+                    && drawable->rect.y_size == 0))
+                sprite.setTextureRect(
+                    sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
                 if (j != i) {

@@ -13,7 +13,7 @@
 
 #include <string>
 
-enum shape_type { 
+enum shape_type {
     RECTANGLE = 0,
     TRIANGLE,
     CIRCLE,
@@ -43,8 +43,7 @@ struct ShapeComponent {
         font_size = 0;
     }*/
 
-    ShapeComponent(int length_value, int width_value)
-        : length(length_value), width(width_value)
+    ShapeComponent(int length_value, int width_value) : length(length_value), width(width_value)
     {
         type = shape_type::RECTANGLE;
         x_scale = 0.0;

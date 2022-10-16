@@ -1,8 +1,8 @@
-#include "../registry.h"
 #include "../Components/DrawableComponent.h"
-#include "../Components/ShapeComponent.hpp"
 #include "../Components/PositionComponent.h"
+#include "../Components/ShapeComponent.hpp"
 #include "../RessourcesManager.hpp"
+#include "../registry.h"
 
 int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager)
 {
@@ -13,7 +13,7 @@ int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager man
     sf::Sprite sprite;
     sf::Texture texture;
 
-	for (auto &i : drawable) {
+    for (auto &i : drawable) {
         if (i && i.has_value()) {
             sf::Vector2f vec(position[index]->x, position[index]->y);
             texture = manager.get_texture(i->path);
@@ -24,15 +24,15 @@ int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager man
             sprite.setPosition(vec);
             sprite.setScale(i->x_scale, i->y_scale);
             window.draw(sprite);
-		}
+        }
         index++;
-	}
+    }
     index = 0;
     for (size_t i = 0; i < shape.size(); ++i) {
         auto &entity = shape[i];
-        //std::cout << "size " << shape.size() << std::endl;
+        // std::cout << "size " << shape.size() << std::endl;
         if (entity.has_value()) {
-            //std::cout << "index " << i << std::endl;
+            // std::cout << "index " << i << std::endl;
             if (entity->type == shape_type::RECTANGLE) {
                 sf::RectangleShape rect(sf::Vector2f(entity->length, entity->width));
                 rect.setPosition(position[index]->x, position[index]->y);

@@ -11,8 +11,6 @@ r-type_server*
 .DS_Store
 doc/output/
 doc/warnings.txt
-test2.png
-chat.png
-panda.png
 launch.sh
 Dockerfile
+.pre-commit-config.yaml

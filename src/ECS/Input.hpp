@@ -1,31 +1,26 @@
 /**
  * @file Input.hpp
  * @author cédric CORGE (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-09-27
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #pragma once
 
-enum MouseInput {
-    Left_click,
-    Right_click,
-    Middle_click,
-    UNDEFINED
-};
+enum MouseInput { Left_click, Right_click, Middle_click, UNDEFINED };
 
 enum KeyboardInput {
     Unknown = -1,
     A = 0,
-    B, 
+    B,
     C,
-    D, 
-    E, 
-    F, 
+    D,
+    E,
+    F,
     G,
     H,
     I,

@@ -1,17 +1,18 @@
 /**
  * @file main.cpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-10-16
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include <SFML/Graphics.hpp>
 
-int main(void) {
+int main(void)
+{
     sf::Window window(sf::VideoMode(800, 600), "My window");
 
     // run the program as long as the window is open

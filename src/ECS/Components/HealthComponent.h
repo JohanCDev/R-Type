@@ -1,8 +1,7 @@
 #pragma once
 
 struct HealthComponent {
-	int hp;
+    int hp;
 
-	HealthComponent(int hp_value)
-		: hp(hp_value) {};
+    HealthComponent(int hp_value) : hp(hp_value){};
 };
