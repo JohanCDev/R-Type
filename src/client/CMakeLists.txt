@@ -27,9 +27,7 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
-message(STATUS "CLI=${SRC}")
-
-add_executable(${TARGET_NAME} ${SRC})
+add_executable(${TARGET_NAME} ${SRC_CLIENT})
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
