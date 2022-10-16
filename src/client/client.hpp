@@ -28,8 +28,8 @@ class NetworkClient {
     ~NetworkClient();
 
     void Send(const std::string &message);
-    inline bool HasMessages();
-    inline std::string PopMessage();
+    bool HasMessages();
+    std::string PopMessage();
 
   private:
     boost::asio::io_service io_service;
