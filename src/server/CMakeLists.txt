@@ -1,8 +1,7 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/server)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 
-set(SRC ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp ${SRCROOT}/bytes.cpp
-        ${INCROOT}/utils.hpp)
+set(SRC ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp)
 
 set(INCDIRS ${INCROOT})
 
