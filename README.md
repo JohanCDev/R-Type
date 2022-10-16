@@ -13,56 +13,65 @@ This project is an EPITECH Project. If you are an EPITECH student, move out the 
 
 ### Prerequisites
 
-To use this project, you'll need Cmake 3.17.0 Compiler, SFML-devel library and C11.
+To use this project, you'll need CMake 3.16.3 Compiler minimum and conan package manager.
 
 ## Building
 
-### Command Line (via CMake)
+### **Command Line**
+
+### on Linux:
 
 Required tools:
 
-- CMake 3.17 (minimum)
+- libudev-dev
+- pkg-config
+- libgl-dev
 
-on Linux:
+Commands:
 
 ```sh
 
-# Configure the project
-cmake -B build/ -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release
+# This command will install all dependencies and will generate the binaries needed for the project
+./linux_installer.sh
 
-# Build the executable and libraries
-cmake --build build/ -j
 ```
 
-on Windows:
+### on Windows:
 
 Required tools:
 
-- Visual Studio 17 2022 (minimum)
+- Visual Studio 17 2022 (minimum) with "Development with C++" package installed
 
 ```sh
-# Create the build directory
-mkdir build && cd build
-
-# Configure the project
-cmake .. -G 'Visual Studio 17 2022' -DCMAKE_BUILD_TYPE=Release
-
-# Build the executable and libraries
-cmake --build .
-
-# Return to previous directory
-cd -
+./windows_installer.ps1
 ```
 
-### Coding Style
+### on MacOS
+
+**Be sure to have set compiler.version to 13 in your ~/.conan/prfiles**
+
+Required tools:
+
+- libudev-dev
+- pkg-config
+- libgl-dev
+
+Commands:
+
+```sh
+
+# This command will install all dependencies and will generate the binaries needed for the project
+./MacOS_installer.sh
+
+```
+
+## Coding Style
 
 R-Type is developed with C++. EPITECH doesn't impose any Coding Style to this but we tried to be as clean as possible.
 
 ## Documentation
 
-### Local
-
-Required tools:
+### **Code documentation:**
 
 - Doxygen
 
@@ -75,6 +84,8 @@ doxygen
 # Open the generated pages
 xdg-open doc/generated/html/index.html
 ```
+
+### [**RFC documentation**](https://vivacious-hockey-270.notion.site/RFC-c84eaf8ef30541b2992558992e0b03bd)
 
 # Authors
 

@@ -22,7 +22,6 @@ else()
                       "-Wpointer-arith" "-fpermissive")
 endif()
 
-add_subdirectory(dependencies)
 add_subdirectory(src)
 
 # Unit testing

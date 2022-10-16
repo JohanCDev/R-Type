@@ -1,0 +1,14 @@
+[generators]
+cmake
+
+[requires]
+sfml/2.5.1
+boost/1.80.0
+
+[options]
+boost:multithreading=True
+sfml:shared=True
+sfml:graphics=True
+sfml:window=True
+sfml:audio=True
+sfml:network=True

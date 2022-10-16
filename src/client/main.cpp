@@ -1,9 +1,9 @@
 /**
  * @file main.cpp
- * @author Johan Chrillesen (johan.chrillesen@epitech.eu)
- * @brief Main file of the client
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief
  * @version 0.1
- * @date 2022-09-20
+ * @date 2022-10-16
  *
  * @copyright Copyright (c) 2022
  *
@@ -16,12 +16,7 @@
 #include "../Common/Message/Message.h"
 #include "client.hpp"
 
-/**
- * @brief main function of the client
- *
- * @return 0 if success or 84 if error
- */
-int main()
+int main(void)
 {
     unsigned short port;
     std::cin >> port;

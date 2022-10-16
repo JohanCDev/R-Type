@@ -4,6 +4,9 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRC ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp)
 
 set(INCDIRS ${INCROOT})
+set(CONAN_DISABLE_CHECK_COMPILER
+    True
+    CACHE BOOL "" FORCE)
 
 source_group("client" FILES ${SRC})
 
