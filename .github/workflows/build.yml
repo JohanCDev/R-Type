@@ -46,14 +46,13 @@ jobs:
         run: |
           mkdir -p build; cd build
           conan install .. --build=missing  -s compiler.cppstd=20 -s build_type=Debug -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
-          cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
 
 
       - name: Build rtype on Windows (desktop)
         run: |
           cd build/
-          cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
-          cmake --build . -j 3
+          cmake -DCMAKE_BUILD_TYPE=Debug ..
+          cmake --build  . -- -j
 
       - name: Check Windows build (desktop)
         uses: andstor/file-existence-action@v1
