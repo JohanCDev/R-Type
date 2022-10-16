@@ -10,6 +10,7 @@
  */
 
 #define _WIN32_WINNT 0x0501
+
 #include "server.hpp"
 #include <boost/bind.hpp>
 
@@ -80,7 +81,7 @@ void NetworkServer::run_service()
         } catch (...) {
         }
     }
-};
+}
 
 std::size_t NetworkServer::get_client_id(udp::endpoint endpoint)
 {
@@ -91,7 +92,7 @@ std::size_t NetworkServer::get_client_id(udp::endpoint endpoint)
     nextClientID++;
     clients.insert(Client(nextClientID, endpoint));
     return nextClientID;
-};
+}
 
 void NetworkServer::SendToClient(std::string message, std::size_t clientID)
 {
@@ -99,13 +100,13 @@ void NetworkServer::SendToClient(std::string message, std::size_t clientID)
         send(message, clients.left.at(clientID));
     } catch (std::out_of_range) {
     }
-};
+}
 
 void NetworkServer::SendToAll(std::string message)
 {
     for (auto client : clients)
         send(message, client.right);
-};
+}
 
 void NetworkServer::on_client_disconnected(int32_t id)
 {
@@ -122,4 +123,4 @@ ClientMessage NetworkServer::PopMessage()
 bool NetworkServer::HasMessages()
 {
     return !incomingMessages.empty();
-};
+}
