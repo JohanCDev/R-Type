@@ -1,3 +1,14 @@
+/**
+ * @file VelocitySystem.cpp
+ * @author Cédric Corge (cedric.corge@epitech.eu)
+ * @brief
+ * @version 0.1
+ * @date 2022-10-16
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #include "../Components/AllComponents.hpp"
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
@@ -7,7 +18,7 @@ int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock)
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     sparse_array<ImmobileComponent> &immobile = r.get_components<ImmobileComponent>();
-    // sparse_array<CollideComponent> &collide = r.get_components<CollideComponent>();
+
     std::size_t index = 0;
     (void)manager;
 

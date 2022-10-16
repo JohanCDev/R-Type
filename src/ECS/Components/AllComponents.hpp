@@ -21,6 +21,5 @@
 #include "ImmobileComponent.hpp"
 #include "MaximumVelocityComponent.hpp"
 #include "PositionComponent.hpp"
-#include "ShapeComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
