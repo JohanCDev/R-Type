@@ -1,8 +1,6 @@
-#include "../Components/DrawableComponent.h"
-#include "../Components/PositionComponent.h"
-#include "../Components/ShapeComponent.hpp"
-#include "../RessourcesManager.hpp"
-#include "../registry.h"
+#include "../Components/AllComponents.hpp"
+#include "../Registry.hpp"
+#include "../ResourcesManager.hpp"
 
 int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager)
 {

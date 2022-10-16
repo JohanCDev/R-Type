@@ -1,9 +1,6 @@
-#include "../Components/CollideComponent.h"
-#include "../Components/ImmobileComponent.h"
-#include "../Components/PositionComponent.h"
-#include "../Components/VelocityComponent.h"
-#include "../RessourcesManager.hpp"
-#include "../registry.h"
+#include "../Components/AllComponents.hpp"
+#include "../Registry.hpp"
+#include "../ResourcesManager.hpp"
 
 int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock)
 {

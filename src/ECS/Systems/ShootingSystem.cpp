@@ -9,12 +9,9 @@
  *
  */
 
-#include "../Components/DestroyableComponent.hpp"
-#include "../Components/HealthComponent.h"
-#include "../Components/PositionComponent.h"
-#include "../Components/WeaponComponent.h"
-#include "../RessourcesManager.hpp"
-#include "../registry.h"
+#include "../Components/AllComponents.hpp"
+#include "../Registry.hpp"
+#include "../ResourcesManager.hpp"
 
 int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)

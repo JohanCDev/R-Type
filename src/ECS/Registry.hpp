@@ -4,19 +4,10 @@
 #include <functional>
 #include <iostream>
 #include <typeindex>
-#include "Components/CollideComponent.h"
-#include "Components/ControllableComponent.h"
-#include "Components/DestroyableComponent.hpp"
-#include "Components/DrawableComponent.h"
-#include "Components/HealthComponent.h"
-#include "Components/ImmobileComponent.h"
-#include "Components/PositionComponent.h"
-#include "Components/ShapeComponent.hpp"
-#include "Components/VelocityComponent.h"
-#include "Components/WeaponComponent.h"
-#include "Entity.h"
-#include "RessourcesManager.hpp"
-#include "sparse_array.h"
+#include "Components/AllComponents.hpp"
+#include "Entity.hpp"
+#include "ResourcesManager.hpp"
+#include "SparseArray.hpp"
 #include <unordered_map>
 
 class registry {

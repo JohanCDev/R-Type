@@ -1,30 +1,11 @@
-set(INCROOT ${PROJECT_SOURCE_DIR}/src)
-set(SRCROOT ${PROJECT_SOURCE_DIR}/src)
+set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
+
+list(APPEND SRC ${SRCROOT}/main.cpp)
 
 set(SRC
-    "main.cpp"
-    "../ECS/RessourcesManager.hpp"
-    "../ECS/Input.hpp"
-    "../ECS/Entity.h"
-    "../ECS/registry.h"
-    "../ECS/sparse_array.h"
-    "../ECS/Components/AccelerationComponent.h"
-    "../ECS/Components/ControllableComponent.h"
-    "../ECS/Components/DrawableComponent.h"
-    "../ECS/Components/HealthComponent.h"
-    "../ECS/Components/CollideComponent.h"
-    "../ECS/Components/MaximumVelocityComponent.h"
-    "../ECS/Components/PositionComponent.h"
-    "../ECS/Components/VelocityComponent.h"
-    "../ECS/Components/WeaponComponent.h"
-    "../ECS/Components/ImmobileComponent.h"
-    "../ECS/Components/DestroyableComponent.hpp"
-    "../ECS/Systems/ControllableSystem.cpp"
-    "../ECS/Systems/CollideSystem.cpp"
-    "../ECS/Systems/ShootingSystem.cpp"
-    "../ECS/Systems/DrawableSystem.cpp"
-    "../ECS/Systems/VelocitySystem.cpp"
-    "../ECS/Components/ShapeComponent.hpp")
+    "${SRC}"
+    PARENT_SCOPE)
 
 set(INCDIRS ${INCROOT})
 set(CONAN_DISABLE_CHECK_COMPILER
@@ -44,6 +25,8 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
     "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
+
+message(STATUS ${SRC})
 
 add_executable(${TARGET_NAME} ${SRC})
 

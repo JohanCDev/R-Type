@@ -1,13 +1,7 @@
 #include <iostream>
-#include "../Components/CollideComponent.h"
-#include "../Components/ControllableComponent.h"
-#include "../Components/DrawableComponent.h"
-#include "../Components/ImmobileComponent.h"
-#include "../Components/PositionComponent.h"
-#include "../Components/ShapeComponent.hpp"
-#include "../Components/VelocityComponent.h"
-#include "../RessourcesManager.hpp"
-#include "../registry.h"
+#include "../Components/AllComponents.hpp"
+#include "../Registry.hpp"
+#include "../ResourcesManager.hpp"
 
 int controllable_system(registry &r, RessourcesManager manager, sf::Event event, sf::Clock game_clock)
 {

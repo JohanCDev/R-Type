@@ -9,13 +9,10 @@
  *
  */
 
-#include "../registry.h"
+#include "../Registry.hpp"
 
-#include "../Components/CollideComponent.h"
-#include "../Components/DrawableComponent.h"
-#include "../Components/PositionComponent.h"
-#include "../Components/VelocityComponent.h"
-#include "../RessourcesManager.hpp"
+#include "../Components/AllComponents.hpp"
+#include "../ResourcesManager.hpp"
 
 int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)
 {
