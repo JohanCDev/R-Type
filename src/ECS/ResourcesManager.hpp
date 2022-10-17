@@ -63,6 +63,7 @@ class RessourcesManager {
         if (!font.loadFromFile(path)) {
             this->_font_map.insert(std::make_pair(path, std::nullopt));
         } else {
+            std::cout << path << std::endl;
             this->_font_map.insert(std::make_pair(path, font));
         }
     }

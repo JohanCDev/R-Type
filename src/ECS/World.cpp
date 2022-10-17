@@ -11,7 +11,7 @@
 
 #include "World.hpp"
 
-World::World()
+World::World(sf::VideoMode mode, std::string name): _r(), _manager(), _window(mode, name), _clock()
 {
 }
 
@@ -29,6 +29,7 @@ void World::register_all_component()
     this->_r.register_components<PositionComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<DrawableComponent>();
+    this->_r.register_components<CollideComponent>();
 }
 
 void World::register_all_system()
@@ -36,6 +37,13 @@ void World::register_all_system()
     this->_r.register_systems(&drawable_system);
     this->_r.register_systems(&velocity_system);
     this->_r.register_systems(&shooting_system);
+}
+
+void World::register_all_assets()
+{
+    this->_manager.register_texture("assets/r-typesheet1.gif");
+    this->_manager.register_texture("assets/r-typesheet5.gif");
+    this->_manager.register_texture("assets/r-typesheet39.gif");
 }
 
 sf::Clock &World::getClock()

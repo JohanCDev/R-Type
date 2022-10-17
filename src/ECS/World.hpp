@@ -22,12 +22,13 @@ class World
 
     public:
 
-        World();
+        World(sf::VideoMode mode, std::string name);
 
         ~World();
 
         void register_all_component();
         void register_all_system();
+        void register_all_assets();
 
         registry &getRegistry();
         RessourcesManager &getRessourcesManager();

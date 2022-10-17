@@ -15,22 +15,29 @@
 
 int main(void)
 {
-    sf::Window window(sf::VideoMode(800, 600), "My window");
-
-    World world;
+    World world(sf::VideoMode(800, 600), "My window");
 
     world.register_all_component();
     world.register_all_system();
-
+    world.register_all_assets();
     // run the program as long as the window is open
-    while (window.isOpen()) {
+    
+    world.getRegistry().create_player("assets/r-typesheet5.gif", Vector4{0, 0, 100, 30}, 1.0, 1.0, 20, 20, 3, 5, 5, 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
+    while (world.getWindow().isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (world.getWindow().pollEvent(event)) {
             // "close requested" event: we close the window
+            if (controllable_system(world, event) == 1)
+                continue;
             if (event.type == sf::Event::Closed)
-                window.close();
+                world.getWindow().close();
         }
+        world.getWindow().clear(sf::Color::White);
+        for (auto &system: world.getRegistry().get_systems()) {
+            system(world);
+        }
+        world.getWindow().display();
     }
     return (0);
 }

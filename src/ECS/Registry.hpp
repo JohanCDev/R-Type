@@ -117,7 +117,7 @@ class registry {
     {
         Entity ent = this->spawn_entity();
 
-        this->add_component<DrawableComponent>(ent, DrawableComponent("r-typesheet1.gif", Vector4(104, 171, 80, 14)));
+        this->add_component<DrawableComponent>(ent, DrawableComponent("assets/r-typesheet1.gif", Vector4(104, 171, 80, 14)));
         this->add_component<WeaponComponent>(ent, WeaponComponent("laser", 5, 15, 0.2));
         this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time, elapsed_time));
         this->add_component<PositionComponent>(ent, PositionComponent(x, y));
