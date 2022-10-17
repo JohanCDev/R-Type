@@ -47,12 +47,12 @@ int controllable_system(World &world, sf::Event event)
                         && drawable[index]->rect.y_size == 0)) {
                     r.create_laser(position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1,
                         position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
-                        0.2, game_clock.getElapsedTime().asSeconds());
+                        0.2, world.getClock().getElapsedTime().asSeconds());
                 } else {
                     r.create_laser(position[index]->x
-                            + (manager.get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
+                            + (world.getRessourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
                         position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
-                        0.2, game_clock.getElapsedTime().asSeconds());
+                        0.2, world.getClock().getElapsedTime().asSeconds());
                 }
             }
         }

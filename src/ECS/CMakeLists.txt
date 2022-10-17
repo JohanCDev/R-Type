@@ -19,8 +19,6 @@ set(SRC
     "${SRC}"
     PARENT_SCOPE)
 
-message(status "${SRC}")
-
 set(INCDIRS
     ${INCDIRS} ${INCROOT}
     PARENT_SCOPE)

@@ -18,9 +18,10 @@
 #include "Components/AllComponents.hpp"
 #include "Entity.hpp"
 #include "ResourcesManager.hpp"
-#include "World.hpp"
 #include "SparseArray.hpp"
 #include <unordered_map>
+
+class World;
 
 class registry {
   public:
