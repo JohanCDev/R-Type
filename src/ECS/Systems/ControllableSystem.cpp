@@ -13,15 +13,16 @@
 #include "../Components/AllComponents.hpp"
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
+#include "../World.hpp"
 
-int controllable_system(registry &r, RessourcesManager manager, sf::Event event, sf::Clock game_clock)
+int controllable_system(World &world, sf::Event event)
 {
+    registry &r = world.getRegistry();
     sparse_array<ControllableComponent> &controllable = r.get_components<ControllableComponent>();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     sparse_array<DrawableComponent> &drawable = r.get_components<DrawableComponent>();
     std::size_t index = 0;
-    (void)manager;
 
     for (auto const &i : controllable) {
         if (i && i.has_value()) {

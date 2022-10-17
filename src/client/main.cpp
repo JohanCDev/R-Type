@@ -11,9 +11,16 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../ECS/World.hpp"
+
 int main(void)
 {
     sf::Window window(sf::VideoMode(800, 600), "My window");
+
+    World world;
+
+    world.register_all_component();
+    world.register_all_system();
 
     // run the program as long as the window is open
     while (window.isOpen()) {
