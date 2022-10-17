@@ -31,8 +31,8 @@
 // }
 
 NetworkServer::NetworkServer(unsigned short local_port)
-    : socket(io_service, udp::endpoint(udp::v4(), local_port)), nextClientID(0L),
-      service_thread(std::bind(&NetworkServer::run_service, this))
+    : socket(io_service, udp::endpoint(udp::v4(), local_port)),
+      service_thread(std::bind(&NetworkServer::run_service, this)), nextClientID(0L)
 {
 }
 

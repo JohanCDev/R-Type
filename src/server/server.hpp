@@ -13,12 +13,11 @@
 
 #include "../Common/locked_queue.h"
 
+#include <array>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/bimap.hpp>
 #include <boost/thread.hpp>
-
-#include <array>
 #include <string>
 
 using boost::asio::ip::udp;
@@ -28,18 +27,6 @@ typedef ClientList::value_type Client;
 typedef std::pair<std::string, std::size_t> ClientMessage;
 
 class NetworkServer {
-  public:
-    NetworkServer(unsigned short local_port);
-    ~NetworkServer();
-
-    bool HasMessages();
-    ClientMessage PopMessage();
-
-    void SendToClient(std::string message, std::size_t clientID);
-    void SendToAll(std::string message);
-
-    std::vector<std::function<void(uint32_t)>> clientDisconnectedHandlers;
-
   private:
     boost::asio::io_service io_service;
     udp::socket socket;
@@ -47,6 +34,8 @@ class NetworkServer {
     udp::endpoint remote_endpoint;
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
+    ClientList clients;
+    std::size_t nextClientID;
 
     void start_receive();
     void handle_receive(const boost::system::error_code &error, std::size_t bytes_transferred);
@@ -60,8 +49,17 @@ class NetworkServer {
 
     LockedQueue<ClientMessage> incomingMessages;
 
-    ClientList clients;
-    std::size_t nextClientID;
-
     NetworkServer(NetworkServer &);
+
+  public:
+    NetworkServer(unsigned short local_port);
+    ~NetworkServer();
+
+    bool HasMessages();
+    ClientMessage PopMessage();
+
+    void SendToClient(std::string message, std::size_t clientID);
+    void SendToAll(std::string message);
+
+    std::vector<std::function<void(uint32_t)>> clientDisconnectedHandlers;
 };
