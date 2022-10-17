@@ -11,8 +11,14 @@ else
     exit -1
 fi
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install cmake clang++ pip
+which -s brew
+if [[ $? != 0 ]] ; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    brew update
+fi
+
+brew install cmake pip
 xcode-select --install
 
 echo "\033[0;32mINSTALLING CONAN PACKAGE MANAGER\033[0m"
