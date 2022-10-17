@@ -57,8 +57,7 @@ void NetworkServer::handle_receive(const boost::system::error_code &error, std::
                 get_client_id(remote_endpoint));
             if (!message.first.empty())
                 incomingMessages.push(message);
-        } catch (std::exception ex) {
-        } catch (...) {
+        }catch (...) {
         }
     } else {
     }
