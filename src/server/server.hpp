@@ -20,11 +20,15 @@
 #include <boost/thread.hpp>
 #include <string>
 
+#include "../Common/Message/Message.h"
+#include "../Common/Message/MessageType.h"
+
 using boost::asio::ip::udp;
 
 typedef boost::bimap<std::size_t, udp::endpoint> ClientList;
 typedef ClientList::value_type Client;
-typedef std::pair<std::string, std::size_t> ClientMessage;
+//typedef std::pair<std::string, std::size_t> ClientMessage;
+typedef std::pair<Message<GameMessage>, std::size_t> ClientMessage;
 
 class NetworkServer {
   private:

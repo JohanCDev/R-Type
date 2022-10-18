@@ -14,19 +14,24 @@
 #include <cstddef>
 #include <cstring>
 #include <vector>
+#include <string>
 #include "MessageHeader.h"
 #include "MessageType.h"
 
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/vector.hpp>
+
+#include <iostream>
 template <typename T> struct Message {
     MessageHeader<T> header;
-    std::vector<unsigned char> body;
+    std::vector<uint8_t> body;
 
     std::size_t size() const
     {
         return body.size();
     }
 
-    template <typename ContentType> friend Message<T> &operator<<(Message<T> m, const ContentType &content)
+    template <typename ContentType> friend Message<T> &operator<<(Message<T> &m, const ContentType &content)
     {
         static_assert(std::is_standard_layout<ContentType>::value, "Not standard layout : Can't push into vector");
 
@@ -41,7 +46,7 @@ template <typename T> struct Message {
         return m;
     }
 
-    template <typename ContentType> friend Message<T> &operator>>(Message<T> m, const ContentType &content)
+    template <typename ContentType> friend Message<T> &operator>>(Message<T> &m, const ContentType &content)
     {
         static_assert(std::is_standard_layout<ContentType>::value, "Not standard layout : Can't retreive from vector");
 
@@ -54,5 +59,12 @@ template <typename T> struct Message {
         m.header.size = m.size();
 
         return m;
+    }
+
+    friend class boost::serialization::access;
+    template <class Archive> void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & header;
+        ar & body;
     }
 };

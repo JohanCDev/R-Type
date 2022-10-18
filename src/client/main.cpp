@@ -15,6 +15,7 @@
 #include <iostream>
 #include <thread>
 #include "../Common/Message/Message.h"
+#include "../Common/Message/MessageType.h"
 #include "client.hpp"
 
 int main(void)
@@ -36,15 +37,25 @@ int main(void)
         }
     }*/
 
+    Message<GameMessage> hiMsg;
+    hiMsg.header.id = GameMessage::C2S_JOIN;
+    hiMsg << "Lezgongue";
+    
+    Message<GameMessage> byeMsg;
+    byeMsg.header.id = GameMessage::C2S_LEAVE;
+    byeMsg << "Bybye";
+
     while (1) {
         while (client.HasMessages()) {
             std::string msg = client.PopMessage();
 
             // processMessage(msg);
         }
-        // client.Send("hi");
+        //client.Send("hi");
+        client.SendMessage(hiMsg);
+        client.SendMessage(byeMsg);
 
-        // std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 
     return 0;

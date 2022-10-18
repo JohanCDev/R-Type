@@ -18,6 +18,7 @@
 #include <thread>
 
 #include "../Common/Message/Message.h"
+#include "../Common/Message/MessageType.h"
 
 int main()
 {
@@ -25,10 +26,20 @@ int main()
 
     while (1) {
         while (server.HasMessages()) {
-            std::string txt = server.PopMessage().first;
-            std::cout << txt << std::endl;
+            //std::string txt = server.PopMessage().first;
+            //std::cout << txt << std::endl;
 
-            if (txt == "bye") {
+            Message<GameMessage> gameMsg = server.PopMessage().first;
+
+            std::string tmp(gameMsg.body.begin(), gameMsg.body.end());
+
+            switch (gameMsg.header.id) {
+                case (GameMessage::C2S_JOIN): std::cout << "User Joined with message:" << tmp << std::endl; break;
+                case (GameMessage::C2S_LEAVE): std::cout << "User Left with message:" << tmp << std::endl; break;
+                default: std::cout << "Unkown Message" << std::endl; break;
+            }
+
+            if (tmp == "bye") {
                 break;
             }
         };

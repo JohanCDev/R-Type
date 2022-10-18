@@ -11,7 +11,16 @@
 
 #pragma once
 
+#include <boost/serialization/serialization.hpp>
+
 template <typename T> struct MessageHeader {
     T id{};
     std::size_t size = 0;
+
+    friend class boost::serialization::access;
+    template <class Archive> void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & id;
+        ar & size;
+    }
 };
