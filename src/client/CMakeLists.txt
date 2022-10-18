@@ -4,7 +4,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 list(APPEND SRC_CLIENT ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp
   ${INCROOT}/client.hpp)
 
-set(SRC
+set(SRC_CLIENT
   "${SRC_CLIENT}" "${SRC}"
   PARENT_SCOPE)
 
