@@ -17,8 +17,8 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
 
 #include <array>
 #include <memory>
