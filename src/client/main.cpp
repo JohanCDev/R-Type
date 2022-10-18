@@ -47,7 +47,7 @@ int main(void)
 
     while (1) {
         while (client.HasMessages()) {
-            std::string msg = client.PopMessage();
+            Message<GameMessage> msg = client.PopMessage();
 
             // processMessage(msg);
         }
