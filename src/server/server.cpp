@@ -13,14 +13,12 @@
 
 #include "server.hpp"
 #include <boost/bind.hpp>
-
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/serialization/vector.hpp>
-
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 
 // std::string udp_server::deserialize(std::string recv)
 // {
@@ -68,13 +66,13 @@ void NetworkServer::handle_receive(const boost::system::error_code &error, std::
             std::string recv_str(recv_buffer.data(), recv_buffer.data() + bytes_transferred);
 
             boost::iostreams::basic_array_source<char> device(recv_str.data(), recv_str.size());
-            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s(device);
+            boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
             boost::archive::binary_iarchive ia(s);
             ia >> gameMsg;
 
-            //std::cout << gameMsg.body
+            // std::cout << gameMsg.body
 
-            auto message = ClientMessage(gameMsg,get_client_id(remote_endpoint));
+            auto message = ClientMessage(gameMsg, get_client_id(remote_endpoint));
             if (message.first.size() != 0)
                 incomingMessages.push(message);
         } catch (...) {

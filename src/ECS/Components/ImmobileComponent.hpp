@@ -1,5 +1,5 @@
 /**
- * @file ImmobileComponent.h
+ * @file ImmobileComponent.hpp
  * @author Cédric CORGE (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1

@@ -1,6 +1,6 @@
 /**
- * @file Message.h
- * @author your name (you@domain.com)
+ * @file Message.hpp
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16
@@ -11,15 +11,14 @@
 
 #pragma once
 
-#include <cstddef>
-#include <cstring>
-#include <vector>
-#include <string>
-#include "MessageHeader.h"
-#include "MessageType.h"
-
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/vector.hpp>
+#include <cstddef>
+#include <cstring>
+#include <string>
+#include <vector>
+#include "MessageHeader.hpp"
+#include "MessageType.hpp"
 
 #include <iostream>
 template <typename T> struct Message {
@@ -64,7 +63,7 @@ template <typename T> struct Message {
     friend class boost::serialization::access;
     template <class Archive> void serialize(Archive &ar, const unsigned int version)
     {
-        ar & header;
-        ar & body;
+        ar &header;
+        ar &body;
     }
 };

@@ -14,8 +14,8 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
 #include "client.hpp"
 
 #include "../ECS/World.hpp"
@@ -38,7 +38,7 @@ int main(void)
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
     hiMsg << "Lezgongue";
-    
+
     Message<GameMessage> byeMsg;
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
