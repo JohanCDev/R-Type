@@ -17,3 +17,4 @@ int drawable_system(World &world);
 int controllable_system(World &world, sf::Event event);
 int shooting_system(World &world);
 int velocity_system(World &world);
+int wave_system(World &world);

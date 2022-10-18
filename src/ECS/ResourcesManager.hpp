@@ -21,13 +21,13 @@ class RessourcesManager {
   public:
     RessourcesManager()
     {
-        sf::Texture texture;
-        sf::Font font;
+        //sf::Texture texture;
+        //sf::Font font;
 
-        texture.loadFromFile("default.png");
-        this->_texture_map.insert(std::make_pair("default", texture));
-        font.loadFromFile("default_font.ttf");
-        this->_font_map.insert(std::make_pair("default_font", font));
+        //texture.loadFromFile("default.png");
+        //this->_texture_map.insert(std::make_pair("default", texture));
+        //font.loadFromFile("default_font.ttf");
+        //this->_font_map.insert(std::make_pair("default_font", font));
     }
 
     ~RessourcesManager()

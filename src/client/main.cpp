@@ -17,6 +17,8 @@ int main(void)
 {
     World world(sf::VideoMode(800, 600), "My window");
 
+    std::srand(std::time(NULL));
+
     world.register_all_component();
     world.register_all_system();
     world.register_all_assets();

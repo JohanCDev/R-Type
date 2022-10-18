@@ -37,6 +37,7 @@ void World::register_all_system()
     this->_r.register_systems(&drawable_system);
     this->_r.register_systems(&velocity_system);
     this->_r.register_systems(&shooting_system);
+    this->_r.register_systems(&wave_system);
 }
 
 void World::register_all_assets()
@@ -90,8 +91,7 @@ void World::create_player(std::string texture_path, Vector4 texture_rec, float x
 }
 
 void World::create_enemy(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale, int pos_x, int pos_y,
-    int speed_x, int speed_y, float refresh_time, KeyboardInput up, KeyboardInput down, KeyboardInput right,
-    KeyboardInput left, MouseInput shoot)
+    int speed_x, int speed_y, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(texture_path, texture_rec, x_scale, y_scale));
@@ -99,7 +99,6 @@ void World::create_enemy(std::string texture_path, Vector4 texture_rec, float x_
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(false, false));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
     this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", 1, 1, 0));
-    this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
-    this->_r.add_component<ControllableComponent>(ent, ControllableComponent(up, down, right, left, shoot));
+    //this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
+    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time, elapsed_time));
 }
