@@ -11,7 +11,7 @@
 
 #pragma once
 
-#include "../Common/locked_queue.h"
+#include "../Common/locked_queue.hpp"
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>

@@ -14,7 +14,7 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
-#include "../Common/Message/Message.h"
+#include "../Common/Message/Message.hpp"
 #include "client.hpp"
 
 int main(void)
@@ -42,9 +42,9 @@ int main(void)
 
             // processMessage(msg);
         }
-        // client.Send("hi");
+        client.Send("hi");
 
-        // std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     }
 
     return 0;
