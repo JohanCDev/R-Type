@@ -1,6 +1,6 @@
 /**
  * @file client.cpp
- * @author your name (you@domain.com)
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16
@@ -10,13 +10,12 @@
  */
 
 #include "client.hpp"
-
-#include <sstream>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
 #include <boost/iostreams/stream.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/serialization/vector.hpp>
+#include <sstream>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
 
 NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), service_thread(&NetworkClient::run_service, this)
@@ -50,11 +49,11 @@ void NetworkClient::handle_receive(const std::error_code &error, std::size_t byt
             std::string recv_str(recv_buffer.data(), recv_buffer.data() + bytes_transferred);
 
             boost::iostreams::basic_array_source<char> device(recv_str.data(), recv_str.size());
-            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s(device);
+            boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
             boost::archive::binary_iarchive ia(s);
             ia >> gameMsg;
 
-            //std::cout << gameMsg.body
+            // std::cout << gameMsg.body
 
             if (gameMsg.size() != 0)
                 incomingMessages.push(gameMsg);

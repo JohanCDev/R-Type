@@ -1,7 +1,7 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/server)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 
-list(APPEND SRC_SERVER ${SRCROOT}/main2.cpp ${SRCROOT}/server.cpp
+list(APPEND SRC_SERVER ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp
     ${INCROOT}/server.hpp)
 
 set(SRC

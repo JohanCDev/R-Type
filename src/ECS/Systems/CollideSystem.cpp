@@ -9,9 +9,8 @@
  *
  */
 
-#include "../Registry.hpp"
-
 #include "../Components/AllComponents.hpp"
+#include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 
 int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)

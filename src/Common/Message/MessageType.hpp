@@ -1,6 +1,6 @@
 /**
- * @file MessageType.h
- * @author your name (you@domain.com)
+ * @file MessageType.hpp
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16

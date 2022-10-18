@@ -11,14 +11,12 @@
 
 #define _WIN32_WINNT 0x0601
 
-#include <iostream>
-#include "server.hpp"
-
 #include <chrono>
+#include <iostream>
 #include <thread>
-
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
+#include "server.hpp"
 
 int main()
 {
@@ -26,8 +24,8 @@ int main()
 
     while (1) {
         while (server.HasMessages()) {
-            //std::string txt = server.PopMessage().first;
-            //std::cout << txt << std::endl;
+            // std::string txt = server.PopMessage().first;
+            // std::cout << txt << std::endl;
 
             Message<GameMessage> gameMsg = server.PopMessage().first;
 

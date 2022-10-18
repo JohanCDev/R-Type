@@ -1,6 +1,6 @@
 /**
  * @file ResourcesManager.hpp
- * @author cédric CORGE (cedric.corge@epitech.eu)
+ * @author Cédric CORGE (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-09-27
