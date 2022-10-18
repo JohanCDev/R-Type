@@ -20,8 +20,8 @@
 #include <boost/thread.hpp>
 #include <string>
 
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
 
 using boost::asio::ip::udp;
 

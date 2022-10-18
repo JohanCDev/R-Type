@@ -19,8 +19,8 @@
 #include <boost/iostreams/stream.hpp>
 #include <boost/serialization/vector.hpp>
 
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
 
 // std::string udp_server::deserialize(std::string recv)
 // {

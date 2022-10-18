@@ -67,7 +67,7 @@ void player_shot(registry &r)
 void create_enemy(registry &r)
 {
     int random_y = rand() % 400 + 51;
-    r.create_enemy("r-typesheet39.gif", Vector4(34, 2, 64, 64), DEFAULT_ENEMY_SCALE, DEFAULT_ENEMY_SCALE, 0, random_y, DEFAULT_ENEMY_SPD, DEFAULT_ENEMY_SPD, 0, 0.2);
+    r.create_enemy("r-typesheet39.gif", Vector4(34, 2, 64, 64), DEFAULT_ENEMY_SCALE, DEFAULT_ENEMY_SCALE, 0, random_y, DEFAULT_ENEMY_SPD, 0, 0.2);
     std::cout << "Enemy Created" << std::endl;
 }
 
@@ -89,54 +89,51 @@ void process_informations(GameMessage type, registry &r)
     mapFunc[type](r);
 }
 
-int velocity_system(registry &r, ResourcesManager manager, sf::Clock clock);
-int shooting_system(registry &r, ResourcesManager manager, sf::Clock clock);
+// int velocity_system(registry &r, ResourcesManager manager, sf::Clock clock);
+// int shooting_system(registry &r, ResourcesManager manager, sf::Clock clock);
 
-int idk()
-{
-    GameMessage type = GameMessage::C2S_JOIN;
-    registry r;
-    ResourcesManager manager;
-    sf::Clock clock;
-    sf::Clock spawn_enemy;
-    srand((unsigned)time(0));
-    int i = 0;
+// int idk()
+// {
+//     GameMessage type = GameMessage::C2S_JOIN;
+//     registry r;
+//     ResourcesManager manager;
+//     sf::Clock clock;
+//     sf::Clock spawn_enemy;
+//     srand((unsigned)time(0));
+//     int i = 0;
 
-    r.register_components<DrawableComponent>();
-    r.register_components<DestroyableComponent>();
-    r.register_components<PositionComponent>();
-    r.register_components<VelocityComponent>();
-    r.register_components<ImmobileComponent>();
-    r.register_components<ControllableComponent>();
-    r.register_components<CollideComponent>();
-    r.register_components<WeaponComponent>();
-    r.register_components<HealthComponent>();
+//     r.register_components<DrawableComponent>();
+//     r.register_components<DestroyableComponent>();
+//     r.register_components<PositionComponent>();
+//     r.register_components<VelocityComponent>();
+//     r.register_components<ImmobileComponent>();
+//     r.register_components<ControllableComponent>();
+//     r.register_components<CollideComponent>();
+//     r.register_components<WeaponComponent>();
+//     r.register_components<HealthComponent>();
 
-    r.register_systems(&shooting_system);
-    r.register_systems(&velocity_system);
+//     r.register_systems(&shooting_system);
+//     r.register_systems(&velocity_system);
 
-    // while (1) {
-        i = (rand() % 2) + 1;
-        // Process informations
-        if (type != GameMessage::C2S_LEAVE) {
-            process_informations(type, r);
-        }
+//     // while (1) {
+//         i = (rand() % 2) + 1;
+//         // Process informations
+//         if (type != GameMessage::C2S_LEAVE) {
+//             process_informations(type, r);
+//         }
 
-        if (spawn_enemy.getElapsedTime().asMilliseconds() > 800) {
-            if (i == 1)
-                create_enemy(r);
-            spawn_enemy.restart();
-        }
-        // Create entities
+//         if (spawn_enemy.getElapsedTime().asMilliseconds() > 800) {
+//             if (i == 1)
+//                 create_enemy(r);
+//             spawn_enemy.restart();
+//         }
+//         // Create entities
 
-        // Update all entities
-        for (auto &system : r.get_systems()) {
-            system(r, manager, clock);
-        }
+//         // Update all entities
 
-        // Check collisions
+//         // Check collisions
 
-        // Update to clients
-    // }
-    return 0;
-}
+//         // Update to clients
+//     // }
+//     return 0;
+// }
