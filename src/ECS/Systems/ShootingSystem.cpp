@@ -13,7 +13,7 @@
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 
-int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
+int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
 {
     sf::Sprite otherSprite;
@@ -32,7 +32,7 @@ int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional
     return (0);
 }
 
-int shooting_system(registry &r, RessourcesManager manager, sf::Clock clock)
+int shooting_system(registry &r, ResourcesManager manager, sf::Clock clock)
 {
     auto &weapons = r.get_components<WeaponComponent>();
     auto &drawables = r.get_components<DrawableComponent>();

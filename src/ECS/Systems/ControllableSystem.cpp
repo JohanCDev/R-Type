@@ -14,7 +14,7 @@
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 
-int controllable_system(registry &r, RessourcesManager manager, sf::Event event, sf::Clock game_clock)
+int controllable_system(registry &r, ResourcesManager manager, sf::Event event, sf::Clock game_clock)
 {
     sparse_array<ControllableComponent> &controllable = r.get_components<ControllableComponent>();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();

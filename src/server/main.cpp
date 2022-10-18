@@ -17,7 +17,7 @@
 #include <chrono>
 #include <thread>
 
-#include "../Common/Message/Message.h"
+#include "../Common/Message/Message.hpp"
 
 int main()
 {
