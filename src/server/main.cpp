@@ -9,15 +9,39 @@
  *
  */
 
-#include <iostream>
+#define _WIN32_WINNT 0x0601
 
-/**
- * @brief main function of the server
- *
- * @return 0 if success or 84 if error
- */
-int main(void)
+#include <chrono>
+#include <iostream>
+#include <thread>
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
+#include "server.hpp"
+
+int main()
 {
-    std::cout << "Hello Server!" << std::endl;
+    NetworkServer server(60000);
+
+    while (1) {
+        while (server.HasMessages()) {
+            // std::string txt = server.PopMessage().first;
+            // std::cout << txt << std::endl;
+
+            Message<GameMessage> gameMsg = server.PopMessage().first;
+
+            std::string tmp(gameMsg.body.begin(), gameMsg.body.end());
+
+            switch (gameMsg.header.id) {
+                case (GameMessage::C2S_JOIN): std::cout << "User Joined with message:" << tmp << std::endl; break;
+                case (GameMessage::C2S_LEAVE): std::cout << "User Left with message:" << tmp << std::endl; break;
+                default: std::cout << "Unkown Message" << std::endl; break;
+            }
+
+            if (tmp == "bye") {
+                break;
+            }
+        };
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    }
     return 0;
 }
