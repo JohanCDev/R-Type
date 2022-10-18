@@ -1,6 +1,6 @@
 /**
- * @file MessageHeader.h
- * @author your name (you@domain.com)
+ * @file MessageHeader.hpp
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16
@@ -20,7 +20,7 @@ template <typename T> struct MessageHeader {
     friend class boost::serialization::access;
     template <class Archive> void serialize(Archive &ar, const unsigned int version)
     {
-        ar & id;
-        ar & size;
+        ar &id;
+        ar &size;
     }
 };

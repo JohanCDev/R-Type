@@ -1,5 +1,5 @@
 /**
- * @file DrawableComponent.h
+ * @file DrawableComponent.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
