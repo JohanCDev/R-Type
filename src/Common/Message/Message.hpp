@@ -1,5 +1,5 @@
 /**
- * @file Message.h
+ * @file Message.hpp
  * @author your name (you@domain.com)
  * @brief
  * @version 0.1
@@ -14,8 +14,8 @@
 #include <cstddef>
 #include <cstring>
 #include <vector>
-#include "MessageHeader.h"
-#include "MessageType.h"
+#include "MessageHeader.hpp"
+#include "MessageType.hpp"
 
 template <typename T> struct Message {
     MessageHeader<T> header;

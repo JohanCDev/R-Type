@@ -1,5 +1,5 @@
 /**
- * @file MessageType.h
+ * @file MessageType.hpp
  * @author your name (you@domain.com)
  * @brief
  * @version 0.1
@@ -11,4 +11,4 @@
 
 #pragma once
 
-enum class GameMessage { C2S_JOIN, C2S_LEAVE };
+enum class GameMessage { C2S_JOIN, C2S_LEAVE, S2C_OK };
