@@ -4,7 +4,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 list(APPEND SRC_SERVER ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp
     ${INCROOT}/server.hpp)
 
-set(SRC
+set(SRC_SERVER
     "${SRC_SERVER}" "${SRC}"
     PARENT_SCOPE)
 
