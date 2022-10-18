@@ -5,6 +5,8 @@ list(
   APPEND
   SRC
   ${INCROOT}/Message.hpp
+  ${INCROOT}/MessageHeader.hpp
+  ${INCROOT}/MessageType.hpp
 )
 
 set(SRC
