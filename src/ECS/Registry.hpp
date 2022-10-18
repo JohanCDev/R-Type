@@ -137,8 +137,7 @@ class registry {
     }
 
     void create_enemy(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale, int pos_x, int pos_y,
-        int speed_x, int speed_y, float refresh_time, KeyboardInput up, KeyboardInput down, KeyboardInput right,
-        KeyboardInput left, MouseInput shoot)
+        int speed_x, int speed_y, float refresh_time)
     {
         Entity ent = this->spawn_entity();
 
@@ -149,7 +148,6 @@ class registry {
         this->add_component<WeaponComponent>(ent, WeaponComponent("meteor", 1, 1, 0));
         this->add_component<DestroyableComponent>(ent, DestroyableComponent(true));
         this->add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
-        this->add_component<ControllableComponent>(ent, ControllableComponent(up, down, right, left, shoot));
     }
 
   private:
