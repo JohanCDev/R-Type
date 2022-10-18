@@ -17,6 +17,9 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 
+#include "../Common/Message/Message.h"
+#include "../Common/Message/MessageType.h"
+
 #include <array>
 #include <memory>
 
@@ -28,8 +31,9 @@ class NetworkClient {
     ~NetworkClient();
 
     void Send(const std::string &message);
+    void SendMessage(const Message<GameMessage> &message);
     bool HasMessages();
-    std::string PopMessage();
+    Message<GameMessage> PopMessage();
 
   private:
     boost::asio::io_service io_service;
@@ -39,7 +43,7 @@ class NetworkClient {
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
 
-    LockedQueue<std::string> incomingMessages;
+    LockedQueue<Message<GameMessage>> incomingMessages;
 
     void start_receive();
     void handle_receive(const std::error_code &error, std::size_t bytes_transferred);

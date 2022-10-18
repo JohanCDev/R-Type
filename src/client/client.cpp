@@ -11,6 +11,13 @@
 
 #include "client.hpp"
 
+#include <sstream>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/serialization/vector.hpp>
+
 NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), service_thread(&NetworkClient::run_service, this)
 {
@@ -37,8 +44,22 @@ void NetworkClient::start_receive()
 void NetworkClient::handle_receive(const std::error_code &error, std::size_t bytes_transferred)
 {
     if (!error) {
-        std::string message(recv_buffer.data(), recv_buffer.data() + bytes_transferred);
-        incomingMessages.push(message);
+        try {
+            Message<GameMessage> gameMsg;
+
+            std::string recv_str(recv_buffer.data(), recv_buffer.data() + bytes_transferred);
+
+            boost::iostreams::basic_array_source<char> device(recv_str.data(), recv_str.size());
+            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s(device);
+            boost::archive::binary_iarchive ia(s);
+            ia >> gameMsg;
+
+            //std::cout << gameMsg.body
+
+            if (gameMsg.size() != 0)
+                incomingMessages.push(gameMsg);
+        } catch (...) {
+        }
     } else {
     }
 
@@ -50,12 +71,30 @@ void NetworkClient::Send(const std::string &message)
     socket.send_to(boost::asio::buffer(message), server_endpoint);
 }
 
+#include <iostream>
+
+void NetworkClient::SendMessage(const Message<GameMessage> &message)
+{
+    std::cout << message.size() << std::endl;
+
+    std::string serial_str;
+    boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
+    boost::archive::binary_oarchive oa(s);
+
+    oa << message;
+
+    s.flush();
+
+    Send(serial_str);
+}
+
 bool NetworkClient::HasMessages()
 {
     return !incomingMessages.empty();
 }
 
-std::string NetworkClient::PopMessage()
+Message<GameMessage> NetworkClient::PopMessage()
 {
     if (incomingMessages.empty())
         throw std::logic_error("No messages to pop");
