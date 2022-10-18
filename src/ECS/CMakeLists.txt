@@ -11,6 +11,7 @@ list(
   ${INCROOT}/Input.hpp
   ${INCROOT}/Registry.hpp
   ${INCROOT}/ResourcesManager.hpp
+  ${SRCROOT}/ResourcesManager.cpp
   ${INCROOT}/SparseArray.hpp)
 
 set(SRC

@@ -51,7 +51,7 @@ jobs:
       - name: Build rtype on Windows (desktop)
         run: |
           cd build/
-          cmake -DCMAKE_BUILD_TYPE=Debug ..
+          cmake -DCMAKE_BUILD_TYPE=Debug -D_WIN32_WINNT=0x0601 ..
           cmake --build  .
 
       - name: Check Windows build (desktop)

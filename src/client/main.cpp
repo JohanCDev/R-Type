@@ -9,11 +9,22 @@
  *
  */
 
-#include <SFML/Graphics.hpp>
+#define _WIN32_WINNT 0x0601
+
+#include <chrono>
+#include <iostream>
+#include <thread>
+#include "../Common/Message/Message.h"
+#include "../Common/Message/MessageType.h"
+#include "client.hpp"
 
 int main(void)
 {
-    sf::Window window(sf::VideoMode(800, 600), "My window");
+    unsigned short port;
+    std::cin >> port;
+    NetworkClient client("localhost", "60000", port);
+
+    /*sf::Window window(sf::VideoMode(800, 600), "My window");
 
     // run the program as long as the window is open
     while (window.isOpen()) {
@@ -24,6 +35,28 @@ int main(void)
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+    }*/
+
+    Message<GameMessage> hiMsg;
+    hiMsg.header.id = GameMessage::C2S_JOIN;
+    hiMsg << "Lezgongue";
+    
+    Message<GameMessage> byeMsg;
+    byeMsg.header.id = GameMessage::C2S_LEAVE;
+    byeMsg << "Bybye";
+
+    while (1) {
+        while (client.HasMessages()) {
+            Message<GameMessage> msg = client.PopMessage();
+
+            // processMessage(msg);
+        }
+        //client.Send("hi");
+        client.SendMessage(hiMsg);
+        client.SendMessage(byeMsg);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
-    return (0);
+
+    return 0;
 }
