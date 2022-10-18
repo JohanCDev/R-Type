@@ -1,5 +1,5 @@
 /**
- * @file ControllableComponent.h
+ * @file ControllableComponent.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
