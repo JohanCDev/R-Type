@@ -7,10 +7,12 @@ list(
   ${INCROOT}/locked_queue.hpp
 )
 
+add_subdirectory(Message)
+
 set(SRC
-    "${SRC}"
-    PARENT_SCOPE)
+  "${SRC}"
+  PARENT_SCOPE)
 
 set(INCDIRS
-    ${INCDIRS} ${INCROOT}
-    PARENT_SCOPE)
+  ${INCDIRS} ${INCROOT}
+  PARENT_SCOPE)
