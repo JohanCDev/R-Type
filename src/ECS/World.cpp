@@ -57,7 +57,7 @@ sf::RenderWindow &World::getWindow()
     return (this->_window);
 }
 
-RessourcesManager &World::getRessourcesManager()
+ResourcesManager &World::getResourcesManager()
 {
     return (this->_manager);
 }

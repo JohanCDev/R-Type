@@ -38,14 +38,14 @@ class World
         int speed_x, int speed_y, float refresh_time, float elapsed_time);
 
         registry &getRegistry();
-        RessourcesManager &getRessourcesManager();
+        ResourcesManager &getResourcesManager();
         sf::RenderWindow &getWindow();
         sf::Clock &getClock();
 
 
     private:
         registry _r;
-        RessourcesManager _manager;
+        ResourcesManager _manager;
         sf::RenderWindow _window;
         sf::Clock _clock;
 };

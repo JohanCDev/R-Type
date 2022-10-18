@@ -50,7 +50,7 @@ int controllable_system(World &world, sf::Event event)
                         0.04, world.getClock().getElapsedTime().asSeconds());
                 } else {
                     world.create_laser(position[index]->x
-                            + (world.getRessourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
+                            + (world.getResourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
                         position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
                         0.04, world.getClock().getElapsedTime().asSeconds());
                 }

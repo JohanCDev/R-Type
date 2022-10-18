@@ -14,7 +14,7 @@
 #include "../ResourcesManager.hpp"
 #include "../World.hpp"
 
-int check_collision(RessourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
+int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
 {
     sf::Sprite otherSprite;
@@ -51,7 +51,7 @@ int shooting_system(World &world)
             sf::Sprite sprite;
 
             sprite.setPosition(position->x, position->y);
-            sprite.setTexture(world.getRessourcesManager().get_texture(drawable->path));
+            sprite.setTexture(world.getResourcesManager().get_texture(drawable->path));
             sprite.setScale(drawable->x_scale, drawable->y_scale);
             if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
                     && drawable->rect.y_size == 0))
@@ -64,7 +64,7 @@ int shooting_system(World &world)
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
 
-                        if (check_collision(world.getRessourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                             break;
@@ -78,7 +78,7 @@ int shooting_system(World &world)
                     auto &otherDrawable = drawables[j];
                     auto &otherPosition = positions[j];
 
-                    if (check_collision(world.getRessourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                    if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                         world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                         healths[j]->hp -= 1;
                         if (healths[j]->hp == 0) {

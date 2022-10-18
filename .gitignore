@@ -11,6 +11,3 @@ r-type_server*
 .DS_Store
 doc/output/
 doc/warnings.txt
-launch.sh
-Dockerfile
-.pre-commit-config.yaml

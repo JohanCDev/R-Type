@@ -25,7 +25,7 @@ int drawable_system(World &world)
     for (auto &i : drawable) {
         if (i && i.has_value()) {
             sf::Vector2f vec(position[index]->x, position[index]->y);
-            texture = world.getRessourcesManager().get_texture(i->path);
+            texture = world.getResourcesManager().get_texture(i->path);
             if (!(i->rect.x == 0 && i->rect.y == 0 && i->rect.x_size == 0 && i->rect.y_size == 0)) {
                 sprite.setTextureRect(sf::IntRect(i->rect.x, i->rect.y, i->rect.x_size, i->rect.y_size));
             }

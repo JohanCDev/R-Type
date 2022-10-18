@@ -1,5 +1,5 @@
 /**
- * @file RessourcesManager.hpp
+ * @file ResourcesManager.hpp
  * @author cédric CORGE (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
@@ -17,9 +17,9 @@
 #include <optional>
 #include <utility>
 
-class RessourcesManager {
+class ResourcesManager {
   public:
-    RessourcesManager()
+    ResourcesManager()
     {
         //sf::Texture texture;
         //sf::Font font;
@@ -30,7 +30,7 @@ class RessourcesManager {
         //this->_font_map.insert(std::make_pair("default_font", font));
     }
 
-    ~RessourcesManager()
+    ~ResourcesManager()
     {
     }
 
