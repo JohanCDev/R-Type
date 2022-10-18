@@ -22,7 +22,7 @@ int main(void)
     world.register_all_assets();
     // run the program as long as the window is open
     
-    world.getRegistry().create_player("assets/r-typesheet5.gif", Vector4{375, 6, 21, 24}, 2.0, 2.0, 20, 20, 3, 5, 5, 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
+    world.create_player("assets/r-typesheet5.gif", Vector4{375, 6, 21, 24}, 2.0, 2.0, 20, 20, 3, 5, 5, 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
     while (world.getWindow().isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;

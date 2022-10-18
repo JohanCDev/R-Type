@@ -45,14 +45,14 @@ int controllable_system(World &world, sf::Event event)
             if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == i->shoot) {
                 if (!(drawable[index]->rect.x == 0 && drawable[index]->rect.y == 0 && drawable[index]->rect.x_size == 0
                         && drawable[index]->rect.y_size == 0)) {
-                    r.create_laser(position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1,
+                    world.create_laser(position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1,
                         position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
-                        0.2, world.getClock().getElapsedTime().asSeconds());
+                        0.04, world.getClock().getElapsedTime().asSeconds());
                 } else {
-                    r.create_laser(position[index]->x
+                    world.create_laser(position[index]->x
                             + (world.getRessourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
-                        position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
-                        0.2, world.getClock().getElapsedTime().asSeconds());
+                        position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 2, 0,
+                        0.04, world.getClock().getElapsedTime().asSeconds());
                 }
             }
         }
