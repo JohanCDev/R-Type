@@ -99,6 +99,6 @@ void World::create_enemy(std::string texture_path, Vector4 texture_rec, float x_
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(false, false));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
     this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", 1, 1, 0));
-    //this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
+    this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time, elapsed_time));
 }
