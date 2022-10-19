@@ -13,7 +13,7 @@
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 
-int drawable_system(registry &r, sf::RenderWindow &window, RessourcesManager manager)
+int drawable_system(registry &r, sf::RenderWindow &window, ResourcesManager manager)
 {
     sparse_array<DrawableComponent> &drawable = r.get_components<DrawableComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();

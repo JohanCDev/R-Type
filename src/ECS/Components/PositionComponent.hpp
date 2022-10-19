@@ -11,9 +11,19 @@
 
 #pragma once
 
+/**
+ * @brief Contains the entity position
+ * 
+ */
 struct PositionComponent {
     int x = 0;
     int y = 0;
 
+    /**
+     * @brief Construct a new Position Component object
+     * 
+     * @param x_pos 
+     * @param y_pos 
+     */
     PositionComponent(int x_pos, int y_pos) : x(x_pos), y(y_pos){};
 };

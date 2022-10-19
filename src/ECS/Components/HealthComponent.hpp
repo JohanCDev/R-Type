@@ -11,8 +11,17 @@
 
 #pragma once
 
+/**
+ * @brief Give an hp amount to the entity
+ * 
+ */
 struct HealthComponent {
     int hp;
 
+    /**
+     * @brief Construct a new Health Component object
+     * 
+     * @param hp_value 
+     */
     HealthComponent(int hp_value) : hp(hp_value){};
 };

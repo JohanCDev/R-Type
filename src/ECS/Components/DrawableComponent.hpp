@@ -13,6 +13,10 @@
 
 #include <string>
 
+/**
+ * @brief Define the texture rect to draw
+ * 
+ */
 struct Vector4 {
     int x;
     int y;
@@ -24,12 +28,24 @@ struct Vector4 {
     }
 };
 
+/**
+ * @brief Make the entity drawable
+ * 
+ */
 struct DrawableComponent {
     std::string path;
     float x_scale;
     float y_scale;
     Vector4 rect;
 
+    /**
+     * @brief Construct a new Drawable Component object
+     * 
+     * @param texture_path 
+     * @param vec 
+     * @param xscale 
+     * @param yscale 
+     */
     DrawableComponent(
         std::string texture_path, Vector4 vec = Vector4(0, 0, 0, 0), float xscale = 1.0, float yscale = 1.0)
         : path(texture_path), x_scale(xscale), y_scale(yscale), rect(vec)

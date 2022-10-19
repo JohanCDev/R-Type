@@ -11,9 +11,19 @@
 
 #pragma once
 
+/**
+ * @brief Make the entity ignoring his velocity
+ * 
+ */
 struct ImmobileComponent {
     bool x;
     bool y;
 
+    /**
+     * @brief Construct a new Immobile Component object
+     * 
+     * @param x_axis 
+     * @param y_axis 
+     */
     ImmobileComponent(bool x_axis, bool y_axis) : x(x_axis), y(y_axis){};
 };

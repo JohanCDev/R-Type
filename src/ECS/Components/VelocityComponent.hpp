@@ -14,12 +14,24 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 
+/**
+ * @brief Give a velocity to the entity
+ * 
+ */
 struct VelocityComponent {
     int x = 0;
     int y = 0;
     float seconds;
     float coeff;
 
+    /**
+     * @brief Construct a new Velocity Component object
+     * 
+     * @param x_velo 
+     * @param y_velo 
+     * @param time_as_seconds 
+     * @param elapsed_time 
+     */
     VelocityComponent(int x_velo, int y_velo, float time_as_seconds, float elapsed_time = 0.0)
         : x(x_velo), y(y_velo), seconds(elapsed_time), coeff(time_as_seconds)
     {

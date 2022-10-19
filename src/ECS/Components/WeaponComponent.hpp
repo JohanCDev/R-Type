@@ -14,6 +14,10 @@
 #include <string>
 #include "../Input.hpp"
 
+/**
+ * @brief Make the entity able to shoot
+ * 
+ */
 struct WeaponComponent {
     std::string name;
     int damage;

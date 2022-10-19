@@ -13,7 +13,7 @@
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 
-int velocity_system(registry &r, RessourcesManager manager, sf::Clock clock)
+int velocity_system(registry &r, ResourcesManager manager, sf::Clock clock)
 {
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
