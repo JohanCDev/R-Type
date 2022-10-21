@@ -11,12 +11,15 @@ list(
   ${INCROOT}/Input.hpp
   ${INCROOT}/Registry.hpp
   ${INCROOT}/ResourcesManager.hpp
-  ${SRCROOT}/ResourcesManager.cpp
-  ${INCROOT}/SparseArray.hpp)
+  ${INCROOT}/SparseArray.hpp
+  ${SRCROOT}/World.cpp
+  ${INCROOT}/World.hpp)
 
 set(SRC
     "${SRC}"
     PARENT_SCOPE)
+
+message(STATUS "${SRC}")
 
 set(INCDIRS
     ${INCDIRS} ${INCROOT}

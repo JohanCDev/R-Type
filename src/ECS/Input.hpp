@@ -59,7 +59,7 @@ enum KeyboardInput {
     Num7,
     Num8,
     Num9,
-    Escape,
+    EscapeButton,
     LControl,
     LShift,
     LAlt,

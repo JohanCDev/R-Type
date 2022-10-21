@@ -12,19 +12,20 @@
 #include "../Components/AllComponents.hpp"
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
+#include "../World.hpp"
 
-int velocity_system(registry &r, ResourcesManager manager, sf::Clock clock)
+int velocity_system(World &world)
 {
+    registry &r = world.getRegistry();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     sparse_array<ImmobileComponent> &immobile = r.get_components<ImmobileComponent>();
 
     std::size_t index = 0;
-    (void)manager;
 
     for (auto &i : velocity) {
         if (i && i.has_value()) {
-            sf::Time elapsedTime = clock.getElapsedTime();
+            sf::Time elapsedTime = world.getClock().getElapsedTime();
             if (elapsedTime.asSeconds() > i->seconds) {
                 if (index < immobile.size() && immobile[index].has_value()) {
                     if (immobile[index]->x == false)
