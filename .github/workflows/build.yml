@@ -78,7 +78,7 @@ jobs:
 
       - name: Build rtype binaries on Raspberry (desktop)
         run: |
-          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j1
 
 
       - name: Check Raspberry build (desktop)
