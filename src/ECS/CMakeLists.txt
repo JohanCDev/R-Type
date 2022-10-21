@@ -10,6 +10,7 @@ list(
   ${INCROOT}/Entity.hpp
   ${INCROOT}/Input.hpp
   ${INCROOT}/Registry.hpp
+  ${SRCROOT}/ResourcesManager.cpp
   ${INCROOT}/ResourcesManager.hpp
   ${INCROOT}/SparseArray.hpp
   ${SRCROOT}/World.cpp

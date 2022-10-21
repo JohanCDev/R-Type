@@ -22,6 +22,10 @@ ResourcesManager::ResourcesManager()
     this->_font_map.insert(std::make_pair("default_font", font));
 }
 
+ResourcesManager::~ResourcesManager()
+{
+}
+
 void ResourcesManager::register_texture(const std::string path)
 {
     sf::Texture texture;
