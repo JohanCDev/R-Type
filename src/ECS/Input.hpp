@@ -1,6 +1,6 @@
 /**
  * @file Input.hpp
- * @author cédric CORGE (cedric.corge@epitech.eu)
+ * @author Cédric CORGE (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-09-27
@@ -51,7 +51,7 @@ enum KeyboardInput {
     Num7,
     Num8,
     Num9,
-    Escape,
+    EscapeButton,
     LControl,
     LShift,
     LAlt,

@@ -11,7 +11,9 @@ list(
   ${INCROOT}/Input.hpp
   ${INCROOT}/Registry.hpp
   ${INCROOT}/ResourcesManager.hpp
-  ${INCROOT}/SparseArray.hpp)
+  ${INCROOT}/SparseArray.hpp
+  ${SRCROOT}/World.cpp
+  ${INCROOT}/World.hpp)
 
 set(SRC
     "${SRC}"

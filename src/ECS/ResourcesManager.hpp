@@ -1,6 +1,6 @@
 /**
- * @file RessourcesManager.hpp
- * @author cédric CORGE (cedric.corge@epitech.eu)
+ * @file ResourcesManager.hpp
+ * @author Cédric CORGE (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-09-27
@@ -17,20 +17,20 @@
 #include <optional>
 #include <utility>
 
-class RessourcesManager {
+class ResourcesManager {
   public:
-    RessourcesManager()
+    ResourcesManager()
     {
-        sf::Texture texture;
-        sf::Font font;
+        //sf::Texture texture;
+        //sf::Font font;
 
-        texture.loadFromFile("default.png");
-        this->_texture_map.insert(std::make_pair("default", texture));
-        font.loadFromFile("default_font.ttf");
-        this->_font_map.insert(std::make_pair("default_font", font));
+        //texture.loadFromFile("default.png");
+        //this->_texture_map.insert(std::make_pair("default", texture));
+        //font.loadFromFile("default_font.ttf");
+        //this->_font_map.insert(std::make_pair("default_font", font));
     }
 
-    ~RessourcesManager()
+    ~ResourcesManager()
     {
     }
 
@@ -63,6 +63,7 @@ class RessourcesManager {
         if (!font.loadFromFile(path)) {
             this->_font_map.insert(std::make_pair(path, std::nullopt));
         } else {
+            std::cout << path << std::endl;
             this->_font_map.insert(std::make_pair(path, font));
         }
     }
