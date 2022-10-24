@@ -73,13 +73,13 @@ jobs:
 
       - name: Install prerequisiteries
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake g++ libudev-dev pkg-config libgl-dev
+          apt-get update
+          apt-get install -y cmake g++ libudev-dev pkg-config libgl-dev
 
       - name: Install conan
         run: |
-          sudo apt install -y python3-pip
-          sudo pip3 install conan
+          apt install -y python3-pip
+          pip3 install conan
           which conan
           conan --version
 
