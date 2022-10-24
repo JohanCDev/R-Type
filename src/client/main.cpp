@@ -52,8 +52,8 @@ int main(void)
             // processMessage(msg);
         }
         //client.Send("hi");
-        client.SendMessage(hiMsg);
-        client.SendMessage(byeMsg);
+        client.send(hiMsg);
+        client.send(byeMsg);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
