@@ -1,6 +1,6 @@
 /**
  * @file client.cpp
- * @author your name (you@domain.com)
+ * @author Adam Djebar (adam.djebar@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16
@@ -70,8 +70,6 @@ void NetworkClient::Send(const std::string &message)
 {
     socket.send_to(boost::asio::buffer(message), server_endpoint);
 }
-
-#include <iostream>
 
 void NetworkClient::SendMessage(const Message<GameMessage> &message)
 {

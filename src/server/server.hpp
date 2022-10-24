@@ -1,6 +1,6 @@
 /**
  * @file server.hpp
- * @author Louis Maestre (louis.maestre@epitech.eu)
+ * @author Adam Djebar (adam.djebar@epitech.eu)
  * @brief class of udp server
  * @version 0.1
  * @date 2022-10-05
@@ -48,6 +48,7 @@ class NetworkServer {
     std::size_t get_client_id(udp::endpoint endpoint);
 
     void send(std::string pmessage, udp::endpoint target_endpoint);
+    void send(const Message<GameMessage> &message, udp::endpoint target_endpoint);
 
     void on_client_disconnected(int32_t id);
 
@@ -64,6 +65,11 @@ class NetworkServer {
 
     void SendToClient(std::string message, std::size_t clientID);
     void SendToAll(std::string message);
+    void SendToAllExcept(std::string message, std::size_t clientID);
+
+    void SendToClient(const Message<GameMessage> &message, std::size_t clientID);
+    void SendToAll(const Message<GameMessage> &message);
+    void SendToAllExcept(const Message<GameMessage> &message, std::size_t clientID);
 
     std::vector<std::function<void(uint32_t)>> clientDisconnectedHandlers;
 };
