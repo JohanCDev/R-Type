@@ -4,16 +4,15 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 list(APPEND SRC_CLIENT ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp
   ${INCROOT}/client.hpp)
 
-set(SRC
-  "${SRC_CLIENT}" "${SRC}"
-  PARENT_SCOPE)
+set(SRC_CLIENT
+  "${SRC_CLIENT}" "${SRC}")
 
 set(INCDIRS ${INCROOT})
 set(CONAN_DISABLE_CHECK_COMPILER
   True
   CACHE BOOL "" FORCE)
 
-source_group("client" FILES ${SRC})
+source_group("client" FILES ${SRC_CLIENT})
 
 set(TARGET_NAME r-type_client)
 
@@ -84,12 +83,12 @@ else()
   target_link_libraries(${TARGET_NAME} PUBLIC CONAN_PKG::sfml CONAN_PKG::boost)
 
   if(WIN32 AND BUILD_SHARED_LIBS)
-    #add_custom_command(
-    #  TARGET ${TARGET_NAME}
-    #  POST_BUILD
-    #  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:${TARGET_NAME}>
-    #  $<TARGET_FILE_DIR:${TARGET_NAME}>
-    #  COMMAND_EXPAND_LISTS)
+    # add_custom_command(
+    # TARGET ${TARGET_NAME}
+    # POST_BUILD
+    # COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:${TARGET_NAME}>
+    # $<TARGET_FILE_DIR:${TARGET_NAME}>
+    # COMMAND_EXPAND_LISTS)
   endif()
 endif()
 

@@ -9,12 +9,11 @@
  *
  */
 
-#include "../Registry.hpp"
-
 #include "../Components/AllComponents.hpp"
+#include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 
-int collide_system(registry &r, RessourcesManager manager, sf::Clock clock)
+int collide_system(registry &r, ResourcesManager manager, sf::Clock clock)
 {
     auto &positions = r.get_components<PositionComponent>();
     auto &drawables = r.get_components<DrawableComponent>();

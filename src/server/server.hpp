@@ -11,23 +11,21 @@
 
 #pragma once
 
-#include "../Common/locked_queue.h"
-
 #include <array>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/bimap.hpp>
 #include <boost/thread.hpp>
 #include <string>
-
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
+#include "../Common/locked_queue.hpp"
 
 using boost::asio::ip::udp;
 
 typedef boost::bimap<std::size_t, udp::endpoint> ClientList;
 typedef ClientList::value_type Client;
-//typedef std::pair<std::string, std::size_t> ClientMessage;
+// typedef std::pair<std::string, std::size_t> ClientMessage;
 typedef std::pair<Message<GameMessage>, std::size_t> ClientMessage;
 
 class NetworkServer {

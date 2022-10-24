@@ -1,6 +1,7 @@
 /**
  * @file client.hpp
  * @author Adam Djebar (adam.djebar@epitech.eu)
+ * @author  Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16
@@ -11,17 +12,14 @@
 
 #pragma once
 
-#include "../Common/locked_queue.h"
-
+#include <array>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
-
-#include "../Common/Message/Message.h"
-#include "../Common/Message/MessageType.h"
-
-#include <array>
 #include <memory>
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
+#include "../Common/locked_queue.hpp"
 
 using boost::asio::ip::udp;
 

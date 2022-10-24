@@ -1,6 +1,6 @@
 /**
  * @file RegisterManager.cpp
- * @author your name (you@domain.com)
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-17

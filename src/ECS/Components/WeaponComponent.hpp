@@ -1,6 +1,17 @@
-#pragma once
-#include <string>
+/**
+ * @file WeaponComponent.hpp
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
+ * @brief
+ * @version 0.1
+ * @date 2022-10-18
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
+#pragma once
+
+#include <string>
 #include "../Input.hpp"
 
 struct WeaponComponent {
