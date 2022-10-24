@@ -35,8 +35,6 @@ jobs:
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
-
       - name: Cache Conan packages
         id: cache_windows
         uses: actions/cache@v3
@@ -48,6 +46,9 @@ jobs:
 
       - name: Install conan
         uses: turtlebrowser/get-conan@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
 
       - name: Install dependencies
         run: |
