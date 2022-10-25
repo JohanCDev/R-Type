@@ -44,10 +44,12 @@ int main(void)
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
 
+
+    client.SendMessage(hiMsg);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
             Message<GameMessage> msg = client.PopMessage();
-            
+
             client.processMessage(msg, world);
         }
         sf::Event event;
@@ -58,8 +60,6 @@ int main(void)
             if (event.type == sf::Event::Closed)
                 world.getWindow().close();
         }
-        client.SendMessage(hiMsg);
-        client.SendMessage(byeMsg);
 
         world.getWindow().clear(sf::Color::Black);
         for (auto &system: world.getRegistry().get_systems()) {
@@ -69,5 +69,6 @@ int main(void)
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    client.SendMessage(byeMsg);
     return 0;
 }

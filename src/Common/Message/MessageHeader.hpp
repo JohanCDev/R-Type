@@ -22,5 +22,6 @@ template <typename T> struct MessageHeader {
     {
         ar &id;
         ar &size;
+        (void)version;
     }
 };
