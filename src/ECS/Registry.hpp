@@ -23,18 +23,39 @@
 
 class World;
 
+/**
+ * @brief Storage of all sparse_array
+ * 
+ */
 class registry {
   public:
-    void register_systems(std::function<int(World &)> func)
+
+    /**
+     * @brief Register a new system into the system sparse array
+     * 
+     * @param system_func 
+     */
+    void register_systems(std::function<int(World &)> system_func)
     {
-        this->_system_array.push_back(func);
+        this->_system_array.push_back(system_func);
     }
 
+    /**
+     * @brief Get the systems array
+     * 
+     * @return std::vector<std::function<int(World &)>> 
+     */
     std::vector<std::function<int(World &)>> get_systems()
     {
         return (this->_system_array);
     }
 
+    /**
+     * @brief Register a new component by creating his own sparse array
+     * 
+     * @tparam Component 
+     * @return sparse_array<Component>& 
+     */
     template <class Component> sparse_array<Component> &register_components()
     {
         if (_components_arrays.contains(std::type_index(typeid(Component))) == false) {
@@ -49,6 +70,13 @@ class registry {
 
         return std::any_cast<sparse_array<Component> &>(_components_arrays[std::type_index(typeid(Component))]);
     }
+
+    /**
+     * @brief Get the sparse array of the specified component
+     * 
+     * @tparam Component 
+     * @return sparse_array<Component>& 
+     */
     template <class Component> sparse_array<Component> &get_components()
     {
         /*if (_components_arrays.contains(std::type_index(typeid(Component))) == false) {
@@ -57,6 +85,13 @@ class registry {
         }*/
         return std::any_cast<sparse_array<Component> &>(_components_arrays[std::type_index(typeid(Component))]);
     }
+
+    /**
+     * @brief Get the constant sparse array of the specified component
+     * 
+     * @tparam Component 
+     * @return sparse_array<Component> const& 
+     */
     template <class Component> sparse_array<Component> const &get_components() const
     {
         /*if (_components_arrays.contains(std::type_index(typeid(Component))) == false) {
@@ -66,7 +101,11 @@ class registry {
         return std::any_cast<sparse_array<Component> &>(_components_arrays.at(std::type_index(typeid(Component))));
     }
 
-    // Part 2.3
+    /**
+     * @brief Generate a new entity
+     * 
+     * @return Entity 
+     */
     Entity spawn_entity()
     {
         std::size_t idx;
@@ -80,10 +119,23 @@ class registry {
         _dead_entities_array.pop_back();
         return this->entity_from_index(idx);
     }
+
+    /**
+     * @brief Get entity from index
+     * 
+     * @param idx 
+     * @return Entity 
+     */
     Entity entity_from_index(std::size_t idx)
     {
         return Entity(idx);
     }
+
+    /**
+     * @brief Remove the specified entity
+     * 
+     * @param e 
+     */
     void kill_entity(Entity const &e)
     {
         for (auto fct : _erase_functions_array) {
@@ -91,6 +143,15 @@ class registry {
         }
         _dead_entities_array.push_back(e);
     }
+
+    /**
+     * @brief Add a component to his sparse array
+     * 
+     * @tparam Component 
+     * @param to 
+     * @param c 
+     * @return sparse_array<Component>::reference_type 
+     */
     template <typename Component>
     typename sparse_array<Component>::reference_type add_component(Entity const &to, Component &&c)
     {
@@ -99,6 +160,16 @@ class registry {
         arr.insert_at(to, c);
         return arr[to];
     }
+
+    /**
+     * @brief Build and add a component to his sparse array
+     * 
+     * @tparam Component 
+     * @tparam Params 
+     * @param to 
+     * @param p 
+     * @return sparse_array<Component>::reference_type 
+     */
     template <typename Component, typename... Params>
     typename sparse_array<Component>::reference_type emplace_component(Entity const &to, Params &&...p)
     {
@@ -106,6 +177,13 @@ class registry {
 
         return this->add_component(to, c);
     }
+
+    /**
+     * @brief Remove a component from his sparse array
+     * 
+     * @tparam Component 
+     * @param from 
+     */
     template <typename Component> void remove_component(Entity const &from)
     {
         auto &arr = this->get_components<Component>();

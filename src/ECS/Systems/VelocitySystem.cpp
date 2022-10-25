@@ -28,13 +28,13 @@ int velocity_system(World &world)
             sf::Time elapsedTime = world.getClock().getElapsedTime();
             if (elapsedTime.asSeconds() > i->seconds) {
                 if (index < immobile.size() && immobile[index].has_value()) {
-                    if (immobile[index]->x == false)
-                        position[index]->x += i->x;
-                    if (immobile[index]->y == false)
-                        position[index]->y += i->y;
+                    if (immobile[index]->axis.x == false)
+                        position[index]->pos.x += i->speed.x;
+                    if (immobile[index]->axis.y == false)
+                        position[index]->pos.y += i->speed.y;
                 } else {
-                    position[index]->x += i->x;
-                    position[index]->y += i->y;
+                    position[index]->pos.x += i->speed.x;
+                    position[index]->pos.y += i->speed.y;
                 }
                 i->seconds += i->coeff;
             }
