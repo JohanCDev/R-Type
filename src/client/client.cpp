@@ -72,8 +72,6 @@ void NetworkClient::send(const std::string &message)
 
 void NetworkClient::send(const Message<GameMessage> &message)
 {
-    std::cout << message.size() << std::endl;
-
     std::string serial_str;
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);

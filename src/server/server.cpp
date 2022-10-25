@@ -76,8 +76,6 @@ void NetworkServer::send(std::string message, udp::endpoint target_endpoint)
 
 void NetworkServer::send(const Message<GameMessage> &message, udp::endpoint target_endpoint)
 {
-    std::cout << message.size() << std::endl;
-
     std::string serial_str;
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
