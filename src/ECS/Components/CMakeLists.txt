@@ -11,6 +11,7 @@ list(
   ${INCROOT}/ClientIDComponent.hpp
   ${INCROOT}/ControllableComponent.hpp
   ${INCROOT}/DestroyableComponent.hpp
+  ${INCROOT}/EntityIDComponent.hpp
   ${INCROOT}/DrawableComponent.hpp
   ${INCROOT}/HealthComponent.hpp
   ${INCROOT}/ImmobileComponent.hpp

@@ -18,6 +18,7 @@
 #include "ControllableComponent.hpp"
 #include "DestroyableComponent.hpp"
 #include "DrawableComponent.hpp"
+#include "EntityIDComponent.hpp"
 #include "HealthComponent.hpp"
 #include "ImmobileComponent.hpp"
 #include "MaximumVelocityComponent.hpp"
