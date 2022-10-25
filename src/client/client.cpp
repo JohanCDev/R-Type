@@ -112,15 +112,30 @@ void NetworkClient::run_service()
     }
 }
 
+void new_entity(World &world, Message<GameMessage> msg)
+{
+    GameObject object;
+    Vector2i pos;
+
+    msg >> object >> pos;
+    PositionComponent position(pos);
+    if (object == GameObject::PLAYER) {
+        world.create_player(GameObject::PLAYER, position.pos, Vector2i(5, 5), 0.2);
+    }
+    if (object == GameObject::ENEMY) {
+        world.create_enemy(GameObject::ENEMY, position.pos, Vector2i(10, 0), 0.2, world.getClock().getElapsedTime().asSeconds());
+    }
+    if (object == GameObject::LASER) {
+        world.create_laser(GameObject::LASER, position.pos, Vector2i(15, 0), 0.04, world.getClock().getElapsedTime().asSeconds());
+    }
+}
+
+static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc =
+{
+    {GameMessage::S2C_ENTITY_NEW, new_entity},
+};
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world)
 {
-    if (msg.header.id == GameMessage::S2C_ENTITY_NEW) {
-        GameObject object;
-        Vector2i pos;
-
-        msg >> object >> pos;
-        PositionComponent position(pos);
-        world.create_player(GameObject::PLAYER, position.pos, Vector2i(5, 5), 0.2);
-    }
+    (mapFunc[msg.header.id])(world, msg);
 }
