@@ -81,6 +81,8 @@ class World {
      * @param right
      * @param left
      * @param shoot
+     *
+     * @return size_t ID of the entity
      */
     size_t create_player(std::string texture_path, Vector4i texture_rec, Vector2f scale, Vector2i pos, int hp,
         Vector2i speed, float refresh_time, KeyboardInput up, KeyboardInput down, KeyboardInput right,
@@ -97,8 +99,10 @@ class World {
      * @param speed_y
      * @param refresh_time
      * @param elapsed_time
+     *
+     * @return size_t ID of the entity
      */
-    void create_enemy(std::string texture_path, Vector4i texture_rec, Vector2f scale, Vector2i pos, Vector2i speed,
+    size_t create_enemy(std::string texture_path, Vector4i texture_rec, Vector2f scale, Vector2i pos, Vector2i speed,
         float refresh_time, float elapsed_time);
 
     registry &getRegistry();
