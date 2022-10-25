@@ -12,6 +12,7 @@
 #pragma once
 
 #include "Registry.hpp"
+#include "ResourcesManager.hpp"
 
 #include "Systems/AllSystem.hpp"
 
