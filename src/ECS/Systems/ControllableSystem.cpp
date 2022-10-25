@@ -17,6 +17,17 @@
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 
+Vector2f getShootPosition(World &world, std::optional<PositionComponent> position, std::optional<DrawableComponent> drawable)
+{
+    Vector2f shoot_pos;
+
+    sf::Texture texture = world.getResourcesManager().get_texture(drawable->path);
+
+    shoot_pos.x = position->pos.y + (texture.getSize().x * drawable->scale.x) + 1.0f;
+    shoot_pos.y = position->pos.y + ((texture.getSize().y * drawable->scale.y) / 2.0f);
+    return (shoot_pos);
+}
+
 int controllable_system(World &world, sf::Event event)
 {
     registry &r = world.getRegistry();
@@ -45,16 +56,12 @@ int controllable_system(World &world, sf::Event event)
                 return (1);
             }
             if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == i->shoot) {
+                Vector2f shoot_pos = getShootPosition(world, position[index], drawable[index]);
                 if (!(drawable[index]->rect.x == 0 && drawable[index]->rect.y == 0 && drawable[index]->rect.x_size == 0
                         && drawable[index]->rect.y_size == 0)) {
-                    world.create_laser(GameObject::LASER, Vector2f{position[index]->pos.x + (drawable[index]->rect.x_size * drawable[index]->scale.x) + 1.0f,
-                        position[index]->pos.y + ((drawable[index]->rect.y_size * drawable[index]->scale.y) / 2)}, Vector2i{15, 0},
-                        0.04, world.getClock().getElapsedTime().asSeconds());
+                    world.create_laser(GameObject::LASER, shoot_pos, Vector2i{15, 0}, 0.04, world.getClock().getElapsedTime().asSeconds());
                 } else {
-                    world.create_laser(GameObject::LASER, Vector2f{position[index]->pos.x
-                            + (world.getResourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->scale.x) + 1,
-                        position[index]->pos.y + ((drawable[index]->rect.y_size * drawable[index]->scale.y) / 2)}, Vector2i{15, 0},
-                        0.04, world.getClock().getElapsedTime().asSeconds());
+                    world.create_laser(GameObject::LASER, shoot_pos, Vector2i{15, 0}, 0.04, world.getClock().getElapsedTime().asSeconds());
                 }
             }
         }
