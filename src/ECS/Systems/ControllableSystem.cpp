@@ -23,7 +23,7 @@ Vector2f getShootPosition(World &world, std::optional<PositionComponent> positio
 
     sf::Texture texture = world.getResourcesManager().get_texture(drawable->path);
 
-    shoot_pos.x = position->pos.y + (texture.getSize().x * drawable->scale.x) + 1.0f;
+    shoot_pos.x = position->pos.x + (texture.getSize().x * drawable->scale.x) + 1.0f;
     shoot_pos.y = position->pos.y + ((texture.getSize().y * drawable->scale.y) / 2.0f);
     return (shoot_pos);
 }

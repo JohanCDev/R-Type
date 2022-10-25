@@ -25,7 +25,7 @@ int main(void)
     unsigned short port;
     std::cin >> port;
     NetworkClient client("localhost", "60000", port);
-    World world(sf::VideoMode(1920, 1080), "My window");
+    World world(sf::VideoMode(800, 600), "My window");
 
     std::srand(std::time(NULL));
 
@@ -46,6 +46,7 @@ int main(void)
 
     Message<GameMessage> shootMsg;
     shootMsg.header.id = GameMessage::C2S_SHOOT;
+    shootMsg << "Shoot";
 
     client.send(hiMsg);
     while (world.getWindow().isOpen()) {
@@ -56,8 +57,8 @@ int main(void)
         }
         sf::Event event;
         while (world.getWindow().pollEvent(event)) {
-            if (controllable_system(world, event) == 1)
-                continue;
+            //if (controllable_system(world, event) == 1)
+              //  continue;
             if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
                 client.send(shootMsg);
             }
