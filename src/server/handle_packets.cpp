@@ -40,7 +40,7 @@
 void player_joined(registry &r)
 {
     std::cout << "Player Joined" << std::endl;
-    r.create_player("", Vector4(375, 6, 21, 24), DEFAULT_PLAYER_SCALE, DEFAULT_PLAYER_SCALE, DEFAULT_PLAYER_POS_X,
+    r.create_player("", Vector4i(375, 6, 21, 24), DEFAULT_PLAYER_SCALE, DEFAULT_PLAYER_SCALE, DEFAULT_PLAYER_POS_X,
         DEFAULT_PLAYER_POS_Y, DEFAULT_PLAYER_HP, 0, 0, 0.2, DEFAULT_KEY_TOP, DEFAULT_KEY_BOT, DEFAULT_KEY_RGT,
         DEFAULT_KEY_LFT, DEFAULT_KEY_SHOOT);
 }
@@ -67,7 +67,7 @@ void player_shot(registry &r)
 void create_enemy(registry &r)
 {
     int random_y = rand() % 400 + 51;
-    r.create_enemy("r-typesheet39.gif", Vector4(34, 2, 64, 64), DEFAULT_ENEMY_SCALE, DEFAULT_ENEMY_SCALE, 0, random_y, DEFAULT_ENEMY_SPD, 0, 0.2);
+    r.create_enemy("r-typesheet39.gif", Vector4i(34, 2, 64, 64), DEFAULT_ENEMY_SCALE, DEFAULT_ENEMY_SCALE, 0, random_y, DEFAULT_ENEMY_SPD, 0, 0.2);
     std::cout << "Enemy Created" << std::endl;
 }
 

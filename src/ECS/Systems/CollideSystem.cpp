@@ -30,9 +30,9 @@ int collide_system(registry &r, ResourcesManager manager, sf::Clock clock)
 
             sf::Sprite sprite;
 
-            sprite.setPosition(position->x, position->y);
+            sprite.setPosition(position->pos.x, position->pos.y);
             sprite.setTexture(manager.get_texture(drawable->path));
-            sprite.setScale(drawable->x_scale, drawable->y_scale);
+            sprite.setScale(drawable->scale.x, drawable->scale.y);
 
             for (size_t j = 0; j < collides.size(); ++j) {
                 if (j != i) {
@@ -45,13 +45,13 @@ int collide_system(registry &r, ResourcesManager manager, sf::Clock clock)
                     if (otherDrawable.has_value()) {
                         otherSprite.setPosition(otherPosition->x, otherPosition->y);
                         otherSprite.setTexture(manager.get_texture(otherDrawable->path));
-                        otherSprite.setScale(otherDrawable->x_scale, otherDrawable->y_scale);
+                        otherSprite.setScale(otherDrawable->scale.x, otherDrawable->scale.y);
                     }
 
                     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
                         // collide->collide = true;
-                        otherPosition->x -= otherVelocity->x;
-                        otherPosition->y -= otherVelocity->y;
+                        otherPosition->pos.x -= otherVelocity->x;
+                        otherPosition->pos.y -= otherVelocity->y;
                     }
                 }
             }

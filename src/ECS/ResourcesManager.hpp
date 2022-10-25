@@ -17,67 +17,54 @@
 #include <optional>
 #include <utility>
 
+/**
+ * @brief Storage of all resources of the game
+ * 
+ */
 class ResourcesManager {
   public:
-    ResourcesManager()
-    {
-        //sf::Texture texture;
-        //sf::Font font;
+    
+    /**
+     * @brief Construct a new Resources Manager object
+     * 
+     */
+    ResourcesManager();
 
-        //texture.loadFromFile("default.png");
-        //this->_texture_map.insert(std::make_pair("default", texture));
-        //font.loadFromFile("default_font.ttf");
-        //this->_font_map.insert(std::make_pair("default_font", font));
-    }
+    /**
+     * @brief Destroy the Resources Manager object
+     * 
+     */
+    ~ResourcesManager();
 
-    ~ResourcesManager()
-    {
-    }
+    /**
+     * @brief Register new texture into the manager
+     * 
+     * @param path 
+     */
+    void register_texture(const std::string path);
 
-    void register_texture(const std::string path)
-    {
-        sf::Texture texture;
+    /**
+     * @brief Get the texture
+     * 
+     * @param path 
+     * @return sf::Texture 
+     */
+    sf::Texture get_texture(const std::string path);
 
-        if (!texture.loadFromFile(path)) {
-            this->_texture_map.insert(std::make_pair(path, std::nullopt));
-        } else {
-            this->_texture_map.insert(std::make_pair(path, texture));
-        }
-    }
+    /**
+     * @brief Register new font into the manager
+     * 
+     * @param path 
+     */
+    void register_font(const std::string path);
 
-    sf::Texture get_texture(const std::string path)
-    {
-        if (this->_texture_map.find(path) == this->_texture_map.end()) {
-            return (*this->_texture_map["default"]);
-        } else if (!(this->_texture_map[path].has_value())) {
-            return (*this->_texture_map["default"]);
-        } else {
-            return (*this->_texture_map[path]);
-        }
-    }
-
-    void register_font(const std::string path)
-    {
-        sf::Font font;
-
-        if (!font.loadFromFile(path)) {
-            this->_font_map.insert(std::make_pair(path, std::nullopt));
-        } else {
-            std::cout << path << std::endl;
-            this->_font_map.insert(std::make_pair(path, font));
-        }
-    }
-
-    sf::Font get_font(const std::string path)
-    {
-        if (this->_font_map.find(path) == this->_font_map.end()) {
-            return (*this->_font_map["default_font"]);
-        } else if (!(this->_font_map[path].has_value())) {
-            return (*this->_font_map["default_font"]);
-        } else {
-            return (*this->_font_map[path]);
-        }
-    }
+    /**
+     * @brief Get the font
+     * 
+     * @param path 
+     * @return sf::Font 
+     */
+    sf::Font get_font(const std::string path);
 
   private:
     std::map<std::string, std::optional<sf::Texture>> _texture_map;

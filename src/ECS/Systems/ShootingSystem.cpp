@@ -19,9 +19,9 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
 {
     sf::Sprite otherSprite;
     if (drawable.has_value()) {
-        otherSprite.setPosition(position->x, position->y);
+        otherSprite.setPosition(position->pos.x, position->pos.y);
         otherSprite.setTexture(manager.get_texture(drawable->path));
-        otherSprite.setScale(drawable->x_scale, drawable->y_scale);
+        otherSprite.setScale(drawable->scale.x, drawable->scale.y);
         if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
                 && drawable->rect.y_size == 0))
             otherSprite.setTextureRect(
@@ -50,9 +50,9 @@ int shooting_system(World &world)
         if (position && drawable && weapon) {
             sf::Sprite sprite;
 
-            sprite.setPosition(position->x, position->y);
+            sprite.setPosition(position->pos.x, position->pos.y);
             sprite.setTexture(world.getResourcesManager().get_texture(drawable->path));
-            sprite.setScale(drawable->x_scale, drawable->y_scale);
+            sprite.setScale(drawable->scale.x, drawable->scale.y);
             if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
                     && drawable->rect.y_size == 0))
                 sprite.setTextureRect(

@@ -11,9 +11,30 @@
 
 #pragma once
 
-struct PositionComponent {
-    int x = 0;
-    int y = 0;
+/**
+ * @brief Define a vector of float
+ * 
+ */
+struct Vector2i {
+    int x;
+    int y;
 
-    PositionComponent(int x_pos, int y_pos) : x(x_pos), y(y_pos){};
+    Vector2i(int x_value, int y_value) : x(x_value), y(y_value)
+    {
+    }
+};
+
+/**
+ * @brief Contains the entity position
+ * 
+ */
+struct PositionComponent {
+    Vector2i pos;
+
+    /**
+     * @brief Construct a new Position Component object
+     * 
+     * @param pos 
+     */
+    PositionComponent(Vector2i pos_vec) : pos(pos_vec) {};
 };
