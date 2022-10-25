@@ -33,11 +33,11 @@ class registry {
     /**
      * @brief Register a new system into the system sparse array
      * 
-     * @param func 
+     * @param system_func 
      */
-    void register_systems(std::function<int(World &)> func)
+    void register_systems(std::function<int(World &)> system_func)
     {
-        this->_system_array.push_back(func);
+        this->_system_array.push_back(system_func);
     }
 
     /**
@@ -189,94 +189,6 @@ class registry {
         auto &arr = this->get_components<Component>();
 
         arr.erase(from);
-    }
-
-    /**
-     * @brief Create a laser entity
-     * 
-     * @param x 
-     * @param y 
-     * @param x_velo 
-     * @param y_velo 
-     * @param refresh_time 
-     * @param elapsed_time 
-     */
-    void create_laser(int x, int y, int x_velo, int y_velo, float refresh_time, float elapsed_time)
-    {
-        Entity ent = this->spawn_entity();
-
-        this->add_component<DrawableComponent>(ent, DrawableComponent("r-typesheet1.gif", Vector4(104, 171, 80, 14)));
-        this->add_component<WeaponComponent>(ent, WeaponComponent("laser", 5, 15, 0.2));
-        this->add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time, elapsed_time));
-        this->add_component<PositionComponent>(ent, PositionComponent(x, y));
-    }
-
-    /**
-     * @brief Create a player entity
-     * 
-     * @param texture_path 
-     * @param texture_rec 
-     * @param x_scale 
-     * @param y_scale 
-     * @param pos_x 
-     * @param pos_y 
-     * @param hp 
-     * @param speed_x 
-     * @param speed_y 
-     * @param refresh_time 
-     * @param up 
-     * @param down 
-     * @param right 
-     * @param left 
-     * @param shoot 
-     */
-    void create_player(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale, int pos_x,
-        int pos_y, int hp, int speed_x, int speed_y, float refresh_time, KeyboardInput up, KeyboardInput down,
-        KeyboardInput right, KeyboardInput left, MouseInput shoot)
-    {
-        Entity ent = this->spawn_entity();
-
-        this->add_component<DrawableComponent>(ent, DrawableComponent(texture_path, texture_rec, x_scale, y_scale));
-        this->add_component<PositionComponent>(ent, PositionComponent(pos_x, pos_y));
-        this->add_component<ImmobileComponent>(ent, ImmobileComponent(true, true));
-        this->add_component<CollideComponent>(ent, CollideComponent());
-        this->add_component<HealthComponent>(ent, (HealthComponent(hp)));
-        this->add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
-        this->add_component<ControllableComponent>(ent, ControllableComponent(up, down, right, left, shoot));
-    }
-
-    /**
-     * @brief Create a enemy entity
-     * 
-     * @param texture_path 
-     * @param texture_rec 
-     * @param x_scale 
-     * @param y_scale 
-     * @param pos_x 
-     * @param pos_y 
-     * @param speed_x 
-     * @param speed_y 
-     * @param refresh_time 
-     * @param up 
-     * @param down 
-     * @param right 
-     * @param left 
-     * @param shoot 
-     */
-    void create_enemy(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale, int pos_x, int pos_y,
-        int speed_x, int speed_y, float refresh_time, KeyboardInput up, KeyboardInput down, KeyboardInput right,
-        KeyboardInput left, MouseInput shoot)
-    {
-        Entity ent = this->spawn_entity();
-
-        this->add_component<DrawableComponent>(ent, DrawableComponent(texture_path, texture_rec, x_scale, y_scale));
-        this->add_component<PositionComponent>(ent, PositionComponent(pos_x, pos_y));
-        this->add_component<ImmobileComponent>(ent, ImmobileComponent(false, false));
-        this->add_component<CollideComponent>(ent, CollideComponent());
-        this->add_component<WeaponComponent>(ent, WeaponComponent("meteor", 1, 1, 0));
-        this->add_component<DestroyableComponent>(ent, DestroyableComponent(true));
-        this->add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
-        this->add_component<ControllableComponent>(ent, ControllableComponent(up, down, right, left, shoot));
     }
 
   private:
