@@ -11,11 +11,25 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 if(NOT DEFINED CMAKE_SUPPRESS_DEVELOPER_WARNINGS)
   set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS
-      1
-      CACHE INTERNAL "No dev warnings")
+    1
+    CACHE INTERNAL "No dev warnings")
 endif()
 
 project(R-Type LANGUAGES CXX)
+
+if(APPLE)
+  execute_process(COMMAND mkdir build/
+    COMMAND cd build/
+    COMMAND conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
+elseif(WIN32)
+  execute_process(COMMAND mkdir build
+    COMMAND Set-Location build
+    COMMAND conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
+else()
+  execute_process(COMMAND mkdir build/
+    COMMAND cd build/
+    COMMAND conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
+endif()
 
 # Add ./cmake to the module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -24,7 +38,7 @@ if(MSVC)
   add_compile_options(/W2 /EHsc)
 else()
   add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic"
-                      "-Wpointer-arith" "-fpermissive")
+    "-Wpointer-arith" "-fpermissive")
 endif()
 
 add_subdirectory(src)

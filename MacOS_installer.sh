@@ -31,6 +31,5 @@ then
     rm -rf build
 fi
 
-mkdir build/ && cd build/ && conan install .. --build=missing -c \
-tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
+mkdir build/ && cd build/ && \
 cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles' && cmake --build . -j 3
