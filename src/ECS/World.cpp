@@ -110,6 +110,6 @@ void World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, float 
 void World::register_all_drawable_object()
 {
     this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
-    this->_drawMap.emplace(GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector2f(2.0, 2.0)));
-    this->_drawMap.emplace(GameObject::ENEMY, DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f(1.0, 1.0)));
+    this->_drawMap.emplace(GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector2f{2.0, 2.0}));
+    this->_drawMap.emplace(GameObject::ENEMY, DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
 }
