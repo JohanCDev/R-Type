@@ -74,7 +74,7 @@ void World::create_laser(GameObject object, Vector2i pos, Vector2i speed, float 
 
     DrawableComponent drawCompo = this->_drawMap[object];
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i(5, 15), 0.2));
+    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i{5, 15}, 0.2));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
 }
@@ -102,7 +102,7 @@ void World::create_enemy(GameObject object, Vector2i pos, Vector2i speed, float 
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i(1, 1), 0));
+    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i{1, 1}, 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
 }

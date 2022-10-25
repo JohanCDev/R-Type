@@ -118,13 +118,13 @@ void new_entity(World &world, Message<GameMessage> msg)
     msg >> object >> pos;
     PositionComponent position(pos);
     if (object == GameObject::PLAYER) {
-        world.create_player(GameObject::PLAYER, position.pos, Vector2i(5, 5), 0.2);
+        world.create_player(GameObject::PLAYER, position.pos, Vector2i{5, 5}, 0.2);
     }
     if (object == GameObject::ENEMY) {
-        world.create_enemy(GameObject::ENEMY, position.pos, Vector2i(10, 0), 0.2, world.getClock().getElapsedTime().asSeconds());
+        world.create_enemy(GameObject::ENEMY, position.pos, Vector2i{10, 0}, 0.2, world.getClock().getElapsedTime().asSeconds());
     }
     if (object == GameObject::LASER) {
-        world.create_laser(GameObject::LASER, position.pos, Vector2i(15, 0), 0.04, world.getClock().getElapsedTime().asSeconds());
+        world.create_laser(GameObject::LASER, position.pos, Vector2i{15, 0}, 0.04, world.getClock().getElapsedTime().asSeconds());
     }
 }
 

@@ -18,15 +18,6 @@
 struct Vector2i {
     int x;
     int y;
-
-    Vector2i(int x_value, int y_value) : x(x_value), y(y_value)
-    {
-    }
-
-    Vector2i() {
-        x = 0;
-        y = 0;
-    }
 };
 
 /**
