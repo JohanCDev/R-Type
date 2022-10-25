@@ -11,9 +11,18 @@
 
 #pragma once
 
+/**
+ * @brief Make the entity destroyable
+ * 
+ */
 struct DestroyableComponent {
     bool destroyable;
 
+    /**
+     * @brief Construct a new Destroyable Component object
+     * 
+     * @param destroy 
+     */
     DestroyableComponent(bool destroy) : destroyable(destroy)
     {
     }

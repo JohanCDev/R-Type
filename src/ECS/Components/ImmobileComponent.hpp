@@ -11,9 +11,30 @@
 
 #pragma once
 
-struct ImmobileComponent {
+/**
+ * @brief Define a vector of boolean
+ * 
+ */
+struct Vector2b {
     bool x;
     bool y;
 
-    ImmobileComponent(bool x_axis, bool y_axis) : x(x_axis), y(y_axis){};
+    Vector2b(bool x_value, bool y_value) : x(x_value), y(y_value)
+    {
+    }
+};
+
+/**
+ * @brief Make the entity ignoring his velocity
+ * 
+ */
+struct ImmobileComponent {
+    Vector2b axis;
+
+    /**
+     * @brief Construct a new Immobile Component object
+     * 
+     * @param axis_vec
+     */
+    ImmobileComponent(Vector2b axis_vec) : axis(axis_vec){};
 };

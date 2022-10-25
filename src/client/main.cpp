@@ -33,7 +33,7 @@ int main(void)
     world.register_all_system();
     world.register_all_assets();
     
-    world.create_player("assets/r-typesheet5.gif", Vector4{375, 6, 21, 24}, 2.0, 2.0, 20, 20, 3, 5, 5, 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
+    world.create_player("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector2f(2.0, 2.0), Vector2i(20, 20), 3, Vector2i(5, 5), 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
 
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
@@ -57,8 +57,9 @@ int main(void)
             if (event.type == sf::Event::Closed)
                 world.getWindow().close();
         }
-        client.SendMessage(hiMsg);
-        client.SendMessage(byeMsg);
+        //client.send("hi");
+        client.send(hiMsg);
+        client.send(byeMsg);
 
         world.getWindow().clear(sf::Color::Black);
         for (auto &system: world.getRegistry().get_systems()) {
