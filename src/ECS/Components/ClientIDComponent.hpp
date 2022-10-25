@@ -1,6 +1,6 @@
 /**
  * @file ClientIDComponent.hpp
- * @author Tanguy Bellicha (you@epitech.eu)
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-25
@@ -15,6 +15,4 @@
 
 struct ClientIDComponent {
     size_t id;
-
-    ClientIDComponent(size_t assign_id) : id(assign_id){};
 };
