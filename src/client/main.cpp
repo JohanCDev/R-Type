@@ -57,8 +57,9 @@ int main(void)
             if (event.type == sf::Event::Closed)
                 world.getWindow().close();
         }
-        client.SendMessage(hiMsg);
-        client.SendMessage(byeMsg);
+        //client.send("hi");
+        client.send(hiMsg);
+        client.send(byeMsg);
 
         world.getWindow().clear(sf::Color::Black);
         for (auto &system: world.getRegistry().get_systems()) {

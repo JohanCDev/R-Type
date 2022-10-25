@@ -1,5 +1,6 @@
 /**
  * @file client.hpp
+ * @author Adam Djebar (adam.djebar@epitech.eu)
  * @author  Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
@@ -27,8 +28,8 @@ class NetworkClient {
     NetworkClient(std::string host, std::string server_port, unsigned short local_port = 0);
     ~NetworkClient();
 
-    void Send(const std::string &message);
-    void SendMessage(const Message<GameMessage> &message);
+    void send(const std::string &message);
+    void send(const Message<GameMessage> &message);
     bool HasMessages();
     Message<GameMessage> PopMessage();
 
