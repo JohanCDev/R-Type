@@ -35,4 +35,5 @@ struct DrawableComponent {
         : path(texture_path), x_scale(xscale), y_scale(yscale), rect(vec)
     {
     }
+
 };

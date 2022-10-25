@@ -25,16 +25,15 @@ int main(void)
     unsigned short port;
     std::cin >> port;
     NetworkClient client("localhost", "60000", port);
-    World world(sf::VideoMode(800, 600), "My window");
+    World world(sf::VideoMode(1920, 1080), "My window");
 
     std::srand(std::time(NULL));
 
     world.register_all_component();
     world.register_all_system();
     world.register_all_assets();
+    world.register_all_drawable_object();
     
-    world.create_player("assets/r-typesheet5.gif", Vector4{375, 6, 21, 24}, 2.0, 2.0, 20, 20, 3, 5, 5, 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
-
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
     hiMsg << "Lezgongue";
@@ -46,8 +45,8 @@ int main(void)
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
             Message<GameMessage> msg = client.PopMessage();
-
-            //processMessage(msg);
+            
+            client.processMessage(msg, world);
         }
         sf::Event event;
         while (world.getWindow().pollEvent(event)) {

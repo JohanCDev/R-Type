@@ -14,6 +14,8 @@
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 #include "../World.hpp"
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
 
 int controllable_system(World &world, sf::Event event)
 {
@@ -45,11 +47,11 @@ int controllable_system(World &world, sf::Event event)
             if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == i->shoot) {
                 if (!(drawable[index]->rect.x == 0 && drawable[index]->rect.y == 0 && drawable[index]->rect.x_size == 0
                         && drawable[index]->rect.y_size == 0)) {
-                    world.create_laser(position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1,
+                    world.create_laser(GameObject::LASER, position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1,
                         position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
                         0.04, world.getClock().getElapsedTime().asSeconds());
                 } else {
-                    world.create_laser(position[index]->x
+                    world.create_laser(GameObject::LASER, position[index]->x
                             + (world.getResourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
                         position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
                         0.04, world.getClock().getElapsedTime().asSeconds());
