@@ -128,9 +128,18 @@ void new_entity(World &world, Message<GameMessage> msg)
     }
 }
 
+void dead_entity(World &world, Message<GameMessage> msg)
+{
+    std::size_t id_entity;
+
+    msg >> id_entity;
+    world.getRegistry().kill_entity(world.getRegistry().entity_from_index(id_entity));
+}
+
 static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc =
 {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
+    {GameMessage::S2C_ENTITY_DEAD, dead_entity},
 };
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world)
