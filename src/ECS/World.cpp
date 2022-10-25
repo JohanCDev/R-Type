@@ -68,7 +68,7 @@ registry &World::getRegistry()
     return (this->_r);
 }
 
-void World::create_laser(GameObject object, Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time)
+void World::create_laser(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -79,7 +79,7 @@ void World::create_laser(GameObject object, Vector2i pos, Vector2i speed, float 
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
 }
 
-void World::create_player(GameObject object, Vector2i pos, Vector2i speed, float refresh_time)
+void World::create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -93,7 +93,7 @@ void World::create_player(GameObject object, Vector2i pos, Vector2i speed, float
     this->_r.add_component<ControllableComponent>(ent, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 }
 
-void World::create_enemy(GameObject object, Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time)
+void World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
     

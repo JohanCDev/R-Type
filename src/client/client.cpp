@@ -113,7 +113,7 @@ void NetworkClient::run_service()
 void new_entity(World &world, Message<GameMessage> msg)
 {
     GameObject object;
-    Vector2i pos;
+    Vector2f pos;
 
     msg >> object >> pos;
     PositionComponent position(pos);

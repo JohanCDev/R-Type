@@ -35,10 +35,6 @@ struct Vector4i {
 struct Vector2f {
     float x;
     float y;
-
-    Vector2f(float x_value, float y_value) : x(x_value), y(y_value)
-    {
-    }
 };
 
 /**

@@ -69,7 +69,7 @@ class World
          * @param refresh_time 
          * @param elapsed_time 
          */
-        void create_laser(GameObject object, Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time);
+        void create_laser(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
         /**
          * @brief Create a player entity
@@ -79,7 +79,7 @@ class World
          * @param speed
          * @param refresh_time 
          */
-        void create_player(GameObject object, Vector2i pos, Vector2i speed, float refresh_time);
+        void create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
 
         /**
          * @brief Create a enemy entity
@@ -90,7 +90,7 @@ class World
          * @param refresh_time 
          * @param elapsed_time 
          */
-        void create_enemy(GameObject object, Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time);
+        void create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
         void register_all_drawable_object();
 
