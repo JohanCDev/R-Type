@@ -33,5 +33,46 @@
 #define DEFAULT_KEY_LFT      KeyboardInput::Q
 #define DEFAULT_KEY_SHOOT    MouseInput::Left_click
 
-void process_informations(Message<GameMessage> msg, World &world);
+/**
+ * @brief Create a player in server's world and send the packet to the client
+ *
+ * @param world The server's world
+ * @param msg The message received from the client
+ * @param server The server
+ */
+void player_joined(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Destroy the player in server's world and send the packet to the client
+ *
+ * @param world The server's world
+ * @param msg The message received from the client
+ * @param server The server
+ */
+void player_left(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Move the player in the server's world and send the packet to the client
+ *
+ * @param world The server's world
+ * @param msg The message received from the client
+ * @param server The server
+ */
+void player_moved(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Create a shoot in the server's world and send the packet to the client
+ *
+ * @param world The server's world
+ * @param msg The message received from the client
+ * @param server The server
+ */
+void player_shot(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Create an enemy in the server's world and send the packet to the client
+ *
+ * @param world The server's world
+ * @param server The server
+ */
 void create_enemy(World &world, NetworkServer &server);
