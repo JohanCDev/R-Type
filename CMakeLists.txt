@@ -2,17 +2,20 @@ cmake_minimum_required(VERSION 3.16.3)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_THREAD_LIBS_INIT "-lpthread")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-set(CMAKE_HAVE_THREADS_LIBRARY 1)
-set(CMAKE_USE_WIN32_THREADS_INIT 0)
-set(CMAKE_USE_PTHREADS_INIT 1)
-set(THREADS_PREFER_PTHREAD_FLAG ON)
+
+if(NOT WIN32)
+  set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+  set(CMAKE_HAVE_THREADS_LIBRARY 1)
+  set(CMAKE_USE_WIN32_THREADS_INIT 0)
+  set(CMAKE_USE_PTHREADS_INIT 1)
+  set(THREADS_PREFER_PTHREAD_FLAG ON)
+endif()
 
 if(NOT DEFINED CMAKE_SUPPRESS_DEVELOPER_WARNINGS)
   set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS
-      1
-      CACHE INTERNAL "No dev warnings")
+    1
+    CACHE INTERNAL "No dev warnings")
 endif()
 
 project(R-Type LANGUAGES CXX)
@@ -24,7 +27,7 @@ if(MSVC)
   add_compile_options(/W2 /EHsc)
 else()
   add_compile_options("-Wall" "-Wextra" "-Wshadow" "-pedantic"
-                      "-Wpointer-arith" "-fpermissive")
+    "-Wpointer-arith" "-fpermissive")
 endif()
 
 add_subdirectory(src)
