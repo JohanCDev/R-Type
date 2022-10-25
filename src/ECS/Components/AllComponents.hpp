@@ -13,6 +13,7 @@
 
 #include "AccelerationComponent.hpp"
 #include "AnimationComponent.hpp"
+#include "ClientIDComponent.hpp"
 #include "CollideComponent.hpp"
 #include "ControllableComponent.hpp"
 #include "DestroyableComponent.hpp"
