@@ -11,8 +11,16 @@
 
 #pragma once
 
+/**
+ * @brief Definition of mouse input
+ * 
+ */
 enum MouseInput { Left_click, Right_click, Middle_click, UNDEFINED };
 
+/**
+ * @brief Definition of keyboard input
+ * 
+ */
 enum KeyboardInput {
     Unknown = -1,
     A = 0,

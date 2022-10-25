@@ -34,6 +34,8 @@ int main(void)
     world.register_all_assets();
     world.register_all_drawable_object();
     
+    world.create_player(GameObject::PLAYER, Vector2i(20, 20), Vector2i(5, 5), 0.2);
+
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
     hiMsg << "Lezgongue";
@@ -42,8 +44,6 @@ int main(void)
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
 
-
-    world.create_player(GameObject::PLAYER, 20, 20, 5, 5, 0.2);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
             Message<GameMessage> msg = client.PopMessage();

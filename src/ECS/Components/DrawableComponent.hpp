@@ -13,30 +13,57 @@
 
 #include <string>
 
-struct Vector4 {
+/**
+ * @brief Define the texture rect to draw
+ * 
+ */
+struct Vector4i {
     int x;
     int y;
     int x_size;
     int y_size;
 
-    Vector4(int x_value, int y_value, int size_x, int size_y) : x(x_value), y(y_value), x_size(size_x), y_size(size_y)
+    Vector4i(int x_value, int y_value, int size_x, int size_y) : x(x_value), y(y_value), x_size(size_x), y_size(size_y)
     {
     }
 };
 
+/**
+ * @brief Define a vector of float
+ * 
+ */
+struct Vector2f {
+    float x;
+    float y;
+
+    Vector2f(float x_value, float y_value) : x(x_value), y(y_value)
+    {
+    }
+};
+
+/**
+ * @brief Make the entity drawable
+ * 
+ */
 struct DrawableComponent {
     std::string path;
-    float x_scale;
-    float y_scale;
-    Vector4 rect;
+    Vector4i rect;
+    Vector2f scale;
 
+    /**
+     * @brief Construct a new Drawable Component object
+     * 
+     * @param texture_path 
+     * @param vec 
+     * @param xscale 
+     * @param yscale 
+     */
     DrawableComponent(
-        std::string texture_path, Vector4 vec = Vector4(0, 0, 0, 0), float xscale = 1.0, float yscale = 1.0)
-        : path(texture_path), x_scale(xscale), y_scale(yscale), rect(vec)
+        std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0), Vector2f scale_vec = Vector2f(1.0, 1.0))
+        : path(texture_path), rect(vec), scale(scale_vec)
     {
     }
 
-    DrawableComponent() : rect(Vector4(0, 0, 0, 0)) {
-    }
+    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), scale(Vector2f(1.0, 1.0)) {}
 
 };

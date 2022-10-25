@@ -117,8 +117,8 @@ void NetworkClient::processMessage(Message<GameMessage> &msg, World &world)
 {
     if (msg.header.id == GameMessage::S2C_ENTITY_NEW) {
         GameObject object;
-        PositionComponent pos(1, 1);
-        msg >> object >> pos;
-        world.create_player(GameObject::PLAYER, pos.x, pos.y, 5, 5, 0.2);
+        PositionComponent position(Vector2i(1, 1));
+        msg >> object >> position;
+        world.create_player(GameObject::PLAYER, position.pos, Vector2i(5, 5), 0.2);
     }
 }

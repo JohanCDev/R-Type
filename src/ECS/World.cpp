@@ -68,53 +68,48 @@ registry &World::getRegistry()
     return (this->_r);
 }
 
-void World::create_laser(GameObject object, int x, int y, int x_velo, int y_velo, float refresh_time, float elapsed_time)
+void World::create_laser(GameObject object, Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
-    auto draw = this->_drawMap[object];
-    std::string path = draw.path;
-    Vector4 rect = draw.rect;
-    float x_scale = draw.x_scale;
-    float y_scale = draw.y_scale;
-    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(path, rect, x_scale, y_scale));
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", 5, 15, 0.2));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(x_velo, y_velo, refresh_time, elapsed_time));
-    this->_r.add_component<PositionComponent>(ent, PositionComponent(x, y));
+
+    DrawableComponent drawCompo = this->_drawMap[object];
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
+    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i(5, 15), 0.2));
+    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
 }
 
-void World::create_player(GameObject object, int pos_x, int pos_y, int speed_x, int speed_y, float refresh_time)
+void World::create_player(GameObject object, Vector2i pos, Vector2i speed, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
-    auto draw = this->_drawMap[object];
-    std::string path = draw.path;
-    Vector4 rect = draw.rect;
-    float x_scale = draw.x_scale;
-    float y_scale = draw.y_scale;
-    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(path, rect, x_scale, y_scale));
-    this->_r.add_component<PositionComponent>(ent, PositionComponent(pos_x, pos_y));
-    this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(true, true));
+    DrawableComponent drawCompo = this->_drawMap[object];
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
+    this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(true, true)));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(3)));
+    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time));
     this->_r.add_component<ControllableComponent>(ent, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 }
 
-void World::create_enemy(std::string texture_path, Vector4 texture_rec, float x_scale, float y_scale, int pos_x, int pos_y,
-    int speed_x, int speed_y, float refresh_time, float elapsed_time)
+void World::create_enemy(GameObject object, Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
-    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(texture_path, texture_rec, x_scale, y_scale));
-    this->_r.add_component<PositionComponent>(ent, PositionComponent(pos_x, pos_y));
-    this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(false, false));
+    
+    DrawableComponent drawCompo = this->_drawMap[object];
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
+    this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", 1, 1, 0));
+    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i(1, 1), 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed_x, speed_y, refresh_time, elapsed_time));
+    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
 }
 
 void World::register_all_drawable_object()
 {
-    DrawableComponent test("assets/r-typesheet1.gif", Vector4(104, 171, 80, 14));
-    this->_drawMap.emplace(GameObject::LASER, test);
-    this->_drawMap.emplace(GameObject::PLAYER, test);
+    this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
+    this->_drawMap.emplace(GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector2f(2.0, 2.0)));
+    this->_drawMap.emplace(GameObject::ENEMY, DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f(1.0, 1.0)));
 }
