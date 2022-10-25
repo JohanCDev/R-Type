@@ -28,7 +28,6 @@ jobs:
         run: |
           mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
 
-
       - name: Check Ubuntu build (desktop)
         uses: andstor/file-existence-action@v1
         with:
@@ -37,16 +36,25 @@ jobs:
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Cache Conan packages
+        id: cache_windows
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conan
+            C:\.conan
+          key: ${{ runner.os }}-${{ hashfiles('**/conanfile.txt') }}
 
       - name: Install conan
         uses: turtlebrowser/get-conan@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
 
       - name: Install dependencies
         run: |
           mkdir -p build; cd build
           conan install .. --build=missing
-
 
       - name: Build rtype on Windows (desktop)
         run: |
@@ -79,7 +87,6 @@ jobs:
       - name: Build rtype binaries on Raspberry (desktop)
         run: |
           mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
-
 
       - name: Check Raspberry build (desktop)
         uses: andstor/file-existence-action@v1
