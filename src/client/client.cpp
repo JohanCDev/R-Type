@@ -1,6 +1,6 @@
 /**
  * @file client.cpp
- * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
+ * @author Adam Djebar (adam.djebar@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-16
@@ -23,7 +23,7 @@ NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned
     udp::resolver resolver(io_service);
     udp::resolver::query query(udp::v4(), host, server_port);
     server_endpoint = *resolver.resolve(query);
-    NetworkClient::Send("");
+    NetworkClient::send("");
 }
 
 NetworkClient::~NetworkClient()
@@ -65,14 +65,12 @@ void NetworkClient::handle_receive(const std::error_code &error, std::size_t byt
     start_receive();
 }
 
-void NetworkClient::Send(const std::string &message)
+void NetworkClient::send(const std::string &message)
 {
     socket.send_to(boost::asio::buffer(message), server_endpoint);
 }
 
-#include <iostream>
-
-void NetworkClient::SendMessage(const Message<GameMessage> &message)
+void NetworkClient::send(const Message<GameMessage> &message)
 {
     std::cout << message.size() << std::endl;
 
@@ -85,7 +83,7 @@ void NetworkClient::SendMessage(const Message<GameMessage> &message)
 
     s.flush();
 
-    Send(serial_str);
+    send(serial_str);
 }
 
 bool NetworkClient::HasMessages()

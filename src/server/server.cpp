@@ -13,28 +13,14 @@
 
 #include "server.hpp"
 #include <boost/bind.hpp>
+#include <sstream>
 #include <boost/iostreams/stream.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/serialization/vector.hpp>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
-
-// std::string udp_server::deserialize(std::string recv)
-// {
-//     for (int i = 0; i < recv.size(); i++) {
-//         recv[i] = ((unsigned char)recv[i]) >> 1;
-//     }
-//     return (recv);
-// }
-
-// std::string udp_server::serialize(std::string recv)
-// {
-//     for (int i = 0; i < recv.size(); i++) {
-//         recv[i] = ((unsigned char)recv[i]) << 1;
-//     }
-//     return (recv);
-// }
 
 NetworkServer::NetworkServer(unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)),
@@ -88,6 +74,22 @@ void NetworkServer::send(std::string message, udp::endpoint target_endpoint)
     socket.send_to(boost::asio::buffer(message), target_endpoint);
 }
 
+void NetworkServer::send(const Message<GameMessage> &message, udp::endpoint target_endpoint)
+{
+    std::cout << message.size() << std::endl;
+
+    std::string serial_str;
+    boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
+    boost::archive::binary_oarchive oa(s);
+
+    oa << message;
+
+    s.flush();
+
+    send(serial_str, target_endpoint);
+}
+
 void NetworkServer::run_service()
 {
     start_receive();
@@ -119,10 +121,42 @@ void NetworkServer::SendToClient(std::string message, std::size_t clientID)
     }
 }
 
+void NetworkServer::SendToClient(const Message<GameMessage> &message, std::size_t clientID)
+{
+    try {
+        send(message, clients.left.at(clientID));
+    } catch (std::out_of_range) {
+    }
+}
+
 void NetworkServer::SendToAll(std::string message)
 {
     for (auto client : clients)
         send(message, client.right);
+}
+
+void NetworkServer::SendToAll(const Message<GameMessage> &message)
+{
+    for (auto client : clients)
+        send(message, client.right);
+}
+
+void NetworkServer::SendToAllExcept(std::string message, std::size_t clientID)
+{
+    for (auto client : clients) {
+        if (client.left == clientID)
+            continue;
+        send(message, client.right);
+    }
+}
+
+void NetworkServer::SendToAllExcept(const Message<GameMessage> &message, std::size_t clientID)
+{
+    for (auto client : clients) {
+        if (client.left == clientID)
+            continue;
+        send(message, client.right);
+    }
 }
 
 void NetworkServer::on_client_disconnected(int32_t id)
