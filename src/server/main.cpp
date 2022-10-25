@@ -18,15 +18,6 @@
 #include "../Common/Message/MessageType.hpp"
 #include "server.hpp"
 
-/**
- * @brief Define a vector of float
- * 
- */
-struct Vector2f {
-    float x;
-    float y;
-};
-
 int main()
 {
     NetworkServer server(60000);

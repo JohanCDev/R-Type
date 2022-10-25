@@ -38,7 +38,6 @@ void World::register_all_system()
     this->_r.register_systems(&drawable_system);
     this->_r.register_systems(&velocity_system);
     this->_r.register_systems(&shooting_system);
-    this->_r.register_systems(&wave_system);
 }
 
 void World::register_all_assets()

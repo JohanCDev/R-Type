@@ -23,3 +23,4 @@
 #include "PositionComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
+#include "ClientIDComponent.hpp"

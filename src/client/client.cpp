@@ -115,7 +115,7 @@ void new_entity(World &world, Message<GameMessage> msg)
     GameObject object;
     Vector2f pos;
 
-    msg >> object >> pos;
+    msg >> pos >> object;
     PositionComponent position(pos);
     if (object == GameObject::PLAYER) {
         world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.2f);
@@ -136,10 +136,50 @@ void dead_entity(World &world, Message<GameMessage> msg)
     world.getRegistry().kill_entity(world.getRegistry().entity_from_index(id_entity));
 }
 
+void game_end(World &world, Message<GameMessage> msg)
+{
+    world.getWindow().close();
+}
+
+void movement(World &world, Message<GameMessage> msg)
+{
+    registry &r = world.getRegistry();
+    ClientIDComponent moved_id;
+    Vector2i velocity;
+
+    msg >> velocity >> moved_id;
+
+    auto &velocityCompo = r.get_components<VelocityComponent>();
+
+    velocityCompo[moved_id.id]->speed = velocity;
+}
+
+void player_hit(World &world, Message<GameMessage> msg)
+{
+    registry &r = world.getRegistry();
+    ClientIDComponent hitted_id;
+    int damage;
+
+    msg >> damage >> hitted_id;
+
+    auto &health = r.get_components<HealthComponent>();
+
+    health[hitted_id.id]->hp -= damage;
+}
+
+void ok_packet(World &world, Message<GameMessage> msg)
+{
+    // ok j'en fais quoi ???
+}
+
 static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc =
 {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
+    {GameMessage::S2C_GAME_END, game_end},
+    {GameMessage::S2C_MOVEMENT, movement},
+    {GameMessage::S2C_PLAYER_HIT, player_hit},
+    {GameMessage::S2C_OK, ok_packet},
 };
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world)

@@ -99,7 +99,7 @@ int main(void)
     world.register_all_assets();
     world.register_all_drawable_object();
     
-    world.create_player(GameObject::PLAYER, Vector2f{20.0f, 20.0f}, Vector2i{5, 5}, 0.2f);
+    world.create_player(GameObject::PLAYER, Vector2f{20.0f, 20.0f}, Vector2i{0, 0}, 0.2f);
 
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
