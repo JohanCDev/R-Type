@@ -29,7 +29,7 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
         DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y, DEFAULT_PLAYER_HP, 0, 0, 0.2, DEFAULT_KEY_TOP, DEFAULT_KEY_BOT,
         DEFAULT_KEY_RGT, DEFAULT_KEY_LFT, DEFAULT_KEY_SHOOT);
     world.getRegistry().add_component<ClientIDComponent>(
-        world.getRegistry().entity_from_index(id), ClientIDComponent(id));
+        world.getRegistry().entity_from_index(id), ClientIDComponent(msg.second));
 }
 
 void player_left(World &world, ClientMessage msg, NetworkServer &server)
@@ -41,7 +41,21 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
 void player_moved(World &world, ClientMessage msg, NetworkServer &server)
 {
     sf::Vector2f move;
+    registry &r = world.getRegistry();
+    sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
+    sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
+    std::size_t index = 0;
     msg.first >> move;
+
+    for (auto &i : clients) {
+        if (i && i.has_value()) {
+            if (i.value().id == msg.second) {
+                velocity[index]->x = move.x * DEFAULT_PLAYER_SPD;
+                velocity[index]->y = move.y * DEFAULT_PLAYER_SPD;
+            }
+        }
+        index++;
+    }
 }
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
