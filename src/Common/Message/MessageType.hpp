@@ -11,4 +11,6 @@
 
 #pragma once
 
-enum class GameMessage { C2S_JOIN, C2S_LEAVE };
+enum class GameMessage { C2S_JOIN, C2S_LEAVE, C2S_MOVEMENT, C2S_SHOOT, S2C_ENTITY_NEW };
+
+enum class EntityCode { PLAYER, ENEMY, LASER };
