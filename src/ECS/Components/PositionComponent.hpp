@@ -13,28 +13,24 @@
 
 /**
  * @brief Define a vector of float
- * 
+ *
  */
 struct Vector2i {
     int x;
     int y;
-
-    Vector2i(int x_value, int y_value) : x(x_value), y(y_value)
-    {
-    }
 };
 
 /**
  * @brief Contains the entity position
- * 
+ *
  */
 struct PositionComponent {
     Vector2i pos;
 
     /**
      * @brief Construct a new Position Component object
-     * 
-     * @param pos 
+     *
+     * @param pos
      */
-    PositionComponent(Vector2i pos_vec) : pos(pos_vec) {};
+    PositionComponent(Vector2i pos_vec) : pos(pos_vec){};
 };
