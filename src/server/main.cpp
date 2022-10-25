@@ -18,6 +18,15 @@
 #include "../Common/Message/MessageType.hpp"
 #include "server.hpp"
 
+/**
+ * @brief Define a vector of float
+ * 
+ */
+struct Vector2f {
+    float x;
+    float y;
+};
+
 int main()
 {
     NetworkServer server(60000);
@@ -29,7 +38,7 @@ int main()
 
             Message<GameMessage> gameMsg = server.PopMessage().first;
 
-            std::string tmp(gameMsg.body.begin(), gameMsg.body.end());  
+            std::string tmp(gameMsg.body.begin(), gameMsg.body.end());
 
             switch (gameMsg.header.id) {
                 case (GameMessage::C2S_JOIN): std::cout << "User Joined with message:" << tmp << std::endl; break;
@@ -38,9 +47,6 @@ int main()
                 default: std::cout << "Unkown Message" << std::endl; break;
             }
 
-            if (tmp == "bye") {
-                break;
-            }
         };
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     }

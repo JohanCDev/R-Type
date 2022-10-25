@@ -12,7 +12,7 @@
 #include "World.hpp"
 #include <iostream>
 
-World::World(sf::VideoMode mode, std::string name): _r(), _manager(), _window(mode, name), _clock()
+World::World(sf::VideoMode mode, std::string name): _r(), _manager(), _window(mode, name), _clock(), _player_direction({0.0, 0.0})
 {
 }
 
@@ -66,6 +66,16 @@ ResourcesManager &World::getResourcesManager()
 registry &World::getRegistry()
 {
     return (this->_r);
+}
+
+Vector2f &World::getDirection()
+{
+    return (this->_player_direction);
+}
+
+void World::setDirection(Vector2f direction)
+{
+    this->_player_direction = direction;
 }
 
 void World::create_laser(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
