@@ -30,7 +30,7 @@ template <typename T> struct Message {
         return body.size();
     }
 
-    template <typename ContentType> friend Message<T> &operator<<(Message<T> &m, const ContentType &content)
+    template <typename ContentType> friend Message<T> &operator<<(Message<T> &m, ContentType &content)
     {
         static_assert(std::is_standard_layout<ContentType>::value, "Not standard layout : Can't push into vector");
 
@@ -45,7 +45,7 @@ template <typename T> struct Message {
         return m;
     }
 
-    template <typename ContentType> friend Message<T> &operator>>(Message<T> &m, const ContentType &content)
+    template <typename ContentType> friend Message<T> &operator>>(Message<T> &m, ContentType &content)
     {
         static_assert(std::is_standard_layout<ContentType>::value, "Not standard layout : Can't retreive from vector");
 
