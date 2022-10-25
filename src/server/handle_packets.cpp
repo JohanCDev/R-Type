@@ -30,11 +30,12 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
         DEFAULT_KEY_RGT, DEFAULT_KEY_LFT, DEFAULT_KEY_SHOOT);
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(id), ClientIDComponent(msg.second));
+    std::cout << "Player[" << msg.second << "]: joined the game" << std::endl;
 }
 
 void player_left(World &world, ClientMessage msg, NetworkServer &server)
 {
-    std::cout << "Player Left" << std::endl;
+    std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
     (void)world;
 }
 
@@ -45,13 +46,14 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
     std::size_t index = 0;
-    msg.first >> move;
 
+    msg.first >> move;
     for (auto &i : clients) {
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
                 velocity[index]->x = move.x * DEFAULT_PLAYER_SPD;
                 velocity[index]->y = move.y * DEFAULT_PLAYER_SPD;
+                std::cout << "Player[" << msg.second << "]: Velocity{" << move.x * DEFAULT_PLAYER_SPD << ", " << move.y * DEFAULT_PLAYER_SPD << "}" << std::endl;
             }
         }
         index++;
