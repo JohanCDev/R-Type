@@ -30,6 +30,8 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
         DEFAULT_KEY_BOT, DEFAULT_KEY_RGT, DEFAULT_KEY_LFT, DEFAULT_KEY_SHOOT);
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(id), ClientIDComponent{msg.second});
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(id), EntityIDComponent{id});
     std::cout << "Player[" << msg.second << "]: joined the game" << std::endl;
 }
 
@@ -46,6 +48,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
     std::size_t index = 0;
+    Message<GameMessage> sending_msg;
 
     msg.first >> move;
     for (auto &i : clients) {
@@ -55,6 +58,10 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
                 velocity[index]->speed.y = move.y * DEFAULT_PLAYER_SPD;
                 std::cout << "Player[" << msg.second << "]: Velocity{" << move.x * DEFAULT_PLAYER_SPD << ", "
                           << move.y * DEFAULT_PLAYER_SPD << "}" << std::endl;
+                sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+                sending_msg << move;
+                server.SendToAll(sending_msg);
+                break;
             }
         }
         index++;
@@ -71,7 +78,7 @@ void create_enemy(World &world, NetworkServer &server)
 {
     size_t id = 0;
     int random_y = rand() % 400 + 51;
-    Message<GameMessage> msg;
+    Message<GameMessage> sending_msg;
 
     id = world.create_enemy("r-typesheet39.gif", Vector4i(34, 2, 64, 64),
         Vector2f(DEFAULT_ENEMY_SCALE, DEFAULT_ENEMY_SCALE), Vector2i{0, random_y},
@@ -79,9 +86,9 @@ void create_enemy(World &world, NetworkServer &server)
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(id), EntityIDComponent{id});
     std::cout << "Enemy[" << id << "]: created at Position{840, " << random_y << "}" << std::endl;
-    msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    msg << GameObject::ENEMY;
-    msg << id;
-    msg << sf::Vector2f(0, random_y);
-    server.SendToAll(msg);
+    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+    sending_msg << GameObject::ENEMY;
+    sending_msg << id;
+    sending_msg << sf::Vector2f(0, random_y);
+    server.SendToAll(sending_msg);
 }
