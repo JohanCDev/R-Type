@@ -36,4 +36,7 @@ struct DrawableComponent {
     {
     }
 
+    DrawableComponent() : rect(Vector4(0, 0, 0, 0)) {
+    }
+
 };

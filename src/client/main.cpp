@@ -42,6 +42,8 @@ int main(void)
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
 
+
+    world.create_player(GameObject::PLAYER, 20, 20, 5, 5, 0.2);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
             Message<GameMessage> msg = client.PopMessage();
