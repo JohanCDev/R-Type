@@ -12,12 +12,9 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/Entity.hpp"
 #include "../ECS/Registry.hpp"
-#include "../ECS/ResourcesManager.hpp"
 #include "../ECS/SparseArray.hpp"
 #include "../Common/Message/MessageType.hpp"
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include <ctime>
 
 #define DEFAULT_PLAYER_POS_X 50

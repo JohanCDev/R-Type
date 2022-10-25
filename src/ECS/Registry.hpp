@@ -17,10 +17,8 @@
 #include <typeindex>
 #include "Components/AllComponents.hpp"
 #include "Entity.hpp"
-#include "ResourcesManager.hpp"
 #include "SparseArray.hpp"
 #include <unordered_map>
-#include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 
 class World;

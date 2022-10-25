@@ -74,7 +74,7 @@ void World::create_laser(GameObject object, Vector2f pos, Vector2i speed, float 
 
     DrawableComponent drawCompo = this->_drawMap[object];
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i{5, 15}, 0.2));
+    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i{5, 15}, 200));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
 }
