@@ -45,7 +45,7 @@ int main(void)
     byeMsg << "Bybye";
 
 
-    client.SendMessage(hiMsg);
+    client.send(hiMsg);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
             Message<GameMessage> msg = client.PopMessage();
@@ -69,6 +69,6 @@ int main(void)
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-    client.SendMessage(byeMsg);
+    client.send(byeMsg);
     return 0;
 }
