@@ -10,9 +10,6 @@ if (Test-Path -Path ./build/) {
 mkdir build
 Set-Location build
 
-Write-Host "INSTALLING DEPENDENCIES" -ForegroundColor Green
-conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
-
 Write-Host "BUILDING PROJECT" -ForegroundColor Green
 cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
 
