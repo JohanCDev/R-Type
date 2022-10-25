@@ -44,6 +44,8 @@ int main(void)
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
 
+    Message<GameMessage> shootMsg;
+    shootMsg.header.id = GameMessage::C2S_SHOOT;
 
     client.send(hiMsg);
     while (world.getWindow().isOpen()) {
@@ -54,9 +56,11 @@ int main(void)
         }
         sf::Event event;
         while (world.getWindow().pollEvent(event)) {
-            // "close requested" event: we close the window
             if (controllable_system(world, event) == 1)
                 continue;
+            if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
+                client.send(shootMsg);
+            }
             if (event.type == sf::Event::Closed)
                 world.getWindow().close();
         }
