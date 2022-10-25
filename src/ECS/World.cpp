@@ -71,7 +71,7 @@ registry &World::getRegistry()
     return (this->_r);
 }
 
-void World::create_laser(Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_laser(Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
     this->_r.add_component<DrawableComponent>(
@@ -79,6 +79,7 @@ void World::create_laser(Vector2i pos, Vector2i speed, float refresh_time, float
     this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i{5, 15}, 0.2));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
+    return (ent.id);
 }
 
 size_t World::create_player(std::string texture_path, Vector4i texture_rec, Vector2f scale, Vector2i pos, int hp,

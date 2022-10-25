@@ -63,8 +63,10 @@ class World {
      * @param speed
      * @param refresh_time
      * @param elapsed_time
+     *
+     * @return size_t ID of the entity
      */
-    void create_laser(Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time);
+    size_t create_laser(Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time);
 
     /**
      * @brief Create a player entity
