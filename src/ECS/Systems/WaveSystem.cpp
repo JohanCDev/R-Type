@@ -15,12 +15,12 @@ static float elapsed_time = 0.0;
 
 int wave_system(World &world)
 {
-    int random_y = 0;
+    float random_y = 0;
 
     if (world.getClock().getElapsedTime().asSeconds() > (elapsed_time + 3.0)) {
         elapsed_time += 3.0;
-        random_y = std::rand() % world.getWindow().getSize().y;
-        world.create_enemy("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f(1.0, 1.0), Vector2i{900, random_y}, Vector2i{-2, 0}, 0.04, world.getClock().getElapsedTime().asSeconds());
+        random_y = static_cast<float>(std::rand() % world.getWindow().getSize().y);
+        world.create_enemy(GameObject::ENEMY, Vector2f{900.0f, random_y}, Vector2i{-2, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
     }
     return (0);
 }

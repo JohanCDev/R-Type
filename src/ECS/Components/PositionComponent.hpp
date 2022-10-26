@@ -25,12 +25,13 @@ struct Vector2i {
  *
  */
 struct PositionComponent {
-    Vector2i pos;
+    Vector2f pos;
 
     /**
      * @brief Construct a new Position Component object
      *
      * @param pos
      */
-    PositionComponent(Vector2i pos_vec) : pos(pos_vec){};
+    PositionComponent(Vector2f pos_vec) : pos(pos_vec) {};
+
 };

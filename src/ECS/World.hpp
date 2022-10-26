@@ -12,10 +12,12 @@
 #pragma once
 
 #include "Registry.hpp"
+#include "ResourcesManager.hpp"
 
 #include "Systems/AllSystem.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <map>
 
 /**
  * @brief Store entity and usefull function
@@ -56,65 +58,53 @@ class World {
      */
     void register_all_assets();
 
-    /**
-     * @brief Create a laser entity
-     *
-     * @param pos
-     * @param speed
-     * @param refresh_time
-     * @param elapsed_time
-     *
-     * @return size_t ID of the entity
-     */
-    size_t create_laser(Vector2i pos, Vector2i speed, float refresh_time, float elapsed_time);
+        /**
+         * @brief Create a laser entity
+         * 
+         * @param object
+         * @param pos 
+         * @param speed
+         * @param refresh_time 
+         * @param elapsed_time 
+         */
+        size_t create_laser(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
-    /**
-     * @brief Create a player entity
-     *
-     * @param texture_path
-     * @param texture_rec
-     * @param scale
-     * @param pos
-     * @param hp
-     * @param speed
-     * @param refresh_time
-     * @param up
-     * @param down
-     * @param right
-     * @param left
-     * @param shoot
-     *
-     * @return size_t ID of the entity
-     */
-    size_t create_player(std::string texture_path, Vector4i texture_rec, Vector2f scale, Vector2i pos, int hp,
-        Vector2i speed, float refresh_time, KeyboardInput up, KeyboardInput down, KeyboardInput right,
-        KeyboardInput left, MouseInput shoot);
+        /**
+         * @brief Create a player entity
+         * 
+         * @param object
+         * @param pos
+         * @param speed
+         * @param refresh_time 
+         */
+        size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
 
-    /**
-     * @brief Create a enemy entity
-     *
-     * @param texture_path
-     * @param texture_rec
-     * @param scale
-     * @param pos
-     * @param speed_x
-     * @param speed_y
-     * @param refresh_time
-     * @param elapsed_time
-     *
-     * @return size_t ID of the entity
-     */
-    size_t create_enemy(std::string texture_path, Vector4i texture_rec, Vector2f scale, Vector2i pos, Vector2i speed,
-        float refresh_time, float elapsed_time);
+        /**
+         * @brief Create a enemy entity
+         * 
+         * @param object
+         * @param pos
+         * @param speed
+         * @param refresh_time 
+         * @param elapsed_time 
+         */
+        size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
-    registry &getRegistry();
-    ResourcesManager &getResourcesManager();
-    sf::RenderWindow &getWindow();
-    sf::Clock &getClock();
+        void register_all_drawable_object();
 
-  private:
-    registry _r;
-    ResourcesManager _manager;
-    sf::RenderWindow _window;
-    sf::Clock _clock;
+        registry &getRegistry();
+        ResourcesManager &getResourcesManager();
+        sf::RenderWindow &getWindow();
+        sf::Clock &getClock();
+        Vector2f &getDirection();
+        void setDirection(Vector2f direction);
+
+
+    private:
+        registry _r;
+        ResourcesManager _manager;
+        sf::RenderWindow _window;
+        sf::Clock _clock;
+        std::map<GameObject, DrawableComponent> _drawMap;
+        Vector2f _player_direction;
 };

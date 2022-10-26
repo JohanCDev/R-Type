@@ -65,5 +65,6 @@ template <typename T> struct Message {
     {
         ar &header;
         ar &body;
+        (void)version;
     }
 };

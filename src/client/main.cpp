@@ -20,6 +20,8 @@
 
 #include "../ECS/World.hpp"
 
+void handle_movement(World &world, NetworkClient &client, sf::Event event);
+
 int main(void)
 {
     unsigned short port;
@@ -32,8 +34,9 @@ int main(void)
     world.register_all_component();
     world.register_all_system();
     world.register_all_assets();
+    world.register_all_drawable_object();
     
-    world.create_player("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector2f(2.0, 2.0), Vector2i(20, 20), 3, Vector2i(5, 5), 0.2, KeyboardInput::Up, KeyboardInput::Down, KeyboardInput::Right, KeyboardInput::Left, MouseInput::Left_click);
+    world.create_player(GameObject::PLAYER, Vector2f{20.0f, 20.0f}, Vector2i{0, 0}, 0.2f);
 
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
@@ -43,23 +46,26 @@ int main(void)
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
 
+    Message<GameMessage> shootMsg;
+    shootMsg.header.id = GameMessage::C2S_SHOOT;
+    shootMsg << "Shoot";
+
+    client.send(hiMsg);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
             Message<GameMessage> msg = client.PopMessage();
 
-            //processMessage(msg);
+            client.processMessage(msg, world);
         }
         sf::Event event;
         while (world.getWindow().pollEvent(event)) {
-            // "close requested" event: we close the window
-            if (controllable_system(world, event) == 1)
-                continue;
+            handle_movement(world, client, event);
+            if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
+                client.send(shootMsg);
+            }
             if (event.type == sf::Event::Closed)
                 world.getWindow().close();
         }
-        //client.send("hi");
-        client.send(hiMsg);
-        client.send(byeMsg);
 
         world.getWindow().clear(sf::Color::Black);
         for (auto &system: world.getRegistry().get_systems()) {
@@ -69,5 +75,6 @@ int main(void)
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    client.send(byeMsg);
     return 0;
 }

@@ -2,7 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
 list(APPEND SRC_CLIENT ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp
-  ${INCROOT}/client.hpp)
+  ${INCROOT}/client.hpp  ${SRCROOT}/handle_movement.cpp)
 
 set(SRC_CLIENT
   "${SRC_CLIENT}" "${SRC}")
