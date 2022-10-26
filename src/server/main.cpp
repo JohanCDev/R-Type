@@ -44,14 +44,15 @@ int main()
             ClientMessage msg = server.PopMessage();
             mapFunc[msg.first.header.id](world, msg, server);
         };
-        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 400) {
-            if (rand() % 4 == 2) {
+        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 4000) {
+            if (rand() % 10 == 2) {
                 create_enemy(world, server);
+                rand_enemies_clock.restart();
             }
         }
         for (auto &system: world.getRegistry().get_systems())
             system(world);
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
 }
