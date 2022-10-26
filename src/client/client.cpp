@@ -126,14 +126,18 @@ void new_entity(World &world, Message<GameMessage> msg)
         return;
     }
     if (object == GameObject::ENEMY) {
-        world.create_enemy(
+        new_entity_id = world.create_enemy(
             GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.2f, world.getClock().getElapsedTime().asSeconds());
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
         return;
     }
     if (object == GameObject::LASER) {
-        world.create_laser(
+        new_entity_id = world.create_laser(
             GameObject::LASER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
         return;
     }
