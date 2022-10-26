@@ -112,18 +112,32 @@ void new_entity(World &world, Message<GameMessage> msg)
 {
     GameObject object;
     Vector2f pos;
+    size_t srv_entity_id;
+    size_t new_entity_id;
 
-    msg >> pos >> object;
+    msg >> pos >> srv_entity_id >> object;
     PositionComponent position(pos);
     if (object == GameObject::PLAYER) {
-        world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.2f);
+        new_entity_id = world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.2f);
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+        std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")"
+                  << std::endl;
+        return;
     }
     if (object == GameObject::ENEMY) {
-        world.create_enemy(GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.2f, world.getClock().getElapsedTime().asSeconds());
+        world.create_enemy(
+            GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.2f, world.getClock().getElapsedTime().asSeconds());
+        std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+        return;
     }
     if (object == GameObject::LASER) {
-        world.create_laser(GameObject::LASER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+        world.create_laser(
+            GameObject::LASER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+        std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+        return;
     }
+    std::cout << "Unknown object type" << std::endl;
 }
 
 void dead_entity(World &world, Message<GameMessage> msg)
@@ -146,7 +160,7 @@ void movement(World &world, Message<GameMessage> msg)
     Vector2i velocity;
 
     msg >> velocity >> moved_id;
-
+    std::cout << "Player[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
     auto &velocityCompo = r.get_components<VelocityComponent>();
 
     velocityCompo[moved_id.id]->speed = velocity;
@@ -170,8 +184,7 @@ void ok_packet(World &world, Message<GameMessage> msg)
     // ok j'en fais quoi ???
 }
 
-static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc =
-{
+static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc = {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
     {GameMessage::S2C_GAME_END, game_end},
