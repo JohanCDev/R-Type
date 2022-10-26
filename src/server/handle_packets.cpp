@@ -86,6 +86,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     registry &r = world.getRegistry();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
+    sparse_array<EntityIDComponent> &entities = r.get_components<EntityIDComponent>();
     std::size_t index = 0;
     Message<GameMessage> sending_msg;
 
@@ -98,6 +99,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
                 std::cout << "Player[" << msg.second << "]: Velocity{" << move.x * DEFAULT_PLAYER_SPD << ", "
                           << move.y * DEFAULT_PLAYER_SPD << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+                sending_msg << entities[index]->id;
                 sending_msg << move;
                 server.SendToAll(sending_msg);
                 break;
