@@ -96,8 +96,8 @@ class World {
         ResourcesManager &getResourcesManager();
         sf::RenderWindow &getWindow();
         sf::Clock &getClock();
-        Vector2f &getDirection();
-        void setDirection(Vector2f direction);
+        Vector2i &getDirection();
+        void setDirection(Vector2i direction);
 
 
     private:
@@ -106,5 +106,5 @@ class World {
         sf::RenderWindow _window;
         sf::Clock _clock;
         std::map<GameObject, DrawableComponent> _drawMap;
-        Vector2f _player_direction;
+        Vector2i _player_direction;
 };

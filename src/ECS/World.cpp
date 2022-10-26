@@ -12,7 +12,7 @@
 #include "World.hpp"
 #include <iostream>
 
-World::World(sf::VideoMode mode, std::string name): _r(), _manager(), _window(mode, name), _clock(), _player_direction({0.0, 0.0})
+World::World(sf::VideoMode mode, std::string name): _r(), _manager(), _window(mode, name), _clock(), _player_direction({0, 0})
 {
 }
 
@@ -72,12 +72,12 @@ registry &World::getRegistry()
     return (this->_r);
 }
 
-Vector2f &World::getDirection()
+Vector2i &World::getDirection()
 {
     return (this->_player_direction);
 }
 
-void World::setDirection(Vector2f direction)
+void World::setDirection(Vector2i direction)
 {
     this->_player_direction = direction;
 }
