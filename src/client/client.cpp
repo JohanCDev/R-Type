@@ -130,10 +130,10 @@ void new_entity(World &world, Message<GameMessage> msg)
 
 void dead_entity(World &world, Message<GameMessage> msg)
 {
-    std::size_t id_entity;
+    ClientIDComponent id_entity;
 
     msg >> id_entity;
-    world.getRegistry().kill_entity(world.getRegistry().entity_from_index(id_entity));
+    world.getRegistry().kill_entity(world.getRegistry().entity_from_index(id_entity.id));
 }
 
 void game_end(World &world, Message<GameMessage> msg)
