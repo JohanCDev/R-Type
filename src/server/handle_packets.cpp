@@ -45,13 +45,13 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     size_t entity_id = 0;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_player(GameObject::PLAYER,
-        Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.2);
+    entity_id = world.create_player(
+        GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.2);
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Player[" << msg.second << "]: joined the game" << std::endl;
+    std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::PLAYER;
     sending_msg << entity_id;
@@ -67,13 +67,13 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
     Message<GameMessage> sending_msg;
     size_t index = 0;
 
-    std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
     for (auto &i : clients) {
         if (i && i.has_value() && i.value().id == msg.second) {
             r.kill_entity(r.entity_from_index(index));
             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
             sending_msg << entities[index]->id;
             server.SendToAll(sending_msg);
+            std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
             break;
         }
         index++;
@@ -122,13 +122,14 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
                 entity_id = world.create_laser(GameObject::LASER,
-                    Vector2f{position[index]->pos.x, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0}, 0.2, 0);
+                    Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0}, 0.2, 0);
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
                 sending_msg << GameObject::LASER;
                 sending_msg << entity_id;
-                sending_msg << Vector2f{position[index]->pos.x, position[index]->pos.y};
+                sending_msg << Vector2f{position[index]->pos.x + 50, position[index]->pos.y};
+                server.SendToAll(sending_msg);
                 break;
             }
         }
@@ -142,8 +143,8 @@ void create_enemy(World &world, NetworkServer &server)
     float random_y = rand() % 500 + 50;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_enemy(GameObject::ENEMY, Vector2f{0.0f, random_y},
-        Vector2i{DEFAULT_ENEMY_SPD, DEFAULT_ENEMY_SPD}, 0.2, 0);
+    entity_id = world.create_enemy(
+        GameObject::ENEMY, Vector2f{0.0f, random_y}, Vector2i{DEFAULT_ENEMY_SPD, DEFAULT_ENEMY_SPD}, 0.2, 0);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
