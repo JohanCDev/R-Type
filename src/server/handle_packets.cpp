@@ -82,7 +82,7 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
 
 void player_moved(World &world, ClientMessage msg, NetworkServer &server)
 {
-    Vector2i move{0, 0};
+    Vector2f move{0, 0};
     registry &r = world.getRegistry();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
