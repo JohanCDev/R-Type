@@ -148,6 +148,6 @@ void create_enemy(World &world, NetworkServer &server)
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::ENEMY;
     sending_msg << entity_id;
-    sending_msg << Vector2f(0, random_y);
+    sending_msg << Vector2f{0, random_y};
     server.SendToAll(sending_msg);
 }
