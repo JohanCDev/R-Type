@@ -91,6 +91,7 @@ size_t World::create_laser(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i{5, 15}, 200));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
     return (ent.id);
 }
 
@@ -121,6 +122,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
     this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i{1, 1}, 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
 
     return (ent.id);

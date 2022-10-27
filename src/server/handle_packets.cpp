@@ -130,6 +130,10 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 sending_msg << entity_id;
                 sending_msg << Vector2f{position[index]->pos.x + 50, position[index]->pos.y};
                 server.SendToAll(sending_msg);
+                sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+                sending_msg << entity_id;
+                sending_msg << Vector2i{DEFAULT_LASER_SPD, 0};
+                server.SendToAll(sending_msg);
                 break;
             }
         }
@@ -144,13 +148,17 @@ void create_enemy(World &world, NetworkServer &server)
     Message<GameMessage> sending_msg;
 
     entity_id = world.create_enemy(
-        GameObject::ENEMY, Vector2f{0.0f, random_y}, Vector2i{DEFAULT_ENEMY_SPD, DEFAULT_ENEMY_SPD}, 0.2, 0);
+        GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{DEFAULT_ENEMY_SPD, 0}, 0.2, 0);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::ENEMY;
     sending_msg << entity_id;
-    sending_msg << Vector2f{800, random_y};
+    sending_msg << Vector2f{800.0f, random_y};
+    server.SendToAll(sending_msg);
+    sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+    sending_msg << entity_id;
+    sending_msg << Vector2i{-DEFAULT_ENEMY_SPD, 0};
     server.SendToAll(sending_msg);
 }

@@ -59,7 +59,7 @@ int main(void)
         sf::Event event;
         while (world.getWindow().pollEvent(event)) {
             handle_movement(world, client, event);
-            if (event.type == sf::Event::MouseButtonPressed && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
+            if (event.type == sf::Event::MouseButtonReleased && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
                 client.send(shootMsg);
             }
             if (event.type == sf::Event::Closed)
@@ -67,9 +67,11 @@ int main(void)
         }
 
         world.getWindow().clear(sf::Color::Black);
-        for (auto &system: world.getRegistry().get_systems()) {
+        drawable_system(world);
+        velocity_system(world);
+        /*for (auto &system: world.getRegistry().get_systems()) {
             system(world);
-        }
+        }*/
         world.getWindow().display();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));

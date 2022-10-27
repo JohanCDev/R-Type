@@ -164,10 +164,13 @@ void movement(World &world, Message<GameMessage> msg)
     Vector2i velocity;
 
     msg >> velocity >> moved_id;
-    std::cout << "Player[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
     auto &velocityCompo = r.get_components<VelocityComponent>();
 
-    velocityCompo[moved_id.id]->speed = velocity;
+    if (velocityCompo[moved_id.id] && velocityCompo[moved_id.id].has_value()) {
+        std::cout << "Player[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
+        velocityCompo[moved_id.id]->speed.x = velocity.x;
+        velocityCompo[moved_id.id]->speed.y = velocity.y;
+    }
 }
 
 void player_hit(World &world, Message<GameMessage> msg)
@@ -180,7 +183,8 @@ void player_hit(World &world, Message<GameMessage> msg)
 
     auto &health = r.get_components<HealthComponent>();
 
-    health[hitted_id.id]->hp -= damage;
+    if (health[hitted_id.id] && health[hitted_id.id].has_value())
+        health[hitted_id.id]->hp -= damage;
 }
 
 void ok_packet(World &world, Message<GameMessage> msg)

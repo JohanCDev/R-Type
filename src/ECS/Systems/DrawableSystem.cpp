@@ -25,7 +25,7 @@ int drawable_system(World &world)
 
     for (auto &i : drawable) {
         if (i && i.has_value()) {
-            if (health[index].has_value() && health[index]->hp > 0) {
+            if (health[index] && health[index].has_value() && health[index]->hp > 0) {
                 sf::Vector2f vec{position[index]->pos.x, position[index]->pos.y};
                 texture = world.getResourcesManager().get_texture(i->path);
                 if (!(i->rect.x == 0 && i->rect.y == 0 && i->rect.x_size == 0 && i->rect.y_size == 0)) {
