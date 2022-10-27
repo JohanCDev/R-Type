@@ -12,14 +12,14 @@ list(
   ${INCROOT}/ControllableComponent.hpp
   ${INCROOT}/DestroyableComponent.hpp
   ${INCROOT}/EntityIDComponent.hpp
+  ${INCROOT}/GameTeamComponent.hpp
   ${INCROOT}/DrawableComponent.hpp
   ${INCROOT}/HealthComponent.hpp
   ${INCROOT}/ImmobileComponent.hpp
   ${INCROOT}/MaximumVelocityComponent.hpp
   ${INCROOT}/PositionComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
-  ${INCROOT}/WeaponComponent.hpp
-  ${INCROOT}/GameTeamComponent.hpp)
+  ${INCROOT}/WeaponComponent.hpp)
 
 set(SRC
   "${SRC}"
