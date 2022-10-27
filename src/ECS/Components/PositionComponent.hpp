@@ -18,6 +18,13 @@
 struct Vector2i {
     int x;
     int y;
+
+    Vector2i& operator+=(const Vector2i &other)
+    {
+        x += other.x;
+        y += other.y;
+        return (*this);
+    }
 };
 
 /**
