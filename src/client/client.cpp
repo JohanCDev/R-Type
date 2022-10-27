@@ -146,10 +146,22 @@ void new_entity(World &world, Message<GameMessage> msg)
 
 void dead_entity(World &world, Message<GameMessage> msg)
 {
-    ClientIDComponent id_entity;
+    EntityIDComponent id_entity;
 
     msg >> id_entity;
-    world.getRegistry().kill_entity(world.getRegistry().entity_from_index(id_entity.id));
+
+    auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
+
+    size_t index = 0;
+
+    for (auto &entityId: entityIdCompo) {
+        if (entityId && entityId.has_value()) {
+            if (entityId->id == id_entity.id) {
+                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
+            }
+        }
+        index++;
+    }
 }
 
 void game_end(World &world, Message<GameMessage> msg)
