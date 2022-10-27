@@ -115,7 +115,7 @@ void NetworkServer::SendToClient(std::string message, std::size_t clientID)
 {
     try {
         send(message, clients.left.at(clientID));
-    } catch (std::out_of_range) {
+    } catch (std::out_of_range const &) {
     }
 }
 
@@ -123,7 +123,7 @@ void NetworkServer::SendToClient(const Message<GameMessage> &message, std::size_
 {
     try {
         send(message, clients.left.at(clientID));
-    } catch (std::out_of_range) {
+    } catch (std::out_of_range const &) {
     }
 }
 

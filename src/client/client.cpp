@@ -127,7 +127,7 @@ void new_entity(World &world, Message<GameMessage> msg)
     }
     if (object == GameObject::ENEMY) {
         new_entity_id = world.create_enemy(
-            GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.2f, world.getClock().getElapsedTime().asSeconds());
+            GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.2f,  world.getClock().getElapsedTime().asSeconds());
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -160,16 +160,24 @@ void game_end(World &world, Message<GameMessage> msg)
 void movement(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
-    ClientIDComponent moved_id;
+    EntityIDComponent moved_id;
     Vector2i velocity;
 
     msg >> velocity >> moved_id;
     auto &velocityCompo = r.get_components<VelocityComponent>();
+    auto &clientIdCompo = r.get_components<EntityIDComponent>();
 
-    if (velocityCompo[moved_id.id] && velocityCompo[moved_id.id].has_value()) {
-        std::cout << "Player[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
-        velocityCompo[moved_id.id]->speed.x = velocity.x;
-        velocityCompo[moved_id.id]->speed.y = velocity.y;
+    size_t index = 0;
+
+    for (auto &idCompo: clientIdCompo) {
+        if (idCompo && idCompo.has_value()) {
+            if (idCompo->id == moved_id.id) {
+                std::cout << "Player[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
+                velocityCompo[index]->speed.x = velocity.x;
+                velocityCompo[index]->speed.y = velocity.y;
+            }
+        }
+        index++;
     }
 }
 
@@ -182,9 +190,18 @@ void player_hit(World &world, Message<GameMessage> msg)
     msg >> damage >> hitted_id;
 
     auto &health = r.get_components<HealthComponent>();
+    auto &clientIdCompo = r.get_components<ClientIDComponent>();
 
-    if (health[hitted_id.id] && health[hitted_id.id].has_value())
-        health[hitted_id.id]->hp -= damage;
+    size_t index = 0;
+
+    for (auto &idCompo: clientIdCompo) {
+        if (idCompo && idCompo.has_value()) {
+            if (idCompo->id == hitted_id.id) {
+                health[index]->hp -= damage;
+            }
+        }
+        index++;
+    }
 }
 
 void ok_packet(World &world, Message<GameMessage> msg)
