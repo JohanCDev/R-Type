@@ -39,7 +39,6 @@ int shooting_system(World &world)
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
-    auto &healths = world.getRegistry().get_components<HealthComponent>();
 
     for (size_t i = 0; i < weapons.size(); ++i) {
         auto &weapon = weapons[i];

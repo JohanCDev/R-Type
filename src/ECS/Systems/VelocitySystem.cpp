@@ -19,7 +19,6 @@ int velocity_system(World &world)
     registry &r = world.getRegistry();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
-    sparse_array<ImmobileComponent> &immobile = r.get_components<ImmobileComponent>();
 
     std::size_t index = 0;
 

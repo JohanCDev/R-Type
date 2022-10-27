@@ -155,6 +155,7 @@ void dead_entity(World &world, Message<GameMessage> msg)
 void game_end(World &world, Message<GameMessage> msg)
 {
     world.getWindow().close();
+    (void)msg;
 }
 
 void movement(World &world, Message<GameMessage> msg)
@@ -206,6 +207,8 @@ void player_hit(World &world, Message<GameMessage> msg)
 
 void ok_packet(World &world, Message<GameMessage> msg)
 {
+    (void)world;
+    (void)msg;
     // ok j'en fais quoi ???
 }
 
