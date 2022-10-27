@@ -67,7 +67,7 @@ class World {
          * @param refresh_time 
          * @param elapsed_time 
          */
-        size_t create_laser(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+        size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
         /**
          * @brief Create a player entity

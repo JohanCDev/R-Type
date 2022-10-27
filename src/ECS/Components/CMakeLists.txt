@@ -19,7 +19,7 @@ list(
   ${INCROOT}/PositionComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
   ${INCROOT}/WeaponComponent.hpp
-  ${INCROOT}/ClientIDComponent.hpp)
+  ${INCROOT}/GameTeamComponent.hpp)
 
 set(SRC
   "${SRC}"

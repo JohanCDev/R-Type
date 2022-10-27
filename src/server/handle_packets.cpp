@@ -121,7 +121,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
     for (auto &i : clients) {
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
-                entity_id = world.create_laser(GameObject::LASER,
+                entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
                     Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0}, 0.2, 0);
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;

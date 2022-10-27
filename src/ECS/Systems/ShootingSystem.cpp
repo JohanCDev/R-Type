@@ -71,22 +71,6 @@ int shooting_system(World &world)
                     }
                 }
             }
-
-            for (size_t j = 0; j < healths.size(); ++j) {
-                if (j != i) {
-                    auto &otherDrawable = drawables[j];
-                    auto &otherPosition = positions[j];
-
-                    if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
-                        world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
-                        healths[j]->hp -= 1;
-                        if (healths[j]->hp == 0) {
-                            world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
-                        }
-                        break;
-                    }
-                }
-            }
         }
     }
     return (0);

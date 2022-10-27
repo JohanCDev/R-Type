@@ -82,7 +82,7 @@ void World::setDirection(Vector2i direction)
     this->_player_direction = direction;
 }
 
-size_t World::create_laser(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -92,6 +92,7 @@ size_t World::create_laser(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+    this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(team));
     return (ent.id);
 }
 
@@ -106,6 +107,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(3)));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time));
+    this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::PLAYER));
     this->_r.add_component<ControllableComponent>(ent, ControllableComponent(KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
 
     return (ent.id);
@@ -124,6 +126,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+    this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
 
     return (ent.id);
 }

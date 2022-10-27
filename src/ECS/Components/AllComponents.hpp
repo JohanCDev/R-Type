@@ -25,4 +25,5 @@
 #include "PositionComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
-#include "ClientIDComponent.hpp"
+#include "EntityIDComponent.hpp"
+#include "GameTeamComponent.hpp"

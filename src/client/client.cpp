@@ -135,7 +135,7 @@ void new_entity(World &world, Message<GameMessage> msg)
     }
     if (object == GameObject::LASER) {
         new_entity_id = world.create_laser(
-            GameObject::LASER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+            GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
