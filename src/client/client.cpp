@@ -127,7 +127,7 @@ void new_entity(World &world, Message<GameMessage> msg)
     }
     if (object == GameObject::ENEMY) {
         new_entity_id = world.create_enemy(
-            GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.2f,  world.getClock().getElapsedTime().asSeconds());
+            GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.04f,  world.getClock().getElapsedTime().asSeconds());
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
