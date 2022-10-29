@@ -186,7 +186,7 @@ void movement(World &world, Message<GameMessage> msg)
     for (auto &idCompo: clientIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
-                std::cout << "Player[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
+                std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
             }
