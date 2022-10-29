@@ -118,7 +118,7 @@ void new_entity(World &world, Message<GameMessage> msg)
     msg >> pos >> srv_entity_id >> object;
     PositionComponent position(pos);
     if (object == GameObject::PLAYER) {
-        new_entity_id = world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.2f);
+        new_entity_id = world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.04f);
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")"
@@ -147,6 +147,7 @@ void new_entity(World &world, Message<GameMessage> msg)
 void dead_entity(World &world, Message<GameMessage> msg)
 {
     EntityIDComponent id_entity;
+    id_entity.id = 0;
 
     msg >> id_entity;
 

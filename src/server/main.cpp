@@ -37,7 +37,8 @@ int main()
     srand(time(NULL));
 
     world.register_all_component();
-    world.register_all_system();
+    //world.register_all_system();
+    world.register_all_drawable_object();
     bool a = false;
 
     while (1) {
@@ -52,8 +53,8 @@ int main()
                 a = true;
             }
         }
-        for (auto &system: world.getRegistry().get_systems())
-            system(world);
+        velocity_system(world);
+        shooting_system(world, server);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
