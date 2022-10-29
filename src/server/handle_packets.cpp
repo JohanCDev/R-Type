@@ -131,7 +131,7 @@ void create_enemy(World &world, NetworkServer &server)
     float random_y = rand() % 500 + 50;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_enemy(GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 0.2,
+    entity_id = world.create_enemy(GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 0.04f,
         world.getClock().getElapsedTime().asSeconds());
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
