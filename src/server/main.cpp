@@ -38,16 +38,18 @@ int main()
 
     world.register_all_component();
     world.register_all_system();
+    bool a = false;
 
     while (1) {
         while (server.HasMessages()) {
             ClientMessage msg = server.PopMessage();
             mapFunc[msg.first.header.id](world, msg, server);
         };
-        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 4000) {
-            if (rand() % 10 == 2) {
+        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 5000) {
+            if (a == false) {
                 create_enemy(world, server);
                 rand_enemies_clock.restart();
+                a = true;
             }
         }
         for (auto &system: world.getRegistry().get_systems())
