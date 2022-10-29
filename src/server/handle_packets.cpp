@@ -21,25 +21,6 @@
 #include "../ECS/World.hpp"
 #include "game.hpp"
 
-#include <ctime>
-
-#define DEFAULT_PLAYER_POS_X 50
-#define DEFAULT_PLAYER_POS_Y 200
-#define DEFAULT_PLAYER_SPD   4
-#define DEFAULT_PLAYER_HP    100
-#define DEFAULT_PLAYER_SCALE 2.0
-#define DEFAULT_LASER_X_SPD  5
-#define DEFAULT_LASER_Y_SPD  0
-#define DEFAULT_ENEMY_HP     100
-#define DEFAULT_ENEMY_ATK    40
-#define DEFAULT_ENEMY_SPD    6
-#define DEFAULT_ENEMY_SCALE  1.0
-#define DEFAULT_KEY_TOP      KeyboardInput::Z
-#define DEFAULT_KEY_RGT      KeyboardInput::D
-#define DEFAULT_KEY_BOT      KeyboardInput::S
-#define DEFAULT_KEY_LFT      KeyboardInput::Q
-#define DEFAULT_KEY_SHOOT    MouseInput::Left_click
-
 void player_joined(World &world, ClientMessage msg, NetworkServer &server)
 {
     size_t entity_id = 0;
@@ -122,7 +103,8 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
-                    Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0}, 0.2, 0);
+                    Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0}, 0.2,
+                    0);
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
@@ -147,8 +129,8 @@ void create_enemy(World &world, NetworkServer &server)
     float random_y = rand() % 500 + 50;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_enemy(
-        GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{DEFAULT_ENEMY_SPD, 0}, 0.2, 0);
+    entity_id =
+        world.create_enemy(GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{DEFAULT_ENEMY_SPD, 0}, 0.2, 0);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
