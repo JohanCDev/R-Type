@@ -65,12 +65,10 @@ int shooting_system(World &world, NetworkServer &server)
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
-                            std::cout << entityId[i]->id << std::endl;
                             sending_msg << entityId[i]->id;
                             server.SendToAll(sending_msg);
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[j]->id;
-                            std::cout << entityId[j]->id << std::endl;
                             server.SendToAll(sending_msg);
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
