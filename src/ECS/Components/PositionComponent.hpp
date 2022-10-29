@@ -12,29 +12,37 @@
 #pragma once
 
 /**
- * @brief Define a vector of float
- * 
+ * @brief Define a vector of int
+ *
  */
 struct Vector2i {
     int x;
     int y;
 
-    Vector2i(int x_value, int y_value) : x(x_value), y(y_value)
+    Vector2i &operator+=(const Vector2i &other)
     {
+        x += other.x;
+        y += other.y;
+        return (*this);
+    }
+
+    bool operator!=(const Vector2i &other)
+    {
+        return (x != other.x || y != other.y);
     }
 };
 
 /**
  * @brief Contains the entity position
- * 
+ *
  */
 struct PositionComponent {
-    Vector2i pos;
+    Vector2f pos;
 
     /**
      * @brief Construct a new Position Component object
-     * 
-     * @param pos 
+     *
+     * @param pos
      */
-    PositionComponent(Vector2i pos_vec) : pos(pos_vec) {};
+    PositionComponent(Vector2f pos_vec) : pos(pos_vec){};
 };

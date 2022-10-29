@@ -19,7 +19,6 @@ int velocity_system(World &world)
     registry &r = world.getRegistry();
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
-    sparse_array<ImmobileComponent> &immobile = r.get_components<ImmobileComponent>();
 
     std::size_t index = 0;
 
@@ -27,15 +26,8 @@ int velocity_system(World &world)
         if (i && i.has_value()) {
             sf::Time elapsedTime = world.getClock().getElapsedTime();
             if (elapsedTime.asSeconds() > i->seconds) {
-                if (index < immobile.size() && immobile[index].has_value()) {
-                    if (immobile[index]->axis.x == false)
-                        position[index]->pos.x += i->speed.x;
-                    if (immobile[index]->axis.y == false)
-                        position[index]->pos.y += i->speed.y;
-                } else {
-                    position[index]->pos.x += i->speed.x;
-                    position[index]->pos.y += i->speed.y;
-                }
+                position[index]->pos.x += i->speed.x;
+                position[index]->pos.y += i->speed.y;
                 i->seconds += i->coeff;
             }
         }

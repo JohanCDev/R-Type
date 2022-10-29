@@ -1,8 +1,8 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/server)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 
-list(APPEND SRC_SERVER ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp
-    ${INCROOT}/server.hpp)
+list(APPEND SRC_SERVER ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp ${SRCROOT}/handle_packets.cpp
+  ${INCROOT}/game.hpp ${INCROOT}/server.hpp ${SRCROOT}/ShootingSystem.cpp)
 
 set(SRC_SERVER
   "${SRC_SERVER}" "${SRC}")
