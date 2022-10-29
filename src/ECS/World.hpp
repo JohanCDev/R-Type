@@ -77,7 +77,7 @@ class World {
          * @param speed
          * @param refresh_time 
          */
-        size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
+        size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
         /**
          * @brief Create a enemy entity

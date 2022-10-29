@@ -99,7 +99,7 @@ size_t World::create_laser(
     return (ent.id);
 }
 
-size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time)
+size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -109,7 +109,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(true, true)));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time));
+    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::PLAYER));
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(

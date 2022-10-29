@@ -39,7 +39,6 @@ int main()
     world.register_all_component();
     //world.register_all_system();
     world.register_all_drawable_object();
-    bool a = false;
 
     while (1) {
         while (server.HasMessages()) {
@@ -47,11 +46,8 @@ int main()
             mapFunc[msg.first.header.id](world, msg, server);
         };
         if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 5000) {
-            if (a == false) {
-                create_enemy(world, server);
-                rand_enemies_clock.restart();
-                a = true;
-            }
+            create_enemy(world, server);
+             rand_enemies_clock.restart();
         }
         velocity_system(world);
         shooting_system(world, server);
