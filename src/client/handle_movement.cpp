@@ -21,7 +21,6 @@ static std::map<sf::Keyboard::Key, bool> key_pressed = {
 void handle_movement(World &world, NetworkClient &client, sf::Event event)
 {
     Message<GameMessage> moveMsg;
-    std::cout << world.getDirection().x << " " << world.getDirection().y << std::endl;
     moveMsg.header.id = GameMessage::C2S_MOVEMENT;
     Vector2i current_direction = world.getDirection();
     Vector2i new_direction = {0, 0};
