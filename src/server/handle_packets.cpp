@@ -90,11 +90,17 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
+static std::map<std::string, Vector2f> shootMap =
+{
+    {"assets/r-typesheet5.gif", Vector2f{50, 25}}
+};
+
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
     registry &r = world.getRegistry();
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
+    sparse_array<DrawableComponent> &draw = r.get_components<DrawableComponent>();
     std::size_t index = 0;
     Message<GameMessage> sending_msg;
     size_t entity_id = 0;
@@ -102,8 +108,9 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
     for (auto &i : clients) {
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
+                Vector2f shootPos = shootMap[draw[index]->path];
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
-                    Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0},
+                    Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y}, Vector2i{DEFAULT_LASER_SPD, 0},
                     0.04f, world.getClock().getElapsedTime().asSeconds());
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
@@ -112,7 +119,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
                 sending_msg << GameObject::LASER;
                 sending_msg << entity_id;
-                sending_msg << Vector2f{position[index]->pos.x + 50, position[index]->pos.y};
+                sending_msg << Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y};
                 server.SendToAll(sending_msg);
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entity_id;
