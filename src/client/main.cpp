@@ -49,17 +49,18 @@ int main(void)
     shootMsg.header.id = GameMessage::C2S_SHOOT;
     shootMsg << "Shoot";
 
+    sf::Event event;
+    Message<GameMessage> msg;
     client.send(hiMsg);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
-            Message<GameMessage> msg = client.PopMessage();
-
+            msg = client.PopMessage();
             client.processMessage(msg, world);
         }
-        sf::Event event;
         while (world.getWindow().pollEvent(event)) {
             handle_movement(world, client, event);
-            if (event.type == sf::Event::MouseButtonReleased && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
+            if (event.type == sf::Event::MouseButtonReleased
+                && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
                 client.send(shootMsg);
             }
             if (event.type == sf::Event::Closed)
@@ -70,7 +71,7 @@ int main(void)
         drawable_system(world);
         velocity_system(world);
         world.getWindow().display();
-
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     client.send(byeMsg);
     return 0;
