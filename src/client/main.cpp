@@ -26,6 +26,7 @@ int main(void)
 {
     unsigned short port;
 
+    std::cin >> port;
     NetworkClient client("localhost", "60000", port);
     World world(sf::VideoMode(800, 600), "My window");
 

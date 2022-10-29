@@ -9,10 +9,9 @@
  *
  */
 
-#include "../Components/AllComponents.hpp"
-#include "../Registry.hpp"
-#include "../ResourcesManager.hpp"
-#include "../World.hpp"
+#include "../ECS/Components/AllComponents.hpp"
+#include "../ECS/World.hpp"
+#include "../Common/Message/Message.hpp"
 
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
@@ -33,12 +32,14 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
     return (0);
 }
 
-int shooting_system(World &world)
+int shooting_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
+    auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
+    Message<GameMessage> sending_msg;
 
     for (size_t i = 0; i < weapons.size(); ++i) {
         auto &weapon = weapons[i];
@@ -63,6 +64,12 @@ int shooting_system(World &world)
                         auto &otherPosition = positions[j];
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                            sending_msg << entityId[i]->id;
+                            server.SendToAll(sending_msg);
+                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                            sending_msg << entityId[j]->id;
+                            server.SendToAll(sending_msg);
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                             break;

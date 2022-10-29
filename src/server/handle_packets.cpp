@@ -27,7 +27,7 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     Message<GameMessage> sending_msg;
 
     entity_id = world.create_player(
-        GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.2);
+        GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.04);
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
     world.getRegistry().add_component<EntityIDComponent>(
@@ -103,10 +103,12 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
-                    Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0}, 0.2,
-                    0);
+                    Vector2f{position[index]->pos.x + 50, position[index]->pos.y}, Vector2i{DEFAULT_LASER_SPD, 0},
+                    0.04f, world.getClock().getElapsedTime().asSeconds());
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
+                world.getRegistry().add_component<EntityIDComponent>(
+                    world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
                 sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
                 sending_msg << GameObject::LASER;
                 sending_msg << entity_id;
@@ -129,8 +131,8 @@ void create_enemy(World &world, NetworkServer &server)
     float random_y = rand() % 500 + 50;
     Message<GameMessage> sending_msg;
 
-    entity_id =
-        world.create_enemy(GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{DEFAULT_ENEMY_SPD, 0}, 0.2, 0);
+    entity_id = world.create_enemy(GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 0.2,
+        world.getClock().getElapsedTime().asSeconds());
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;

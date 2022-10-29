@@ -43,8 +43,8 @@ void World::register_all_component()
 
 void World::register_all_system()
 {
-    this->_r.register_systems(&velocity_system);
-    this->_r.register_systems(&shooting_system);
+    //this->_r.register_systems(&velocity_system);
+    //this->_r.register_systems(&shooting_system);
 }
 
 void World::register_all_assets()
@@ -107,8 +107,8 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(true, true)));
-    this->_r.add_component<CollideComponent>(ent, CollideComponent());
-    this->_r.add_component<HealthComponent>(ent, (HealthComponent(3)));
+    this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::PLAYER));
     this->_r.add_component<ControllableComponent>(ent,
@@ -129,7 +129,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
     this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i{1, 1}, 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
-    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(3)));
     this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
 
