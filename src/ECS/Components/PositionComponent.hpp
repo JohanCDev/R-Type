@@ -12,18 +12,23 @@
 #pragma once
 
 /**
- * @brief Define a vector of float
+ * @brief Define a vector of int
  *
  */
 struct Vector2i {
     int x;
     int y;
 
-    Vector2i& operator+=(const Vector2i &other)
+    Vector2i &operator+=(const Vector2i &other)
     {
         x += other.x;
         y += other.y;
         return (*this);
+    }
+
+    bool operator!=(const Vector2i &other)
+    {
+        return (x != other.x || y != other.y);
     }
 };
 
@@ -39,6 +44,5 @@ struct PositionComponent {
      *
      * @param pos
      */
-    PositionComponent(Vector2f pos_vec) : pos(pos_vec) {};
-
+    PositionComponent(Vector2f pos_vec) : pos(pos_vec){};
 };
