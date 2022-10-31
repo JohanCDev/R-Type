@@ -39,6 +39,7 @@ int shooting_system(World &world, NetworkServer &server)
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
+    auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
 
     for (size_t i = 0; i < weapons.size(); ++i) {
@@ -58,7 +59,7 @@ int shooting_system(World &world, NetworkServer &server)
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
-                if (j != i) {
+                if (j != i && teams[i]->team != teams[j]->team) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
