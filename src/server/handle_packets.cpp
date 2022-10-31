@@ -90,7 +90,10 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
-static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 25}}};
+static std::map<std::string, Vector2f> shootMap =
+{
+    {"assets/r-typesheet5.gif", Vector2f{50, 10}}
+};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
