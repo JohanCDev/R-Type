@@ -36,7 +36,6 @@ int main()
     sf::Clock rand_enemies_clock;
     srand(time(NULL));
 
-    world.register_all_component();
     //world.register_all_system();
     world.register_all_drawable_object();
 

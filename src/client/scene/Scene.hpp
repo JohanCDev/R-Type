@@ -1,27 +1,25 @@
 /**
  * @file Scene.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-10-31
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #pragma once
 
 #include "../../ECS/World.hpp"
 
-enum class SceneScreen : uint32_t {MENU = 0, GAME};
+enum class SceneScreen : uint32_t { MENU = 0, GAME };
 
 class IScene {
+  public:
+    virtual ~IScene() = default;
 
-    public:
+    virtual SceneScreen run(sf::RenderWindow &window) = 0;
 
-        virtual ~IScene() = default;
-
-        virtual void run(World &world) = 0;
-
-    private:
+  private:
 };

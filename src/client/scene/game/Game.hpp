@@ -1,24 +1,30 @@
 /**
  * @file Game.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-10-31
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #pragma once
 
 #include "../Scene.hpp"
+#include "../../client.hpp"
+
+void handle_movement(World &world, NetworkClient &client, sf::Event event);
 
 class GameScene : public IScene {
+  public:
+    GameScene();
 
-    public:
+    SceneScreen run(sf::RenderWindow &window) override;
 
-        void run(World &world) override;
-
-    private:
-
+  private:
+    Message<GameMessage> msg;
+    NetworkClient _client;
+    World _world;
+    bool _connected;
 };

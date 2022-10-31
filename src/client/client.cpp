@@ -165,10 +165,9 @@ void dead_entity(World &world, Message<GameMessage> msg)
     }
 }
 
-void game_end(World &world, Message<GameMessage> msg)
+void game_end(sf::RenderWindow &window)
 {
-    world.getWindow().close();
-    (void)msg;
+    window.close();
 }
 
 void movement(World &world, Message<GameMessage> msg)
@@ -228,13 +227,15 @@ void ok_packet(World &world, Message<GameMessage> msg)
 static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc = {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
-    {GameMessage::S2C_GAME_END, game_end},
     {GameMessage::S2C_MOVEMENT, movement},
     {GameMessage::S2C_PLAYER_HIT, player_hit},
     {GameMessage::S2C_OK, ok_packet},
 };
 
-void NetworkClient::processMessage(Message<GameMessage> &msg, World &world)
+void NetworkClient::processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window)
 {
     (mapFunc[msg.header.id])(world, msg);
+    if (msg.header.id == GameMessage::S2C_GAME_END) {
+        game_end(window);
+    }
 }

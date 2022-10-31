@@ -28,23 +28,21 @@ class World {
     /**
      * @brief Construct a new World object
      *
-     * @param mode
-     * @param name
+     * @param client
      */
-    World(sf::VideoMode mode, std::string name);
-    World(void);
+    World(bool client);
+
+    /**
+     * @brief Construct a new World object
+     *
+     */
+    World();
 
     /**
      * @brief Destroy the World object
      *
      */
     ~World();
-
-    /**
-     * @brief Register all existing components
-     *
-     */
-    void register_all_component();
 
     /**
      * @brief register all existing systems
@@ -95,7 +93,6 @@ class World {
 
     registry &getRegistry();
     ResourcesManager &getResourcesManager();
-    sf::RenderWindow &getWindow();
     sf::Clock &getClock();
     Vector2i &getDirection();
     void setDirection(Vector2i direction);
@@ -103,7 +100,6 @@ class World {
   private:
     registry _r;
     ResourcesManager _manager;
-    sf::RenderWindow _window;
     sf::Clock _clock;
     std::map<GameObject, DrawableComponent> _drawMap;
     Vector2i _player_direction;

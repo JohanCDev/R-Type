@@ -14,7 +14,7 @@
 #include "../ResourcesManager.hpp"
 #include "../World.hpp"
 
-int drawable_system(World &world)
+int drawable_system(World &world, sf::RenderWindow &window)
 {
     sparse_array<DrawableComponent> &drawable = world.getRegistry().get_components<DrawableComponent>();
     sparse_array<PositionComponent> &position = world.getRegistry().get_components<PositionComponent>();
@@ -35,7 +35,7 @@ int drawable_system(World &world)
                 sprite.setTexture(texture);
                 sprite.setPosition(vec);
                 sprite.setScale(i->scale.x, i->scale.y);
-                world.getWindow().draw(sprite);
+                window.draw(sprite);
             }
         }
         index++;

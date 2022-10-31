@@ -33,7 +33,7 @@ class NetworkClient {
     void send(const Message<GameMessage> &message);
     bool HasMessages();
     Message<GameMessage> PopMessage();
-    void processMessage(Message<GameMessage> &msg, World &world);
+    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window);
 
   private:
     boost::asio::io_service io_service;
