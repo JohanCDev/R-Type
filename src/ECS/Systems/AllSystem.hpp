@@ -17,5 +17,6 @@
 int drawable_system(World &world, sf::RenderWindow &window);
 int controllable_system(World &world, sf::Event event);
 int shooting_system(World &world, NetworkServer &server);
+int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world);

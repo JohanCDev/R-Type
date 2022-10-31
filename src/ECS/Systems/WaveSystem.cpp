@@ -20,7 +20,7 @@ int wave_system(World &world)
     if (world.getClock().getElapsedTime().asSeconds() > (elapsed_time + 3.0)) {
         elapsed_time += 3.0;
         random_y = static_cast<float>(std::rand() % 800);
-        world.create_enemy(GameObject::ENEMY, Vector2f{900.0f, random_y}, Vector2i{-2, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+        world.create_enemy(GameObject::ENEMY_FOCUS, Vector2f{900.0f, random_y}, Vector2i{-2, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
     }
     return (0);
 }

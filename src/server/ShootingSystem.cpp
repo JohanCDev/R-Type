@@ -9,9 +9,9 @@
  *
  */
 
+#include "../Common/Message/Message.hpp"
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
-#include "../Common/Message/Message.hpp"
 
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
@@ -65,6 +65,8 @@ int shooting_system(World &world, NetworkServer &server)
                         auto &otherPosition = positions[j];
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                            std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id << "]."
+                                      << std::endl;
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;
                             server.SendToAll(sending_msg);
