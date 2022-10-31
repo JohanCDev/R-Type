@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include "../ECS/World.hpp"
@@ -75,3 +76,20 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
  * @param server The server
  */
 void create_enemy(World &world, NetworkServer &server);
+
+/**
+ * @brief
+ *
+ * @param in_wave Boolean to know if the wave is in progress
+ * @param nb_wave The number of the current wave
+ * @param base_difficulty The difficulty of the wave
+ * @param remaining_difficulty The remaining difficulty of the wave
+ * @param clock The clock of the wave
+ */
+typedef struct wave_s {
+    bool in_wave;
+    size_t nb_wave;
+    size_t base_difficulty;
+    size_t remaining_difficulty;
+    sf::Clock clock;
+} waves_t;
