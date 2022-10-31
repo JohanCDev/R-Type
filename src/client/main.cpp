@@ -28,7 +28,7 @@ int main(void)
 
     std::cin >> port;
     NetworkClient client("localhost", "60000", port);
-    World world(sf::VideoMode(800, 600), "My window");
+    World world(sf::VideoMode(1920, 1080), "My window");
 
     std::srand(std::time(NULL));
 
@@ -36,8 +36,7 @@ int main(void)
     world.register_all_system();
     world.register_all_assets();
     world.register_all_drawable_object();
-    world.getRegistry().register_systems(&drawable_system);
-
+    
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
     hiMsg << "Lezgongue";

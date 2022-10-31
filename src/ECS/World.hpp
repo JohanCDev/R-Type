@@ -92,6 +92,8 @@ class World {
 
         void register_all_drawable_object();
 
+        void register_all_drawable_object();
+
         registry &getRegistry();
         ResourcesManager &getResourcesManager();
         sf::RenderWindow &getWindow();
