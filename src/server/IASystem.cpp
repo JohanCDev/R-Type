@@ -89,7 +89,7 @@ int ia_system(World &world, NetworkServer &server)
 
     for (size_t i = 0; i < teams.size(); ++i) {
         if (teams[i] && teams[i]->team == GameTeam::ENEMY) {
-                mapFunc[GameObject::ENEMY_ODD](world, server, i);
+                mapFunc[GameObject::ENEMY_FOCUS](world, server, i);
         }
     }
     return 0;
