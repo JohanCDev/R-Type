@@ -16,18 +16,14 @@
 #include <thread>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
-#include "../ECS/World.hpp"
 #include "../ECS/Systems/AllSystem.hpp"
+#include "../ECS/World.hpp"
 #include "game.hpp"
 #include "server.hpp"
 
-static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkServer &)>> mapFunc =
-{
-    {GameMessage::C2S_JOIN, player_joined},
-    {GameMessage::C2S_LEAVE, player_left},
-    {GameMessage::C2S_MOVEMENT, player_moved},
-    {GameMessage::C2S_SHOOT, player_shot}
-};
+static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkServer &)>> mapFunc = {
+    {GameMessage::C2S_JOIN, player_joined}, {GameMessage::C2S_LEAVE, player_left},
+    {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot}};
 
 int main()
 {
@@ -37,7 +33,7 @@ int main()
     srand(time(NULL));
 
     world.register_all_component();
-    //world.register_all_system();
+    // world.register_all_system();
     world.register_all_drawable_object();
 
     while (1) {
@@ -45,12 +41,13 @@ int main()
             ClientMessage msg = server.PopMessage();
             mapFunc[msg.first.header.id](world, msg, server);
         };
-        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 5000) {
+        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 2000) {
             create_enemy(world, server);
-             rand_enemies_clock.restart();
+            rand_enemies_clock.restart();
         }
         velocity_system(world);
         shooting_system(world, server);
+        ia_system(world, server);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
