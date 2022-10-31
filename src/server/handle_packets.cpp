@@ -26,8 +26,8 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     size_t entity_id = 0;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_player(
-        GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+    entity_id = world.create_player(GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y},
+        Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
     world.getRegistry().add_component<EntityIDComponent>(
@@ -90,10 +90,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
-static std::map<std::string, Vector2f> shootMap =
-{
-    {"assets/r-typesheet5.gif", Vector2f{50, 25}}
-};
+static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 25}}};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
@@ -110,8 +107,8 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
             if (i.value().id == msg.second) {
                 Vector2f shootPos = shootMap[draw[index]->path];
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
-                    Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y}, Vector2i{DEFAULT_LASER_SPD, 0},
-                    0.04f, world.getClock().getElapsedTime().asSeconds());
+                    Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y},
+                    Vector2i{DEFAULT_LASER_SPD, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
                 world.getRegistry().add_component<EntityIDComponent>(
@@ -136,15 +133,17 @@ void create_enemy(World &world, NetworkServer &server)
 {
     size_t entity_id = 0;
     float random_y = rand() % 500 + 50;
+    size_t random_enemy = rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + 2;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_enemy(GameObject::ENEMY, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 0.04f,
-        world.getClock().getElapsedTime().asSeconds());
+
+    entity_id = world.create_enemy((GameObject)random_enemy, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0},
+        0.04f, world.getClock().getElapsedTime().asSeconds());
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::ENEMY;
+    sending_msg << GameObject::ENEMY_FOCUS;
     sending_msg << entity_id;
     sending_msg << Vector2f{800.0f, random_y};
     server.SendToAll(sending_msg);
