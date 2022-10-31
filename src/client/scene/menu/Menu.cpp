@@ -16,7 +16,7 @@ MenuScene::MenuScene(): _world(true)
     _world.create_player(GameObject::PLAYER, Vector2f{0, 0}, Vector2i{1, 1}, 0.2, 0);
 }
 
-SceneScreen MenuScene::run(sf::RenderWindow &window)
+SceneScreen MenuScene::run(NetworkClient &client, sf::RenderWindow &window)
 {
     sf::Event event;
 

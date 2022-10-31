@@ -25,10 +25,6 @@
 
 int main(void)
 {
-    //unsigned short port;
-//
-    //std::cin >> port;
-    //NetworkClient client("localhost", "60000", port);
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window");
 
     std::srand(std::time(NULL));
@@ -40,13 +36,11 @@ int main(void)
     scenes.push_back(game);
     SceneScreen actual_screen = SceneScreen::MENU;
 
-    Message<GameMessage> shootMsg;
-    shootMsg.header.id = GameMessage::C2S_SHOOT;
-    shootMsg << "Shoot";
+    NetworkClient client("localhost", "60000", 1432);
 
     while (window.isOpen()) {
         auto &scene = scenes[(int)actual_screen].get();
-        actual_screen = scene.run(window);
+        actual_screen = scene.run(client, window);
     }
     return 0;
 }

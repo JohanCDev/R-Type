@@ -12,6 +12,7 @@
 #pragma once
 
 #include "../../ECS/World.hpp"
+#include "../client.hpp"
 
 enum class SceneScreen : uint32_t { MENU = 0, GAME };
 
@@ -19,7 +20,7 @@ class IScene {
   public:
     virtual ~IScene() = default;
 
-    virtual SceneScreen run(sf::RenderWindow &window) = 0;
+    virtual SceneScreen run(NetworkClient &client, sf::RenderWindow &window) = 0;
 
   private:
 };

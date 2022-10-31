@@ -16,7 +16,7 @@
 class MenuScene : public IScene {
   public:
     MenuScene();
-    SceneScreen run(sf::RenderWindow &window) override;
+    SceneScreen run(NetworkClient &client, sf::RenderWindow &window) override;
 
   private:
     World _world;

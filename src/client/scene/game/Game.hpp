@@ -12,7 +12,6 @@
 #pragma once
 
 #include "../Scene.hpp"
-#include "../../client.hpp"
 
 void handle_movement(World &world, NetworkClient &client, sf::Event event);
 
@@ -20,11 +19,10 @@ class GameScene : public IScene {
   public:
     GameScene();
 
-    SceneScreen run(sf::RenderWindow &window) override;
+    SceneScreen run(NetworkClient &client, sf::RenderWindow &window) override;
 
   private:
     Message<GameMessage> msg;
-    NetworkClient _client;
     World _world;
     bool _connected;
 };

@@ -11,11 +11,11 @@
 
 #include "Game.hpp"
 
-GameScene::GameScene() : _client("localhost", "60000", 1432), _world(true), _connected(false)
+GameScene::GameScene() : _world(true), _connected(false)
 {
 }
 
-SceneScreen GameScene::run(sf::RenderWindow &window)
+SceneScreen GameScene::run(NetworkClient &client, sf::RenderWindow &window)
 {
     sf::Event event;
     Message<GameMessage> byeMsg;
@@ -27,21 +27,21 @@ SceneScreen GameScene::run(sf::RenderWindow &window)
     hiMsg << "Lezgongue";
 
     if (_connected == false) {
-        this->_client.send(hiMsg);
+        client.send(hiMsg);
         _connected = true;
     }
 
     while (window.pollEvent(event)) {
-        handle_movement(_world, _client, event);
+        handle_movement(_world, client, event);
         if (event.type == sf::Event::Closed) {
             window.close();
-            this->_client.send(byeMsg);
+            client.send(byeMsg);
         }
     }
 
-    while (this->_client.HasMessages()) {
-        this->msg = this->_client.PopMessage();
-        this->_client.processMessage(msg, _world, window);
+    while (client.HasMessages()) {
+        this->msg = client.PopMessage();
+        client.processMessage(msg, _world, window);
     }
 
     window.clear(sf::Color::Black);
