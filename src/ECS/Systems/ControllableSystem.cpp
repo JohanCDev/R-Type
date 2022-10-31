@@ -16,7 +16,6 @@
 #include "../World.hpp"
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
-<<<<<<< Updated upstream
 
 Vector2f getShootPosition(World &world, std::optional<PositionComponent> position, std::optional<DrawableComponent> drawable)
 {
@@ -28,8 +27,6 @@ Vector2f getShootPosition(World &world, std::optional<PositionComponent> positio
     shoot_pos.y = position->pos.y + ((texture.getSize().y * drawable->scale.y) / 2.0f);
     return (shoot_pos);
 }
-=======
->>>>>>> Stashed changes
 
 int controllable_system(World &world, sf::Event event)
 {
@@ -62,20 +59,9 @@ int controllable_system(World &world, sf::Event event)
                 Vector2f shoot_pos = getShootPosition(world, position[index], drawable[index]);
                 if (!(drawable[index]->rect.x == 0 && drawable[index]->rect.y == 0 && drawable[index]->rect.x_size == 0
                         && drawable[index]->rect.y_size == 0)) {
-<<<<<<< Updated upstream
                     world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
                 } else {
                     world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
-=======
-                    world.create_laser(GameObject::LASER, position[index]->x + (drawable[index]->rect.x_size * drawable[index]->x_scale) + 1,
-                        position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
-                        0.04, world.getClock().getElapsedTime().asSeconds());
-                } else {
-                    world.create_laser(GameObject::LASER, position[index]->x
-                            + (world.getResourcesManager().get_texture(drawable[index]->path).getSize().x * drawable[index]->x_scale) + 1,
-                        position[index]->y + ((drawable[index]->rect.y_size * drawable[index]->y_scale) / 2), 15, 0,
-                        0.04, world.getClock().getElapsedTime().asSeconds());
->>>>>>> Stashed changes
                 }
             }
         }
