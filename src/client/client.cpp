@@ -118,24 +118,41 @@ void new_entity(World &world, Message<GameMessage> msg)
     msg >> pos >> srv_entity_id >> object;
     PositionComponent position(pos);
     if (object == GameObject::PLAYER) {
-        new_entity_id = world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+        new_entity_id = world.create_player(
+            GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")"
                   << std::endl;
         return;
     }
-    if (object == GameObject::ENEMY) {
-        new_entity_id = world.create_enemy(
-            GameObject::ENEMY, position.pos, Vector2i{0, 0}, 0.04f,  world.getClock().getElapsedTime().asSeconds());
+    if (object == GameObject::ENEMY_FOCUS) {
+        new_entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, position.pos, Vector2i{0, 0}, 0.04f,
+            world.getClock().getElapsedTime().asSeconds());
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+        std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+        return;
+    }
+    if (object == GameObject::ENEMY_SNIPER) {
+        new_entity_id = world.create_enemy(GameObject::ENEMY_SNIPER, position.pos, Vector2i{0, 0}, 0.04f,
+            world.getClock().getElapsedTime().asSeconds());
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+        std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+        return;
+    }
+    if (object == GameObject::ENEMY_ODD) {
+        new_entity_id = world.create_enemy(GameObject::ENEMY_ODD, position.pos, Vector2i{0, 0}, 0.04f,
+            world.getClock().getElapsedTime().asSeconds());
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
         return;
     }
     if (object == GameObject::LASER) {
-        new_entity_id = world.create_laser(
-            GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+        new_entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f,
+            world.getClock().getElapsedTime().asSeconds());
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
         std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -155,7 +172,7 @@ void dead_entity(World &world, Message<GameMessage> msg)
 
     size_t index = 0;
 
-    for (auto &entityId: entityIdCompo) {
+    for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
@@ -183,10 +200,11 @@ void movement(World &world, Message<GameMessage> msg)
 
     size_t index = 0;
 
-    for (auto &idCompo: clientIdCompo) {
+    for (auto &idCompo : clientIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
-                std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}" << std::endl;
+                std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
+                          << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
             }
@@ -208,7 +226,7 @@ void player_hit(World &world, Message<GameMessage> msg)
 
     size_t index = 0;
 
-    for (auto &idCompo: clientIdCompo) {
+    for (auto &idCompo : clientIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hitted_id.id) {
                 health[index]->hp -= damage;
