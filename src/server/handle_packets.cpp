@@ -131,27 +131,3 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
         index++;
     }
 }
-
-void create_enemy(World &world, NetworkServer &server)
-{
-    size_t entity_id = 0;
-    float random_y = rand() % 500 + 50;
-    size_t random_enemy = rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + 2;
-    Message<GameMessage> sending_msg;
-
-
-    entity_id = world.create_enemy((GameObject)random_enemy, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0},
-        0.04f, world.getClock().getElapsedTime().asSeconds());
-    world.getRegistry().add_component<EntityIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
-    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::ENEMY_FOCUS;
-    sending_msg << entity_id;
-    sending_msg << Vector2f{800.0f, random_y};
-    server.SendToAll(sending_msg);
-    sending_msg.header.id = GameMessage::S2C_MOVEMENT;
-    sending_msg << entity_id;
-    sending_msg << Vector2i{-DEFAULT_ENEMY_SPD, 0};
-    server.SendToAll(sending_msg);
-}
