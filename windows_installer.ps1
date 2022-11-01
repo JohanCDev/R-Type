@@ -13,6 +13,6 @@ Set-Location build
 Write-Host "BUILDING PROJECT" -ForegroundColor Green
 cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
 
-cmake --build . -j 3
+cpack -G WIX
 
 Set-Location ..
