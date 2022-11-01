@@ -12,9 +12,11 @@
 #pragma once
 
 #include "../World.hpp"
+#include "../../server/server.hpp"
 
 int drawable_system(World &world);
 int controllable_system(World &world, sf::Event event);
-int shooting_system(World &world);
+int shooting_system(World &world, NetworkServer &server);
+int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world);

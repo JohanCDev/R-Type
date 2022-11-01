@@ -11,6 +11,8 @@
 
 #pragma once
 
+#define BOOST_BIND_GLOBAL_PLACEHOLDERS
+
 #include <array>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>

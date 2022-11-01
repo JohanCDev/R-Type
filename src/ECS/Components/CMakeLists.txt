@@ -8,8 +8,11 @@ list(
   ${INCROOT}/AccelerationComponent.hpp
   ${INCROOT}/AnimationComponent.hpp
   ${INCROOT}/CollideComponent.hpp
+  ${INCROOT}/ClientIDComponent.hpp
   ${INCROOT}/ControllableComponent.hpp
   ${INCROOT}/DestroyableComponent.hpp
+  ${INCROOT}/EntityIDComponent.hpp
+  ${INCROOT}/GameTeamComponent.hpp
   ${INCROOT}/DrawableComponent.hpp
   ${INCROOT}/HealthComponent.hpp
   ${INCROOT}/ImmobileComponent.hpp
@@ -19,9 +22,9 @@ list(
   ${INCROOT}/WeaponComponent.hpp)
 
 set(SRC
-    "${SRC}"
-    PARENT_SCOPE)
+  "${SRC}"
+  PARENT_SCOPE)
 
 set(INCDIRS
-    ${INCDIRS} ${INCROOT}
-    PARENT_SCOPE)
+  ${INCDIRS} ${INCROOT}
+  PARENT_SCOPE)

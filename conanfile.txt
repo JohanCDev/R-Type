@@ -2,6 +2,7 @@
 cmake
 
 [requires]
+zlib/1.2.13
 sfml/2.5.1
 boost/1.80.0
 

@@ -17,6 +17,7 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <memory>
+#include "../ECS/World.hpp"
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include "../Common/locked_queue.hpp"
@@ -32,6 +33,7 @@ class NetworkClient {
     void send(const Message<GameMessage> &message);
     bool HasMessages();
     Message<GameMessage> PopMessage();
+    void processMessage(Message<GameMessage> &msg, World &world);
 
   private:
     boost::asio::io_service io_service;
