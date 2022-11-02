@@ -136,6 +136,7 @@ void dead_entity(World &world, Message<GameMessage> msg)
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
+                break;
             }
         }
         index++;
@@ -165,6 +166,7 @@ void movement(World &world, Message<GameMessage> msg)
                           << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
+                break;
             }
         }
         index++;
@@ -185,6 +187,7 @@ void player_hit(World &world, Message<GameMessage> msg)
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hit_id.id) {
                 health[index]->hp -= damage;
+                break;
             }
         }
         index++;
