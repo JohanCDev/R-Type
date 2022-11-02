@@ -90,6 +90,32 @@ class World {
          */
         size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
+        /**
+         * @brief Create a skills entity
+         * 
+         * @param pos
+         * @param refresh_time 
+         * @param elapsed_time 
+         */
+        void create_skills(Vector2f pos);
+
+         /**
+         * @brief settings button
+         * 
+         * @param pos
+         * @param refresh_time 
+         * @param elapsed_time 
+         */
+        void create_settings(Vector2f pos);
+
+        /**
+         * @brief settings button
+         * 
+         * @param life percentage of life remaining
+         * @param pos
+         */
+        void create_life(int life, Vector2f pos);
+
         void register_all_drawable_object();
 
         registry &getRegistry();

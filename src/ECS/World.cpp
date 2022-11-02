@@ -52,6 +52,10 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/r-typesheet1.gif");
     this->_manager.register_texture("assets/r-typesheet5.gif");
     this->_manager.register_texture("assets/r-typesheet39.gif");
+    this->_manager.register_texture("assets/Stats/attack_speed.png");
+    this->_manager.register_texture("assets/Stats/boost_attack.png");
+    this->_manager.register_texture("assets/Stats/boost_hp.png");
+    this->_manager.register_texture("assets/Stats/speed.png");
 }
 
 sf::Clock &World::getClock()
@@ -134,6 +138,33 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
 
     return (ent.id);
+}
+
+void World::create_skills(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/Stats/boost_attack.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x / 2 - 100, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+
+    Entity ent2 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/Stats/attack_speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent2, PositionComponent({pos.x / 2 - 25, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
+
+    Entity ent3 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent3, DrawableComponent("assets/Stats/boost_hp.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent3, PositionComponent({pos.x / 2 + 25, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent3, (HealthComponent(1)));
+
+    Entity ent4 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent4, DrawableComponent("assets/Stats/speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent4, PositionComponent({pos.x / 2 + 100, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent4, (HealthComponent(1)));
 }
 
 void World::register_all_drawable_object()
