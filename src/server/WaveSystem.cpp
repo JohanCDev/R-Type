@@ -20,13 +20,13 @@ int create_boss(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
     size_t entity_id =
-        world.create_enemy(GameObject::ENEMY_FOCUS, Vector2f{800, 300}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 200, 0.04f);
+        world.create_enemy(GameObject::BOSS_1, Vector2f{800, 300}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 200, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
 
     std::cout << "Boss[" << entity_id << "]: created at Position{800, 300}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::ENEMY_FOCUS;
+    sending_msg << GameObject::BOSS_1;
     sending_msg << entity_id;
     sending_msg << Vector2f{800, 300};
     server.SendToAll(sending_msg);
