@@ -211,6 +211,7 @@ void wave_status(World &world, Message<GameMessage> msg)
 
     switch (status) {
         case WaveStatus::START: std::cout << "Wave " << nb_wave << " is starting" << std::endl; break;
+        case WaveStatus::BOSS_START: std::cout << "Boss wave " << nb_wave << " is starting" << std::endl; break;
         case WaveStatus::END: std::cout << "Wave " << nb_wave << " ended" << std::endl; break;
     }
 }
