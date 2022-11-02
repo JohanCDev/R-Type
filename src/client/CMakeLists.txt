@@ -6,6 +6,7 @@ list(APPEND SRC_CLIENT
   ${SRCROOT}/client.cpp ${INCROOT}/client.hpp
   ${SRCROOT}/scene/game/Game.cpp ${INCROOT}/scene/game/Game.hpp
   ${SRCROOT}/scene/menu/Menu.cpp ${INCROOT}/scene/menu/Menu.hpp
+  ${SRCROOT}/scene/lobby/Lobby.cpp ${INCROOT}/scene/lobby/Lobby.hpp
   ${INCROOT}/scene/Scene.hpp
   ${SRCROOT}/handle_movement.cpp)
 

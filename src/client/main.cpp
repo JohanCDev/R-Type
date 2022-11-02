@@ -20,6 +20,7 @@
 #include "scene/Scene.hpp"
 #include "scene/game/Game.hpp"
 #include "scene/menu/Menu.hpp"
+#include "scene/lobby/Lobby.hpp"
 
 #include "../ECS/World.hpp"
 
@@ -31,8 +32,10 @@ int main(void)
     
     MenuScene menu;
     GameScene game;
+    LobbyScene lobby;
     std::vector<std::reference_wrapper<IScene>> scenes;
     scenes.push_back(menu);
+    scenes.push_back(lobby);
     scenes.push_back(game);
     SceneScreen actual_screen = SceneScreen::MENU;
 

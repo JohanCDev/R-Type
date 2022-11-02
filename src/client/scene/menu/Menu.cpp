@@ -29,7 +29,7 @@ SceneScreen MenuScene::run(NetworkClient &client, sf::RenderWindow &window)
         if (event.type == sf::Event::Closed)
             window.close();
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
-            return (SceneScreen::GAME);
+            return (SceneScreen::LOBBY);
     }
 
     window.clear(sf::Color::Black);
