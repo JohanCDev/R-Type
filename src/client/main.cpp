@@ -39,7 +39,8 @@ int main(void)
     world.getRegistry().register_systems(&drawable_system);
 
     world.create_skills(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
-    // world.create_settings(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
+    world.create_settings(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
+    world.create_healthbar(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
 
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;

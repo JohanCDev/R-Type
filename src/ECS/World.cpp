@@ -56,6 +56,8 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/Stats/boost_attack.png");
     this->_manager.register_texture("assets/Stats/boost_hp.png");
     this->_manager.register_texture("assets/Stats/speed.png");
+    this->_manager.register_texture("assets/Button/home.png");
+    this->_manager.register_texture("assets/HUD/hud_Life.png");
 }
 
 sf::Clock &World::getClock()
@@ -165,6 +167,24 @@ void World::create_skills(Vector2f pos)
     this->_r.add_component<DrawableComponent>(ent4, DrawableComponent("assets/Stats/speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
     this->_r.add_component<PositionComponent>(ent4, PositionComponent({pos.x / 2 + 41, pos.y - 50}));
     this->_r.add_component<HealthComponent>(ent4, (HealthComponent(1)));
+}
+
+void World::create_settings(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/Button/home.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x - 32, 0}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+}
+
+void World::create_healthbar(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/HUD/hud_Life.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({0, 0}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
 }
 
 void World::register_all_drawable_object()

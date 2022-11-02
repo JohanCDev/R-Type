@@ -94,8 +94,6 @@ class World {
          * @brief Create a skills entity
          * 
          * @param pos
-         * @param refresh_time 
-         * @param elapsed_time 
          */
         void create_skills(Vector2f pos);
 
@@ -103,8 +101,6 @@ class World {
          * @brief settings button
          * 
          * @param pos
-         * @param refresh_time 
-         * @param elapsed_time 
          */
         void create_settings(Vector2f pos);
 
@@ -114,7 +110,7 @@ class World {
          * @param life percentage of life remaining
          * @param pos
          */
-        void create_life(int life, Vector2f pos);
+        void create_healthbar(Vector2f pos);
 
         void register_all_drawable_object();
 
