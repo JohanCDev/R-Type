@@ -89,6 +89,31 @@ class World {
      */
     size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
 
+    /**
+     * @brief Create a drawable object
+     * 
+     * @param asset_path
+     * @param rect
+     * @param scale
+     * @param pos
+     * @param speed
+     * @param refresh_time
+     * @param elapsed_time
+     * 
+     */
+    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector2f scale, Vector2f pos, Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+    
+    /**
+     * @brief Create a text object
+     * 
+     * @param text
+     * @param font
+     * @param size
+     * @param pos
+     * 
+     */
+    size_t create_text(std::string text, std::string font, int size, Vector2f pos);
+
     void register_all_drawable_object();
 
     registry &getRegistry();

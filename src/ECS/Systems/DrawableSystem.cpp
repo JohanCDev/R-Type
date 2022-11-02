@@ -17,6 +17,7 @@
 int drawable_system(World &world, sf::RenderWindow &window)
 {
     sparse_array<DrawableComponent> &drawable = world.getRegistry().get_components<DrawableComponent>();
+    sparse_array<TextComponent> &texts = world.getRegistry().get_components<TextComponent>();
     sparse_array<PositionComponent> &position = world.getRegistry().get_components<PositionComponent>();
     sparse_array<HealthComponent> &health = world.getRegistry().get_components<HealthComponent>();
     std::size_t index = 0;
@@ -37,6 +38,22 @@ int drawable_system(World &world, sf::RenderWindow &window)
                 sprite.setScale(i->scale.x, i->scale.y);
                 window.draw(sprite);
             }
+        }
+        index++;
+    }
+
+    index = 0;
+    for (auto &i : texts) {
+        if (i && i.has_value()) {
+            sf::Text text;
+            sf::Vector2f vec{position[index]->pos.x, position[index]->pos.y};
+            sf::Font font = world.getResourcesManager().get_font(i->font);
+            text.setPosition(vec);
+            text.setFillColor(sf::Color::White);
+            text.setString(i->text);
+            text.setCharacterSize(i->size);
+            text.setFont(font);
+            window.draw(text);
         }
         index++;
     }
