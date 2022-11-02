@@ -173,7 +173,7 @@ void World::create_settings(Vector2f pos)
 {
     Entity ent = this->_r.spawn_entity();
 
-    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/Button/home.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/Button/home.png", Vector4i{0, 0, 319, 319}, Vector2f{0.1, 0.1}));
     this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x - 32, 0}));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
 }
