@@ -38,6 +38,7 @@ int shooting_system(World &world, NetworkServer &server)
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
+    auto &health = world.getRegistry().get_components<HealthComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
@@ -67,14 +68,28 @@ int shooting_system(World &world, NetworkServer &server)
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                             std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id << "]."
                                       << std::endl;
-                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
-                            sending_msg << entityId[i]->id;
+                            health[j]->hp -= weapons[i]->stat.x;
+                            health[i]->hp -= weapons[j]->stat.x;
+                            if (health[j]->hp > 0) {
+                                sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
+                                sending_msg << entityId[j]->id;
+                                sending_msg << weapons[i]->stat.x;
+                            } else {
+                                sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                                sending_msg << entityId[j]->id;
+                                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
+                            }
                             server.SendToAll(sending_msg);
-                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
-                            sending_msg << entityId[j]->id;
+                            if (health[i]->hp > 0) {
+                                sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
+                                sending_msg << entityId[i]->id;
+                                sending_msg << weapons[j]->stat.x;
+                            } else {
+                                sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                                sending_msg << entityId[i]->id;
+                                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
+                            }
                             server.SendToAll(sending_msg);
-                            world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
-                            world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                             break;
                         }
                     }
