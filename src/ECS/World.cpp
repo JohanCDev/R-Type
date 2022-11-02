@@ -149,4 +149,6 @@ void World::register_all_drawable_object()
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::BOSS_1,
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{2.0, 2.0}));
 }
