@@ -152,13 +152,13 @@ void movement(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
     auto &velocityCompo = r.get_components<VelocityComponent>();
-    auto &clientIdCompo = r.get_components<EntityIDComponent>();
+    auto &entityId = r.get_components<EntityIDComponent>();
     EntityIDComponent moved_id;
     Vector2i velocity = {0, 0};
     size_t index = 0;
 
     msg >> velocity >> moved_id;
-    for (auto &idCompo : clientIdCompo) {
+    for (auto &idCompo : entityId) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
                 std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
