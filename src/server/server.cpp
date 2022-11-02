@@ -76,8 +76,6 @@ void NetworkServer::send(std::string message, udp::endpoint target_endpoint)
 
 void NetworkServer::send(const Message<GameMessage> &message, udp::endpoint target_endpoint)
 {
-    std::cout << message.size() << std::endl;
-
     std::string serial_str;
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
@@ -117,7 +115,7 @@ void NetworkServer::SendToClient(std::string message, std::size_t clientID)
 {
     try {
         send(message, clients.left.at(clientID));
-    } catch (std::out_of_range) {
+    } catch (std::out_of_range const &) {
     }
 }
 
@@ -125,7 +123,7 @@ void NetworkServer::SendToClient(const Message<GameMessage> &message, std::size_
 {
     try {
         send(message, clients.left.at(clientID));
-    } catch (std::out_of_range) {
+    } catch (std::out_of_range const &) {
     }
 }
 

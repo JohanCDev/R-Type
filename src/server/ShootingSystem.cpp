@@ -9,10 +9,9 @@
  *
  */
 
-#include "../Components/AllComponents.hpp"
-#include "../Registry.hpp"
-#include "../ResourcesManager.hpp"
-#include "../World.hpp"
+#include "../Common/Message/Message.hpp"
+#include "../ECS/Components/AllComponents.hpp"
+#include "../ECS/World.hpp"
 
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
@@ -33,15 +32,16 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
     return (0);
 }
 
-int shooting_system(World &world)
+int shooting_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
-    auto &healths = world.getRegistry().get_components<HealthComponent>();
+    auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
+    auto &teams = world.getRegistry().get_components<GameTeamComponent>();
+    Message<GameMessage> sending_msg;
 
-    (void)clock;
     for (size_t i = 0; i < weapons.size(); ++i) {
         auto &weapon = weapons[i];
         auto &position = positions[i];
@@ -59,32 +59,24 @@ int shooting_system(World &world)
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
-                if (j != i) {
+                if (j != i && teams[i]->team != teams[j]->team) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                            std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id << "]."
+                                      << std::endl;
+                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                            sending_msg << entityId[i]->id;
+                            server.SendToAll(sending_msg);
+                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                            sending_msg << entityId[j]->id;
+                            server.SendToAll(sending_msg);
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                             break;
                         }
-                    }
-                }
-            }
-
-            for (size_t j = 0; j < healths.size(); ++j) {
-                if (j != i) {
-                    auto &otherDrawable = drawables[j];
-                    auto &otherPosition = positions[j];
-
-                    if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
-                        world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
-                        healths[j]->hp -= 1;
-                        if (healths[j]->hp == 0) {
-                            world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
-                        }
-                        break;
                     }
                 }
             }

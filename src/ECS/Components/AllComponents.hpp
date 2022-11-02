@@ -13,10 +13,13 @@
 
 #include "AccelerationComponent.hpp"
 #include "AnimationComponent.hpp"
+#include "ClientIDComponent.hpp"
 #include "CollideComponent.hpp"
 #include "ControllableComponent.hpp"
 #include "DestroyableComponent.hpp"
 #include "DrawableComponent.hpp"
+#include "EntityIDComponent.hpp"
+#include "GameTeamComponent.hpp"
 #include "HealthComponent.hpp"
 #include "ImmobileComponent.hpp"
 #include "MaximumVelocityComponent.hpp"

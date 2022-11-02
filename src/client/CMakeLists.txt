@@ -2,7 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/client)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/client)
 
 list(APPEND SRC_CLIENT ${SRCROOT}/main.cpp ${SRCROOT}/client.cpp
-  ${INCROOT}/client.hpp)
+  ${INCROOT}/client.hpp  ${SRCROOT}/handle_movement.cpp)
 
 set(SRC_CLIENT
   "${SRC_CLIENT}" "${SRC}")
@@ -81,15 +81,6 @@ else()
     ${TARGET_NAME} PUBLIC ${INCROOT} ${CONAN_INCLUDE_DIRS_SFML}
     ${CONAN_INCLUDE_DIRS_BOOST})
   target_link_libraries(${TARGET_NAME} PUBLIC CONAN_PKG::sfml CONAN_PKG::boost)
-
-  if(WIN32 AND BUILD_SHARED_LIBS)
-    # add_custom_command(
-    # TARGET ${TARGET_NAME}
-    # POST_BUILD
-    # COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:${TARGET_NAME}>
-    # $<TARGET_FILE_DIR:${TARGET_NAME}>
-    # COMMAND_EXPAND_LISTS)
-  endif()
 endif()
 
 set_property(TARGET ${TARGET_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "")

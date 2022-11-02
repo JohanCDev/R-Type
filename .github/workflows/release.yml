@@ -1,0 +1,59 @@
+name: Publish Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version string"
+        required: true
+        default: "0.0.0"
+      body:
+        description: "Release body"
+        required: true
+        default: "Release body"
+env:
+  BUILD_TYPE: Release
+  SERV_BIN: rtype_server
+  CLIENT_BIN: rtype_client
+
+jobs:
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install prerequisiteries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Release ..
+
+      - name: Package code
+        run: cd build && cpack
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: |
+          mkdir -p build; cd build
+          conan install .. --build=missing
+
+      - name: Build rtype on Windows (desktop)
+        run: |
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=Debug -D_WIN32_WINNT=0x0601 ..
+
+      # - name: Package
+      #   run: cpack
