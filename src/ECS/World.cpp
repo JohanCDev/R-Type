@@ -151,19 +151,19 @@ void World::create_skills(Vector2f pos)
     Entity ent2 = this->_r.spawn_entity();
 
     this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/Stats/attack_speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
-    this->_r.add_component<PositionComponent>(ent2, PositionComponent({pos.x / 2 - 25, pos.y - 50}));
+    this->_r.add_component<PositionComponent>(ent2, PositionComponent({pos.x / 2 - 53, pos.y - 50}));
     this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
 
     Entity ent3 = this->_r.spawn_entity();
 
     this->_r.add_component<DrawableComponent>(ent3, DrawableComponent("assets/Stats/boost_hp.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
-    this->_r.add_component<PositionComponent>(ent3, PositionComponent({pos.x / 2 + 25, pos.y - 50}));
+    this->_r.add_component<PositionComponent>(ent3, PositionComponent({pos.x / 2 - 6, pos.y - 50}));
     this->_r.add_component<HealthComponent>(ent3, (HealthComponent(1)));
 
     Entity ent4 = this->_r.spawn_entity();
 
     this->_r.add_component<DrawableComponent>(ent4, DrawableComponent("assets/Stats/speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
-    this->_r.add_component<PositionComponent>(ent4, PositionComponent({pos.x / 2 + 100, pos.y - 50}));
+    this->_r.add_component<PositionComponent>(ent4, PositionComponent({pos.x / 2 + 41, pos.y - 50}));
     this->_r.add_component<HealthComponent>(ent4, (HealthComponent(1)));
 }
 
