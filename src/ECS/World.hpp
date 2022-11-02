@@ -110,7 +110,7 @@ class World {
          * @param life percentage of life remaining
          * @param pos
          */
-        void create_healthbar(Vector2f pos);
+        void create_healthbar(Vector2f pos, int life);
 
         void register_all_drawable_object();
 

@@ -179,17 +179,17 @@ void World::create_settings(Vector2f pos)
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
 }
 
-void World::create_healthbar(Vector2f pos)
+void World::create_healthbar(Vector2f pos, int life)
 {
     Entity ent = this->_r.spawn_entity();
 
-    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/HUD/hud_Life.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/HUD/hud_Life.png", Vector4i{0, 0, 1074, 402}, Vector2f{0.1, 0.1}));
     this->_r.add_component<PositionComponent>(ent, PositionComponent({0, 0}));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
 
     Entity ent2 = this->_r.spawn_entity();
 
-    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, 1074 - life, 402}, Vector2f{0.1, 0.1}));
     this->_r.add_component<PositionComponent>(ent2, PositionComponent({-4, 15}));
     this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
 }
