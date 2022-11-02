@@ -19,9 +19,12 @@
 int create_boss(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
-    size_t entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, Vector2f{800, 300}, Vector2i{-DEFAULT_ENEMY_SPD, 0},
-        0.04f, world.getClock().getElapsedTime().asSeconds());
+    size_t entity_id =
+        world.create_enemy(GameObject::ENEMY_FOCUS, Vector2f{800, 300}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 200, 0.04f);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
 
+    std::cout << "Boss[" << entity_id << "]: created at Position{800, 300}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::ENEMY_FOCUS;
     sending_msg << entity_id;
@@ -31,6 +34,10 @@ int create_boss(World &world, NetworkServer &server, waves_t &waves)
     sending_msg << entity_id;
     sending_msg << Vector2i{-DEFAULT_ENEMY_SPD, 0};
     server.SendToAll(sending_msg);
+    sending_msg.header.id = GameMessage::S2C_WAVE_STATUS;
+    sending_msg << WaveStatus::BOSS_START;
+    sending_msg << waves.nb_wave;
+    server.SendToAll(sending_msg);
     return 0;
 }
 
@@ -39,13 +46,13 @@ int create_wave(World &world, NetworkServer &server, waves_t &waves)
     Message<GameMessage> sending_msg;
     waves.in_wave = true;
     waves.nb_wave++;
+    waves.clock.restart();
     if (waves.nb_wave > 0 && waves.nb_wave % DEFAULT_FREQUENCY_BOSS_WAVE == 0) {
         create_boss(world, server, waves);
         return 0;
     }
     waves.base_difficulty *= 1.4;
     waves.remaining_difficulty = waves.base_difficulty;
-    waves.clock.restart();
     std::cout << "Wave " << waves.nb_wave << " started with difficulty " << waves.base_difficulty << std::endl;
     sending_msg.header.id = GameMessage::S2C_WAVE_STATUS;
     sending_msg << WaveStatus::START;
@@ -61,8 +68,8 @@ void create_enemy(World &world, NetworkServer &server)
     size_t random_enemy = rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + 2;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_enemy((GameObject)random_enemy, Vector2f{800.0f, random_y},
-        Vector2i{-DEFAULT_ENEMY_SPD, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+    entity_id = world.create_enemy(
+        (GameObject)random_enemy, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, DEFAULT_ENEMY_HP, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
@@ -86,8 +93,10 @@ int wave_system(World &world, NetworkServer &server, waves_t &waves)
     for (size_t i = 0; i < teams.size(); ++i)
         if (teams[i] && teams[i]->team == GameTeam::ENEMY)
             remaining_enemies++;
-    if (!waves.in_wave && waves.clock.getElapsedTime().asSeconds() > 5)
+    if (!waves.in_wave && waves.clock.getElapsedTime().asSeconds() > 5) {
         create_wave(world, server, waves);
+        return 0;
+    }
     if (waves.in_wave && waves.remaining_difficulty > 0 && waves.clock.getElapsedTime().asSeconds() > 0.8) {
         size_t nb_enemy = rand() % (waves.base_difficulty / 5) + 1;
         if (nb_enemy > waves.remaining_difficulty)
