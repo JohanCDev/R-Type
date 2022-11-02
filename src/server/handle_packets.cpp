@@ -26,8 +26,8 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     size_t entity_id = 0;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_player(GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y},
-        Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+    entity_id = world.create_player(
+        GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
     world.getRegistry().add_component<EntityIDComponent>(
@@ -90,10 +90,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
-static std::map<std::string, Vector2f> shootMap =
-{
-    {"assets/r-typesheet5.gif", Vector2f{50, 10}}
-};
+static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 10}}};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
@@ -111,7 +108,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 Vector2f shootPos = shootMap[draw[index]->path];
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
                     Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y},
-                    Vector2i{DEFAULT_LASER_SPD, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+                    Vector2i{DEFAULT_LASER_SPD, 0}, 0.04f);
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
                 world.getRegistry().add_component<EntityIDComponent>(

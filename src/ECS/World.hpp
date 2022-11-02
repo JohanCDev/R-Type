@@ -58,53 +58,54 @@ class World {
      */
     void register_all_assets();
 
-        /**
-         * @brief Create a laser entity
-         * 
-         * @param object
-         * @param pos 
-         * @param speed
-         * @param refresh_time 
-         * @param elapsed_time 
-         */
-        size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+    /**
+     * @brief Create a laser entity
+     *
+     * @param object
+     * @param team
+     * @param pos
+     * @param speed
+     * @param refresh_time
+     */
+    size_t create_laser(
+        GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
 
-        /**
-         * @brief Create a player entity
-         * 
-         * @param object
-         * @param pos
-         * @param speed
-         * @param refresh_time 
-         */
-        size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+    /**
+     * @brief Create a player entity
+     *
+     * @param object
+     * @param pos
+     * @param speed
+     * @param refresh_time
+     */
+    size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
 
-        /**
-         * @brief Create a enemy entity
-         * 
-         * @param object
-         * @param pos
-         * @param speed
-         * @param refresh_time 
-         * @param elapsed_time 
-         */
-        size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+    /**
+     * @brief Create a enemy entity
+     *
+     * @param object
+     * @param pos
+     * @param speed
+     * @param health
+     * @param refresh_time
+     */
+    size_t create_enemy(
+        GameObject object, Vector2f pos, Vector2i speed, size_t health, float refresh_time);
 
-        void register_all_drawable_object();
+    void register_all_drawable_object();
 
-        registry &getRegistry();
-        ResourcesManager &getResourcesManager();
-        sf::RenderWindow &getWindow();
-        sf::Clock &getClock();
-        Vector2i &getDirection();
-        void setDirection(Vector2i direction);
+    registry &getRegistry();
+    ResourcesManager &getResourcesManager();
+    sf::RenderWindow &getWindow();
+    sf::Clock &getClock();
+    Vector2i &getDirection();
+    void setDirection(Vector2i direction);
 
-
-    private:
-        registry _r;
-        ResourcesManager _manager;
-        sf::RenderWindow _window;
-        sf::Clock _clock;
-        std::map<GameObject, DrawableComponent> _drawMap;
-        Vector2i _player_direction;
+  private:
+    registry _r;
+    ResourcesManager _manager;
+    sf::RenderWindow _window;
+    sf::Clock _clock;
+    std::map<GameObject, DrawableComponent> _drawMap;
+    Vector2i _player_direction;
 };
