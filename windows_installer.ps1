@@ -11,8 +11,7 @@ mkdir build
 Set-Location build
 
 Write-Host "BUILDING PROJECT" -ForegroundColor Green
+conan install .. --build=missing
 cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Visual Studio 17 2022'
-
-cpack -G WIX
 
 Set-Location ..
