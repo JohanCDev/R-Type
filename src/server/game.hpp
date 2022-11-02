@@ -32,7 +32,6 @@
 #define DEFAULT_KEY_BOT      KeyboardInput::S
 #define DEFAULT_KEY_LFT      KeyboardInput::Q
 #define DEFAULT_KEY_SHOOT    MouseInput::Left_click
-
 #define DEFAULT_FREQUENCY_BOSS_WAVE 5
 
 /**
