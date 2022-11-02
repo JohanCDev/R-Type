@@ -36,6 +36,10 @@ World::World(bool client)
     this->_manager.register_texture("assets/background/menu.jpg");
     this->_manager.register_texture("assets/background/lobby.png");
     this->_manager.register_texture("assets/background/bg-boutton.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_armored_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_damage_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_engineer_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_sniper_spritesheet.png");
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
 

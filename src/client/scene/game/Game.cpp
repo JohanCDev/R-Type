@@ -26,6 +26,10 @@ SceneScreen GameScene::run(NetworkClient &client, sf::RenderWindow &window)
     hiMsg.header.id = GameMessage::C2S_JOIN;
     hiMsg << "Lezgongue";
 
+    Message<GameMessage> shootMsg;
+    shootMsg.header.id = GameMessage::C2S_SHOOT;
+    shootMsg << "shoot";
+
     if (_connected == false) {
         client.send(hiMsg);
         _connected = true;
@@ -36,6 +40,9 @@ SceneScreen GameScene::run(NetworkClient &client, sf::RenderWindow &window)
         if (event.type == sf::Event::Closed) {
             window.close();
             client.send(byeMsg);
+        }
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+            client.send(shootMsg);
         }
     }
 
