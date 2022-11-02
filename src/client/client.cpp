@@ -213,7 +213,7 @@ void movement(World &world, Message<GameMessage> msg)
     }
 }
 
-void player_hit(World &world, Message<GameMessage> msg)
+void entity_hit(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
     ClientIDComponent hitted_id;
@@ -222,14 +222,16 @@ void player_hit(World &world, Message<GameMessage> msg)
     msg >> damage >> hitted_id;
 
     auto &health = r.get_components<HealthComponent>();
-    auto &clientIdCompo = r.get_components<ClientIDComponent>();
+    auto &entityIdCompo = r.get_components<EntityIDComponent>();
 
     size_t index = 0;
 
-    for (auto &idCompo : clientIdCompo) {
+    for (auto &idCompo : entityIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hitted_id.id) {
                 health[index]->hp -= damage;
+                std::cout << "Entity[" << hitted_id.id << "]: -" << health[index]->hp << " HP" << std::endl;
+                break;
             }
         }
         index++;
@@ -248,7 +250,7 @@ static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>>
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
     {GameMessage::S2C_GAME_END, game_end},
     {GameMessage::S2C_MOVEMENT, movement},
-    {GameMessage::S2C_PLAYER_HIT, player_hit},
+    {GameMessage::S2C_ENTITY_HIT, entity_hit},
     {GameMessage::S2C_OK, ok_packet},
 };
 
