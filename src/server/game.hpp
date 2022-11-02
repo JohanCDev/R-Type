@@ -33,6 +33,8 @@
 #define DEFAULT_KEY_LFT      KeyboardInput::Q
 #define DEFAULT_KEY_SHOOT    MouseInput::Left_click
 
+#define DEFAULT_FREQUENCY_BOSS_WAVE 5
+
 /**
  * @brief Create a player in server's world and send the packet to the client
  *
