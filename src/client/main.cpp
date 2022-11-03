@@ -43,7 +43,7 @@ int main(void)
 
     while (window.isOpen()) {
         auto &scene = scenes[(int)actual_screen].get();
-        actual_screen = scene.run(client, window);
+        scene.run(client, window, actual_screen);
     }
     return 0;
 }

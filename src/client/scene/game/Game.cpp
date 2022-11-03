@@ -15,7 +15,7 @@ GameScene::GameScene() : _world(true), _connected(false)
 {
 }
 
-SceneScreen GameScene::run(NetworkClient &client, sf::RenderWindow &window)
+void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
 {
     sf::Event event;
     Message<GameMessage> byeMsg;
@@ -56,5 +56,4 @@ SceneScreen GameScene::run(NetworkClient &client, sf::RenderWindow &window)
     velocity_system(_world);
     window.display();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    return (SceneScreen::GAME);
 }

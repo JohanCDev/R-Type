@@ -15,7 +15,7 @@ LobbyScene::LobbyScene() : _world(true), _init(false)
 {
 }
 
-SceneScreen LobbyScene::run(NetworkClient &client, sf::RenderWindow &window)
+void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
 {
     (void)client;
     sf::Event event;
@@ -29,14 +29,13 @@ SceneScreen LobbyScene::run(NetworkClient &client, sf::RenderWindow &window)
         if (event.type == sf::Event::Closed)
             window.close();
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
-            return (SceneScreen::GAME);
+            actual_screen = SceneScreen::GAME;
     }
 
     window.clear(sf::Color::Black);
     drawable_system(this->_world, window);
     window.display();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    return (SceneScreen::LOBBY);
 }
 
 void LobbyScene::init_lobby(sf::RenderWindow &window)

@@ -15,7 +15,7 @@ MenuScene::MenuScene(): _world(true), _init(false)
 {
 }
 
-SceneScreen MenuScene::run(NetworkClient &client, sf::RenderWindow &window)
+void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
 {
     (void)client;
     sf::Event event;
@@ -29,14 +29,13 @@ SceneScreen MenuScene::run(NetworkClient &client, sf::RenderWindow &window)
         if (event.type == sf::Event::Closed)
             window.close();
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
-            return (SceneScreen::LOBBY);
+            actual_screen = SceneScreen::LOBBY;
     }
 
     window.clear(sf::Color::Black);
     drawable_system(this->_world, window);
     window.display();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    return (SceneScreen::MENU);
 }
 
 void MenuScene::init_menu(sf::RenderWindow &window)
