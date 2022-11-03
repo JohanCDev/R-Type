@@ -74,6 +74,7 @@ int shooting_system(World &world, NetworkServer &server)
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[j]->id;
                                 sending_msg << weapons[i]->stat.x;
+                                sending_msg << health[j]->max_hp;
                             } else {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
@@ -84,6 +85,7 @@ int shooting_system(World &world, NetworkServer &server)
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[i]->id;
                                 sending_msg << weapons[j]->stat.x;
+                                sending_msg << health[i]->max_hp;
                             } else {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[i]->id;
