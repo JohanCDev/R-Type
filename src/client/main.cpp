@@ -66,8 +66,7 @@ int main(void)
         }
         while (world.getWindow().pollEvent(event)) {
             handle_movement(world, client, event);
-            if (event.type == sf::Event::MouseButtonReleased
-                && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::Space) {
                 client.send(shootMsg);
             }
             if (event.type == sf::Event::Closed)
