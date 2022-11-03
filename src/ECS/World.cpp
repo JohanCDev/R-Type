@@ -199,6 +199,13 @@ size_t World::create_text(std::string text, std::string font, int size, Vector2f
     return (ent.id);
 }
 
+size_t World::create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos, std::function<void(World &, SceneScreen &)> callback)
+{
+    size_t id = this->create_drawable_object(asset, rect, scale, pos);
+    this->_r.add_component((Entity)id, ClickableComponent(callback));
+    return (id);
+}
+
 void World::register_all_drawable_object()
 {
     this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));

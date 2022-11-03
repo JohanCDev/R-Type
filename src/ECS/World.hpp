@@ -114,6 +114,18 @@ class World {
      */
     size_t create_text(std::string text, std::string font, int size, Vector2f pos);
 
+    /**
+     * @brief Create a button object
+     * 
+     * @param asset 
+     * @param rect 
+     * @param scale 
+     * @param pos 
+     * @param callback 
+     * @return size_t 
+     */
+    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos, std::function<void(World &, SceneScreen &)> callback);
+
     void register_all_drawable_object();
 
     registry &getRegistry();

@@ -12,6 +12,7 @@
 #pragma once
 
 #include "../client.hpp"
+#include "callback/AllCallback.hpp"
 
 enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME, NONE };
 
