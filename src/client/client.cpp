@@ -175,7 +175,9 @@ void dead_entity(World &world, Message<GameMessage> msg)
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
+                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
+                break;
             }
         }
         index++;
@@ -207,6 +209,7 @@ void movement(World &world, Message<GameMessage> msg)
                           << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
+                break;
             }
         }
         index++;
@@ -217,9 +220,10 @@ void entity_hit(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
     ClientIDComponent hitted_id;
-    int damage;
+    int damage = 0;
+    size_t max_hp = 0;
 
-    msg >> damage >> hitted_id;
+    msg >> max_hp >> damage >> hitted_id;
 
     auto &health = r.get_components<HealthComponent>();
     auto &entityIdCompo = r.get_components<EntityIDComponent>();
@@ -230,7 +234,8 @@ void entity_hit(World &world, Message<GameMessage> msg)
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hitted_id.id) {
                 health[index]->hp -= damage;
-                std::cout << "Entity[" << hitted_id.id << "]: -" << health[index]->hp << " HP" << std::endl;
+                health[index]->max_hp = max_hp;
+                std::cout << "Entity[" << hitted_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/" << max_hp << "HP" << std::endl;
                 break;
             }
         }
