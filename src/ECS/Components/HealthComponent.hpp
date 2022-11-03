@@ -13,15 +13,16 @@
 
 /**
  * @brief Give an hp amount to the entity
- * 
+ *
  */
 struct HealthComponent {
     int hp;
+    size_t max_hp;
 
     /**
      * @brief Construct a new Health Component object
-     * 
-     * @param hp_value 
+     *
+     * @param hp_value
      */
-    HealthComponent(int hp_value) : hp(hp_value){};
+    HealthComponent(int hp_value) : hp(hp_value), max_hp(hp_value) {};
 };
