@@ -59,7 +59,7 @@ void MenuScene::init_menu(sf::RenderWindow &window)
     //_world.create_text("OPTION", "assets/font/EMINOR-BlackItalic.ttf", 40, Vector2f{static_cast<float>(window.getSize().x / 2 - 50), 440});
 
     // Quit button
-    pos = {static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 550}
+    pos = {static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 550};
     _world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &quit_callback);
     _world.create_text("QUIT", "assets/font/EMINOR-BlackItalic.ttf", 40, Vector2f{static_cast<float>(window.getSize().x / 2 - 40), 590});
 }
