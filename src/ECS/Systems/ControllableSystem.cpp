@@ -59,9 +59,9 @@ int controllable_system(World &world, sf::Event event)
                 Vector2f shoot_pos = getShootPosition(world, position[index], drawable[index]);
                 if (!(drawable[index]->rect.x == 0 && drawable[index]->rect.y == 0 && drawable[index]->rect.x_size == 0
                         && drawable[index]->rect.y_size == 0)) {
-                    world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+                    world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f);
                 } else {
-                    world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
+                    world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f);
                 }
             }
         }
