@@ -67,7 +67,7 @@ class World {
      * @param speed
      * @param refresh_time
      */
-    size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+    size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
 
     /**
      * @brief Create a player entity
@@ -77,7 +77,7 @@ class World {
      * @param speed
      * @param refresh_time
      */
-    size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+    size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
 
     /**
      * @brief Create a enemy entity
@@ -88,7 +88,7 @@ class World {
      * @param health
      * @param refresh_time
      */
-    size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time);
+    size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, size_t health, float refresh_time);
 
     /**
      * @brief Create a skills entity
