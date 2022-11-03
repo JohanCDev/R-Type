@@ -29,12 +29,11 @@ void go_to_game(World &world, SceneScreen &actual_screen)
     actual_screen = SceneScreen::GAME;
 }
 
-// HAVE TO implement the option scene
-/*void go_to_OPTION(World &world, SceneScreen &actual_screen)
+void go_to_option(World &world, SceneScreen &actual_screen)
 {
     (void)world;
     actual_screen = SceneScreen::OPTION;
-}*/
+}
 
 void quit_callback(World &world, SceneScreen &actual_screen)
 {

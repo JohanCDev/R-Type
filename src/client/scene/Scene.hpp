@@ -14,7 +14,7 @@
 #include "../client.hpp"
 #include "callback/AllCallback.hpp"
 
-enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME, NONE };
+enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME, OPTION, NONE };
 
 class IScene {
   public:

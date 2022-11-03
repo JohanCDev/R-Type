@@ -14,4 +14,5 @@
 void go_to_lobby(World &world, SceneScreen &actual_screen);
 void go_to_menu(World &world, SceneScreen &actual_screen);
 void go_to_game(World &world, SceneScreen &actual_screen);
+void go_to_option(World &world, SceneScreen &actual_screen);
 void quit_callback(World &world, SceneScreen &actual_screen);

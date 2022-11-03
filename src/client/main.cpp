@@ -21,6 +21,7 @@
 #include "scene/game/Game.hpp"
 #include "scene/menu/Menu.hpp"
 #include "scene/lobby/Lobby.hpp"
+#include "scene/option/Option.hpp"
 
 #include "../ECS/World.hpp"
 
@@ -33,10 +34,12 @@ int main(void)
     MenuScene menu;
     GameScene game;
     LobbyScene lobby;
+    OptionScene option;
     std::vector<std::reference_wrapper<IScene>> scenes;
     scenes.push_back(menu);
     scenes.push_back(lobby);
     scenes.push_back(game);
+    scenes.push_back(option);
     SceneScreen actual_screen = SceneScreen::MENU;
 
     NetworkClient client("localhost", "60000", 1432);

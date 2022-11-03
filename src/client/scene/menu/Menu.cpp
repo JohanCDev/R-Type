@@ -29,8 +29,6 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
             clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen);
         }
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
-            actual_screen = SceneScreen::LOBBY;
         if (event.type == sf::Event::Closed || actual_screen == SceneScreen::NONE)
             window.close();
     }
@@ -55,8 +53,9 @@ void MenuScene::init_menu(sf::RenderWindow &window)
     _world.create_text("PLAY", "assets/font/EMINOR-BlackItalic.ttf", 40, Vector2f{static_cast<float>(window.getSize().x / 2 - 40), 290});
     
     // Option button
-    //_world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, Vector2f{static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 400});
-    //_world.create_text("OPTION", "assets/font/EMINOR-BlackItalic.ttf", 40, Vector2f{static_cast<float>(window.getSize().x / 2 - 50), 440});
+    pos = {static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 400};
+    _world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &go_to_option);
+    _world.create_text("OPTION", "assets/font/EMINOR-BlackItalic.ttf", 40, Vector2f{static_cast<float>(window.getSize().x / 2 - 50), 440});
 
     // Quit button
     pos = {static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 550};
