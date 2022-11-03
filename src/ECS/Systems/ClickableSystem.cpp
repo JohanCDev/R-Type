@@ -14,8 +14,8 @@
 
 bool is_hover(Vector2i click_pos, DrawableComponent draw, PositionComponent position)
 {
-    if ((click_pos.x >= position.pos.x && click_pos.x <= position.pos.x + (draw.rect.x_size * draw.scale.x)) &&
-        (click_pos.y >= position.pos.y && click_pos.y <= position.pos.y + (draw.rect.y_size * draw.scale.y))) {
+    if ((click_pos.x >= position.pos.x && click_pos.x <= (position.pos.x + (draw.rect.x_size * draw.scale.x))) &&
+        (click_pos.y >= position.pos.y && click_pos.y <= (position.pos.y + (draw.rect.y_size * draw.scale.y)))) {
         return (true);
     }
     return (false);
@@ -32,8 +32,7 @@ int clickable_system(World &world, Vector2i click_pos, SceneScreen &actual_scree
 
         if (clickable && clickable.has_value()) {
             if (is_hover(click_pos, drawables[i].value(), positions[i].value()) == true) {
-                std::cout << "click" << std::endl;
-                //clickable->callback(world, actual_screen);
+                (clickable->callback)(world, actual_screen);
             }
         }
     }

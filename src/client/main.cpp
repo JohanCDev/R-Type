@@ -26,7 +26,7 @@
 
 int main(void)
 {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window");
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window", sf::Style::Fullscreen);
 
     std::srand(std::time(NULL));
     

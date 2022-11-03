@@ -29,11 +29,11 @@ int drawable_system(World &world, sf::RenderWindow &window)
             if (health[index] && health[index].has_value() && health[index]->hp > 0) {
                 sf::Vector2f vec{position[index]->pos.x, position[index]->pos.y};
                 texture = world.getResourcesManager().get_texture(i->path);
+
+                sprite.setTexture(texture);
                 if (!(i->rect.x == 0 && i->rect.y == 0 && i->rect.x_size == 0 && i->rect.y_size == 0)) {
                     sprite.setTextureRect(sf::IntRect(i->rect.x, i->rect.y, i->rect.x_size, i->rect.y_size));
                 }
-
-                sprite.setTexture(texture);
                 sprite.setPosition(vec);
                 sprite.setScale(i->scale.x, i->scale.y);
                 window.draw(sprite);

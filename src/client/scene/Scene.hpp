@@ -13,7 +13,7 @@
 
 #include "../client.hpp"
 
-enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME };
+enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME, NONE };
 
 class IScene {
   public:

@@ -13,10 +13,13 @@
 
 #include <functional>
 
+class World;
+enum class SceneScreen: uint32_t;
+
 struct ClickableComponent {
 
-    std::function<void(void)> callback;
+    std::function<void(World &, SceneScreen &)> callback;
 
-    ClickableComponent() {}
+    ClickableComponent(std::function<void(World &, SceneScreen &)> callback_func) : callback(callback_func) {}
 
 };
