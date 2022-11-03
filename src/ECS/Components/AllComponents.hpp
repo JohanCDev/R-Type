@@ -27,3 +27,4 @@
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
 #include "TextComponent.hpp"
+#include "ClickableComponent.hpp"

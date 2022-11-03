@@ -29,6 +29,7 @@ World::World(bool client)
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
+    this->_r.register_components<ClickableComponent>();
 
     this->_manager.register_texture("assets/r-typesheet1.gif");
     this->_manager.register_texture("assets/r-typesheet5.gif");
@@ -69,6 +70,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
+    this->_r.register_components<ClickableComponent>();
 
     this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
     this->_drawMap.emplace(

@@ -24,6 +24,8 @@
 
 using boost::asio::ip::udp;
 
+class World;
+
 class NetworkClient {
   public:
     NetworkClient(std::string host, std::string server_port, unsigned short local_port = 0);

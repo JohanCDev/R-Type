@@ -13,6 +13,8 @@
 
 #include "../Scene.hpp"
 
+class World;
+
 void handle_movement(World &world, NetworkClient &client, sf::Event event);
 
 class GameScene : public IScene {

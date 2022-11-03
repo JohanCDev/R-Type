@@ -13,6 +13,8 @@
 
 #include "../Scene.hpp"
 
+class World;
+
 class LobbyScene : public IScene {
   public:
     LobbyScene();

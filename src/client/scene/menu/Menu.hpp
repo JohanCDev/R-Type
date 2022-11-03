@@ -13,6 +13,8 @@
 
 #include "../Scene.hpp"
 
+class World;
+
 class MenuScene : public IScene {
   public:
     MenuScene();
