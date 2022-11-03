@@ -192,7 +192,7 @@ void World::create_healthbar(float life)
     Entity ent2 = this->_r.spawn_entity();
 
 
-    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, 674 * life, 53}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, (int)(674 * life), 53}, Vector2f{0.1, 0.1}));
     this->_r.add_component<PositionComponent>(ent2, PositionComponent({33, 23}));
     this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
 }
