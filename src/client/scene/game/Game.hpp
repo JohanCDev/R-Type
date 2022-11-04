@@ -23,8 +23,11 @@ class GameScene : public IScene {
 
     void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen) override;
 
+    void init_game(sf::RenderWindow &window);
+
   private:
     Message<GameMessage> msg;
     World _world;
     bool _connected;
+    bool _init;
 };

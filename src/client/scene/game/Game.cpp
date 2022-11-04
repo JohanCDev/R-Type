@@ -11,7 +11,7 @@
 
 #include "Game.hpp"
 
-GameScene::GameScene() : _world(true), _connected(false)
+GameScene::GameScene() : _world(true), _connected(false), _init(false)
 {
 }
 
@@ -33,6 +33,11 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
     if (_connected == false) {
         client.send(hiMsg);
         _connected = true;
+    }
+
+    if (_init == false) {
+        this->init_game(window);
+        _init = true;
     }
 
     while (window.pollEvent(event)) {
@@ -58,9 +63,9 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 }
 
-/*void init_game()
+void GameScene::init_game(sf::RenderWindow &window)
 {
-    world.create_skills(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
-    world.create_settings(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
-    world.create_healthbar(1);
-}*/
+    _world.create_skills(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
+    _world.create_settings(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
+    _world.create_healthbar(1);
+}
