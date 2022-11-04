@@ -21,3 +21,4 @@ void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos);
 void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos);
 void new_laser(World &world, size_t srv_entity_id, Vector2f pos);
 void new_boss1(World &world, size_t srv_entity_id, Vector2f pos);
+void new_bonus(World &world, size_t srv_entity_id, Vector2f pos);

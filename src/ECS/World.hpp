@@ -92,6 +92,8 @@ class World {
     size_t create_enemy(
         GameObject object, Vector2f pos, Vector2i speed, size_t health, float refresh_time);
 
+    size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
+
     void register_all_drawable_object();
 
     registry &getRegistry();

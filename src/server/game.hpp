@@ -87,6 +87,8 @@ void create_enemy(World &world, NetworkServer &server);
  * @param remaining_difficulty The remaining difficulty of the wave
  * @param clock The clock of the wave
  */
+
+    void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
 typedef struct wave_s {
     bool in_wave;
     size_t nb_wave;

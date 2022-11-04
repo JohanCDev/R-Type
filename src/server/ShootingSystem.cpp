@@ -78,7 +78,9 @@ int shooting_system(World &world, NetworkServer &server)
                             } else {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
+                                bonus_creation(world, server, positions[j]->pos);
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
+                                // std::cout << "l'entité est morte" << std::endl;
                             }
                             server.SendToAll(sending_msg);
                             if (health[i]->hp > 0) {
