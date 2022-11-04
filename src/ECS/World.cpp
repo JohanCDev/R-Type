@@ -59,6 +59,7 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/Button/home.png");
     this->_manager.register_texture("assets/HUD/hud_Life.png");
     this->_manager.register_texture("assets/HUD/Life.png");
+    this->_manager.register_texture("assets/Boss/boss1.png");
 }
 
 sf::Clock &World::getClock()
@@ -208,4 +209,6 @@ void World::register_all_drawable_object()
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::BOSS_1,
+        DrawableComponent("assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector2f{1.0, 1.0}));
 }
