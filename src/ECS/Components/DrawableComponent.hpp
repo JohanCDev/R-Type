@@ -16,6 +16,10 @@
 /**
  * @brief Define the texture rect to draw
  * 
+ * @param x start of square in x
+ * @param y start of square in y
+ * @param x_size size of square in x
+ * @param y_size size of square in y
  */
 struct Vector4i {
     int x;

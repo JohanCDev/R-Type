@@ -43,8 +43,8 @@ void World::register_all_component()
 
 void World::register_all_system()
 {
-    // this->_r.register_systems(&velocity_system);
-    // this->_r.register_systems(&shooting_system);
+    //this->_r.register_systems(&velocity_system);
+    //this->_r.register_systems(&shooting_system);
 }
 
 void World::register_all_assets()
@@ -52,6 +52,13 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/r-typesheet1.gif");
     this->_manager.register_texture("assets/r-typesheet5.gif");
     this->_manager.register_texture("assets/r-typesheet39.gif");
+    this->_manager.register_texture("assets/Stats/attack_speed.png");
+    this->_manager.register_texture("assets/Stats/boost_attack.png");
+    this->_manager.register_texture("assets/Stats/boost_hp.png");
+    this->_manager.register_texture("assets/Stats/speed.png");
+    this->_manager.register_texture("assets/Button/home.png");
+    this->_manager.register_texture("assets/HUD/hud_Life.png");
+    this->_manager.register_texture("assets/HUD/Life.png");
     this->_manager.register_texture("assets/Boss/boss1.png");
 }
 
@@ -137,6 +144,58 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
 
     return (ent.id);
+}
+
+void World::create_skills(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/Stats/boost_attack.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x / 2 - 100, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+
+    Entity ent2 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/Stats/attack_speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent2, PositionComponent({pos.x / 2 - 53, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
+
+    Entity ent3 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent3, DrawableComponent("assets/Stats/boost_hp.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent3, PositionComponent({pos.x / 2 - 6, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent3, (HealthComponent(1)));
+
+    Entity ent4 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent4, DrawableComponent("assets/Stats/speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent4, PositionComponent({pos.x / 2 + 41, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent4, (HealthComponent(1)));
+}
+
+void World::create_settings(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/Button/home.png", Vector4i{0, 0, 319, 319}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x - 32, 0}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+}
+
+void World::create_healthbar(float life)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent("assets/HUD/hud_Life.png", Vector4i{0, 0, 1074, 402}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({0, 0}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+
+    Entity ent2 = this->_r.spawn_entity();
+
+
+    this->_r.add_component<DrawableComponent>(ent2, DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, (int)(674 * life), 53}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent2, PositionComponent({33, 23}));
+    this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
 }
 
 void World::register_all_drawable_object()
