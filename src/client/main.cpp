@@ -36,7 +36,6 @@ int main(void)
     world.register_all_system();
     world.register_all_assets();
     world.register_all_drawable_object();
-    world.getRegistry().register_systems(&drawable_system);
 
     world.create_skills(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
     world.create_settings(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
@@ -57,7 +56,6 @@ int main(void)
     sf::Event event;
     Message<GameMessage> msg;
 
-    
     client.send(hiMsg);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
