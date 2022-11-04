@@ -22,6 +22,8 @@ class LobbyScene : public IScene {
 
     void init_lobby(sf::RenderWindow &window, NetworkClient &client);
 
+    void update_player_number(NetworkClient &client);
+
   private:
     World _world;
     bool _init;

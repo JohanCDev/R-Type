@@ -25,7 +25,8 @@ enum class GameMessage : uint32_t {
     S2C_PLAYER_HIT,
     S2C_WAVE_STATUS,
     S2C_OK,
-    S2C_DESIGNATE_HOST
+    S2C_DESIGNATE_HOST,
+    S2C_PLAYERS_IN_LOBBY
 };
 
 enum class WaveStatus : uint32_t {START, BOSS_START, END};

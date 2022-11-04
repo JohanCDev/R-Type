@@ -40,6 +40,9 @@ class NetworkClient {
     void setHost(bool host);
     bool getHost() const;
 
+    void set_nb_players(int nb_players);
+    int get_nb_players() const;
+
   private:
     boost::asio::io_service io_service;
     udp::socket socket;
@@ -48,6 +51,7 @@ class NetworkClient {
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
     bool _host;
+    int _nb_players;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
 

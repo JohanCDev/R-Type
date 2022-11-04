@@ -34,11 +34,25 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
             clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
         }
     }
-
+    update_player_number(client);
     window.clear(sf::Color::Black);
     drawable_system(this->_world, window);
     window.display();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
+}
+
+void LobbyScene::update_player_number(NetworkClient &client)
+{
+    auto &texts = _world.getRegistry().get_components<TextComponent>();
+
+    for (auto &text: texts) {
+        if (text && text.has_value()) {
+            if (text->text.substr(0, 7) == "PLAYER:") {
+                std::string new_string = "PLAYER: ";
+                text->text = new_string + std::to_string(client.get_nb_players()) +"/4";
+            }
+        }
+    }
 }
 
 void LobbyScene::init_lobby(sf::RenderWindow &window, NetworkClient &client)

@@ -22,6 +22,7 @@ NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), service_thread(&NetworkClient::run_service, this)
 {
     this->_host = true;
+    this->_nb_players = 0;
     udp::resolver resolver(io_service);
     udp::resolver::query query(udp::v4(), host, server_port);
     server_endpoint = *resolver.resolve(query);
@@ -116,6 +117,16 @@ void NetworkClient::setHost(bool host)
 bool NetworkClient::getHost() const
 {
     return (this->_host);
+}
+
+void NetworkClient::set_nb_players(int nb_players)
+{
+    this->_nb_players = nb_players;
+}
+
+int NetworkClient::get_nb_players() const
+{
+    return (_nb_players);
 }
 
 static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newEntity = {
@@ -227,8 +238,19 @@ void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg)
     }
 }
 
+void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg)
+{
+    (void)world;
+    int nb_players = 0;
+
+    msg >> nb_players;
+    client.set_nb_players(nb_players);
+}
+
 void designe_host(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
+    (void)world;
+    (void)msg;
     client.setHost(true);
 }
 
