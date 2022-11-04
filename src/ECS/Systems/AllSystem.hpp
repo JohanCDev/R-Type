@@ -1,18 +1,19 @@
 /**
  * @file AllSystem.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-10-17
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #pragma once
 
-#include "../World.hpp"
 #include "../../server/server.hpp"
+#include "../../server/game.hpp"
+#include "../World.hpp"
 
 enum class SceneScreen : uint32_t;
 
@@ -21,5 +22,5 @@ int controllable_system(World &world, sf::Event event);
 int shooting_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
-int wave_system(World &world);
+int wave_system(World &world, NetworkServer &server, waves_t &waves);
 int clickable_system(World &world, Vector2i click_pos, SceneScreen &actual_screen);

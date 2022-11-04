@@ -10,7 +10,9 @@ list(APPEND SRC_CLIENT
   ${SRCROOT}/scene/option/Option.cpp ${INCROOT}/scene/option/Option.hpp
   ${INCROOT}/scene/Scene.hpp
   ${SRCROOT}/scene/callback/callback.cpp
-  ${SRCROOT}/handle_movement.cpp)
+  ${SRCROOT}/handle_movement.cpp
+  ${INCROOT}/proto.hpp ${SRCROOT}/new_entity.cpp)
+  
 
 set(SRC_CLIENT
   "${SRC_CLIENT}" "${SRC}")

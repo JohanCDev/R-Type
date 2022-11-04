@@ -57,3 +57,10 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
     window.display();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 }
+
+/*void init_game()
+{
+    world.create_skills(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
+    world.create_settings(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
+    world.create_healthbar(1);
+}*/
