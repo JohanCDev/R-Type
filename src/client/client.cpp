@@ -23,6 +23,8 @@ NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned
 {
     this->_host = true;
     this->_nb_players = 0;
+    this->_players_ready = false;
+    this->_launch_game = false;
     udp::resolver resolver(io_service);
     udp::resolver::query query(udp::v4(), host, server_port);
     server_endpoint = *resolver.resolve(query);
@@ -117,6 +119,26 @@ void NetworkClient::setHost(bool host)
 bool NetworkClient::getHost() const
 {
     return (this->_host);
+}
+
+void NetworkClient::set_launch_game(bool launch)
+{
+    this->_launch_game = launch;
+}
+
+bool NetworkClient::get_launch_game() const
+{
+    return (this->_launch_game);
+}
+
+void NetworkClient::set_players_ready(bool ready)
+{
+    this->_players_ready = ready;
+}
+
+bool NetworkClient::get_players_ready() const
+{
+    return (this->_players_ready);
 }
 
 void NetworkClient::set_nb_players(int nb_players)
@@ -254,6 +276,22 @@ void designe_host(World &world, NetworkClient &client, Message<GameMessage> msg)
     client.setHost(true);
 }
 
+void start_game(World &world, NetworkClient &client, Message<GameMessage> msg)
+{
+    (void)world;
+    (void)msg;
+    client.set_launch_game(true);
+}
+
+void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg)
+{
+    (void)world;
+    bool ready = false;
+
+    msg >> ready;
+    client.set_players_ready(ready);
+}
+
 static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>)>> mapFunc = {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
@@ -261,7 +299,9 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
     {GameMessage::S2C_PLAYER_HIT, player_hit},
     {GameMessage::S2C_WAVE_STATUS, wave_status},
     {GameMessage::S2C_OK, ok_packet},
-    {GameMessage::S2C_DESIGNATE_HOST, designe_host}
+    {GameMessage::S2C_DESIGNATE_HOST, designe_host},
+    {GameMessage::S2C_START_GAME, start_game},
+    {GameMessage::S2C_PLAYERS_READY, players_ready}
 };
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window)

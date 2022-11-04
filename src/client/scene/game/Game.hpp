@@ -28,6 +28,5 @@ class GameScene : public IScene {
   private:
     Message<GameMessage> msg;
     World _world;
-    bool _connected;
     bool _init;
 };

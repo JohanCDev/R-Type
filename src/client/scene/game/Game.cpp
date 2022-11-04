@@ -11,7 +11,7 @@
 
 #include "Game.hpp"
 
-GameScene::GameScene() : _world(true), _connected(false), _init(false)
+GameScene::GameScene() : _world(true), _init(false)
 {
 }
 
@@ -22,18 +22,9 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
     byeMsg.header.id = GameMessage::C2S_LEAVE;
     byeMsg << "Bybye";
 
-    Message<GameMessage> hiMsg;
-    hiMsg.header.id = GameMessage::C2S_JOIN;
-    hiMsg << "Lezgongue";
-
     Message<GameMessage> shootMsg;
     shootMsg.header.id = GameMessage::C2S_SHOOT;
     shootMsg << "shoot";
-
-    if (_connected == false) {
-        client.send(hiMsg);
-        _connected = true;
-    }
 
     if (_init == false) {
         this->init_game(window);

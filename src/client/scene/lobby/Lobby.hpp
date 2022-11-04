@@ -26,6 +26,7 @@ class LobbyScene : public IScene {
 
   private:
     World _world;
+    bool _connected;
     bool _init;
 
 };

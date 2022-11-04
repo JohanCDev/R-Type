@@ -49,6 +49,8 @@ void quit_callback(World &world, SceneScreen &actual_screen, NetworkClient &clie
 void launch_game(World &world, SceneScreen &actual_screen, NetworkClient &client)
 {
     (void)world;
+    if (client.get_players_ready() == false)
+        return;
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_START_GAME;
     msg << "start";

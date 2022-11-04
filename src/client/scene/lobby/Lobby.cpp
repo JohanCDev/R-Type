@@ -11,14 +11,48 @@
 
 #include "Lobby.hpp"
 
-LobbyScene::LobbyScene() : _world(true), _init(false)
+LobbyScene::LobbyScene() : _world(true), _connected(false), _init(false)
 {
+}
+
+void light_button(World &world)
+{
+    auto &drawables = world.getRegistry().get_components<DrawableComponent>();
+
+    for (auto &drawable : drawables) {
+        if (drawable && drawable.has_value()) {
+            if (drawable->path == "assets/background/bg-boutton.png")
+                drawable->color = {255, 255, 255, 255};
+        }
+    }
+}
+
+void shadow_button(World &world)
+{
+    auto &drawables = world.getRegistry().get_components<DrawableComponent>();
+
+    for (auto &drawable : drawables) {
+        if (drawable && drawable.has_value()) {
+            if (drawable->path == "assets/background/bg-boutton.png")
+                drawable->color = {93, 93, 93, 255};
+        }
+    }
 }
 
 void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
 {
+
+    Message<GameMessage> hiMsg;
+    hiMsg.header.id = GameMessage::C2S_JOIN;
+    hiMsg << "join";
+
     (void)client;
     sf::Event event;
+
+    if (_connected == false) {
+        client.send(hiMsg);
+        _connected = true;
+    }
 
     if (this->_init == false) {
         this->init_lobby(window, client);
@@ -33,6 +67,15 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
             clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
         }
+    }
+    if (client.getHost() == true && client.get_players_ready() == true) {
+        light_button(_world);
+    } else if (client.getHost() == true && client.get_players_ready() == false) {
+        shadow_button(_world);
+    }
+    if (client.get_launch_game() == true) {
+        actual_screen = SceneScreen::GAME;
+        client.set_launch_game(false);
     }
     update_player_number(client);
     window.clear(sf::Color::Black);

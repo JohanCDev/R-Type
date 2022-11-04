@@ -40,6 +40,12 @@ class NetworkClient {
     void setHost(bool host);
     bool getHost() const;
 
+    void set_launch_game(bool launch);
+    bool get_launch_game() const;
+
+    void set_players_ready(bool ready);
+    bool get_players_ready() const;
+
     void set_nb_players(int nb_players);
     int get_nb_players() const;
 
@@ -51,6 +57,8 @@ class NetworkClient {
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
     bool _host;
+    bool _players_ready;
+    bool _launch_game;
     int _nb_players;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
