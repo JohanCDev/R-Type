@@ -115,6 +115,7 @@ class World {
      * 
      * @param asset_path
      * @param rect
+     * @param color
      * @param scale
      * @param pos
      * @param speed
@@ -122,7 +123,7 @@ class World {
      * @param elapsed_time
      * 
      */
-    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector2f scale, Vector2f pos, Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos, Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
     
     /**
      * @brief Create a text object
@@ -145,7 +146,7 @@ class World {
      * @param callback 
      * @return size_t 
      */
-    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos, std::function<void(World &, SceneScreen &)> callback);
+    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos, std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
 
     void register_all_drawable_object();
 

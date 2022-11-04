@@ -21,6 +21,7 @@
 NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), service_thread(&NetworkClient::run_service, this)
 {
+    this->_host = true;
     udp::resolver resolver(io_service);
     udp::resolver::query query(udp::v4(), host, server_port);
     server_endpoint = *resolver.resolve(query);
@@ -107,6 +108,16 @@ void NetworkClient::run_service()
     }
 }
 
+void NetworkClient::setHost(bool host)
+{
+    this->_host = host;
+}
+
+bool NetworkClient::getHost() const
+{
+    return (this->_host);
+}
+
 static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newEntity = {
     {GameObject::PLAYER, new_player},
     {GameObject::BOSS_1, new_boss1},
@@ -116,7 +127,7 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::LASER, new_laser},
 };
 
-void new_entity(World &world, Message<GameMessage> msg)
+void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     Vector2f pos;
     size_t srv_entity_id;
@@ -126,7 +137,7 @@ void new_entity(World &world, Message<GameMessage> msg)
     newEntity[object](world, srv_entity_id, pos);
 }
 
-void dead_entity(World &world, Message<GameMessage> msg)
+void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
@@ -149,7 +160,7 @@ void game_end(sf::RenderWindow &window)
     window.close();
 }
 
-void movement(World &world, Message<GameMessage> msg)
+void movement(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
     auto &velocityCompo = r.get_components<VelocityComponent>();
@@ -173,7 +184,7 @@ void movement(World &world, Message<GameMessage> msg)
     }
 }
 
-void player_hit(World &world, Message<GameMessage> msg)
+void player_hit(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
     auto &health = r.get_components<HealthComponent>();
@@ -194,14 +205,14 @@ void player_hit(World &world, Message<GameMessage> msg)
     }
 }
 
-void ok_packet(World &world, Message<GameMessage> msg)
+void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     (void)world;
     (void)msg;
     // ok j'en fais quoi ???
 }
 
-void wave_status(World &world, Message<GameMessage> msg)
+void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     size_t nb_wave = 0;
     WaveStatus status;
@@ -216,18 +227,24 @@ void wave_status(World &world, Message<GameMessage> msg)
     }
 }
 
-static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc = {
+void designe_host(World &world, NetworkClient &client, Message<GameMessage> msg)
+{
+    client.setHost(true);
+}
+
+static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>)>> mapFunc = {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
     {GameMessage::S2C_MOVEMENT, movement},
     {GameMessage::S2C_PLAYER_HIT, player_hit},
     {GameMessage::S2C_WAVE_STATUS, wave_status},
     {GameMessage::S2C_OK, ok_packet},
+    {GameMessage::S2C_DESIGNATE_HOST, designe_host}
 };
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window)
 {
-    (mapFunc[msg.header.id])(world, msg);
+    (mapFunc[msg.header.id])(world, *this, msg);
     if (msg.header.id == GameMessage::S2C_GAME_END) {
         game_end(window);
     }

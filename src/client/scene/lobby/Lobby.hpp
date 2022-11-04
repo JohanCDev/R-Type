@@ -20,7 +20,7 @@ class LobbyScene : public IScene {
     LobbyScene();
     void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen) override;
 
-    void init_lobby(sf::RenderWindow &window);
+    void init_lobby(sf::RenderWindow &window, NetworkClient &client);
 
   private:
     World _world;

@@ -12,6 +12,7 @@
 #pragma once
 
 #include "../../server/server.hpp"
+#include "../../client/client.hpp"
 #include "../../server/game.hpp"
 #include "../World.hpp"
 
@@ -23,4 +24,4 @@ int shooting_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
-int clickable_system(World &world, Vector2i click_pos, SceneScreen &actual_screen);
+int clickable_system(World &world, Vector2i click_pos, SceneScreen &actual_screen, NetworkClient &client);

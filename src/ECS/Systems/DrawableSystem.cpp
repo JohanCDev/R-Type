@@ -36,6 +36,8 @@ int drawable_system(World &world, sf::RenderWindow &window)
                 }
                 sprite.setPosition(vec);
                 sprite.setScale(i->scale.x, i->scale.y);
+                sf::Color color(i->color.x, i->color.y, i->color.x_size, i->color.y_size);
+                sprite.setColor(color);
                 window.draw(sprite);
             }
         }

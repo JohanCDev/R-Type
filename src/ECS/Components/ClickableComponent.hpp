@@ -15,11 +15,12 @@
 
 class World;
 enum class SceneScreen: uint32_t;
+class NetworkClient;
 
 struct ClickableComponent {
 
-    std::function<void(World &, SceneScreen &)> callback;
+    std::function<void(World &, SceneScreen &, NetworkClient &)> callback;
 
-    ClickableComponent(std::function<void(World &, SceneScreen &)> callback_func) : callback(callback_func) {}
+    ClickableComponent(std::function<void(World &, SceneScreen &, NetworkClient &)> callback_func) : callback(callback_func) {}
 
 };

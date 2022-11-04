@@ -27,7 +27,7 @@ void OptionScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScre
 
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen);
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
         }
         if (event.type == sf::Event::Closed || actual_screen == SceneScreen::NONE)
             window.close();

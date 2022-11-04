@@ -37,6 +37,9 @@ class NetworkClient {
     Message<GameMessage> PopMessage();
     void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window);
 
+    void setHost(bool host);
+    bool getHost() const;
+
   private:
     boost::asio::io_service io_service;
     udp::socket socket;
@@ -44,6 +47,7 @@ class NetworkClient {
     udp::endpoint remote_endpoint;
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
+    bool _host;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
 

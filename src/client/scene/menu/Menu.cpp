@@ -27,7 +27,7 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen);
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
         }
         if (event.type == sf::Event::Closed || actual_screen == SceneScreen::NONE)
             window.close();
@@ -42,7 +42,7 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 void MenuScene::init_menu(sf::RenderWindow &window)
 {
     // background
-    _world.create_drawable_object("assets/background/menu.jpg", Vector4i{0, 0, 1920, 1080}, Vector2f{1.0, 1.0}, Vector2f{0, 0});
+    _world.create_drawable_object("assets/background/menu.jpg", Vector4i{0, 0, 1920, 1080}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}, Vector2f{0, 0});
 
     // title
     _world.create_text("MLG R-TYPE", "assets/font/EMINOR-BlackItalic.ttf", 70, Vector2f{static_cast<float>(window.getSize().x / 2 - 175), 0.0f});
