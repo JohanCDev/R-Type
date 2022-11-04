@@ -17,17 +17,26 @@
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
-#define DEFAULT_KEY_TOP             KeyboardInput::Z
-#define DEFAULT_KEY_RGT             KeyboardInput::D
-#define DEFAULT_KEY_BOT             KeyboardInput::S
-#define DEFAULT_KEY_LFT             KeyboardInput::Q
-#define DEFAULT_KEY_SHOOT           MouseInput::Left_click
-#define DEFAULT_WAVE_FREQUENCY_BOSS 5
+#define DEFAULT_KEY_TOP                    KeyboardInput::Z
+#define DEFAULT_KEY_RGT                    KeyboardInput::D
+#define DEFAULT_KEY_BOT                    KeyboardInput::S
+#define DEFAULT_KEY_LFT                    KeyboardInput::Q
+#define DEFAULT_KEY_SHOOT                  MouseInput::Left_click
+#define DEFAULT_WAVE_FREQUENCY_BOSS        5
 #define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
-#define DEFAULT_WAVE_DIFFICULTY 3
-#define DEFAULT_WAVE_TIME_BETWEEN 5.0
-#define DEFAULT_MINI_WAVE_TIME_BETWEEN 0.8
+#define DEFAULT_WAVE_DIFFICULTY            3
+#define DEFAULT_WAVE_TIME_BETWEEN          5.0
+#define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
 
+/**
+ * @brief Structure containing all the default values for the game
+ *
+ * @param pos Position of the object
+ * @param hp Health of the object
+ * @param atk Attack of the object
+ * @param spd Speed of the object
+ * @param scale Scale of the object
+ */
 typedef struct values_s {
     Vector2f pos;
     int hp;
@@ -36,6 +45,9 @@ typedef struct values_s {
     float scale;
 } values_t;
 
+/**
+ * @brief Default values for each GameObject (pos, hp, atk, spd, scale)
+ */
 static std::map<GameObject, values_t> defaultValues = {
     {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
