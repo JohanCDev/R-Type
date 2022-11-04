@@ -51,8 +51,10 @@ int create_wave(World &world, NetworkServer &server, waves_t &waves)
         create_boss(world, server, waves);
         return 0;
     }
-    waves.base_difficulty *= 1.4;
-    waves.remaining_difficulty = waves.base_difficulty;
+    if (waves.nb_wave > 1) {
+        waves.base_difficulty *= 1.4;
+        waves.remaining_difficulty = waves.base_difficulty;
+    }
     std::cout << "Wave " << waves.nb_wave << " started with difficulty " << waves.base_difficulty << std::endl;
     sending_msg.header.id = GameMessage::S2C_WAVE_STATUS;
     sending_msg << WaveStatus::START;
@@ -65,14 +67,13 @@ void create_enemy(World &world, NetworkServer &server)
 {
     size_t entity_id = 0;
     float random_y = rand() % 500 + 50;
-    size_t random_enemy = rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + 2;
+    size_t random_enemy = rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + 3;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_enemy(
-        (GameObject)random_enemy, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, DEFAULT_ENEMY_HP, 0.04f);
+    entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, Vector2f{800.0f, random_y}, Vector2i{-DEFAULT_ENEMY_SPD, 0}, 100, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "}" << std::endl;
+    std::cout << "Enemy[" << entity_id << "]: created at Position{800, " << random_y << "} with " << random_enemy << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::ENEMY_FOCUS;
     sending_msg << entity_id;
@@ -98,7 +99,9 @@ int wave_system(World &world, NetworkServer &server, waves_t &waves)
         return 0;
     }
     if (waves.in_wave && waves.remaining_difficulty > 0 && waves.clock.getElapsedTime().asSeconds() > 0.8) {
-        size_t nb_enemy = rand() % (waves.base_difficulty / 5) + 1;
+        size_t nb_enemy = 1;
+        if (waves.base_difficulty >= 5)
+            nb_enemy = rand() % (waves.base_difficulty / 5) + 1;
         if (nb_enemy > waves.remaining_difficulty)
             nb_enemy = waves.remaining_difficulty;
         for (size_t i = 0; i < nb_enemy; i++) {
