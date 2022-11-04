@@ -47,10 +47,10 @@ void LobbyScene::init_lobby(sf::RenderWindow &window, NetworkClient &client)
     this->_world.create_text("PLAYER: 1/4", "assets/font/EMINOR-BlackItalic.ttf", 50, Vector2f{(float)window.getSize().x - 350.0f, 100.0f});
     this->_world.create_drawable_object("assets/background/lobby.png", Vector4i{0, 0, 1056, 672}, Vector4i{255, 255, 255, 255}, Vector2f{1.9, 1.6}, Vector2f{0, 0});
 
-    this->_world.create_drawable_object("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{93, 93, 93, 255}, Vector2f{2.0, 2.0}, Vector2f{164, (float)window.getSize().y / 2});
-    this->_world.create_drawable_object("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{600,  (float)window.getSize().y / 2});
-    this->_world.create_drawable_object("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{1000, (float)window.getSize().y / 2});
-    this->_world.create_drawable_object("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{1500, (float)window.getSize().y / 2});
+    this->_world.create_button("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{164, (float)window.getSize().y / 2}, &select_armored_ship);
+    this->_world.create_button("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{600,  (float)window.getSize().y / 2}, &select_damage_ship);
+    this->_world.create_button("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{1000, (float)window.getSize().y / 2}, &select_engineer_ship);
+    this->_world.create_button("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{1500, (float)window.getSize().y / 2}, &select_sniper_ship);
 
     if (client.getHost() == true) {
         Vector2f pos = {(float)window.getSize().x / 2 - 131.4f, (float)window.getSize().y - 124.0f};

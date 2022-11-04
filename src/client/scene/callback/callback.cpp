@@ -56,10 +56,36 @@ void launch_game(World &world, SceneScreen &actual_screen, NetworkClient &client
     actual_screen = SceneScreen::GAME;
 }
 
+static std::vector<std::string> asset_vector {
+    "assets/SpaceShip/ship_armored_spritesheet.png",
+    "assets/SpaceShip/ship_damage_spritesheet.png",
+    "assets/SpaceShip/ship_engineer_spritesheet.png",
+    "assets/SpaceShip/ship_sniper_spritesheet.png"
+};
+
+void shadow_other_ship(World &world, std::string &except)
+{
+    auto &drawables = world.getRegistry().get_components<DrawableComponent>();
+    for (auto &drawable: drawables) {
+        if (drawable && drawable.has_value()) {
+            std::vector<std::string>::iterator it = std::find(asset_vector.begin(), asset_vector.end(), drawable->path);
+            if (it != asset_vector.end() && drawable->path != except) {
+                drawable->color = {93, 93, 93, 255};
+            } else if (it != asset_vector.end() && drawable->path == except) {
+                drawable->color = {255, 255, 255, 255};
+            }
+        }
+    }
+}
+
 void select_armored_ship(World &world, SceneScreen &actual_screen, NetworkClient &client)
 {
     (void)world;
     (void)actual_screen;
+
+    std::string except = "assets/SpaceShip/ship_armored_spritesheet.png";
+    shadow_other_ship(world, except);
+
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
     GameObject obj = GameObject::ARMORED;
@@ -71,6 +97,10 @@ void select_damage_ship(World &world, SceneScreen &actual_screen, NetworkClient 
 {
     (void)world;
     (void)actual_screen;
+
+    std::string except = "assets/SpaceShip/ship_damage_spritesheet.png";
+    shadow_other_ship(world, except);
+
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
     GameObject obj = GameObject::DAMAGE;
@@ -82,6 +112,10 @@ void select_engineer_ship(World &world, SceneScreen &actual_screen, NetworkClien
 {
     (void)world;
     (void)actual_screen;
+
+    std::string except = "assets/SpaceShip/ship_engineer_spritesheet.png";
+    shadow_other_ship(world, except);
+
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
     GameObject obj = GameObject::ENGINEER;
@@ -93,6 +127,10 @@ void select_sniper_ship(World &world, SceneScreen &actual_screen, NetworkClient 
 {
     (void)world;
     (void)actual_screen;
+
+    std::string except = "assets/SpaceShip/ship_sniper_spritesheet.png";
+    shadow_other_ship(world, except);
+
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
     GameObject obj = GameObject::SNIPER;
