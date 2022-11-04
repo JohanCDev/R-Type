@@ -17,22 +17,33 @@
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
-#define DEFAULT_PLAYER_POS_X 50
-#define DEFAULT_PLAYER_POS_Y 200
-#define DEFAULT_PLAYER_SPD   6
-#define DEFAULT_PLAYER_HP    100
-#define DEFAULT_PLAYER_SCALE 2.0
-#define DEFAULT_LASER_SPD    5
-#define DEFAULT_ENEMY_HP     100
-#define DEFAULT_ENEMY_ATK    40
-#define DEFAULT_ENEMY_SPD    4
-#define DEFAULT_ENEMY_SCALE  1.0
-#define DEFAULT_KEY_TOP      KeyboardInput::Z
-#define DEFAULT_KEY_RGT      KeyboardInput::D
-#define DEFAULT_KEY_BOT      KeyboardInput::S
-#define DEFAULT_KEY_LFT      KeyboardInput::Q
-#define DEFAULT_KEY_SHOOT    MouseInput::Left_click
-#define DEFAULT_FREQUENCY_BOSS_WAVE 5
+#define DEFAULT_KEY_TOP             KeyboardInput::Z
+#define DEFAULT_KEY_RGT             KeyboardInput::D
+#define DEFAULT_KEY_BOT             KeyboardInput::S
+#define DEFAULT_KEY_LFT             KeyboardInput::Q
+#define DEFAULT_KEY_SHOOT           MouseInput::Left_click
+#define DEFAULT_WAVE_FREQUENCY_BOSS 5
+#define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
+#define DEFAULT_WAVE_DIFFICULTY 3
+#define DEFAULT_WAVE_TIME_BETWEEN 5.0
+#define DEFAULT_MINI_WAVE_TIME_BETWEEN 0.8
+
+typedef struct values_s {
+    Vector2f pos;
+    int hp;
+    int atk;
+    int spd;
+    float scale;
+} values_t;
+
+static std::map<GameObject, values_t> defaultValues = {
+    {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
+    {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
+    {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
+    {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 4, 1.0}},
+    {GameObject::ENEMY_SNIPER, {{800, -1}, 100, 40, 4, 1.0}},
+    {GameObject::BOSS_1, {{800, 300}, 100, 40, 4, 2.0}},
+};
 
 /**
  * @brief Create a player in server's world and send the packet to the client
