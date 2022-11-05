@@ -44,18 +44,23 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
 {
     size_t entity_id = 0;
     Message<GameMessage> sending_msg;
+    Message<GameMessage> sending_msg2;
     auto &positions = world.getRegistry().get_components<PositionComponent>();
 
     entity_id = world.create_bonus(
         GameObject::BONUS, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    // std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::BONUS;
     sending_msg << entity_id;
     sending_msg << Vector2f{pos.x, pos.y};
     server.SendToAll(sending_msg);
+    pos.x -= 4;
+    sending_msg2.header.id = GameMessage::S2C_MOVEMENT;
+    sending_msg2 << entity_id;
+    sending_msg2 << Vector2i{1, 1};
+    server.SendToAll(sending_msg2);
 }
 
 void player_left(World &world, ClientMessage msg, NetworkServer &server)
