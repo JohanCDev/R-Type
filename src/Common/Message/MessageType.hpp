@@ -20,7 +20,7 @@ enum class GameMessage : uint32_t {
     S2C_ENTITY_DEAD,
     S2C_GAME_END,
     S2C_MOVEMENT,
-    S2C_PLAYER_HIT,
+    S2C_ENTITY_HIT,
     S2C_WAVE_STATUS,
     S2C_OK
 };

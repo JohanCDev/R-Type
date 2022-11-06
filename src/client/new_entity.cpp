@@ -28,7 +28,7 @@ void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, position.pos, Vector2i{0, 0}, 100, 0.04f);
+    new_entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -39,7 +39,7 @@ void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_enemy(GameObject::ENEMY_SNIPER, position.pos, Vector2i{0, 0}, 100, 0.04f);
+    new_entity_id = world.create_enemy(GameObject::ENEMY_SNIPER, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -50,7 +50,7 @@ void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_enemy(GameObject::ENEMY_ODD, position.pos, Vector2i{0, 0}, DEFAULT_ENEMY_HP, 0.04f);
+    new_entity_id = world.create_enemy(GameObject::ENEMY_ODD, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -61,7 +61,7 @@ void new_boss1(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_enemy(GameObject::BOSS_1, position.pos, Vector2i{0, 0}, DEFAULT_ENEMY_HP, 0.04f);
+    new_entity_id = world.create_enemy(GameObject::BOSS_1, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "Boss1[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;

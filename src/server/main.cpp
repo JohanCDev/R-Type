@@ -30,7 +30,7 @@ int main()
     NetworkServer server(60000);
     World world;
     srand(time(NULL));
-    waves_t waves = {false, 0, 10, 10, sf::Clock()};
+    waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
 
     world.register_all_component();
     world.register_all_drawable_object();

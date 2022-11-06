@@ -26,8 +26,9 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     size_t entity_id = 0;
     Message<GameMessage> sending_msg;
 
-    entity_id = world.create_player(
-        GameObject::PLAYER, Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y}, Vector2i{0, 0}, 0.04f);
+    entity_id = world.create_player(GameObject::PLAYER,
+        Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y}, Vector2i{0, 0},
+        0.04f);
     world.getRegistry().add_component<ClientIDComponent>(
         world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
     world.getRegistry().add_component<EntityIDComponent>(
@@ -36,7 +37,7 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::PLAYER;
     sending_msg << entity_id;
-    sending_msg << Vector2f{DEFAULT_PLAYER_POS_X, DEFAULT_PLAYER_POS_Y};
+    sending_msg << Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y};
     server.SendToAll(sending_msg);
 }
 
@@ -75,8 +76,8 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     for (auto &i : clients) {
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
-                velocity[index]->speed.x = move.x * DEFAULT_PLAYER_SPD;
-                velocity[index]->speed.y = move.y * DEFAULT_PLAYER_SPD;
+                velocity[index]->speed.x = move.x * defaultValues[GameObject::PLAYER].spd;
+                velocity[index]->speed.y = move.y * defaultValues[GameObject::PLAYER].spd;
                 std::cout << "Player[" << msg.second << "]: Velocity{" << velocity[index]->speed.x << ", "
                           << velocity[index]->speed.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
@@ -108,7 +109,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 Vector2f shootPos = shootMap[draw[index]->path];
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
                     Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y},
-                    Vector2i{DEFAULT_LASER_SPD, 0}, 0.04f);
+                    Vector2i{defaultValues[GameObject::LASER].spd, 0}, 0.04f);
                 std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
                           << position[index]->pos.y << "}" << std::endl;
                 world.getRegistry().add_component<EntityIDComponent>(
@@ -120,7 +121,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 server.SendToAll(sending_msg);
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entity_id;
-                sending_msg << Vector2i{DEFAULT_LASER_SPD, 0};
+                sending_msg << Vector2i{defaultValues[GameObject::LASER].spd, 0};
                 server.SendToAll(sending_msg);
                 break;
             }

@@ -10,10 +10,10 @@
  */
 
 #include "client.hpp"
-#include "proto.hpp"
 #include <boost/iostreams/stream.hpp>
 #include <boost/serialization/vector.hpp>
 #include <sstream>
+#include "proto.hpp"
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/iostreams/device/back_inserter.hpp>
@@ -136,6 +136,7 @@ void dead_entity(World &world, Message<GameMessage> msg)
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
+                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
             }
@@ -174,20 +175,27 @@ void movement(World &world, Message<GameMessage> msg)
     }
 }
 
-void player_hit(World &world, Message<GameMessage> msg)
+void entity_hit(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
-    auto &health = r.get_components<HealthComponent>();
-    auto &clientIdCompo = r.get_components<ClientIDComponent>();
     ClientIDComponent hit_id;
     int damage = 0;
+    size_t max_hp = 0;
+
+    msg >> max_hp >> damage >> hit_id;
+
+    auto &health = r.get_components<HealthComponent>();
+    auto &entityIdCompo = r.get_components<EntityIDComponent>();
+
     size_t index = 0;
 
-    msg >> damage >> hit_id;
-    for (auto &idCompo : clientIdCompo) {
+    for (auto &idCompo : entityIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hit_id.id) {
                 health[index]->hp -= damage;
+                health[index]->max_hp = max_hp;
+                std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/"
+                          << max_hp << "HP" << std::endl;
                 break;
             }
         }
@@ -206,6 +214,7 @@ void wave_status(World &world, Message<GameMessage> msg)
 {
     size_t nb_wave = 0;
     WaveStatus status;
+    (void)world;
 
     msg >> nb_wave;
     msg >> status;
@@ -222,7 +231,7 @@ static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>>
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
     {GameMessage::S2C_GAME_END, game_end},
     {GameMessage::S2C_MOVEMENT, movement},
-    {GameMessage::S2C_PLAYER_HIT, player_hit},
+    {GameMessage::S2C_ENTITY_HIT, entity_hit},
     {GameMessage::S2C_WAVE_STATUS, wave_status},
     {GameMessage::S2C_OK, ok_packet},
 };
