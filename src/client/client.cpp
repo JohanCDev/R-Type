@@ -10,10 +10,10 @@
  */
 
 #include "client.hpp"
-#include "proto.hpp"
 #include <boost/iostreams/stream.hpp>
 #include <boost/serialization/vector.hpp>
 #include <sstream>
+#include "proto.hpp"
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/iostreams/device/back_inserter.hpp>
@@ -195,7 +195,8 @@ void entity_hit(World &world, Message<GameMessage> msg)
             if (idCompo->id == hit_id.id) {
                 health[index]->hp -= damage;
                 health[index]->max_hp = max_hp;
-                std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/" << max_hp << "HP" << std::endl;
+                std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/"
+                          << max_hp << "HP" << std::endl;
                 break;
             }
         }
@@ -214,6 +215,7 @@ void wave_status(World &world, Message<GameMessage> msg)
 {
     size_t nb_wave = 0;
     WaveStatus status;
+    (void)world;
 
     msg >> nb_wave;
     msg >> status;

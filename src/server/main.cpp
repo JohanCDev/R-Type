@@ -30,7 +30,7 @@ int main()
     NetworkServer server(60000);
     World world;
     srand(time(NULL));
-    waves_t waves = {false, 0, 10, 10, sf::Clock()};
+    waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
 
     world.register_all_component();
     world.register_all_drawable_object();
@@ -44,6 +44,7 @@ int main()
         shooting_system(world, server);
         ia_system(world, server);
         wave_system(world, server, waves);
+        bonus_system(world, server);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
