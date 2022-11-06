@@ -152,10 +152,7 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<HealthComponent>(ent, HealthComponent(100));
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
-    this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
-    // this->_r.add_component<ControllableComponent>(ent,
-    //     ControllableComponent(
-    //         KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
+    this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
 
     return (ent.id);
 }
