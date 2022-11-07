@@ -48,7 +48,7 @@ Required tools:
 
 ### on MacOS
 
-**Be sure to have set compiler.version to 13 in your ~/.conan/prfiles**
+**Be sure to have set compiler.version to 13 in your ~/.conan/profiles**
 
 Required tools:
 
