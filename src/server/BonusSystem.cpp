@@ -35,7 +35,7 @@
 
 int bonus_system(World &world, NetworkServer &server)
 {
-    // auto &weapons = world.getRegistry().get_components<WeaponComponent>();
+    auto &weapons = world.getRegistry().get_components<WeaponComponent>();
     auto &bonus = world.getRegistry().get_components<BonusComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
@@ -68,42 +68,18 @@ int bonus_system(World &world, NetworkServer &server)
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
+                        auto &weapon = weapons[j];
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                             std::cout << "hit bonus entity" << entityId[j]->id << "]."
                                       << std::endl;
+                            if (bonus[i]->bonus_name == Bonus::ATTACK) {
+                                weapons[j]->stat.x += BOOST_ATTACK;
+                            }
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;
                             world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                             server.SendToAll(sending_msg);
-                                // std::cout << "l'entité est morte" << std::endl;
-                            // exit(0);
-                            // health[j]->hp -= bonus[i]->stat.x;
-                            // health[i]->hp -= bonus[j]->stat.x;
-                            // if (health[j]->hp > 0) {
-                            //     sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
-                            //     sending_msg << entityId[j]->id;
-                            //     // sending_msg << bonus[i]->stat.x;
-                            //     sending_msg << health[j]->max_hp;
-                            // } else {
-                            //     sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
-                            //     sending_msg << entityId[j]->id;
-                            //     bonus_creation(world, server, positions[j]->pos);
-                            //     world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
-                            //     // std::cout << "l'entité est morte" << std::endl;
-                            // }
-                            // server.SendToAll(sending_msg);
-                            // if (health[i]->hp > 0) {
-                            //     sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
-                            //     sending_msg << entityId[i]->id;
-                            //     sending_msg << bonus[j]->stat.x;
-                            //     sending_msg << health[i]->max_hp;
-                            // } else {
-                            //     sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
-                            //     sending_msg << entityId[i]->id;
-                            //     world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
-                            // }
-                            // server.SendToAll(sending_msg);
                             break;
                         }
                     }

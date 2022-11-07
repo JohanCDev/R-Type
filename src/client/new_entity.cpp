@@ -83,7 +83,7 @@ void new_bonus(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_bonus(GameObject::BONUS, position.pos, Vector2i{0, 0}, 0.04f);
+    new_entity_id = world.create_bonus(GameObject::BONUS, position.pos, Vector2i{0, 0}, 0.04f, Bonus::ATTACK);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "BONUS[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -94,7 +94,7 @@ void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_bonus(GameObject::BONUS_ATTACK_SPEED, position.pos, Vector2i{0, 0}, 0.04f);
+    new_entity_id = world.create_bonus(GameObject::BONUS_ATTACK_SPEED, position.pos, Vector2i{0, 0}, 0.04f, Bonus::ATTACK_SPEED);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "BONUS[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
@@ -105,7 +105,7 @@ void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_bonus(GameObject::BONUS_HEAL, position.pos, Vector2i{0, 0}, 0.04f);
+    new_entity_id = world.create_bonus(GameObject::BONUS_HEAL, position.pos, Vector2i{0, 0}, 0.04f, Bonus::HEAL);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "BONUS[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;

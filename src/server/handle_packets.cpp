@@ -48,17 +48,24 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     GameObject tmp;
     std::srand(std::time(nullptr));
     int random_variable = std::rand();
+    // std::string bonus_name;
+    Bonus bonus_name;
 
     if (random_variable % 3 == 0) {
         tmp = GameObject::BONUS;
+        // bonus_name = "attack bonus";
+        bonus_name = Bonus::ATTACK;
     } else if (random_variable % 2 == 0) {
         tmp = GameObject::BONUS_ATTACK_SPEED;
+        bonus_name = Bonus::ATTACK_SPEED;
     } else {
         tmp = GameObject::BONUS_HEAL;
+        bonus_name = Bonus::HEAL;
     }
 
     entity_id = world.create_bonus(
-        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f);
+        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f, bonus_name);
+    
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;

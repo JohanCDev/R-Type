@@ -27,6 +27,11 @@
 #define DEFAULT_WAVE_DIFFICULTY            1
 #define DEFAULT_WAVE_TIME_BETWEEN          5.0
 #define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
+#define BOOST_ATTACK                       50
+#define BOOST_ATTACK_SPEED                 50
+#define BOOST_SPEED                        50
+#define BOOST_HEAL                         50
+
 
 /**
  * @brief Structure containing all the default values for the game

@@ -17,13 +17,17 @@
  * @brief Make the entity able to shoot
  * 
  */
+
+enum Bonus : uint32_t {ATTACK, ATTACK_SPEED, HEAL, SPEED};
+
 struct BonusComponent {
-    std::string name;
+    // std::string name;
+    Bonus bonus_name;
 
     /**
      * @brief Construct a new Health Component object
      *
      * @param hp_value
      */
-    BonusComponent(std::string bonus_name) : name(bonus_name) {};
+    BonusComponent(Bonus nameBonus) : bonus_name(nameBonus) {};
 };
