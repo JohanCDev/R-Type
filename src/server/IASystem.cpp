@@ -34,7 +34,9 @@ void update_enemy_focus(World &world, NetworkServer &server, size_t i)
             if (std::abs(nearest_player_pos.y - positions[i]->pos.y)
                 >= std::abs(positions[i]->pos.y - positions[c]->pos.y)) {
                 nearest_player_pos.y = positions[c]->pos.y;
-                if (nearest_player_pos.y > positions[i]->pos.y) {
+                if (std::abs(positions[i]->pos.y - positions[c]->pos.y) <= defaultValues[GameObject::ENEMY_FOCUS].spd)
+                    velocity[i]->speed.y = 0;
+                else if (nearest_player_pos.y > positions[i]->pos.y) {
                     velocity[i]->speed.y = defaultValues[GameObject::ENEMY_FOCUS].spd;
                 } else {
                     velocity[i]->speed.y = -defaultValues[GameObject::ENEMY_FOCUS].spd;
