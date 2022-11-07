@@ -12,7 +12,7 @@
 #include "server.hpp"
 #include "../ECS/World.hpp"
 
-int lobby_system(World &world, NetworkServer &server)
+int lobby_scene(World &world, NetworkServer &server)
 {
     Message<GameMessage> player_msg;
     Message<GameMessage> ready_msg;

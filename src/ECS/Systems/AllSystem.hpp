@@ -21,4 +21,5 @@ int shooting_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
-int lobby_system(World &world, NetworkServer &server);
+
+int lobby_scene(World &world, NetworkServer &server);
