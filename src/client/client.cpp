@@ -264,7 +264,6 @@ void players_numbers(World &world, NetworkClient &client, Message<GameMessage> m
     std::size_t nb_players;
 
     msg >> nb_players;
-    std::cout << nb_players << std::endl;
     client.set_nb_players((int)nb_players);
 }
 
@@ -281,7 +280,6 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     bool ready;
 
     msg >> ready;
-    std::cout << "all players ready" << std::endl;
     client.set_players_ready(ready);
 }
 

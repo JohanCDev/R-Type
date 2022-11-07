@@ -23,25 +23,8 @@
 
 void player_joined(World &world, ClientMessage msg, NetworkServer &server)
 {
-    size_t entity_id = 0;
-    Message<GameMessage> sending_msg;
-
     if (world.state != GameState::Lobby)
         return;
-
-    entity_id = world.create_player(GameObject::PLAYER,
-        Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y}, Vector2i{0, 0},
-        0.04f);
-    world.getRegistry().add_component<ClientIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
-    world.getRegistry().add_component<EntityIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
-    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::PLAYER;
-    sending_msg << entity_id;
-    sending_msg << Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y};
-    server.SendToAll(sending_msg);
 }
 
 void player_left(World &world, ClientMessage msg, NetworkServer &server)
@@ -138,7 +121,21 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 void start_game(World &world, ClientMessage msg, NetworkServer &server)
 {
     Message<GameMessage> sending_msg;
+    size_t entity_id = 0;
 
+    entity_id = world.create_player(GameObject::PLAYER,
+        Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y}, Vector2i{0, 0},
+        0.04f);
+    world.getRegistry().add_component<ClientIDComponent>(
+        world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+    std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
+    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+    sending_msg << GameObject::PLAYER;
+    sending_msg << entity_id;
+    sending_msg << Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y};
+    server.SendToAll(sending_msg);
     sending_msg.header.id = GameMessage::S2C_START_GAME;
     server.SendToAll(sending_msg);
     std::cout << "game started" << std::endl;
