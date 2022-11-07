@@ -1,0 +1,68 @@
+name: Publish Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version string"
+        required: true
+        default: "0.0.0"
+      body:
+        description: "Release body"
+        required: true
+        default: "Release body"
+
+jobs:
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install prerequisiteries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: mkdir -p build; cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+
+      - name: Package code
+        run: |
+          cd build/
+          cpack
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Linux
+          path: |
+            ${{ github.workspace }}/build/R-Type-*-Linux.tar.gz
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: |
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=Release -D_WIN32_WINNT=0x0601 ..
+
+      - name: Package
+        run: |
+          cd build/
+          cpack -G WIX -C Debug
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Windows
+          path: |
+            ${{ github.workspace }}/build/R-Type-*-win64.msi
