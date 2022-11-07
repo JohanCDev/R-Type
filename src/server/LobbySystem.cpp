@@ -19,7 +19,7 @@ int lobby_system(World &world, NetworkServer &server)
     std::size_t nbr = server.clients.size();
 
     player_msg.header.id = GameMessage::S2C_PLAYERS_IN_LOBBY;
-    //std::cout << nbr << std::endl;
+    std::cout << nbr << std::endl;
     player_msg << nbr;
     server.SendToAll(player_msg);
 
@@ -27,10 +27,9 @@ int lobby_system(World &world, NetworkServer &server)
     //std::cout << "Player ready: " << world.player_ships.size() << " " << "client number: " << server.clients.size() << std::endl;
     if (world.player_ships.size() == server.clients.size()) {
         ready_msg << true;
-        server.SendToAll(ready_msg);
-        std::cout << "ready" << std::endl;
     } else {
         ready_msg << false;
     }
+    server.SendToAll(ready_msg);
     return 0;
 }

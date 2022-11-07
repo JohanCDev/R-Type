@@ -261,10 +261,11 @@ void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg)
 void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     (void)world;
-    int nb_players = 0;
+    std::size_t nb_players;
 
     msg >> nb_players;
-    client.set_nb_players(nb_players);
+    std::cout << nb_players << std::endl;
+    client.set_nb_players((int)nb_players);
 }
 
 void game_start(World &world, NetworkClient &client, Message<GameMessage> msg)
