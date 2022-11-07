@@ -52,7 +52,6 @@ int bonus_system(World &world, NetworkServer &server)
         auto &drawable = drawables[i];
 
         if (position && drawable && bonus_tmp) {
-            // exit(0);
             sf::Sprite sprite;
 
             sprite.setPosition(position->pos.x, position->pos.y);
@@ -62,6 +61,7 @@ int bonus_system(World &world, NetworkServer &server)
                     && drawable->rect.y_size == 0))
                 sprite.setTextureRect(
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
+                
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
                 if (j != i && teams[i]->team != teams[j]->team) {
@@ -72,6 +72,12 @@ int bonus_system(World &world, NetworkServer &server)
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                             std::cout << "hit bonus entity" << entityId[j]->id << "]."
                                       << std::endl;
+                            sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                            sending_msg << entityId[i]->id;
+                            world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
+                            server.SendToAll(sending_msg);
+                                // std::cout << "l'entité est morte" << std::endl;
+                            // exit(0);
                             // health[j]->hp -= bonus[i]->stat.x;
                             // health[i]->hp -= bonus[j]->stat.x;
                             // if (health[j]->hp > 0) {

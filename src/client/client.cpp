@@ -115,6 +115,8 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::ENEMY_ODD, new_enemy_odd},
     {GameObject::LASER, new_laser},
     {GameObject::BONUS, new_bonus},
+    {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
+    {GameObject::BONUS_HEAL, new_bonus_heal},
 };
 
 void new_entity(World &world, Message<GameMessage> msg)

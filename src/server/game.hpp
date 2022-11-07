@@ -24,7 +24,7 @@
 #define DEFAULT_KEY_SHOOT                  MouseInput::Left_click
 #define DEFAULT_WAVE_FREQUENCY_BOSS        5
 #define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
-#define DEFAULT_WAVE_DIFFICULTY            3
+#define DEFAULT_WAVE_DIFFICULTY            1
 #define DEFAULT_WAVE_TIME_BETWEEN          5.0
 #define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
 

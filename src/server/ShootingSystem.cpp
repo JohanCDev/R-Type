@@ -60,7 +60,7 @@ int shooting_system(World &world, NetworkServer &server)
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
-                if (j != i && teams[i]->team != teams[j]->team) {
+                if (j != i && teams[i]->team != teams[j]->team && teams[i]->team != GameTeam::NEUTRAL && teams[j]->team != GameTeam::NEUTRAL) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
