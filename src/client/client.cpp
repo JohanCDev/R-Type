@@ -21,7 +21,6 @@
 NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)), service_thread(&NetworkClient::run_service, this)
 {
-    this->_host = true;
     this->_nb_players = 0;
     this->_players_ready = false;
     this->_launch_game = false;
@@ -278,9 +277,10 @@ void game_start(World &world, NetworkClient &client, Message<GameMessage> msg)
 void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg)
 {
     (void)world;
-    bool ready = false;
+    bool ready;
 
     msg >> ready;
+    std::cout << "all players ready" << std::endl;
     client.set_players_ready(ready);
 }
 
@@ -292,7 +292,8 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
     {GameMessage::S2C_WAVE_STATUS, wave_status},
     {GameMessage::S2C_OK, ok_packet},
     {GameMessage::S2C_START_GAME, game_start},
-    {GameMessage::S2C_PLAYERS_READY, players_ready}
+    {GameMessage::S2C_PLAYERS_READY, players_ready},
+    {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}
 };
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window)

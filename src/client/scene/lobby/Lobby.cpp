@@ -41,7 +41,7 @@ void shadow_button(World &world)
 
 void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
 {
-
+    Message<GameMessage> msg;
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
     hiMsg << "join";
@@ -68,6 +68,12 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
             clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
         }
     }
+    
+    while (client.HasMessages()) {
+        msg = client.PopMessage();
+        client.processMessage(msg, _world, window);
+    }
+
     if (client.get_launch_game() == true) {
         actual_screen = SceneScreen::GAME;
         client.set_launch_game(false);

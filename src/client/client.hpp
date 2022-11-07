@@ -53,7 +53,6 @@ class NetworkClient {
     udp::endpoint remote_endpoint;
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
-    bool _host;
     bool _players_ready;
     bool _launch_game;
     int _nb_players;

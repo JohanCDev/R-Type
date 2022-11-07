@@ -24,7 +24,7 @@
 static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkServer &)>> mapFunc = {
     {GameMessage::C2S_JOIN, player_joined}, {GameMessage::C2S_LEAVE, player_left},
     {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot},
-    {GameMessage::S2C_START_GAME, start_game}, {GameMessage::C2S_SELECT_SHIP, select_ship}};
+    {GameMessage::C2S_START_GAME, start_game}, {GameMessage::C2S_SELECT_SHIP, select_ship}};
 
 int main()
 {

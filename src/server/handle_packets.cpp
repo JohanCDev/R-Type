@@ -141,6 +141,7 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
 
     sending_msg.header.id = GameMessage::S2C_START_GAME;
     server.SendToAll(sending_msg);
+    std::cout << "game started" << std::endl;
     world.state = GameState::Playing;
 }
 
