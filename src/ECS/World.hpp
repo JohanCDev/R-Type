@@ -15,6 +15,7 @@
 #include "ResourcesManager.hpp"
 
 #include "Systems/AllSystem.hpp"
+#include "../server/GameStates.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <map>
@@ -120,6 +121,9 @@ class World {
     sf::Clock &getClock();
     Vector2i &getDirection();
     void setDirection(Vector2i direction);
+
+    GameState state;
+    std::map<std::size_t, GameObject> player_ships;
 
   private:
     registry _r;

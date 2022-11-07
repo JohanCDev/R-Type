@@ -26,6 +26,9 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
     size_t entity_id = 0;
     Message<GameMessage> sending_msg;
 
+    if (world.state != GameState::Lobby)
+        return;
+
     entity_id = world.create_player(GameObject::PLAYER,
         Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y}, Vector2i{0, 0},
         0.04f);
@@ -56,6 +59,8 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
             sending_msg << entities[index]->id;
             server.SendToAll(sending_msg);
             std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
+            server.clients.left.erase(msg.second);
+            world.player_ships.erase(msg.second);
             break;
         }
         index++;
@@ -128,4 +133,21 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
         }
         index++;
     }
+}
+
+void start_game(World &world, ClientMessage msg, NetworkServer &server)
+{
+    Message<GameMessage> sending_msg;
+
+    sending_msg.header.id = GameMessage::S2C_START_GAME;
+    server.SendToAll(sending_msg);
+    world.state = GameState::Playing;
+}
+
+void select_ship(World &world, ClientMessage msg, NetworkServer &server)
+{
+    GameObject ship;
+
+    msg.first >> ship;
+    world.player_ships[msg.second] = ship;
 }
