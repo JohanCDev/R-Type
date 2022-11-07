@@ -23,6 +23,7 @@ then
     rm -rf build
 fi
 
-mkdir build/ && cd build/ && \
+mkdir build/ && cd build/ && 
+conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
 cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles' && cd .. && \
 cmake --build build/ -j 5
