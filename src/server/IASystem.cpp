@@ -34,10 +34,12 @@ void update_enemy_focus(World &world, NetworkServer &server, size_t i)
             if (std::abs(nearest_player_pos.y - positions[i]->pos.y)
                 >= std::abs(positions[i]->pos.y - positions[c]->pos.y)) {
                 nearest_player_pos.y = positions[c]->pos.y;
-                if (nearest_player_pos.y > positions[i]->pos.y) {
-                    velocity[i]->speed.y = DEFAULT_ENEMY_SPD;
+                if (std::abs(positions[i]->pos.y - positions[c]->pos.y) <= defaultValues[GameObject::ENEMY_FOCUS].spd)
+                    velocity[i]->speed.y = 0;
+                else if (nearest_player_pos.y > positions[i]->pos.y) {
+                    velocity[i]->speed.y = defaultValues[GameObject::ENEMY_FOCUS].spd;
                 } else {
-                    velocity[i]->speed.y = -DEFAULT_ENEMY_SPD;
+                    velocity[i]->speed.y = -defaultValues[GameObject::ENEMY_FOCUS].spd;
                 }
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entities[i]->id;
@@ -69,8 +71,8 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
         random = rand() % 4 + 1;
 
         if (positions[i]->pos.x > 100) {
-            velocity[i]->speed.x = DEFAULT_ENEMY_SPD * next_pos[random].x;
-            velocity[i]->speed.y = DEFAULT_ENEMY_SPD * next_pos[random].y;
+            velocity[i]->speed.x = defaultValues[GameObject::ENEMY_ODD].spd * next_pos[random].x;
+            velocity[i]->speed.y = defaultValues[GameObject::ENEMY_ODD].spd * next_pos[random].y;
             sending_msg.header.id = GameMessage::S2C_MOVEMENT;
             sending_msg << entities[i]->id;
             sending_msg << velocity[i]->speed;
@@ -89,7 +91,7 @@ int ia_system(World &world, NetworkServer &server)
 
     for (size_t i = 0; i < teams.size(); ++i) {
         if (teams[i] && teams[i]->team == GameTeam::ENEMY) {
-                mapFunc[GameObject::ENEMY_ODD](world, server, i);
+            mapFunc[GameObject::ENEMY_FOCUS](world, server, i);
         }
     }
     return 0;

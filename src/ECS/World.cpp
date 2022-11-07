@@ -43,8 +43,8 @@ void World::register_all_component()
 
 void World::register_all_system()
 {
-    //this->_r.register_systems(&velocity_system);
-    //this->_r.register_systems(&shooting_system);
+    // this->_r.register_systems(&velocity_system);
+    // this->_r.register_systems(&shooting_system);
 }
 
 void World::register_all_assets()
@@ -52,6 +52,14 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/r-typesheet1.gif");
     this->_manager.register_texture("assets/r-typesheet5.gif");
     this->_manager.register_texture("assets/r-typesheet39.gif");
+    this->_manager.register_texture("assets/Stats/attack_speed.png");
+    this->_manager.register_texture("assets/Stats/boost_attack.png");
+    this->_manager.register_texture("assets/Stats/boost_hp.png");
+    this->_manager.register_texture("assets/Stats/speed.png");
+    this->_manager.register_texture("assets/Button/home.png");
+    this->_manager.register_texture("assets/HUD/hud_Life.png");
+    this->_manager.register_texture("assets/HUD/Life.png");
+    this->_manager.register_texture("assets/Boss/boss1.png");
 }
 
 sf::Clock &World::getClock()
@@ -84,22 +92,23 @@ void World::setDirection(Vector2i direction)
     this->_player_direction = direction;
 }
 
-size_t World::create_laser(
-    GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
     DrawableComponent drawCompo = this->_drawMap[object];
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("laser", Vector2i{5, 15}, 200));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+    this->_r.add_component<WeaponComponent>(
+        ent, WeaponComponent("laser", Vector2i{defaultValues[GameObject::PLAYER].atk, 15}, 200));
+    this->_r.add_component<VelocityComponent>(
+        ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
-    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+    this->_r.add_component<HealthComponent>(ent, HealthComponent(defaultValues[GameObject::LASER].hp));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(team));
     return (ent.id);
 }
 
-size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -108,8 +117,9 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(true, true)));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
-    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+    this->_r.add_component<HealthComponent>(ent, HealthComponent(defaultValues[GameObject::PLAYER].hp));
+    this->_r.add_component<VelocityComponent>(
+        ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::PLAYER));
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(
@@ -118,7 +128,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     return (ent.id);
 }
 
-size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size_t health, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -127,13 +137,73 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
-    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i{1, 1}, 0));
+    this->_r.add_component<WeaponComponent>(
+        ent, WeaponComponent("meteor", Vector2i{defaultValues[GameObject::ENEMY_FOCUS].atk, 1}, 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
-    this->_r.add_component<HealthComponent>(ent, (HealthComponent(3)));
-    this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+    this->_r.add_component<HealthComponent>(ent, HealthComponent(health));
+    this->_r.add_component<VelocityComponent>(
+        ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
 
     return (ent.id);
+}
+
+void World::create_skills(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent, DrawableComponent("assets/Stats/boost_attack.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x / 2 - 100, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+
+    Entity ent2 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent2, DrawableComponent("assets/Stats/attack_speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent2, PositionComponent({pos.x / 2 - 53, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
+
+    Entity ent3 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent3, DrawableComponent("assets/Stats/boost_hp.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent3, PositionComponent({pos.x / 2 - 6, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent3, (HealthComponent(1)));
+
+    Entity ent4 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent4, DrawableComponent("assets/Stats/speed.png", Vector4i{0, 0, 1075, 1027}, Vector2f{0.05, 0.05}));
+    this->_r.add_component<PositionComponent>(ent4, PositionComponent({pos.x / 2 + 41, pos.y - 50}));
+    this->_r.add_component<HealthComponent>(ent4, (HealthComponent(1)));
+}
+
+void World::create_settings(Vector2f pos)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent, DrawableComponent("assets/Button/home.png", Vector4i{0, 0, 319, 319}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({pos.x - 32, 0}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+}
+
+void World::create_healthbar(float life)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent, DrawableComponent("assets/HUD/hud_Life.png", Vector4i{0, 0, 1074, 402}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent({0, 0}));
+    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+
+    Entity ent2 = this->_r.spawn_entity();
+
+    this->_r.add_component<DrawableComponent>(
+        ent2, DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, (int)(674 * life), 53}, Vector2f{0.1, 0.1}));
+    this->_r.add_component<PositionComponent>(ent2, PositionComponent({33, 23}));
+    this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
 }
 
 void World::register_all_drawable_object()
@@ -147,4 +217,6 @@ void World::register_all_drawable_object()
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(
+        GameObject::BOSS_1, DrawableComponent("assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector2f{1.0, 1.0}));
 }

@@ -36,7 +36,10 @@ int main(void)
     world.register_all_system();
     world.register_all_assets();
     world.register_all_drawable_object();
-    world.getRegistry().register_systems(&drawable_system);
+
+    world.create_skills(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
+    world.create_settings(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
+    world.create_healthbar(1);
 
     Message<GameMessage> hiMsg;
     hiMsg.header.id = GameMessage::C2S_JOIN;
@@ -52,6 +55,7 @@ int main(void)
 
     sf::Event event;
     Message<GameMessage> msg;
+
     client.send(hiMsg);
     while (world.getWindow().isOpen()) {
         while (client.HasMessages()) {
@@ -60,8 +64,7 @@ int main(void)
         }
         while (world.getWindow().pollEvent(event)) {
             handle_movement(world, client, event);
-            if (event.type == sf::Event::MouseButtonReleased
-                && (MouseInput)event.mouseButton.button == MouseInput::Left_click) {
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::Space) {
                 client.send(shootMsg);
             }
             if (event.type == sf::Event::Closed)

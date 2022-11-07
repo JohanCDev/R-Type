@@ -13,6 +13,7 @@
 #include <boost/iostreams/stream.hpp>
 #include <boost/serialization/vector.hpp>
 #include <sstream>
+#include "proto.hpp"
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/iostreams/device/back_inserter.hpp>
@@ -78,9 +79,7 @@ void NetworkClient::send(const Message<GameMessage> &message)
     boost::archive::binary_oarchive oa(s);
 
     oa << message;
-
     s.flush();
-
     send(serial_str);
 }
 
@@ -108,74 +107,38 @@ void NetworkClient::run_service()
     }
 }
 
+static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newEntity = {
+    {GameObject::PLAYER, new_player},
+    {GameObject::BOSS_1, new_boss1},
+    {GameObject::ENEMY_FOCUS, new_enemy_focus},
+    {GameObject::ENEMY_SNIPER, new_enemy_sniper},
+    {GameObject::ENEMY_ODD, new_enemy_odd},
+    {GameObject::LASER, new_laser},
+};
+
 void new_entity(World &world, Message<GameMessage> msg)
 {
-    GameObject object;
     Vector2f pos;
     size_t srv_entity_id;
-    size_t new_entity_id;
+    GameObject object;
 
     msg >> pos >> srv_entity_id >> object;
-    PositionComponent position(pos);
-    if (object == GameObject::PLAYER) {
-        new_entity_id = world.create_player(
-            GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.04f, world.getClock().getElapsedTime().asSeconds());
-        world.getRegistry().add_component<EntityIDComponent>(
-            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
-        std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")"
-                  << std::endl;
-        return;
-    }
-    if (object == GameObject::ENEMY_FOCUS) {
-        new_entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, position.pos, Vector2i{0, 0}, 0.04f,
-            world.getClock().getElapsedTime().asSeconds());
-        world.getRegistry().add_component<EntityIDComponent>(
-            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
-        std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
-        return;
-    }
-    if (object == GameObject::ENEMY_SNIPER) {
-        new_entity_id = world.create_enemy(GameObject::ENEMY_SNIPER, position.pos, Vector2i{0, 0}, 0.04f,
-            world.getClock().getElapsedTime().asSeconds());
-        world.getRegistry().add_component<EntityIDComponent>(
-            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
-        std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
-        return;
-    }
-    if (object == GameObject::ENEMY_ODD) {
-        new_entity_id = world.create_enemy(GameObject::ENEMY_ODD, position.pos, Vector2i{0, 0}, 0.04f,
-            world.getClock().getElapsedTime().asSeconds());
-        world.getRegistry().add_component<EntityIDComponent>(
-            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
-        std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
-        return;
-    }
-    if (object == GameObject::LASER) {
-        new_entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f,
-            world.getClock().getElapsedTime().asSeconds());
-        world.getRegistry().add_component<EntityIDComponent>(
-            world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
-        std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
-        return;
-    }
-    std::cout << "Unknown object type" << std::endl;
+    newEntity[object](world, srv_entity_id, pos);
 }
 
 void dead_entity(World &world, Message<GameMessage> msg)
 {
     EntityIDComponent id_entity;
-    id_entity.id = 0;
-
-    msg >> id_entity;
-
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
-
     size_t index = 0;
 
+    msg >> id_entity;
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
+                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
+                break;
             }
         }
         index++;
@@ -191,45 +154,49 @@ void game_end(World &world, Message<GameMessage> msg)
 void movement(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
-    EntityIDComponent moved_id;
-    Vector2i velocity;
-
-    msg >> velocity >> moved_id;
     auto &velocityCompo = r.get_components<VelocityComponent>();
-    auto &clientIdCompo = r.get_components<EntityIDComponent>();
-
+    auto &entityId = r.get_components<EntityIDComponent>();
+    EntityIDComponent moved_id;
+    Vector2i velocity = {0, 0};
     size_t index = 0;
 
-    for (auto &idCompo : clientIdCompo) {
+    msg >> velocity >> moved_id;
+    for (auto &idCompo : entityId) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
                 std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
                           << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
+                break;
             }
         }
         index++;
     }
 }
 
-void player_hit(World &world, Message<GameMessage> msg)
+void entity_hit(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
-    ClientIDComponent hitted_id;
-    int damage;
+    ClientIDComponent hit_id;
+    int damage = 0;
+    size_t max_hp = 0;
 
-    msg >> damage >> hitted_id;
+    msg >> max_hp >> damage >> hit_id;
 
     auto &health = r.get_components<HealthComponent>();
-    auto &clientIdCompo = r.get_components<ClientIDComponent>();
+    auto &entityIdCompo = r.get_components<EntityIDComponent>();
 
     size_t index = 0;
 
-    for (auto &idCompo : clientIdCompo) {
+    for (auto &idCompo : entityIdCompo) {
         if (idCompo && idCompo.has_value()) {
-            if (idCompo->id == hitted_id.id) {
+            if (idCompo->id == hit_id.id) {
                 health[index]->hp -= damage;
+                health[index]->max_hp = max_hp;
+                std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/"
+                          << max_hp << "HP" << std::endl;
+                break;
             }
         }
         index++;
@@ -243,16 +210,33 @@ void ok_packet(World &world, Message<GameMessage> msg)
     // ok j'en fais quoi ???
 }
 
+void wave_status(World &world, Message<GameMessage> msg)
+{
+    size_t nb_wave = 0;
+    WaveStatus status;
+    (void)world;
+
+    msg >> nb_wave;
+    msg >> status;
+
+    switch (status) {
+        case WaveStatus::START: std::cout << "Wave " << nb_wave << " is starting" << std::endl; break;
+        case WaveStatus::BOSS_START: std::cout << "Boss wave " << nb_wave << " is starting" << std::endl; break;
+        case WaveStatus::END: std::cout << "Wave " << nb_wave << " ended" << std::endl; break;
+    }
+}
+
 static std::map<GameMessage, std::function<void(World &, Message<GameMessage>)>> mapFunc = {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
     {GameMessage::S2C_GAME_END, game_end},
     {GameMessage::S2C_MOVEMENT, movement},
-    {GameMessage::S2C_PLAYER_HIT, player_hit},
+    {GameMessage::S2C_ENTITY_HIT, entity_hit},
+    {GameMessage::S2C_WAVE_STATUS, wave_status},
     {GameMessage::S2C_OK, ok_packet},
 };
 
 void NetworkClient::processMessage(Message<GameMessage> &msg, World &world)
 {
-    (mapFunc[msg.header.id])(world, msg);
+    mapFunc[msg.header.id](world, msg);
 }

@@ -29,11 +29,10 @@ int main()
 {
     NetworkServer server(60000);
     World world;
-    sf::Clock rand_enemies_clock;
     srand(time(NULL));
+    waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
 
     world.register_all_component();
-    // world.register_all_system();
     world.register_all_drawable_object();
 
     while (1) {
@@ -41,13 +40,10 @@ int main()
             ClientMessage msg = server.PopMessage();
             mapFunc[msg.first.header.id](world, msg, server);
         };
-        if (rand_enemies_clock.getElapsedTime().asMilliseconds() > 2000) {
-            create_enemy(world, server);
-            rand_enemies_clock.restart();
-        }
         velocity_system(world);
         shooting_system(world, server);
         ia_system(world, server);
+        wave_system(world, server, waves);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
