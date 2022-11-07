@@ -27,4 +27,4 @@ enum class GameMessage : uint32_t {
 
 enum class WaveStatus : uint32_t {START, BOSS_START, END};
 
-enum class GameObject : uint32_t { LASER, PLAYER, BOSS_1, ENEMY_FOCUS, ENEMY_SNIPER, ENEMY_ODD, GAME_OBJECT_COUNT };
+enum class GameObject : uint32_t { LASER, PLAYER, BOSS_1, ENEMY_FOCUS, ENEMY_KAMIKAZE, ENEMY_ODD, ENEMY_SNIPER, GAME_OBJECT_COUNT };
