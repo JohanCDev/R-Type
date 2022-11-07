@@ -1,5 +1,5 @@
 /**
- * @file IASystem.cpp
+ * @file AISystem.cpp
  * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
@@ -57,11 +57,21 @@ void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
     (void)i;
 }
 
-static std::map<size_t, Vector2i> next_pos = {{1, {0, -1}}, {2, {1, 0}}, {3, {0, 1}}, {4, {-1, 0}}};
+void update_enemy_kamikaze(World &world, NetworkServer &server, size_t i)
+{
+    (void)world;
+    (void)server;
+    (void)i;
+}
+
+static std::map<size_t, Vector2i> next_dir = {{1, {0, -1}}, {2, {1, 0}}, {3, {0, 1}}, {4, {-1, 0}}};
 
 void update_enemy_odd(World &world, NetworkServer &server, size_t i)
 {
     size_t random = rand() % 1000;
+    Vector2i topLeft = {0, 50};
+    Vector2i botRight = {700, 550};
+    Vector2i nextPos = {0, 0};
 
     if (random < 10) {
         auto &velocity = world.getRegistry().get_components<VelocityComponent>();
@@ -70,9 +80,12 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
         Message<GameMessage> sending_msg;
         random = rand() % 4 + 1;
 
-        if (positions[i]->pos.x > 100) {
-            velocity[i]->speed.x = defaultValues[GameObject::ENEMY_ODD].spd * next_pos[random].x;
-            velocity[i]->speed.y = defaultValues[GameObject::ENEMY_ODD].spd * next_pos[random].y;
+        if (positions[i]->pos.x < botRight.x) {
+            nextPos.x = positions[i]->pos.x + defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].x;
+            nextPos.y = positions[i]->pos.y + defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].y;
+            if ()
+            velocity[i]->speed.x = defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].x;
+            velocity[i]->speed.y = defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].y;
             sending_msg.header.id = GameMessage::S2C_MOVEMENT;
             sending_msg << entities[i]->id;
             sending_msg << velocity[i]->speed;
@@ -82,16 +95,17 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
 }
 
 static std::map<GameObject, std::function<void(World &, NetworkServer &, size_t)>> mapFunc = {
-    {GameObject::ENEMY_FOCUS, update_enemy_focus}, {GameObject::ENEMY_SNIPER, update_enemy_sniper},
-    {GameObject::ENEMY_ODD, update_enemy_odd}};
+    {GameObject::ENEMY_FOCUS, update_enemy_focus}, {GameObject::ENEMY_KAMIKAZE, update_enemy_kamikaze},
+    {GameObject::ENEMY_ODD, update_enemy_odd}, {GameObject::ENEMY_SNIPER, update_enemy_sniper}};
 
 int ia_system(World &world, NetworkServer &server)
 {
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
+    auto &objects = world.getRegistry().get_components<GameObjectComponent>();
 
     for (size_t i = 0; i < teams.size(); ++i) {
         if (teams[i] && teams[i]->team == GameTeam::ENEMY) {
-            mapFunc[GameObject::ENEMY_FOCUS](world, server, i);
+            mapFunc[objects[i]->type](world, server, i);
         }
     }
     return 0;
