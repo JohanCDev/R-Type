@@ -83,7 +83,6 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
         if (positions[i]->pos.x < botRight.x) {
             nextPos.x = positions[i]->pos.x + defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].x;
             nextPos.y = positions[i]->pos.y + defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].y;
-            if ()
             velocity[i]->speed.x = defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].x;
             velocity[i]->speed.y = defaultValues[GameObject::ENEMY_ODD].spd * next_dir[random].y;
             sending_msg.header.id = GameMessage::S2C_MOVEMENT;
