@@ -42,8 +42,8 @@ int main()
         };
         velocity_system(world);
         shooting_system(world, server);
-        ia_system(world, server);
         wave_system(world, server, waves);
+        ia_system(world, server);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
