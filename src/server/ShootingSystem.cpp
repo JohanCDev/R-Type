@@ -42,6 +42,8 @@ int shooting_system(World &world, NetworkServer &server)
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
+    std::srand(std::time(nullptr));
+    int random_variable = std::rand();
 
     for (size_t i = 0; i < weapons.size(); ++i) {
         auto &weapon = weapons[i];
@@ -76,9 +78,10 @@ int shooting_system(World &world, NetworkServer &server)
                                 sending_msg << weapons[i]->stat.x;
                                 sending_msg << health[j]->max_hp;
                             } else {
+                                if (teams[j]->team ==  GameTeam::ENEMY && random_variable % 3 == 0)
+                                    bonus_creation(world, server, positions[j]->pos);
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
-                                bonus_creation(world, server, positions[j]->pos);
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                                 // std::cout << "l'entité est morte" << std::endl;
                             }

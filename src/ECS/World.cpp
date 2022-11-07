@@ -64,6 +64,7 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
     this->_manager.register_texture("assets/Power-up/speed_attack.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
+    this->_manager.register_texture("assets/Power-up/speed_boost.png");
 }
 
 sf::Clock &World::getClock()
@@ -164,7 +165,7 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<HealthComponent>(ent, HealthComponent(100));
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
-    this->_r.add_component<BonusComponent>(ent, BonusComponent(Bonus::ATTACK));
+    this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
 
     return (ent.id);
@@ -247,4 +248,6 @@ void World::register_all_drawable_object()
         GameObject::BONUS_ATTACK_SPEED, DrawableComponent("assets/Power-up/speed_attack.png", Vector4i{0, 0, 512, 512}, Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(
         GameObject::BONUS_HEAL, DrawableComponent("assets/Power-up/boost_hp.png", Vector4i{0, 0, 512, 512}, Vector2f{0.08, 0.08}));
+    this->_drawMap.emplace(
+        GameObject::BONUS_SPEED, DrawableComponent("assets/Power-up/speed_boost.png", Vector4i{0, 0, 512, 512}, Vector2f{0.08, 0.08}));
 }

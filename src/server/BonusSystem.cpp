@@ -36,6 +36,7 @@
 int bonus_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
+    auto &heal = world.getRegistry().get_components<HealthComponent>();
     auto &bonus = world.getRegistry().get_components<BonusComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
@@ -70,12 +71,20 @@ int bonus_system(World &world, NetworkServer &server)
                         auto &otherPosition = positions[j];
                         auto &weapon = weapons[j];
 
-                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1 && teams[j]->team == GameTeam::PLAYER) {
                             std::cout << "hit bonus entity" << entityId[j]->id << "]."
                                       << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
                                 weapons[j]->stat.x += BOOST_ATTACK;
                                 std::cout << "boost attack ++" << std::endl;
+                            } else if (bonus[i]->bonus_name == Bonus::HEAL) {
+                                if (heal[j]->hp + 20 >= heal[j]->max_hp) {
+                                    heal[j]->hp = heal[j]->max_hp;
+                                    std::cout << "je suis full vie" << std::endl;
+                                } else {
+                                    heal[j]->hp += 20;
+                                    std::cout << "j'ai récup de la vie'" << std::endl;
+                                }
                             }
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;
