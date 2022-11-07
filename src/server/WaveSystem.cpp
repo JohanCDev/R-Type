@@ -69,24 +69,24 @@ void create_enemy(World &world, NetworkServer &server)
 {
     size_t entity_id = 0;
     float random_y = rand() % 500 + 50;
-    size_t random_enemy = rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + 3;
+    GameObject type = (GameObject) (rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + (size_t)GameObject::ENEMY_FOCUS);
     Message<GameMessage> sending_msg;
 
     entity_id =
-        world.create_enemy(GameObject::ENEMY_FOCUS, Vector2f{defaultValues[GameObject::ENEMY_FOCUS].pos.x, random_y},
-            Vector2i{-defaultValues[GameObject::ENEMY_FOCUS].spd, 0}, defaultValues[GameObject::ENEMY_FOCUS].hp, 0.04f);
+        world.create_enemy(type, Vector2f{defaultValues[type].pos.x, random_y},
+            Vector2i{-defaultValues[type].spd, 0}, defaultValues[type].hp, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Enemy[" << entity_id << "]: created at Position{" << defaultValues[GameObject::ENEMY_FOCUS].pos.x
-              << ", " << random_y << "} with " << random_enemy << std::endl;
+    std::cout << "Enemy[" << entity_id << "]: created at Position{" << defaultValues[type].pos.x
+              << ", " << random_y << "} with type " << (size_t)type << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::ENEMY_FOCUS;
+    sending_msg << type;
     sending_msg << entity_id;
-    sending_msg << Vector2f{defaultValues[GameObject::ENEMY_FOCUS].pos.x, random_y};
+    sending_msg << Vector2f{defaultValues[type].pos.x, random_y};
     server.SendToAll(sending_msg);
     sending_msg.header.id = GameMessage::S2C_MOVEMENT;
     sending_msg << entity_id;
-    sending_msg << Vector2i{-defaultValues[GameObject::ENEMY_FOCUS].spd, 0};
+    sending_msg << Vector2i{-defaultValues[type].spd, 0};
     server.SendToAll(sending_msg);
 }
 
