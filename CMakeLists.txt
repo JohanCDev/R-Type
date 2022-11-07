@@ -72,4 +72,7 @@ set(CPACK_PACKAGE_VERSION_MINOR "1")
 set(CPACK_BUNDLE_NAME "R-Type")
 include(CPack)
 install(DIRECTORY ./assets/ DESTINATION bin/assets/)
-install(DIRECTORY ./build/bin/ DESTINATION bin/)
+
+if(WIN32 OR APPLE)
+  install(DIRECTORY ./build/bin/ DESTINATION bin/)
+endif()
