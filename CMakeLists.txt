@@ -20,6 +20,30 @@ endif()
 
 project(R-Type LANGUAGES CXX)
 
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+  message(
+    STATUS
+    "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+  file(
+    DOWNLOAD
+    "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
+    "${CMAKE_BINARY_DIR}/conan.cmake")
+endif()
+
+if(APPLE)
+  execute_process(COMMAND mkdir build/
+    COMMAND cd build/
+    COMMAND conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
+elseif(WIN32)
+  execute_process(COMMAND mkdir build
+    COMMAND Set-Location build
+    COMMAND conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
+else()
+  execute_process(COMMAND mkdir build/
+    COMMAND cd build/
+    COMMAND conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
+endif()
+
 # Add ./cmake to the module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -38,4 +62,17 @@ if(BUILD_TEST_SUITE)
   find_package(Criterion REQUIRED)
   enable_testing()
   add_subdirectory(tests)
+endif()
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_WIX_LICENSE_RTF ${PROJECT_SOURCE_DIR}/misc/windows/wix_licence.txt)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+set(CPACK_PACKAGE_VERSION_MAJOR "0")
+set(CPACK_PACKAGE_VERSION_MINOR "1")
+set(CPACK_BUNDLE_NAME "R-Type")
+include(CPack)
+install(DIRECTORY ./assets/ DESTINATION bin/assets/)
+
+if(WIN32 OR APPLE)
+  install(DIRECTORY ./build/bin/ DESTINATION bin/)
 endif()
