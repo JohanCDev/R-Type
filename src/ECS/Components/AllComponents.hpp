@@ -19,6 +19,7 @@
 #include "DestroyableComponent.hpp"
 #include "DrawableComponent.hpp"
 #include "EntityIDComponent.hpp"
+#include "GameObjectComponent.hpp"
 #include "GameTeamComponent.hpp"
 #include "HealthComponent.hpp"
 #include "ImmobileComponent.hpp"
