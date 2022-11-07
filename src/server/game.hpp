@@ -54,7 +54,7 @@ typedef struct values_s {
  * @brief Default values for each GameObject (pos, hp, atk, spd, scale)
  */
 static std::map<GameObject, values_t> defaultValues = {
-    {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
+    {GameObject::PLAYER, {{50, 200}, 100, 50, 6, 2.0}},
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
     {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 4, 1.0}},

@@ -69,7 +69,7 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << tmp;
+    sending_msg << GameObject::BONUS;
     sending_msg << entity_id;
     sending_msg << Vector2f{pos.x, pos.y};
     server.SendToAll(sending_msg);

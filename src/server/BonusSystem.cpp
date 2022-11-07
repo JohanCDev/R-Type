@@ -75,6 +75,7 @@ int bonus_system(World &world, NetworkServer &server)
                                       << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
                                 weapons[j]->stat.x += BOOST_ATTACK;
+                                std::cout << "boost attack ++" << std::endl;
                             }
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;

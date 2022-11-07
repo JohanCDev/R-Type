@@ -155,7 +155,6 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
 size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus bonusName)
 {
     Entity ent = this->_r.spawn_entity();
-    std::string bonus = "boost attack";
 
     DrawableComponent drawCompo = this->_drawMap[object];
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
@@ -165,7 +164,7 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<HealthComponent>(ent, HealthComponent(100));
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
-    this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName));
+    this->_r.add_component<BonusComponent>(ent, BonusComponent(Bonus::ATTACK));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
 
     return (ent.id);
