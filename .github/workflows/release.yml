@@ -52,6 +52,7 @@ jobs:
 
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
+          mkdir -p build
           cd build/
           cmake -DCMAKE_BUILD_TYPE=Release -D_WIN32_WINNT=0x0601 ..
 
