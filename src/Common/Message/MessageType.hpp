@@ -22,13 +22,12 @@ enum class GameMessage : uint32_t {
     S2C_ENTITY_DEAD,
     S2C_GAME_END,
     S2C_MOVEMENT,
-    S2C_PLAYER_HIT,
+    S2C_ENTITY_HIT,
     S2C_WAVE_STATUS,
     S2C_OK,
-    S2C_DESIGNATE_HOST,
-    S2C_PLAYERS_IN_LOBBY,
     S2C_START_GAME,
-    S2C_PLAYERS_READY
+    S2C_PLAYERS_IN_LOBBY,
+    S2C_PLAYERS_READY,
 };
 
 enum class WaveStatus : uint32_t {START, BOSS_START, END};

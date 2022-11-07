@@ -30,7 +30,9 @@ int main(void)
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window", sf::Style::Fullscreen);
 
     std::srand(std::time(NULL));
-    
+
+    NetworkClient client("localhost", "60000", 1432);
+
     MenuScene menu;
     GameScene game;
     LobbyScene lobby;
@@ -41,8 +43,6 @@ int main(void)
     scenes.push_back(game);
     scenes.push_back(option);
     SceneScreen actual_screen = SceneScreen::MENU;
-
-    NetworkClient client("localhost", "60000", 1432);
 
     while (window.isOpen()) {
         auto &scene = scenes[(int)actual_screen].get();

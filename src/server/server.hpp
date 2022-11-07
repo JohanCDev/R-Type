@@ -23,6 +23,8 @@
 #include "../Common/Message/MessageType.hpp"
 #include "../Common/locked_queue.hpp"
 
+#define MAX_CLIENTS 4
+
 using boost::asio::ip::udp;
 
 typedef boost::bimap<std::size_t, udp::endpoint> ClientList;
@@ -38,7 +40,6 @@ class NetworkServer {
     udp::endpoint remote_endpoint;
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
-    ClientList clients;
     std::size_t nextClientID;
 
     void start_receive();
@@ -50,7 +51,7 @@ class NetworkServer {
     void send(std::string pmessage, udp::endpoint target_endpoint);
     void send(const Message<GameMessage> &message, udp::endpoint target_endpoint);
 
-    void on_client_disconnected(int32_t id);
+    void on_client_disconnected(std::size_t id);
 
     LockedQueue<ClientMessage> incomingMessages;
 
@@ -71,5 +72,6 @@ class NetworkServer {
     void SendToAll(const Message<GameMessage> &message);
     void SendToAllExcept(const Message<GameMessage> &message, std::size_t clientID);
 
-    std::vector<std::function<void(uint32_t)>> clientDisconnectedHandlers;
+    std::vector<std::function<void(std::size_t)>> clientDisconnectedHandlers;
+    ClientList clients;
 };

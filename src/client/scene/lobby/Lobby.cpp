@@ -68,11 +68,6 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
             clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
         }
     }
-    if (client.getHost() == true && client.get_players_ready() == true) {
-        light_button(_world);
-    } else if (client.getHost() == true && client.get_players_ready() == false) {
-        shadow_button(_world);
-    }
     if (client.get_launch_game() == true) {
         actual_screen = SceneScreen::GAME;
         client.set_launch_game(false);
@@ -109,8 +104,7 @@ void LobbyScene::init_lobby(sf::RenderWindow &window, NetworkClient &client)
     this->_world.create_button("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{1000, (float)window.getSize().y / 2}, &select_engineer_ship);
     this->_world.create_button("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{1500, (float)window.getSize().y / 2}, &select_sniper_ship);
 
-    if (client.getHost() == true) {
-        Vector2f pos = {(float)window.getSize().x / 2 - 131.4f, (float)window.getSize().y - 124.0f};
-        this->_world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &launch_game);
-    }
+    Vector2f pos = {(float)window.getSize().x / 2 - 131.4f, (float)window.getSize().y - 124.0f};
+    this->_world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &launch_game);
+
 }

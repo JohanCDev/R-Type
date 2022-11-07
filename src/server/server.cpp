@@ -36,12 +36,12 @@ NetworkServer::~NetworkServer()
 
 void NetworkServer::start_receive()
 {
-    socket.async_receive_from(boost::asio::buffer(recv_buffer), remote_endpoint,
-        boost::bind(&NetworkServer::handle_receive, this, boost::asio::placeholders::error,
-            boost::asio::placeholders::bytes_transferred));
+    if (clients.size() < MAX_CLIENTS) {
+        socket.async_receive_from(boost::asio::buffer(recv_buffer), remote_endpoint,
+            boost::bind(&NetworkServer::handle_receive, this, boost::asio::placeholders::error,
+                boost::asio::placeholders::bytes_transferred));
+    }
 }
-
-#include <iostream>
 
 void NetworkServer::handle_receive(const boost::system::error_code &error, std::size_t bytes_transferred)
 {
@@ -55,8 +55,6 @@ void NetworkServer::handle_receive(const boost::system::error_code &error, std::
             boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
             boost::archive::binary_iarchive ia(s);
             ia >> gameMsg;
-
-            // std::cout << gameMsg.body
 
             auto message = ClientMessage(gameMsg, get_client_id(remote_endpoint));
             if (message.first.size() != 0)
@@ -157,7 +155,7 @@ void NetworkServer::SendToAllExcept(const Message<GameMessage> &message, std::si
     }
 }
 
-void NetworkServer::on_client_disconnected(int32_t id)
+void NetworkServer::on_client_disconnected(std::size_t id)
 {
     for (auto &handler : clientDisconnectedHandlers)
         if (handler)
