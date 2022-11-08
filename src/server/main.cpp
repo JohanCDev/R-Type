@@ -11,7 +11,6 @@
 
 #define _WIN32_WINNT 0x0601
 
-#include <chrono>
 #include <iostream>
 #include <thread>
 #include "../Common/Message/Message.hpp"
@@ -34,12 +33,19 @@ int main()
 
     world.register_all_component();
     world.register_all_drawable_object();
+    int i = 0;
 
     while (1) {
         while (server.HasMessages()) {
             ClientMessage msg = server.PopMessage();
             mapFunc[msg.first.header.id](world, msg, server);
         };
+        // auto end = std::chrono::steady_clock::now();
+        // double elapsed_time_ns = double(std::chrono::duration_cast<std::chrono::seconds>(end - start).count());
+        // if (elapsed_time_ns >= 1.0) {
+        //     start = std::chrono::steady_clock::now();
+        //     std::cout << i++ << " secondes écoulées" << std::endl;
+        // }
         velocity_system(world);
         shooting_system(world, server);
         ia_system(world, server);

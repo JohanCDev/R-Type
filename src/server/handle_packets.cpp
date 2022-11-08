@@ -60,7 +60,6 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     } else if (random_variable % 2 == 0) {
         tmp = GameObject::BONUS_HEAL;
         bonus_name = Bonus::HEAL;
-        std::cout << "je passe la" << std::endl;
     } else {
         tmp = GameObject::BONUS_SPEED;
         bonus_name = Bonus::SPEED;
