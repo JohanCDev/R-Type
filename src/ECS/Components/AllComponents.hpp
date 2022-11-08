@@ -13,6 +13,7 @@
 
 #include "AccelerationComponent.hpp"
 #include "AnimationComponent.hpp"
+#include "BonusComponent.hpp"
 #include "ClientIDComponent.hpp"
 #include "CollideComponent.hpp"
 #include "ControllableComponent.hpp"
@@ -24,6 +25,6 @@
 #include "ImmobileComponent.hpp"
 #include "MaximumVelocityComponent.hpp"
 #include "PositionComponent.hpp"
+#include "SpeedComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
-#include "BonusComponent.hpp"

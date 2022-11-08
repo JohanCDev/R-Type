@@ -14,25 +14,6 @@
 #include "game.hpp"
 #include "server.hpp"
 
-// int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
-//     std::optional<DrawableComponent> &drawable)
-// {
-//     sf::Sprite otherSprite;
-//     if (drawable.has_value()) {
-//         otherSprite.setPosition(position->pos.x, position->pos.y);
-//         otherSprite.setTexture(manager.get_texture(drawable->path));
-//         otherSprite.setScale(drawable->scale.x, drawable->scale.y);
-//         if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
-//                 && drawable->rect.y_size == 0))
-//             otherSprite.setTextureRect(
-//                 sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
-//     }
-//     if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
-//         return (1);
-//     }
-//     return (0);
-// }
-
 int bonus_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
@@ -40,6 +21,7 @@ int bonus_system(World &world, NetworkServer &server)
     auto &bonus = world.getRegistry().get_components<BonusComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
+    auto &speed = world.getRegistry().get_components<SpeedComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
     // auto &health = world.getRegistry().get_components<HealthComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
@@ -85,6 +67,13 @@ int bonus_system(World &world, NetworkServer &server)
                                     heal[j]->hp += 20;
                                     std::cout << "j'ai récup de la vie'" << std::endl;
                                 }
+                            } else if (bonus[i]->bonus_name == Bonus::SPEED) {
+                                std::cout << "je suis rapide" << std::endl;
+                                speed[j]->speed += 1;
+                                // velocity[j]->speed.x += 50;
+                                // velocity[j]->speed.y += 50;
+                            } else if (bonus[i]->bonus_name == Bonus::ATTACK_SPEED) {
+                                weapons[j]->stat.y += 50;
                             }
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;

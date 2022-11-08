@@ -67,12 +67,12 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     }
 
     entity_id = world.create_bonus(
-        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f, bonus_name);
+        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f, Bonus::SPEED);
     
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << tmp;
+    sending_msg << GameObject::BONUS_SPEED;
     sending_msg << entity_id;
     sending_msg << Vector2f{pos.x, pos.y};
     server.SendToAll(sending_msg);
@@ -106,6 +106,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
     sparse_array<EntityIDComponent> &entities = r.get_components<EntityIDComponent>();
+    sparse_array<SpeedComponent> &speed = r.get_components<SpeedComponent>();
     std::size_t index = 0;
     Message<GameMessage> sending_msg;
 
@@ -113,8 +114,8 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     for (auto &i : clients) {
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
-                velocity[index]->speed.x = move.x * defaultValues[GameObject::PLAYER].spd;
-                velocity[index]->speed.y = move.y * defaultValues[GameObject::PLAYER].spd;
+                velocity[index]->speed.x = move.x * speed[index]->speed;
+                velocity[index]->speed.y = move.y * speed[index]->speed;
                 std::cout << "Player[" << msg.second << "]: Velocity{" << velocity[index]->speed.x << ", "
                           << velocity[index]->speed.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
