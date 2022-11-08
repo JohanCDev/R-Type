@@ -48,14 +48,14 @@ jobs:
   build-on-windows:
     runs-on: windows-latest
     steps:
-      - name: Cache Conan packages
-        id: cache_windows
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.conan
-            C:\.conan
-          key: ${{ runner.os }}-${{ hashfiles('**/conanfile.txt') }}
+      # - name: Cache Conan packages
+      #   id: cache_windows
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.conan
+      #       C:\.conan
+      #     key: ${{ runner.os }}-${{ hashfiles('**/conanfile.txt') }}
 
       - name: Install conan
         uses: turtlebrowser/get-conan@main
@@ -86,6 +86,10 @@ jobs:
 
   create-release:
     needs: [build-on-ubuntu, build-on-windows]
+    permissions:
+      contents: write
+    environment:
+      name: production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
