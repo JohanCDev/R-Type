@@ -52,6 +52,7 @@ void update_enemy_focus(World &world, NetworkServer &server, size_t i)
                 sending_msg << entities[i]->id;
                 sending_msg << velocity[i]->speed;
                 server.SendToAll(sending_msg);
+                sending_msg = Message<GameMessage>();
             }
         }
     }
@@ -138,7 +139,8 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
  */
 static std::map<GameObject, std::function<void(World &, NetworkServer &, size_t)>> mapFunc = {
     {GameObject::ENEMY_FOCUS, update_enemy_focus}, {GameObject::ENEMY_KAMIKAZE, update_enemy_kamikaze},
-    {GameObject::ENEMY_ODD, update_enemy_odd}, {GameObject::ENEMY_SNIPER, update_enemy_sniper}};
+    {GameObject::ENEMY_ODD, update_enemy_odd}, {GameObject::ENEMY_SNIPER, update_enemy_sniper},
+    {GameObject::BOSS_1, update_enemy_focus}};
 
 /**
  * @brief
