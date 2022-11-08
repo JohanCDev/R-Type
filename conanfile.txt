@@ -13,3 +13,7 @@ sfml:graphics=True
 sfml:window=True
 sfml:audio=True
 sfml:network=True
+
+[imports]
+bin, *.dll -> ./bin # Copies all dll files in bin folder
+lib, *.dylib* -> ./bin # Copies all dylib files in bin folder
