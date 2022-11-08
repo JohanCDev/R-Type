@@ -55,7 +55,7 @@ jobs:
           path: |
             ~/.conan
             C:\.conan
-          key: ${{ runner.os }}-CreateRelease-${{ hashfiles('**/conanfile.txt') }}
+          key: ${{ runner.os }}-${{ hashfiles('**/conanfile.txt') }}
 
       - name: Install conan
         uses: turtlebrowser/get-conan@main
