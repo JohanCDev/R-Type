@@ -105,5 +105,5 @@ jobs:
           body_path: ${{ github.event.inputs.body }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            ${{ github.workspace }}/ubuntu-latest/*
-            ${{ github.workspace }}/windows-latest/*
+            ${{ github.workspace }}/Linux/*
+            ${{ github.workspace }}/Windows/*
