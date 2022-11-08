@@ -105,5 +105,5 @@ jobs:
           body_path: ${{ github.event.inputs.body }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            ${{ github.workspace }}/Linux/*
-            ${{ github.workspace }}/Windows/*
+            ${{ github.workspace }}/Linux/R-Type-0.1.1-Linux.tar.gz
+            ${{ github.workspace }}/Windows/R-Type-0.1.1-win64.msi
