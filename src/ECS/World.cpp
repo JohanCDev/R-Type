@@ -140,8 +140,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
-    this->_r.add_component<WeaponComponent>(
-        ent, WeaponComponent("meteor", Vector2i{defaultValues[object].atk, 1}, 0));
+    this->_r.add_component<WeaponComponent>(ent, WeaponComponent("meteor", Vector2i{defaultValues[object].atk, 1}, 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
     this->_r.add_component<HealthComponent>(ent, HealthComponent(health));
     this->_r.add_component<GameObjectComponent>(ent, GameObjectComponent(object));
@@ -216,13 +215,13 @@ void World::register_all_drawable_object()
     this->_drawMap.emplace(
         GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector2f{2.0, 2.0}));
     this->_drawMap.emplace(GameObject::ENEMY_FOCUS,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{0.875, 0.875}));
     this->_drawMap.emplace(GameObject::ENEMY_KAMIKAZE,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{0.875, 0.875}));
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{0.875, 0.875}));
     this->_drawMap.emplace(GameObject::ENEMY_SNIPER,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{1.0, 1.0}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector2f{0.875, 0.875}));
     this->_drawMap.emplace(
         GameObject::BOSS_1, DrawableComponent("assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector2f{1.0, 1.0}));
 }
