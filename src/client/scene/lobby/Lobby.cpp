@@ -101,16 +101,23 @@ void LobbyScene::update_player_number(NetworkClient &client)
 
 void LobbyScene::init_lobby(sf::RenderWindow &window, NetworkClient &client)
 {
-    this->_world.create_text("CHOOSE YOUR SPACESHIP", "assets/font/EMINOR-BlackItalic.ttf", 70, Vector2f{(float)window.getSize().x / 2 - 367.5f, 200.0});
-    this->_world.create_text("PLAYER: 1/4", "assets/font/EMINOR-BlackItalic.ttf", 50, Vector2f{(float)window.getSize().x - 350.0f, 100.0f});
-    this->_world.create_drawable_object("assets/background/lobby.png", Vector4i{0, 0, 1056, 672}, Vector4i{255, 255, 255, 255}, Vector2f{1.9, 1.6}, Vector2f{0, 0});
+    Vector2f pos = {(float)window.getSize().x / 2 - 367.5f, 200.0};
+    _world.create_text("CHOOSE YOUR SPACESHIP", "assets/font/EMINOR-BlackItalic.ttf", 70, pos);
+    pos = {(float)window.getSize().x - 350.0f, 100.0f};
+    _world.create_text("PLAYER: 0/4", "assets/font/EMINOR-BlackItalic.ttf", 50, pos);
+    _world.create_drawable_object("assets/background/lobby.png", Vector4i{0, 0, 1056, 672}, Vector4i{255, 255, 255, 255}, Vector2f{1.9, 1.6}, Vector2f{0, 0});
 
-    this->_world.create_button("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{164, (float)window.getSize().y / 2}, &select_armored_ship);
-    this->_world.create_button("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{600,  (float)window.getSize().y / 2}, &select_damage_ship);
-    this->_world.create_button("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{1000, (float)window.getSize().y / 2}, &select_engineer_ship);
-    this->_world.create_button("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, Vector2f{1500, (float)window.getSize().y / 2}, &select_sniper_ship);
+    pos = {164, (float)window.getSize().y / 2};
+    _world.create_button("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, pos, &select_armored_ship);
+    pos = {600, (float)window.getSize().y / 2};
+    _world.create_button("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, pos, &select_damage_ship);
+    pos = {1000, (float)window.getSize().y / 2};
+    _world.create_button("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, pos, &select_engineer_ship);
+    pos = {1500, (float)window.getSize().y / 2};
+    _world.create_button("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0}, pos, &select_sniper_ship);
 
-    Vector2f pos = {(float)window.getSize().x / 2 - 131.4f, (float)window.getSize().y - 124.0f};
-    this->_world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &launch_game);
+    pos = {(float)window.getSize().x / 2 - 131.4f, (float)window.getSize().y - 124.0f};
+    _world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &launch_game);
+    _world.create_text("PLAY", "assets/font/EMINOR-BlackItalic.ttf", 40, Vector2f{static_cast<float>(window.getSize().x / 2 - 40), pos.y + 40});
 
 }

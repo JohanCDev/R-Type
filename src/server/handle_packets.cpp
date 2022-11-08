@@ -48,6 +48,11 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
         }
         index++;
     }
+    std::size_t nbr = server.clients.size();
+
+    sending_msg.header.id = GameMessage::S2C_PLAYERS_IN_LOBBY;
+    sending_msg << nbr;
+    server.SendToAll(sending_msg);
 }
 
 void player_moved(World &world, ClientMessage msg, NetworkServer &server)
@@ -79,7 +84,13 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
-static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 10}}};
+static std::map<std::string, Vector2f> shootMap = {
+    {"assets/r-typesheet5.gif", Vector2f{50, 10}},
+    {"assets/SpaceShip/ship_armored_spritesheet.png", Vector2f{130, 40}},
+    {"assets/SpaceShip/ship_damage_spritesheet.png", Vector2f{130, 40}},
+    {"assets/SpaceShip/ship_engineer_spritesheet.png", Vector2f{130, 40}},
+    {"assets/SpaceShip/ship_sniper_spritesheet.png", Vector2f{130, 40}}
+};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
@@ -123,21 +134,23 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
     Message<GameMessage> sending_msg;
     size_t entity_id = 0;
 
-    entity_id = world.create_player(GameObject::PLAYER,
-        Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y}, Vector2i{0, 0},
-        0.04f);
-    world.getRegistry().add_component<ClientIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
-    world.getRegistry().add_component<EntityIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
-    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::PLAYER;
-    sending_msg << entity_id;
-    sending_msg << Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y};
-    server.SendToAll(sending_msg);
-    sending_msg.header.id = GameMessage::S2C_START_GAME;
-    server.SendToAll(sending_msg);
+    for (std::map<std::size_t, GameObject>::iterator it = world.player_ships.begin(); it != world.player_ships.end(); ++it) {
+        entity_id = world.create_player(it->second,
+            Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y}, Vector2i{0, 0},
+            0.04f);
+        world.getRegistry().add_component<ClientIDComponent>(
+            world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+        std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
+        sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+        sending_msg << it->second;
+        sending_msg << entity_id;
+        sending_msg << Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y};
+        server.SendToClient(sending_msg, it->first);
+        sending_msg.header.id = GameMessage::S2C_START_GAME;
+        server.SendToClient(sending_msg, it->first);
+    }
     std::cout << "game started" << std::endl;
     world.state = GameState::Playing;
 }

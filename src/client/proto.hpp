@@ -16,6 +16,10 @@
 #include "../Common/Message/MessageType.hpp"
 
 void new_player(World &world, size_t srv_entity_id, Vector2f pos);
+void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos);
+void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos);
+void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos);
+void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos);
 void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos);
 void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos);
 void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos);

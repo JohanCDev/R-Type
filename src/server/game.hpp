@@ -50,6 +50,10 @@ typedef struct values_s {
  */
 static std::map<GameObject, values_t> defaultValues = {
     {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
+    {GameObject::ARMORED, {{50, 200}, 150, 50, 6, 1.0}},
+    {GameObject::DAMAGE, {{50, 200}, 80, 120, 6, 1.0}},
+    {GameObject::ENGINEER, {{50, 200}, 100, 100, 6, 1.0}},
+    {GameObject::SNIPER, {{50, 200}, 150, 50, 6, 1.0}},
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
     {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 4, 1.0}},

@@ -27,12 +27,18 @@
 
 int main(void)
 {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window", sf::Style::Fullscreen);
 
+    unsigned int port = 0;
+    std::cin >> port;
     std::srand(std::time(NULL));
 
-    NetworkClient client("localhost", "60000", 1432);
+    NetworkClient client("localhost", "60000", port);
 
+    #if __APPLE__
+        sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window");
+    #else
+        sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window", sf::Style::Fullscreen);
+    #endif
     MenuScene menu;
     GameScene game;
     LobbyScene lobby;

@@ -34,16 +34,7 @@ World::World(bool client)
     this->register_all_assets();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
-
-    this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
-    this->_drawMap.emplace(
-        GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}));
-    this->_drawMap.emplace(GameObject::ENEMY_FOCUS,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
-    this->_drawMap.emplace(GameObject::ENEMY_SNIPER,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
-    this->_drawMap.emplace(GameObject::ENEMY_ODD,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->register_all_drawable_object();
 }
 
 World::World() : _r(), _clock()
@@ -65,15 +56,7 @@ World::World() : _r(), _clock()
 
     this->register_all_assets();
 
-    this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
-    this->_drawMap.emplace(
-        GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}));
-    this->_drawMap.emplace(GameObject::ENEMY_FOCUS,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
-    this->_drawMap.emplace(GameObject::ENEMY_SNIPER,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
-    this->_drawMap.emplace(GameObject::ENEMY_ODD,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->register_all_drawable_object();
 }
 
 World::~World()
@@ -281,15 +264,23 @@ void World::create_healthbar(float life)
 
 void World::register_all_drawable_object()
 { 
+    this->_drawMap.emplace(
+        GameObject::BOSS_1, DrawableComponent("assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
     this->_drawMap.emplace(
-        GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255},  Vector2f{2.0, 2.0}));
+        GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}));
     this->_drawMap.emplace(GameObject::ENEMY_FOCUS,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::ENEMY_SNIPER,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
-    this->_drawMap.emplace(
-        GameObject::BOSS_1, DrawableComponent("assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::ARMORED,
+        DrawableComponent("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::DAMAGE,
+        DrawableComponent("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::ENGINEER,
+        DrawableComponent("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::SNIPER,
+        DrawableComponent("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
 }
