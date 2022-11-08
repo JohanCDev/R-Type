@@ -16,7 +16,7 @@
 #include "game.hpp"
 #include "server.hpp"
 
-int create_boss(World &world, NetworkServer &server, waves_t &waves)
+int create_boss_1(World &world, NetworkServer &server)
 {
     Message<GameMessage> sending_msg;
     size_t entity_id = world.create_enemy(GameObject::BOSS_1,
@@ -32,25 +32,36 @@ int create_boss(World &world, NetworkServer &server, waves_t &waves)
     sending_msg << entity_id;
     sending_msg << Vector2f{defaultValues[GameObject::BOSS_1].pos.x, defaultValues[GameObject::BOSS_1].pos.y};
     server.SendToAll(sending_msg);
+    sending_msg = Message<GameMessage>();
     sending_msg.header.id = GameMessage::S2C_MOVEMENT;
     sending_msg << entity_id;
     sending_msg << Vector2i{-defaultValues[GameObject::BOSS_1].spd, 0};
     server.SendToAll(sending_msg);
+    sending_msg = Message<GameMessage>();
     sending_msg.header.id = GameMessage::S2C_WAVE_STATUS;
     sending_msg << WaveStatus::BOSS_START;
-    sending_msg << waves.nb_wave;
+    sending_msg << (size_t)DEFAULT_WAVE_FREQUENCY_BOSS * 1;
     server.SendToAll(sending_msg);
+    sending_msg = Message<GameMessage>();
     return 0;
 }
+
+static std::map<GameObject, std::function<void(World &, NetworkServer &)>> map_create_boss = {
+    {GameObject::BOSS_1, create_boss_1}};
 
 int create_wave(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
+    size_t num_boss = 0;
+    GameObject type;
+
     waves.in_wave = true;
     waves.nb_wave++;
     waves.clock.restart();
     if (waves.nb_wave > 0 && waves.nb_wave % DEFAULT_WAVE_FREQUENCY_BOSS == 0) {
-        create_boss(world, server, waves);
+        num_boss = waves.nb_wave / DEFAULT_WAVE_FREQUENCY_BOSS;
+        type = (GameObject)((size_t)GameObject::BOSS_1 + num_boss - 1);
+        map_create_boss[type](world, server);
         return 0;
     }
     if (waves.nb_wave > 1) {
@@ -69,21 +80,22 @@ void create_enemy(World &world, NetworkServer &server)
 {
     size_t entity_id = 0;
     float random_y = rand() % 500 + 50;
-    GameObject type = (GameObject) (rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS) + (size_t)GameObject::ENEMY_FOCUS);
+    GameObject type = (GameObject)(rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS)
+        + (size_t)GameObject::ENEMY_FOCUS);
     Message<GameMessage> sending_msg;
 
-    entity_id =
-        world.create_enemy(type, Vector2f{defaultValues[type].pos.x, random_y},
-            Vector2i{-defaultValues[type].spd, 0}, defaultValues[type].hp, 0.04f);
+    entity_id = world.create_enemy(type, Vector2f{defaultValues[type].pos.x, random_y},
+        Vector2i{-defaultValues[type].spd, 0}, defaultValues[type].hp, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Enemy[" << entity_id << "]: created at Position{" << defaultValues[type].pos.x
-              << ", " << random_y << "} with type " << (size_t)type << std::endl;
+    std::cout << "Enemy[" << entity_id << "]: created at Position{" << defaultValues[type].pos.x << ", " << random_y
+              << "} with type " << (size_t)type << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << type;
     sending_msg << entity_id;
     sending_msg << Vector2f{defaultValues[type].pos.x, random_y};
     server.SendToAll(sending_msg);
+    sending_msg = Message<GameMessage>();
     sending_msg.header.id = GameMessage::S2C_MOVEMENT;
     sending_msg << entity_id;
     sending_msg << Vector2i{-defaultValues[type].spd, 0};
