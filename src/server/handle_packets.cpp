@@ -55,6 +55,7 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
             sending_msg << entities[index]->id;
             server.SendToAll(sending_msg);
+            sending_msg = Message<GameMessage>();
             std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
             break;
         }
@@ -119,6 +120,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 sending_msg << entity_id;
                 sending_msg << Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y};
                 server.SendToAll(sending_msg);
+                sending_msg = Message<GameMessage>();
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entity_id;
                 sending_msg << Vector2i{defaultValues[GameObject::LASER].spd, 0};
