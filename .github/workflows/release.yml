@@ -69,6 +69,7 @@ jobs:
           cd build/
           conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
           cmake -DCMAKE_BUILD_TYPE=Release -D_WIN32_WINNT=0x0601 ..
+          cmake --build build/
 
       - name: Package
         run: |
