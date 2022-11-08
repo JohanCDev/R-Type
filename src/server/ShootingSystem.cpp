@@ -79,11 +79,13 @@ int shooting_system(World &world, NetworkServer &server)
                                 sending_msg << health[j]->hp;
                                 sending_msg << health[j]->max_hp;
                                 server.SendToAll(sending_msg);
+                                sending_msg = Message<GameMessage>();
                             } else {
                                 std::cout << "Entity[" << entityId[j]->id << "] is dead." << std::endl;
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
                                 server.SendToAll(sending_msg);
+                                sending_msg = Message<GameMessage>();
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             }
                             sending_msg = Message<GameMessage>();
@@ -94,12 +96,14 @@ int shooting_system(World &world, NetworkServer &server)
                                 sending_msg << health[i]->hp;
                                 sending_msg << health[i]->max_hp;
                                 server.SendToAll(sending_msg);
+                                sending_msg = Message<GameMessage>();
                             } else {
                                 std::cout << "Entity[" << entityId[i]->id << "] is dead." << std::endl;
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[i]->id;
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                                 server.SendToAll(sending_msg);
+                                sending_msg = Message<GameMessage>();
                             }
                             break;
                         }
