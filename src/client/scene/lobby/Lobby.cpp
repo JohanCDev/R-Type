@@ -71,7 +71,9 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     
     while (client.HasMessages()) {
         msg = client.PopMessage();
-        client.processMessage(msg, _world, window);
+        client.processMessage(msg, _world, window, actual_screen);
+        if (actual_screen != SceneScreen::LOBBY)
+            return;
     }
 
     if (client.get_launch_game() == true) {

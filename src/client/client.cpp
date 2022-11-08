@@ -153,7 +153,7 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::LASER, new_laser},
 };
 
-void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg)
+void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     Vector2f pos;
     size_t srv_entity_id;
@@ -163,7 +163,7 @@ void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg)
     newEntity[object](world, srv_entity_id, pos);
 }
 
-void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg)
+void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
@@ -187,7 +187,7 @@ void game_end(sf::RenderWindow &window)
     window.close();
 }
 
-void movement(World &world, NetworkClient &client, Message<GameMessage> msg)
+void movement(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     registry &r = world.getRegistry();
     auto &velocityCompo = r.get_components<VelocityComponent>();
@@ -211,7 +211,7 @@ void movement(World &world, NetworkClient &client, Message<GameMessage> msg)
     }
 }
 
-void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg)
+void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     registry &r = world.getRegistry();
     ClientIDComponent hit_id;
@@ -239,14 +239,14 @@ void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg)
     }
 }
 
-void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg)
+void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     (void)world;
     (void)msg;
     // ok j'en fais quoi ???
 }
 
-void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg)
+void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     size_t nb_wave = 0;
     WaveStatus status;
@@ -262,7 +262,7 @@ void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg)
     }
 }
 
-void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg)
+void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     (void)world;
     std::size_t nb_players;
@@ -271,14 +271,14 @@ void players_numbers(World &world, NetworkClient &client, Message<GameMessage> m
     client.set_nb_players((int)nb_players);
 }
 
-void game_start(World &world, NetworkClient &client, Message<GameMessage> msg)
+void game_start(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     (void)world;
     (void)msg;
-    client.set_launch_game(true);
+    actual_screen = SceneScreen::GAME;
 }
 
-void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg)
+void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
 {
     (void)world;
     bool ready;
@@ -287,7 +287,7 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
-static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>)>> mapFunc = {
+static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>, SceneScreen &)>> mapFunc = {
     {GameMessage::S2C_ENTITY_NEW, new_entity},
     {GameMessage::S2C_ENTITY_DEAD, dead_entity},
     {GameMessage::S2C_MOVEMENT, movement},
@@ -299,9 +299,9 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
     {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}
 };
 
-void NetworkClient::processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window)
+void NetworkClient::processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)
 {
-    (mapFunc[msg.header.id])(world, *this, msg);
+    (mapFunc[msg.header.id])(world, *this, msg, screen);
     if (msg.header.id == GameMessage::S2C_GAME_END) {
         game_end(window);
     }

@@ -44,7 +44,7 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 
     while (client.HasMessages()) {
         this->msg = client.PopMessage();
-        client.processMessage(this->msg, _world, window);
+        client.processMessage(this->msg, _world, window, actual_screen);
     }
 
     window.clear(sf::Color::Black);

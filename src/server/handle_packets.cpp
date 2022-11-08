@@ -139,19 +139,18 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
             Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y}, Vector2i{0, 0},
             0.04f);
         world.getRegistry().add_component<ClientIDComponent>(
-            world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
+            world.getRegistry().entity_from_index(entity_id), ClientIDComponent{it->first});
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
         std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
+        sending_msg.header.id = GameMessage::S2C_START_GAME;
+        server.SendToAll(sending_msg);
         sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
         sending_msg << it->second;
         sending_msg << entity_id;
         sending_msg << Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y};
-        server.SendToClient(sending_msg, it->first);
-        sending_msg.header.id = GameMessage::S2C_START_GAME;
-        server.SendToClient(sending_msg, it->first);
+        server.SendToAll(sending_msg);
     }
-    std::cout << "game started" << std::endl;
     world.state = GameState::Playing;
 }
 

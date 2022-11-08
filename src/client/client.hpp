@@ -21,10 +21,13 @@
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include "../Common/locked_queue.hpp"
+#include "scene/Scene.hpp"
 
 using boost::asio::ip::udp;
 
 class World;
+
+enum class SceneScreen : uint32_t;
 
 class NetworkClient {
   public:
@@ -35,7 +38,7 @@ class NetworkClient {
     void send(const Message<GameMessage> &message);
     bool HasMessages();
     Message<GameMessage> PopMessage();
-    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window);
+    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &actual_screen);
 
     void set_launch_game(bool launch);
     bool get_launch_game() const;
