@@ -179,21 +179,19 @@ void movement(World &world, Message<GameMessage> msg)
 void entity_hit(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
-    ClientIDComponent hit_id;
-    int damage = 0;
-    size_t max_hp = 0;
-
-    msg >> max_hp >> damage >> hit_id;
-
     auto &health = r.get_components<HealthComponent>();
     auto &entityIdCompo = r.get_components<EntityIDComponent>();
-
+    ClientIDComponent hit_id;
     size_t index = 0;
+    int damage = 0;
+    size_t max_hp = 0;
+    int curr_hp = 0;
 
+    msg >> max_hp >> curr_hp >> damage >> hit_id;
     for (auto &idCompo : entityIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hit_id.id) {
-                health[index]->hp -= damage;
+                health[index]->hp = curr_hp;
                 health[index]->max_hp = max_hp;
                 std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/"
                           << max_hp << "HP" << std::endl;
