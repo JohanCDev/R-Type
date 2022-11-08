@@ -24,7 +24,7 @@
 #define DEFAULT_KEY_SHOOT                  MouseInput::Left_click
 #define DEFAULT_WAVE_FREQUENCY_BOSS        5
 #define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
-#define DEFAULT_WAVE_DIFFICULTY            3
+#define DEFAULT_WAVE_DIFFICULTY            8
 #define DEFAULT_WAVE_TIME_BETWEEN          5.0
 #define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
 
@@ -50,7 +50,7 @@ typedef struct values_s {
  */
 static std::map<GameObject, values_t> defaultValues = {
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
-    {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
+    {GameObject::PLAYER, {{50, 200}, 100, 50, 6, 2.0}},
     {GameObject::BOSS_1, {{800, 300}, 100, 40, 4, 2.0}},
     {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::ENEMY_KAMIKAZE, {{800, -1}, 100, 40, 8, 1.0}},
