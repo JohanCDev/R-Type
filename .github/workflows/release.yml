@@ -63,12 +63,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Build rtype binaries on Ubuntu (desktop)
+      - name: Build rtype binaries on Windows (desktop)
         run: |
           mkdir -p build
           cd build/
           conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
           cmake -DCMAKE_BUILD_TYPE=Release -D_WIN32_WINNT=0x0601 ..
+          cd ..
           cmake --build build/
 
       - name: Package
