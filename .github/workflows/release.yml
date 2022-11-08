@@ -102,8 +102,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.event.inputs.version }}
-          body_path: ${{ github.event.inputs.body }}
+          body: ${{ github.event.inputs.body }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            ${{ github.workspace }}/Linux/R-Type-0.1.1-Linux.tar.gz
-            ${{ github.workspace }}/Windows/R-Type-0.1.1-win64.msi
+            ${{ github.workspace }}/Linux/*.tar.gz
+            ${{ github.workspace }}/Windows/*.msi
