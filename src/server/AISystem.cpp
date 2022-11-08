@@ -15,6 +15,13 @@
 #include "../ECS/World.hpp"
 #include "game.hpp"
 
+/**
+ * @brief Goes to the left and follow the Y of player
+ *
+ * @param world The world
+ * @param server The server
+ * @param i The index of the enemy
+ */
 void update_enemy_focus(World &world, NetworkServer &server, size_t i)
 {
     auto &clients = world.getRegistry().get_components<ClientIDComponent>();
@@ -57,6 +64,13 @@ void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
     (void)i;
 }
 
+/**
+ * @brief Don't do anything for the kamikaze, it only goes to the left
+ *
+ * @param world The world
+ * @param server The server
+ * @param i The index of the enemy
+ */
 void update_enemy_kamikaze(World &world, NetworkServer &server, size_t i)
 {
     (void)world;
@@ -64,8 +78,18 @@ void update_enemy_kamikaze(World &world, NetworkServer &server, size_t i)
     (void)i;
 }
 
+/**
+ * @brief Give a direction by an index
+ */
 static std::map<size_t, Vector2i> next_dir = {{1, {0, -1}}, {2, {1, 0}}, {3, {0, 1}}, {4, {-1, 0}}};
 
+/**
+ * @brief Random direction for the enemy, can't go outside top_bot and left_right borders
+ *
+ * @param world The world
+ * @param server The server
+ * @param i The index of the enemy
+ */
 void update_enemy_odd(World &world, NetworkServer &server, size_t i)
 {
     size_t random_spawn = rand() % 1000;
