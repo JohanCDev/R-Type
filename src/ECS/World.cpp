@@ -63,6 +63,8 @@ World::World() : _r(), _clock()
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
 
+    this->register_all_assets();
+
     this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
     this->_drawMap.emplace(
         GameObject::PLAYER, DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}));

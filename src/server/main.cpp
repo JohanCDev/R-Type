@@ -34,7 +34,6 @@ int main()
     srand(time(NULL));
     waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
 
-    //world.register_all_system();
     world.register_all_drawable_object();
 
     while (1) {
