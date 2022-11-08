@@ -62,36 +62,45 @@ int shooting_system(World &world, NetworkServer &server)
             for (size_t j = 0; j < destroyables.size(); ++j) {
                 if (j != i && teams[i]->team != teams[j]->team) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
-                        auto &otherDrawable = drawables[j];
-                        auto &otherPosition = positions[j];
-
-                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
-                            std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id << "]."
-                                      << std::endl;
+                        if (check_collision(world.getResourcesManager(), sprite, positions[j], drawables[j]) == 1) {
                             health[j]->hp -= weapons[i]->stat.x;
                             health[i]->hp -= weapons[j]->stat.x;
+                            if (health[j]->hp < 0)
+                                health[j]->hp = 0;
+                            if (health[i]->hp < 0)
+                                health[i]->hp = 0;
+                            std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id
+                                      << "]. They now have " << health[i]->hp << " and " << health[j]->hp << " hp."
+                                      << std::endl;
                             if (health[j]->hp > 0) {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[j]->id;
                                 sending_msg << weapons[i]->stat.x;
+                                sending_msg << health[j]->hp;
                                 sending_msg << health[j]->max_hp;
+                                server.SendToAll(sending_msg);
                             } else {
+                                std::cout << "Entity[" << entityId[j]->id << "] is dead." << std::endl;
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
+                                server.SendToAll(sending_msg);
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             }
-                            server.SendToAll(sending_msg);
+                            sending_msg = Message<GameMessage>();
                             if (health[i]->hp > 0) {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[i]->id;
                                 sending_msg << weapons[j]->stat.x;
+                                sending_msg << health[i]->hp;
                                 sending_msg << health[i]->max_hp;
+                                server.SendToAll(sending_msg);
                             } else {
+                                std::cout << "Entity[" << entityId[i]->id << "] is dead." << std::endl;
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[i]->id;
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
+                                server.SendToAll(sending_msg);
                             }
-                            server.SendToAll(sending_msg);
                             break;
                         }
                     }
