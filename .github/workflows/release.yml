@@ -48,6 +48,15 @@ jobs:
   build-on-windows:
     runs-on: windows-latest
     steps:
+      - name: Cache Conan packages
+        id: cache_windows
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conan
+            C:\.conan
+          key: ${{ runner.os }}-CreateRelease-${{ hashfiles('**/conanfile.txt') }}
+
       - name: Install conan
         uses: turtlebrowser/get-conan@main
 
