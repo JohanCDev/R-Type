@@ -1,15 +1,7 @@
-echo "\t\t\t\033[0;34mINSTALLER FOR R-TYPE ON LINUX UBUNTU AND FEDORA\033[0m"
+echo "\t\t\t\033[0;34mINSTALLER FOR R-TYPE ON MACOSX\033[0m"
 echo "Made by Johan CHRILLESEN, Adam DJEBAR, Louis MAESTRE, Tanguy BELLICHA and Cédric CORGE"
 echo ""
 echo "To run the game we need many dependencies, this installer will install them for you."
-
-if uname -a | grep "Darwin" > /dev/null;
-then
-    echo ""
-else
-    echo "Unhandled architecture, not able to continue"
-    exit -1
-fi
 
 which -s brew
 if [[ $? != 0 ]] ; then
@@ -31,6 +23,7 @@ then
     rm -rf build
 fi
 
-mkdir build/ && cd build/ && conan install .. --build=missing -c \
-tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
-cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles' && cmake --build . -j 3
+mkdir build/ && cd build/ && 
+conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
+cmake .. -DCMAKE_BUILD_TYPE=Release -G 'Unix Makefiles' && cd .. && \
+cmake --build build/ -j 5
