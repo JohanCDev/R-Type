@@ -54,7 +54,6 @@ int ia_system(World &world, NetworkServer &server);
  * @brief Move all movable entities
  *
  * @param world The world
- * @param server The server
  * @return int
  */
 int velocity_system(World &world);
