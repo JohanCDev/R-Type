@@ -70,17 +70,36 @@
 /**
  * @brief Structure containing all the default values for the game
  *
- * @param pos Position of the object
- * @param hp Health of the object
- * @param atk Attack of the object
- * @param spd Speed of the object
- * @param scale Scale of the object
  */
 typedef struct values_s {
+    /**
+     * @brief Position of the object
+     *
+     */
     Vector2f pos;
+
+    /**
+     * @brief Health of the object
+     *
+     */
     int hp;
+
+    /**
+     * @brief Attack of the object
+     *
+     */
     int atk;
+
+    /**
+     * @brief Speed of the object
+     *
+     */
     int spd;
+
+    /**
+     * @brief Scale of the object
+     *
+     */
     float scale;
 } values_t;
 
