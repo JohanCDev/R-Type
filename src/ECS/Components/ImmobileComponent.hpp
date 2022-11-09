@@ -13,7 +13,7 @@
 
 /**
  * @brief Define a vector of boolean
- * 
+ *
  */
 struct Vector2b {
     bool x;
@@ -26,14 +26,14 @@ struct Vector2b {
 
 /**
  * @brief Make the entity ignoring his velocity
- * 
+ *
  */
 struct ImmobileComponent {
     Vector2b axis;
 
     /**
      * @brief Construct a new Immobile Component object
-     * 
+     *
      * @param axis_vec
      */
     ImmobileComponent(Vector2b axis_vec) : axis(axis_vec){};

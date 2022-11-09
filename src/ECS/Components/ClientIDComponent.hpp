@@ -22,5 +22,7 @@ struct ClientIDComponent {
 
     ClientIDComponent(size_t assign_id) : id(assign_id){};
 
-    ClientIDComponent() : id(-1) {}
+    ClientIDComponent() : id(-1)
+    {
+    }
 };

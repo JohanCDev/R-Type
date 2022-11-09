@@ -15,7 +15,7 @@
 
 /**
  * @brief Define the texture rect to draw
- * 
+ *
  * @param x start of square in x
  * @param y start of square in y
  * @param x_size size of square in x
@@ -34,7 +34,7 @@ struct Vector4i {
 
 /**
  * @brief Define a vector of float
- * 
+ *
  */
 struct Vector2f {
     float x;
@@ -43,7 +43,7 @@ struct Vector2f {
 
 /**
  * @brief Make the entity drawable
- * 
+ *
  */
 struct DrawableComponent {
     std::string path;
@@ -52,11 +52,11 @@ struct DrawableComponent {
 
     /**
      * @brief Construct a new Drawable Component object
-     * 
-     * @param texture_path 
-     * @param vec 
-     * @param xscale 
-     * @param yscale 
+     *
+     * @param texture_path
+     * @param vec
+     * @param xscale
+     * @param yscale
      */
     DrawableComponent(
         std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0), Vector2f scale_vec = Vector2f{1.0, 1.0})
@@ -64,6 +64,7 @@ struct DrawableComponent {
     {
     }
 
-    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), scale(Vector2f{1.0, 1.0}) {}
-
+    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), scale(Vector2f{1.0, 1.0})
+    {
+    }
 };

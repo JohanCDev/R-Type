@@ -24,5 +24,5 @@ struct HealthComponent {
      *
      * @param hp_value
      */
-    HealthComponent(int hp_value) : hp(hp_value), max_hp(hp_value) {};
+    HealthComponent(int hp_value) : hp(hp_value), max_hp(hp_value){};
 };
