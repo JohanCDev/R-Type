@@ -160,18 +160,36 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
 void create_enemy(World &world, NetworkServer &server);
 
 /**
- * @brief
- *
- * @param in_wave Boolean to know if the wave is in progress
- * @param nb_wave The number of the current wave
- * @param base_difficulty The difficulty of the wave
- * @param remaining_difficulty The remaining difficulty of the wave
- * @param clock The clock of the wave
+ * @brief Structure containing waves informations
  */
 typedef struct wave_s {
+    /**
+     * @brief Boolean to know if the wave is in progress
+     *
+     */
     bool in_wave;
+
+    /**
+     * @brief The number of the current wave
+     *
+     */
     size_t nb_wave;
+
+    /**
+     * @brief The difficulty of the wave
+     *
+     */
     size_t base_difficulty;
+
+    /**
+     * @brief The remaining difficulty of the wave
+     *
+     */
     size_t remaining_difficulty;
+
+    /**
+     * @brief The clock of the wave
+     *
+     */
     sf::Clock clock;
 } waves_t;
