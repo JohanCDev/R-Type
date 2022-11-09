@@ -17,22 +17,63 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <memory>
-#include "../ECS/World.hpp"
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
+#include "../ECS/World.hpp"
 #include "../Common/locked_queue.hpp"
 
 using boost::asio::ip::udp;
 
 class NetworkClient {
   public:
+    /**
+     * @brief Construct a new Network Client object
+     *
+     * @param host host to connect to
+     * @param server_port port of the server
+     * @param local_port local port to connect
+     */
     NetworkClient(std::string host, std::string server_port, unsigned short local_port = 0);
+    /**
+     * @brief Destroy the Network Client object
+     *
+     */
     ~NetworkClient();
 
+    /**
+     * @brief Send a message to the server
+     *
+     * @param message message to send
+     */
     void send(const std::string &message);
+
+    /**
+     * @brief Send a message to the server
+     *
+     * @param message message to send
+     */
     void send(const Message<GameMessage> &message);
+
+    /**
+     * @brief Check if client has incoming messages of the server
+     *
+     * @return True if there is. False if there isn't any.
+     */
     bool HasMessages();
+
+    /**
+     * @brief Pop incoming message from the server
+     *
+     * @return Message<GameMessage> object containing the message
+     */
     Message<GameMessage> PopMessage();
+
+    /**
+     * @brief Process a message
+     *
+     * @param msg message to process
+     * @param world Game Class that will be modified by the message
+     */
     void processMessage(Message<GameMessage> &msg, World &world);
 
   private:
