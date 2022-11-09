@@ -1,12 +1,12 @@
 /**
  * @file AllCallback.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-11-03
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #pragma once

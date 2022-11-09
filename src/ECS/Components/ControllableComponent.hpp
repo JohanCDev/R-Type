@@ -15,7 +15,7 @@
 
 /**
  * @brief Make the entity controllable
- * 
+ *
  */
 struct ControllableComponent {
     KeyboardInput up;
@@ -26,12 +26,12 @@ struct ControllableComponent {
 
     /**
      * @brief Construct a new Controllable Component object
-     * 
-     * @param up_key 
-     * @param down_key 
-     * @param right_key 
-     * @param left_key 
-     * @param shoot_key 
+     *
+     * @param up_key
+     * @param down_key
+     * @param right_key
+     * @param left_key
+     * @param shoot_key
      */
     ControllableComponent(KeyboardInput up_key, KeyboardInput down_key, KeyboardInput right_key, KeyboardInput left_key,
         MouseInput shoot_key)

@@ -11,16 +11,16 @@
 
 #pragma once
 
-#include "../../server/server.hpp"
 #include "../../client/client.hpp"
 #include "../../server/game.hpp"
+#include "../../server/server.hpp"
 #include "../World.hpp"
 
 enum class SceneScreen : uint32_t;
 
 int drawable_system(World &world, sf::RenderWindow &window);
 int controllable_system(World &world, sf::Event event);
-int shooting_system(World &world, NetworkServer &server);
+int collide_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);

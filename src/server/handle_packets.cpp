@@ -23,6 +23,8 @@
 
 void player_joined(World &world, ClientMessage msg, NetworkServer &server)
 {
+    (void)msg;
+    (void)server;
     if (world.state != GameState::Lobby)
         return;
 }
@@ -84,13 +86,11 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
-static std::map<std::string, Vector2f> shootMap = {
-    {"assets/r-typesheet5.gif", Vector2f{50, 10}},
+static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 10}},
     {"assets/SpaceShip/ship_armored_spritesheet.png", Vector2f{130, 40}},
     {"assets/SpaceShip/ship_damage_spritesheet.png", Vector2f{130, 40}},
     {"assets/SpaceShip/ship_engineer_spritesheet.png", Vector2f{130, 40}},
-    {"assets/SpaceShip/ship_sniper_spritesheet.png", Vector2f{130, 40}}
-};
+    {"assets/SpaceShip/ship_sniper_spritesheet.png", Vector2f{130, 40}}};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
@@ -137,10 +137,10 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
     sending_msg.header.id = GameMessage::S2C_START_GAME;
     sending_msg << "start";
     server.SendToAll(sending_msg);
-    for (std::map<std::size_t, GameObject>::iterator it = world.player_ships.begin(); it != world.player_ships.end(); ++it) {
+    for (std::map<std::size_t, GameObject>::iterator it = world.player_ships.begin(); it != world.player_ships.end();
+         ++it) {
         entity_id = world.create_player(it->second,
-            Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y}, Vector2i{0, 0},
-            0.04f);
+            Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y}, Vector2i{0, 0}, 0.04f);
         world.getRegistry().add_component<ClientIDComponent>(
             world.getRegistry().entity_from_index(entity_id), ClientIDComponent{it->first});
         world.getRegistry().add_component<EntityIDComponent>(
@@ -157,6 +157,7 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
 
 void select_ship(World &world, ClientMessage msg, NetworkServer &server)
 {
+    (void)server;
     GameObject ship;
 
     msg.first >> ship;

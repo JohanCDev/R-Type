@@ -105,7 +105,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
  */
 void create_enemy(World &world, NetworkServer &server);
 
- /**
+/**
  * @brief start game
  *
  * @param world The server's world
@@ -113,7 +113,7 @@ void create_enemy(World &world, NetworkServer &server);
  */
 void start_game(World &world, ClientMessage msg, NetworkServer &server);
 
- /**
+/**
  * @brief Select a ship
  *
  * @param world The server's world
@@ -121,7 +121,7 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server);
  */
 void select_ship(World &world, ClientMessage msg, NetworkServer &server);
 
-    /**
+/**
  * @brief
  *
  * @param in_wave Boolean to know if the wave is in progress

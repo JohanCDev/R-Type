@@ -17,11 +17,11 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <memory>
-#include "../ECS/World.hpp"
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
-#include "../Common/locked_queue.hpp"
+#include "../ECS/World.hpp"
 #include "scene/Scene.hpp"
+#include "../Common/locked_queue.hpp"
 
 using boost::asio::ip::udp;
 

@@ -25,5 +25,4 @@ class MenuScene : public IScene {
   private:
     World _world;
     bool _init;
-
 };

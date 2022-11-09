@@ -1,12 +1,12 @@
 /**
  * @file Lobby.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-11-02
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #pragma once
@@ -20,7 +20,7 @@ class LobbyScene : public IScene {
     LobbyScene();
     void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen) override;
 
-    void init_lobby(sf::RenderWindow &window, NetworkClient &client);
+    void init_lobby(sf::RenderWindow &window);
 
     void update_player_number(NetworkClient &client);
 
@@ -28,5 +28,4 @@ class LobbyScene : public IScene {
     World _world;
     bool _connected;
     bool _init;
-
 };

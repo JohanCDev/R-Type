@@ -1,12 +1,12 @@
 /**
  * @file play_callback.cpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2022-11-03
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "../Scene.hpp"
@@ -58,17 +58,14 @@ void launch_game(World &world, SceneScreen &actual_screen, NetworkClient &client
     actual_screen = SceneScreen::GAME;
 }
 
-static std::vector<std::string> asset_vector {
-    "assets/SpaceShip/ship_armored_spritesheet.png",
-    "assets/SpaceShip/ship_damage_spritesheet.png",
-    "assets/SpaceShip/ship_engineer_spritesheet.png",
-    "assets/SpaceShip/ship_sniper_spritesheet.png"
-};
+static std::vector<std::string> asset_vector{"assets/SpaceShip/ship_armored_spritesheet.png",
+    "assets/SpaceShip/ship_damage_spritesheet.png", "assets/SpaceShip/ship_engineer_spritesheet.png",
+    "assets/SpaceShip/ship_sniper_spritesheet.png"};
 
 void shadow_other_ship(World &world, std::string &except)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
-    for (auto &drawable: drawables) {
+    for (auto &drawable : drawables) {
         if (drawable && drawable.has_value()) {
             std::vector<std::string>::iterator it = std::find(asset_vector.begin(), asset_vector.end(), drawable->path);
             if (it != asset_vector.end() && drawable->path != except) {

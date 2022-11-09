@@ -13,14 +13,14 @@
 
 #include "server.hpp"
 #include <boost/bind.hpp>
-#include <sstream>
 #include <boost/iostreams/stream.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/serialization/vector.hpp>
+#include <sstream>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
 
 NetworkServer::NetworkServer(unsigned short local_port)
     : socket(io_service, udp::endpoint(udp::v4(), local_port)),

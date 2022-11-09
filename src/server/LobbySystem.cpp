@@ -9,8 +9,8 @@
  *
  */
 
-#include "server.hpp"
 #include "../ECS/World.hpp"
+#include "server.hpp"
 
 int lobby_system(World &world, NetworkServer &server)
 {

@@ -42,12 +42,10 @@ int main()
             mapFunc[msg.first.header.id](world, msg, server);
         };
         switch (world.state) {
-            case GameState::Lobby:
-                lobby_system(world, server);
-                break;
+            case GameState::Lobby: lobby_system(world, server); break;
             case GameState::Playing:
                 velocity_system(world);
-                shooting_system(world, server);
+                collide_system(world, server);
                 ia_system(world, server);
                 wave_system(world, server, waves);
                 break;
