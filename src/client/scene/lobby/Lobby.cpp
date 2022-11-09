@@ -64,13 +64,13 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
             window.close();
         if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
             launch_game(_world, current_screen, client);
-        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num1) {
             select_armored_ship(_world, current_screen, client);
-        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num2) {
             select_damage_ship(_world, current_screen, client);
-        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::E) {
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num3) {
             select_engineer_ship(_world, current_screen, client);
-        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::S) {
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num4) {
             select_sniper_ship(_world, current_screen, client);
         }
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
