@@ -17,8 +17,8 @@ void health_up(World &world, std::size_t &e)
     auto &health = world.getRegistry().get_components<HealthComponent>()[e];
 
     if (health && health.has_value()) {
-        health->hp += 10;
-        health->max_hp += 10;
+        health->hp *= 1.1;
+        health->max_hp *= 1.1;
     }
 }
 
@@ -27,7 +27,7 @@ void damage_up(World &world, std::size_t &e)
     auto &weapon = world.getRegistry().get_components<WeaponComponent>()[e];
 
     if (weapon && weapon.has_value()) {
-        weapon->damage += 10;
+        weapon->damage *= 1.1;
     }
 }
 
