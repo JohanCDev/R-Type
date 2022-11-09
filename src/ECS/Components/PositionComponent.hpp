@@ -58,6 +58,10 @@ struct Vector2i {
  *
  */
 struct PositionComponent {
+    /**
+     * @brief Position as a Vector2f
+     *
+     */
     Vector2f pos;
 
     /**
