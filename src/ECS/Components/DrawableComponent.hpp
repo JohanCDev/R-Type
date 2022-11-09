@@ -87,6 +87,12 @@ struct DrawableComponent {
     Vector4i rect;
 
     /**
+     * @brief Color of the component
+     *
+     */
+    Vector4i color;
+
+    /**
      * @brief Scale of the component
      *
      */
@@ -99,9 +105,9 @@ struct DrawableComponent {
      * @param vec Rectangle to be shown
      * @param scale_vec Vector Scaling the entity
      */
-    DrawableComponent(
-        std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0), Vector2f scale_vec = Vector2f{1.0, 1.0})
-        : path(texture_path), rect(vec), scale(scale_vec)
+    DrawableComponent(std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0),
+        Vector4i col = Vector4i(255, 255, 255, 255), Vector2f scale_vec = Vector2f{1.0, 1.0})
+        : path(texture_path), rect(vec), color(col), scale(scale_vec)
     {
     }
 
@@ -109,10 +115,11 @@ struct DrawableComponent {
      * @brief Construct a new Drawable Component object
      *
      * @param rect Rectangle to be shown
+     * @param color Color of the component
      * @param scale Scale of the component
      *
      */
-    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), scale(Vector2f{1.0, 1.0})
+    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), color(Vector4i(255, 255, 255, 255)), scale(Vector2f{1.0, 1.0})
     {
     }
 };

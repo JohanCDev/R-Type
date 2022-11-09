@@ -13,6 +13,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <map>
+#include "../server/GameStates.hpp"
 #include "Registry.hpp"
 #include "ResourcesManager.hpp"
 #include "Systems/AllSystem.hpp"
@@ -26,23 +27,21 @@ class World {
     /**
      * @brief Construct a new World object
      *
-     * @param mode
-     * @param name
+     * @param client
      */
-    World(sf::VideoMode mode, std::string name);
-    World(void);
+    World(bool client);
+
+    /**
+     * @brief Construct a new World object
+     *
+     */
+    World();
 
     /**
      * @brief Destroy the World object
      *
      */
     ~World();
-
-    /**
-     * @brief Register all existing components
-     *
-     */
-    void register_all_component();
 
     /**
      * @brief register all existing systems
@@ -116,6 +115,46 @@ class World {
     void create_healthbar(float life);
 
     /**
+     * @brief Create a drawable object
+     *
+     * @param asset_path Path to the asset
+     * @param rect Display rect of object
+     * @param color Color of the rectangle
+     * @param scale Scale of the asset
+     * @param pos Pos of the object
+     * @param speed Speed of the object
+     * @param refresh_time Time before the object is refreshed
+     * @param elapsed_time Time elapsed since the last refresh
+     *
+     */
+    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+        Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+
+    /**
+     * @brief Create a text object
+     *
+     * @param text
+     * @param font
+     * @param size
+     * @param pos
+     *
+     */
+    size_t create_text(std::string text, std::string font, int size, Vector2f pos);
+
+    /**
+     * @brief Create a button object
+     *
+     * @param asset
+     * @param rect
+     * @param scale
+     * @param pos
+     * @param callback
+     * @return size_t
+     */
+    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
+        std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
+
+    /**
      * @brief Registers all drawable objects
      *
      */
@@ -162,6 +201,9 @@ class World {
      * @param direction new direction as a Vector2i. ex: {0, 0}
      */
     void setDirection(Vector2i direction);
+
+    GameState state;
+    std::map<std::size_t, GameObject> player_ships;
 
   private:
     /**

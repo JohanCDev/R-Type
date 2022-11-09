@@ -103,17 +103,15 @@ template <typename T> struct Message {
     template <class Archive> void serialize(Archive &ar, const unsigned int version)
     {
         /**
-         * @brief ID of the archive
+         * @brief Header of the archive
          *
          */
-        ar &id;
-
+        ar &header;
         /**
-         * @brief Size of the archive
+         * @brief Body of the archive
          *
          */
-        ar &size;
-
+        ar &body;
         /**
          * @brief Version
          *

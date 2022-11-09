@@ -25,6 +25,42 @@
 void new_player(World &world, size_t srv_entity_id, Vector2f pos);
 
 /**
+ * @brief Create an armored player in the world
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ */
+void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos);
+
+/**
+ * @brief Create a damage player in the world
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ */
+void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos);
+
+/**
+ * @brief Create an engineer player in the world
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ */
+void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos);
+
+/**
+ * @brief Create a sniper player in the world
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ */
+void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos);
+
+/**
  * @brief Create a enemy of type FOCUS in the world
  *
  * @param world The world

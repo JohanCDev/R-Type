@@ -11,17 +11,24 @@
 
 #pragma once
 
+#include "../../client/client.hpp"
 #include "../../server/game.hpp"
 #include "../../server/server.hpp"
 #include "../World.hpp"
 
 /**
+ * @brief Scene screen
+ *
+ */
+enum class SceneScreen : uint32_t;
+/**
  * @brief Draw all drawables entities
  *
  * @param world The world
+ * @param window The window
  * @return negative value if there is an error
  */
-int drawable_system(World &world);
+int drawable_system(World &world, sf::RenderWindow &window);
 
 /**
  * @brief Update all controllable entities
@@ -67,3 +74,30 @@ int velocity_system(World &world);
  * @return negative value if there is an error
  */
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
+
+/**
+ * @brief Collide all entities
+ *
+ * @param world The world
+ * @param server The server
+ * @return negative value if there is an error
+ */
+int collide_system(World &world, NetworkServer &server);
+/**
+ * @brief Lobby system
+ *
+ * @param world The world
+ * @param server The server
+ * @return negative value if there is an error
+ */
+int lobby_system(World &world, NetworkServer &server);
+/**
+ * @brief Clickable system
+ *
+ * @param world The world
+ * @param click_pos pos of the click
+ * @param current_screen current screen
+ * @param client client struct
+ * @return negative value if there is an error
+ */
+int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client);

@@ -108,6 +108,10 @@ typedef struct values_s {
  */
 static std::map<GameObject, values_t> defaultValues = {
     {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
+    {GameObject::SHIP_ARMORED, {{50, 200}, 150, 50, 6, 1.0}},
+    {GameObject::SHIP_DAMAGE, {{50, 200}, 80, 120, 6, 1.0}},
+    {GameObject::SHIP_ENGINEER, {{50, 200}, 100, 100, 6, 1.0}},
+    {GameObject::SHIP_SNIPER, {{50, 200}, 150, 50, 6, 1.0}},
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
     {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 4, 1.0}},
@@ -160,7 +164,29 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
 void create_enemy(World &world, NetworkServer &server);
 
 /**
+ * @brief start game
+ *
+ * @param world The server's world
+ * @param server The server
+ */
+void start_game(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Select a ship
+ *
+ * @param world The server's world
+ * @param server The server
+ */
+void select_ship(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
  * @brief Structure containing waves informations
+ *
+ * @param in_wave Boolean to know if the wave is in progress
+ * @param nb_wave The number of the current wave
+ * @param base_difficulty The difficulty of the wave
+ * @param remaining_difficulty The remaining difficulty of the wave
+ * @param clock The clock of the wave
  */
 typedef struct wave_s {
     /**

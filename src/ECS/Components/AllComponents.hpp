@@ -21,5 +21,7 @@
 #include "HealthComponent.hpp"
 #include "ImmobileComponent.hpp"
 #include "PositionComponent.hpp"
+#include "TextComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
+#include "ClickableComponent.hpp"

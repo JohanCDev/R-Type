@@ -20,9 +20,14 @@
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include "../ECS/World.hpp"
+#include "scene/Scene.hpp"
 #include "../Common/locked_queue.hpp"
 
 using boost::asio::ip::udp;
+
+class World;
+
+enum class SceneScreen : uint32_t;
 
 /**
  * @brief Network client class
@@ -81,6 +86,57 @@ class NetworkClient {
      */
     void processMessage(Message<GameMessage> &msg, World &world);
 
+    /**
+     * @brief Process a message
+     *
+     * @param msg message to process
+     * @param world Game Class that will be modified by the message
+     * @param window Window to modify
+     * @param current_screen Current screen of the game
+     */
+    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &current_screen);
+
+    /**
+     * @brief Set the launch value
+     *
+     * @param launch new launch value
+     */
+    void set_launch_game(bool launch);
+    /**
+     * @brief Get the launch value
+     *
+     * @return the value
+     */
+    bool get_launch_game() const;
+
+    /**
+     * @brief Set the players ready value
+     *
+     * @param ready new launch value
+     */
+    void set_players_ready(bool ready);
+
+    /**
+     * @brief Get the players_ready value
+     *
+     * @return the value
+     */
+    bool get_players_ready() const;
+
+    /**
+     * @brief Set the nb players
+     *
+     * @param nb_players nb_players value
+     */
+    void set_nb_players(int nb_players);
+
+    /**
+     * @brief Get the nb players
+     *
+     * @return nb_players
+     */
+    int get_nb_players() const;
+
   private:
     boost::asio::io_service io_service;
     udp::socket socket;
@@ -88,6 +144,9 @@ class NetworkClient {
     udp::endpoint remote_endpoint;
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
+    bool _players_ready;
+    bool _launch_game;
+    int _nb_players;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
 
