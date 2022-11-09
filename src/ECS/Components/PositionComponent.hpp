@@ -16,7 +16,15 @@
  *
  */
 struct Vector2i {
+    /**
+     * @brief First value of the vector
+     *
+     */
     int x;
+    /**
+     * @brief Second value of the vector
+     *
+     */
     int y;
 
     /**
