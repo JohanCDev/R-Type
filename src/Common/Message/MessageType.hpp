@@ -30,6 +30,18 @@ enum class GameMessage : uint32_t {
     S2C_PLAYERS_READY,
 };
 
-enum class WaveStatus : uint32_t {START, BOSS_START, END};
+enum class WaveStatus : uint32_t { START, BOSS_START, END };
 
-enum class GameObject : uint32_t { LASER, PLAYER, BOSS_1, ENEMY_FOCUS, ENEMY_SNIPER, ENEMY_ODD, GAME_OBJECT_COUNT, ARMORED, DAMAGE, ENGINEER, SNIPER };
+enum class GameObject : uint32_t {
+    LASER,
+    PLAYER,
+    BOSS_1,
+    ENEMY_FOCUS,
+    ENEMY_SNIPER,
+    ENEMY_ODD,
+    GAME_OBJECT_COUNT,
+    SHIP_ARMORED,
+    SHIP_DAMAGE,
+    SHIP_ENGINEER,
+    SHIP_SNIPER
+};

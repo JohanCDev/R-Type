@@ -142,10 +142,10 @@ int NetworkClient::get_nb_players() const
 
 static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newEntity = {
     {GameObject::PLAYER, new_player},
-    {GameObject::ARMORED, new_armored_player},
-    {GameObject::DAMAGE, new_damage_player},
-    {GameObject::ENGINEER, new_engineer_player},
-    {GameObject::SNIPER, new_sniper_player},
+    {GameObject::SHIP_ARMORED, new_armored_player},
+    {GameObject::SHIP_DAMAGE, new_damage_player},
+    {GameObject::SHIP_ENGINEER, new_engineer_player},
+    {GameObject::SHIP_SNIPER, new_sniper_player},
     {GameObject::BOSS_1, new_boss1},
     {GameObject::ENEMY_FOCUS, new_enemy_focus},
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},

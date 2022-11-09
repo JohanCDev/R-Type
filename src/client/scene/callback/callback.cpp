@@ -87,7 +87,7 @@ void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClien
 
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
-    GameObject obj = GameObject::ARMORED;
+    GameObject obj = GameObject::SHIP_ARMORED;
     msg << obj;
     client.send(msg);
 }
@@ -102,7 +102,7 @@ void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient
 
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
-    GameObject obj = GameObject::DAMAGE;
+    GameObject obj = GameObject::SHIP_DAMAGE;
     msg << obj;
     client.send(msg);
 }
@@ -117,7 +117,7 @@ void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClie
 
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
-    GameObject obj = GameObject::ENGINEER;
+    GameObject obj = GameObject::SHIP_ENGINEER;
     msg << obj;
     client.send(msg);
 }
@@ -132,7 +132,7 @@ void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient
 
     Message<GameMessage> msg;
     msg.header.id = GameMessage::C2S_SELECT_SHIP;
-    GameObject obj = GameObject::SNIPER;
+    GameObject obj = GameObject::SHIP_SNIPER;
     msg << obj;
     client.send(msg);
 }
