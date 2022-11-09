@@ -20,7 +20,6 @@
 #include "GameTeamComponent.hpp"
 #include "HealthComponent.hpp"
 #include "ImmobileComponent.hpp"
-#include "MaximumVelocityComponent.hpp"
 #include "PositionComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"

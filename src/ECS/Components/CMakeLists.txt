@@ -14,7 +14,6 @@ list(
   ${INCROOT}/DrawableComponent.hpp
   ${INCROOT}/HealthComponent.hpp
   ${INCROOT}/ImmobileComponent.hpp
-  ${INCROOT}/MaximumVelocityComponent.hpp
   ${INCROOT}/PositionComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
   ${INCROOT}/WeaponComponent.hpp)
