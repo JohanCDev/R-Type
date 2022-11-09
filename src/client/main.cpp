@@ -20,6 +20,11 @@
 #include "client.hpp"
 #include "proto.hpp"
 
+/**
+ * @brief Main function
+ *
+ * @return int
+ */
 int main(void)
 {
     unsigned short port;

@@ -25,6 +25,11 @@ static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkS
     {GameMessage::C2S_JOIN, player_joined}, {GameMessage::C2S_LEAVE, player_left},
     {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot}};
 
+/**
+ * @brief Main function
+ *
+ * @return int
+ */
 int main()
 {
     NetworkServer server(60000);
