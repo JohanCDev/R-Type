@@ -16,11 +16,9 @@
 #include <thread>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
-#include "client.hpp"
-
 #include "../ECS/World.hpp"
-
-void handle_movement(World &world, NetworkClient &client, sf::Event event);
+#include "client.hpp"
+#include "proto.hpp"
 
 int main(void)
 {
