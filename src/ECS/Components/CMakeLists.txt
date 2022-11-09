@@ -5,7 +5,6 @@ list(
   APPEND
   SRC
   ${INCROOT}/AllComponents.hpp
-  ${INCROOT}/AccelerationComponent.hpp
   ${INCROOT}/AnimationComponent.hpp
   ${INCROOT}/CollideComponent.hpp
   ${INCROOT}/ClientIDComponent.hpp
