@@ -16,13 +16,39 @@
 
 /**
  * @brief Make the entity able to shoot
- * 
+ *
  */
 struct WeaponComponent {
+    /**
+     * @brief Name of the weapon
+     *
+     */
     std::string name;
+
+    /**
+     * @brief Stats of the weapon
+     *
+     * First value is the damage that the weapon will cause
+     * Second is the Fire Frequency
+     *
+     */
     Vector2i stat;
+
+    /**
+     * @brief Cooldown of the weapon
+     *
+     * Will disable the fact that the player is always shooting
+     *
+     */
     std::size_t cooldown_as_milliseconds;
 
+    /**
+     * @brief Construct a new Weapon Component object
+     *
+     * @param weapon_name Name of the weapon
+     * @param stat_vec Stats of the weapon {Damage, Fire Frequency}
+     * @param cooldown Cooldown in ms of the weapon
+     */
     WeaponComponent(std::string weapon_name, Vector2i stat_vec, std::size_t cooldown)
         : name(weapon_name), stat(stat_vec), cooldown_as_milliseconds(cooldown){};
 };
