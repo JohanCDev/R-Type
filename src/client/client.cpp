@@ -178,7 +178,7 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
                 break;
             }
         }
-        index++;
+      index++;
     }
 }
 

@@ -134,6 +134,9 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
     Message<GameMessage> sending_msg;
     size_t entity_id = 0;
 
+    sending_msg.header.id = GameMessage::S2C_START_GAME;
+    sending_msg << "start";
+    server.SendToAll(sending_msg);
     for (std::map<std::size_t, GameObject>::iterator it = world.player_ships.begin(); it != world.player_ships.end(); ++it) {
         entity_id = world.create_player(it->second,
             Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y}, Vector2i{0, 0},
@@ -143,8 +146,6 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
         std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
-        sending_msg.header.id = GameMessage::S2C_START_GAME;
-        server.SendToAll(sending_msg);
         sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
         sending_msg << it->second;
         sending_msg << entity_id;
