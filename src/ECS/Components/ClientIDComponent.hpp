@@ -13,6 +13,10 @@
 
 #include <stdio.h>
 
+/**
+ * @brief Store the client ID
+ *
+ */
 struct ClientIDComponent {
     size_t id;
 
