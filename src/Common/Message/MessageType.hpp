@@ -24,6 +24,7 @@ enum class GameMessage : uint32_t {
     S2C_ENTITY_HIT,
     S2C_WAVE_STATUS,
     S2C_LEVEL_UP,
+    S2C_UPDATE_STATS,
     S2C_OK
 };
 

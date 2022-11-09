@@ -113,11 +113,20 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server);
 /**
  * @brief Augments a player's stat
  *
- * @param stat Statistic to augment
- * @param Entity The entity whose stat to augment
  * @param world The server's world
+ * @param stat Statistic to augment
+ * @param index The entity whose stat to augment
  */
-void stat_up(World &world, GameStat &stat, std::size_t &e);
+void stat_up(World &world, GameStat &stat, std::size_t &index);
+
+/**
+ * @brief Inform all clients of changes in stats
+ *
+ * @param world The server's world
+ * @param server The server
+ * @param index The entity whose stat changed
+ */
+void send_stats_to_players(World &world, NetworkServer &server, std::size_t index);
 
 /**
  * @brief

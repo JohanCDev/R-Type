@@ -17,8 +17,9 @@ void health_up(World &world, std::size_t &e)
     auto &health = world.getRegistry().get_components<HealthComponent>()[e];
 
     if (health && health.has_value()) {
-        health->max_hp *= 1.1;
-        health->hp *= 1.1;
+        int health_diff = health->max_hp * 0.1;
+        health->hp += health_diff;
+        health->max_hp += health_diff;
     }
 }
 

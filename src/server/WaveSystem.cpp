@@ -108,6 +108,7 @@ int level_up_system(World &world, NetworkServer &server)
         index++;
     }
     level_up_msg.header.id = GameMessage::S2C_LEVEL_UP;
+    level_up_msg << "ONE UP";
     server.SendToAll(level_up_msg);
     return 0;
 }

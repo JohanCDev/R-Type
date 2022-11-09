@@ -153,6 +153,7 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server)
             auto &team = teams[index];
             if (team && team.has_value() && team->team == GameTeam::PLAYER) {
                 stat_up(world, stat, index);
+                send_stats_to_players(world, server, index);
                 level->spent_points++;
             }
         }
