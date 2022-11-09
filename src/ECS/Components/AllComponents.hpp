@@ -1,6 +1,6 @@
 /**
  * @file AllComponents.hpp
- * @author Tanguy Bellicha (tanguy.bellicha@epitech.e)
+ * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
  * @date 2022-10-15
