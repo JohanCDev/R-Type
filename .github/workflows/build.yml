@@ -116,7 +116,10 @@ jobs:
           sudo apt install graphviz doxygen -y
 
       - name: Build documentation
-        run: doxygen
+        run: |
+          mkdir -p doc
+          mkdir -p doc/output
+          doxygen
 
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4.2.5
