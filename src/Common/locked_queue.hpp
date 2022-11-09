@@ -21,12 +21,22 @@ template <typename T> class LockedQueue {
     std::queue<T> queue;
 
   public:
+    /**
+     * @brief Push information to queue
+     *
+     * @param value information to push
+     */
     void push(T value)
     {
         boost::mutex::scoped_lock lock(mutex);
         queue.push(value);
     };
 
+    /**
+     * @brief Pop information of queue
+     *
+     * @return information to process
+     */
     T pop()
     {
         boost::mutex::scoped_lock lock(mutex);
@@ -36,6 +46,11 @@ template <typename T> class LockedQueue {
         return value;
     };
 
+    /**
+     * @brief Gets if the queue is empty
+     *
+     * @return True if it is. False if it isn't
+     */
     bool empty()
     {
         boost::mutex::scoped_lock lock(mutex);
