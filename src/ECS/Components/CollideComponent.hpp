@@ -11,6 +11,10 @@
 
 #pragma once
 
+/**
+ * @brief Make the entity able to collide with others
+ *
+ */
 struct CollideComponent {
     bool collide;
 
