@@ -16,13 +16,22 @@
  *
  */
 struct HealthComponent {
+    /**
+     * @brief HP left of the component
+     *
+     */
     int hp;
+
+    /**
+     * @brief Max HP of the component
+     *
+     */
     size_t max_hp;
 
     /**
      * @brief Construct a new Health Component object
      *
-     * @param hp_value
+     * @param hp_value Max HP of the component at creation
      */
     HealthComponent(int hp_value) : hp(hp_value), max_hp(hp_value){};
 };

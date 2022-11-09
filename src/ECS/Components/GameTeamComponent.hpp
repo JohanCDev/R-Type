@@ -22,12 +22,25 @@ enum class GameTeam : uint32_t { PLAYER, ENEMY, NEUTRAL, NONE };
  *
  */
 struct GameTeamComponent {
+    /**
+     * @brief Team of the component
+     *
+     */
     GameTeam team;
 
+    /**
+     * @brief Construct a new Game Team Component object
+     *
+     * @param entity_team Team of the Component
+     */
     GameTeamComponent(GameTeam entity_team) : team(entity_team)
     {
     }
 
+    /**
+     * @brief Construct a new Game Team Component object with no GameTeam
+     *
+     */
     GameTeamComponent() : team(GameTeam::NONE)
     {
     }

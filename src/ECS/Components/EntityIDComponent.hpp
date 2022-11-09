@@ -18,5 +18,9 @@
  *
  */
 struct EntityIDComponent {
+    /**
+     * @brief ID of the entity
+     *
+     */
     size_t id;
 };

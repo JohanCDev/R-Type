@@ -47,6 +47,10 @@ struct Vector2b {
  *
  */
 struct ImmobileComponent {
+    /**
+     * @brief Vector containing the moving axis informations of component
+     *
+     */
     Vector2b axis;
 
     /**

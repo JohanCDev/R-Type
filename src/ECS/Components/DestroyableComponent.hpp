@@ -16,6 +16,10 @@
  *
  */
 struct DestroyableComponent {
+    /**
+     * @brief Is the component destroyable
+     *
+     */
     bool destroyable;
 
     /**

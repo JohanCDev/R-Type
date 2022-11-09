@@ -16,6 +16,10 @@
  *
  */
 struct CollideComponent {
+    /**
+     * @brief Does the component collide ?
+     *
+     */
     bool collide;
 
     CollideComponent() : collide(false)
