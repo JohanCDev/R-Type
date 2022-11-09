@@ -11,13 +11,11 @@
 
 #pragma once
 
-#include "Registry.hpp"
-#include "ResourcesManager.hpp"
-
-#include "Systems/AllSystem.hpp"
-
 #include <SFML/Graphics.hpp>
 #include <map>
+#include "Registry.hpp"
+#include "ResourcesManager.hpp"
+#include "Systems/AllSystem.hpp"
 
 /**
  * @brief Store entity and usefull function
