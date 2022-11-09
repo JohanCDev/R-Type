@@ -24,6 +24,11 @@
 
 using boost::asio::ip::udp;
 
+/**
+ * @brief Network client class
+ *
+ * Containing information on the network used in client
+ */
 class NetworkClient {
   public:
     /**

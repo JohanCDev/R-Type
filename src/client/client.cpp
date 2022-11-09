@@ -116,6 +116,12 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::LASER, new_laser},
 };
 
+/**
+ * @brief Create a new entity
+ *
+ * @param world The world to add the entity to
+ * @param msg The message containing the entity data
+ */
 void new_entity(World &world, Message<GameMessage> msg)
 {
     Vector2f pos;
@@ -126,6 +132,12 @@ void new_entity(World &world, Message<GameMessage> msg)
     newEntity[object](world, srv_entity_id, pos);
 }
 
+/**
+ * @brief Update an entity that has died
+ *
+ * @param world The world to update
+ * @param msg The message containing the entity data
+ */
 void dead_entity(World &world, Message<GameMessage> msg)
 {
     EntityIDComponent id_entity;
@@ -145,12 +157,24 @@ void dead_entity(World &world, Message<GameMessage> msg)
     }
 }
 
+/**
+ * @brief End the game
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ */
 void game_end(World &world, Message<GameMessage> msg)
 {
     world.getWindow().close();
     (void)msg;
 }
 
+/**
+ * @brief Act on a movement
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ */
 void movement(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
@@ -175,6 +199,12 @@ void movement(World &world, Message<GameMessage> msg)
     }
 }
 
+/**
+ * @brief Hit an entity
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ */
 void entity_hit(World &world, Message<GameMessage> msg)
 {
     registry &r = world.getRegistry();
@@ -203,6 +233,12 @@ void entity_hit(World &world, Message<GameMessage> msg)
     }
 }
 
+/**
+ * @brief Validate a packet
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ */
 void ok_packet(World &world, Message<GameMessage> msg)
 {
     (void)world;
@@ -210,6 +246,12 @@ void ok_packet(World &world, Message<GameMessage> msg)
     // ok j'en fais quoi ???
 }
 
+/**
+ * @brief Update a wave
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ */
 void wave_status(World &world, Message<GameMessage> msg)
 {
     size_t nb_wave = 0;

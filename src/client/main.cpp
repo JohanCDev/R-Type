@@ -9,6 +9,9 @@
  *
  */
 
+/**
+ * @brief Define the WIN32 version
+ */
 #define _WIN32_WINNT 0x0601
 
 #include <chrono>
