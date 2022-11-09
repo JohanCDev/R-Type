@@ -62,8 +62,17 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
-            current_screen = SceneScreen::GAME;
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
+            launch_game(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
+            select_armored_ship(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
+            select_damage_ship(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::E) {
+            select_engineer_ship(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::S) {
+            select_sniper_ship(_world, current_screen, client);
+        }
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
             clickable_system(
                 this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);

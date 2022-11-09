@@ -30,6 +30,9 @@ void OptionScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScre
             clickable_system(
                 this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
         }
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::M) {
+            go_to_menu(_world, current_screen, client);
+        }
         if (event.type == sf::Event::Closed || current_screen == SceneScreen::NONE)
             window.close();
     }
