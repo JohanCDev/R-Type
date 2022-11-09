@@ -124,9 +124,9 @@ jobs:
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          folder: docs/html
-          message: "Update generated documentation"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          folder: doc/output/html
+          commit-message: "[UPD] Generated Doc"
           branch: gh-pages
 
   mirror:
