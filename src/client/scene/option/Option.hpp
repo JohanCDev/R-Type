@@ -18,7 +18,7 @@ class World;
 class OptionScene : public IScene {
   public:
     OptionScene();
-    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen) override;
+    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) override;
 
     void init_option(sf::RenderWindow &window);
 

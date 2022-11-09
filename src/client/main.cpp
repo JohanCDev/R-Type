@@ -47,11 +47,11 @@ int main(void)
     scenes.push_back(lobby);
     scenes.push_back(game);
     scenes.push_back(option);
-    SceneScreen actual_screen = SceneScreen::MENU;
+    SceneScreen current_screen = SceneScreen::MENU;
 
     while (window.isOpen()) {
-        auto &scene = scenes[(int)actual_screen].get();
-        scene.run(client, window, actual_screen);
+        auto &scene = scenes[(int)current_screen].get();
+        scene.run(client, window, current_screen);
     }
     return 0;
 }

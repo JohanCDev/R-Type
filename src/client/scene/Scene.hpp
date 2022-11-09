@@ -20,7 +20,7 @@ class IScene {
   public:
     virtual ~IScene() = default;
 
-    virtual void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen) = 0;
+    virtual void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) = 0;
 
   private:
 };

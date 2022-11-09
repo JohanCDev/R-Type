@@ -153,10 +153,10 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::LASER, new_laser},
 };
 
-void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
-    (void)actual_screen;
+    (void)current_screen;
     Vector2f pos;
     size_t srv_entity_id;
     GameObject object;
@@ -165,10 +165,10 @@ void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, S
     newEntity[object](world, srv_entity_id, pos);
 }
 
-void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
-    (void)actual_screen;
+    (void)current_screen;
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
     size_t index = 0;
@@ -191,10 +191,10 @@ void game_end(sf::RenderWindow &window)
     window.close();
 }
 
-void movement(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void movement(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
-    (void)actual_screen;
+    (void)current_screen;
     registry &r = world.getRegistry();
     auto &velocityCompo = r.get_components<VelocityComponent>();
     auto &entityId = r.get_components<EntityIDComponent>();
@@ -217,10 +217,10 @@ void movement(World &world, NetworkClient &client, Message<GameMessage> msg, Sce
     }
 }
 
-void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
-    (void)actual_screen;
+    (void)current_screen;
     registry &r = world.getRegistry();
     ClientIDComponent hit_id;
     int damage = 0;
@@ -247,22 +247,22 @@ void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, S
     }
 }
 
-void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
     (void)client;
     (void)msg;
-    (void)actual_screen;
+    (void)current_screen;
     // ok j'en fais quoi ???
 }
 
-void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     size_t nb_wave = 0;
     WaveStatus status;
     (void)world;
     (void)client;
-    (void)actual_screen;
+    (void)current_screen;
 
     msg >> nb_wave;
     msg >> status;
@@ -274,28 +274,28 @@ void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, 
     }
 }
 
-void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
-    (void)actual_screen;
+    (void)current_screen;
     std::size_t nb_players;
 
     msg >> nb_players;
     client.set_nb_players((int)nb_players);
 }
 
-void game_start(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void game_start(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
     (void)msg;
     (void)client;
-    actual_screen = SceneScreen::GAME;
+    current_screen = SceneScreen::GAME;
 }
 
-void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &actual_screen)
+void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
-    (void)actual_screen;
+    (void)current_screen;
     bool ready;
 
     msg >> ready;

@@ -21,7 +21,7 @@ class GameScene : public IScene {
   public:
     GameScene();
 
-    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen) override;
+    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) override;
 
     void init_game(sf::RenderWindow &window);
 

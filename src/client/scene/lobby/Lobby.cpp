@@ -39,7 +39,7 @@ void shadow_button(World &world)
     }
 }
 
-void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
+void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)
 {
     Message<GameMessage> msg;
     Message<GameMessage> hiMsg;
@@ -63,22 +63,22 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
         if (event.type == sf::Event::Closed)
             window.close();
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
-            actual_screen = SceneScreen::GAME;
+            current_screen = SceneScreen::GAME;
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
             clickable_system(
-                this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
+                this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
         }
     }
 
     while (client.HasMessages()) {
         msg = client.PopMessage();
-        client.processMessage(msg, _world, window, actual_screen);
-        if (actual_screen != SceneScreen::LOBBY)
+        client.processMessage(msg, _world, window, current_screen);
+        if (current_screen != SceneScreen::LOBBY)
             return;
     }
 
     if (client.get_launch_game() == true) {
-        actual_screen = SceneScreen::GAME;
+        current_screen = SceneScreen::GAME;
         client.set_launch_game(false);
     }
     update_player_number(client);

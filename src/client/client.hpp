@@ -38,7 +38,7 @@ class NetworkClient {
     void send(const Message<GameMessage> &message);
     bool HasMessages();
     Message<GameMessage> PopMessage();
-    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &actual_screen);
+    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &current_screen);
 
     void set_launch_game(bool launch);
     bool get_launch_game() const;

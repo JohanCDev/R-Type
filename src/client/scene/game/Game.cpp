@@ -15,7 +15,7 @@ GameScene::GameScene() : _world(true), _init(false)
 {
 }
 
-void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
+void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)
 {
     sf::Event event;
     Message<GameMessage> byeMsg;
@@ -44,7 +44,7 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 
     while (client.HasMessages()) {
         this->msg = client.PopMessage();
-        client.processMessage(this->msg, _world, window, actual_screen);
+        client.processMessage(this->msg, _world, window, current_screen);
     }
     window.clear(sf::Color::Black);
     drawable_system(_world, window);

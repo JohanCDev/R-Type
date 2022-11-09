@@ -11,42 +11,42 @@
 
 #include "../Scene.hpp"
 
-void go_to_lobby(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
     (void)client;
-    actual_screen = SceneScreen::LOBBY;
+    current_screen = SceneScreen::LOBBY;
 }
 
-void go_to_menu(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
     (void)client;
-    actual_screen = SceneScreen::MENU;
+    current_screen = SceneScreen::MENU;
 }
 
-void go_to_game(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
     (void)client;
-    actual_screen = SceneScreen::GAME;
+    current_screen = SceneScreen::GAME;
 }
 
-void go_to_option(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
     (void)client;
-    actual_screen = SceneScreen::OPTION;
+    current_screen = SceneScreen::OPTION;
 }
 
-void quit_callback(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
     (void)client;
-    actual_screen = SceneScreen::NONE;
+    current_screen = SceneScreen::NONE;
 }
 
-void launch_game(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void launch_game(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
     if (client.get_players_ready() == false)
@@ -55,7 +55,7 @@ void launch_game(World &world, SceneScreen &actual_screen, NetworkClient &client
     msg.header.id = GameMessage::C2S_START_GAME;
     msg << "start";
     client.send(msg);
-    actual_screen = SceneScreen::GAME;
+    current_screen = SceneScreen::GAME;
 }
 
 static std::vector<std::string> asset_vector{"assets/SpaceShip/ship_armored_spritesheet.png",
@@ -77,10 +77,10 @@ void shadow_other_ship(World &world, std::string &except)
     }
 }
 
-void select_armored_ship(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
-    (void)actual_screen;
+    (void)current_screen;
 
     std::string except = "assets/SpaceShip/ship_armored_spritesheet.png";
     shadow_other_ship(world, except);
@@ -92,10 +92,10 @@ void select_armored_ship(World &world, SceneScreen &actual_screen, NetworkClient
     client.send(msg);
 }
 
-void select_damage_ship(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
-    (void)actual_screen;
+    (void)current_screen;
 
     std::string except = "assets/SpaceShip/ship_damage_spritesheet.png";
     shadow_other_ship(world, except);
@@ -107,10 +107,10 @@ void select_damage_ship(World &world, SceneScreen &actual_screen, NetworkClient 
     client.send(msg);
 }
 
-void select_engineer_ship(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
-    (void)actual_screen;
+    (void)current_screen;
 
     std::string except = "assets/SpaceShip/ship_engineer_spritesheet.png";
     shadow_other_ship(world, except);
@@ -122,10 +122,10 @@ void select_engineer_ship(World &world, SceneScreen &actual_screen, NetworkClien
     client.send(msg);
 }
 
-void select_sniper_ship(World &world, SceneScreen &actual_screen, NetworkClient &client)
+void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
 {
     (void)world;
-    (void)actual_screen;
+    (void)current_screen;
 
     std::string except = "assets/SpaceShip/ship_sniper_spritesheet.png";
     shadow_other_ship(world, except);

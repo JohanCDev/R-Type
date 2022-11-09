@@ -21,7 +21,7 @@ bool is_hover(Vector2i click_pos, DrawableComponent draw, PositionComponent posi
     return (false);
 }
 
-int clickable_system(World &world, Vector2i click_pos, SceneScreen &actual_screen, NetworkClient &client)
+int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
@@ -32,7 +32,7 @@ int clickable_system(World &world, Vector2i click_pos, SceneScreen &actual_scree
 
         if (clickable && clickable.has_value()) {
             if (is_hover(click_pos, drawables[i].value(), positions[i].value()) == true) {
-                (clickable->callback)(world, actual_screen, client);
+                (clickable->callback)(world, current_screen, client);
             }
         }
     }

@@ -15,7 +15,7 @@ MenuScene::MenuScene(): _world(true), _init(false)
 {
 }
 
-void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &actual_screen)
+void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)
 {
     (void)client;
     sf::Event event;
@@ -27,9 +27,9 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, actual_screen, client);
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
         }
-        if (event.type == sf::Event::Closed || actual_screen == SceneScreen::NONE)
+        if (event.type == sf::Event::Closed || current_screen == SceneScreen::NONE)
             window.close();
     }
 
