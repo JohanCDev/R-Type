@@ -1,5 +1,5 @@
 /**
- * @file Destroyable.hpp
+ * @file DestroyableComponent.hpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
@@ -13,15 +13,15 @@
 
 /**
  * @brief Make the entity destroyable
- * 
+ *
  */
 struct DestroyableComponent {
     bool destroyable;
 
     /**
      * @brief Construct a new Destroyable Component object
-     * 
-     * @param destroy 
+     *
+     * @param destroy
      */
     DestroyableComponent(bool destroy) : destroyable(destroy)
     {
