@@ -11,7 +11,6 @@
 
 #pragma once
 
-#include "AnimationComponent.hpp"
 #include "ClientIDComponent.hpp"
 #include "CollideComponent.hpp"
 #include "ControllableComponent.hpp"
