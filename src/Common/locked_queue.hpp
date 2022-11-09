@@ -15,6 +15,11 @@
 #include <list>
 #include <queue>
 
+/**
+ * @brief Locked queue class containing all messages infos
+ *
+ * @tparam T Type of the values to act on in queue
+ */
 template <typename T> class LockedQueue {
   private:
     boost::mutex mutex;
