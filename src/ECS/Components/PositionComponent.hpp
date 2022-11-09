@@ -19,6 +19,12 @@ struct Vector2i {
     int x;
     int y;
 
+    /**
+     * @brief Add two vectors
+     *
+     * @param other vector to add
+     * @return Vector2i& result of the addition
+     */
     Vector2i &operator+=(const Vector2i &other)
     {
         x += other.x;
@@ -26,6 +32,13 @@ struct Vector2i {
         return (*this);
     }
 
+    /**
+     * @brief Check if two vectors are equal
+     *
+     * @param other vector to compare
+     * @return true if equal
+     * @return false if not equal
+     */
     bool operator!=(const Vector2i &other)
     {
         return (x != other.x || y != other.y);

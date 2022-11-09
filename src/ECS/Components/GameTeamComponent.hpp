@@ -11,8 +11,16 @@
 
 #pragma once
 
+/**
+ * @brief Available teams
+ *
+ */
 enum class GameTeam : uint32_t { PLAYER, ENEMY, NEUTRAL, NONE };
 
+/**
+ * @brief Define the team of the entity
+ *
+ */
 struct GameTeamComponent {
     GameTeam team;
 
