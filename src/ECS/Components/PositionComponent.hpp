@@ -63,7 +63,7 @@ struct PositionComponent {
     /**
      * @brief Construct a new Position Component object
      *
-     * @param pos
+     * @param pos_vec Position of the component
      */
     PositionComponent(Vector2f pos_vec) : pos(pos_vec){};
 };
