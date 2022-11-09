@@ -93,6 +93,39 @@ jobs:
         with:
           files: "r_type-client, r_type-server"
 
+  deploy_doc:
+    needs: [build-on-windows, build-on-ubuntu]
+    runs-on: ubuntu-latest
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
+    permissions:
+      contents: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.output.page_url }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          submodules: "recursive"
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install graphviz doxygen -y
+
+      - name: Build documentation
+        run: doxygen
+
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          folder: docs/html
+          message: "Update generated documentation"
+          branch: gh-pages
+
   mirror:
     needs: [build-on-ubuntu, build-on-windows]
     runs-on: ubuntu-latest
