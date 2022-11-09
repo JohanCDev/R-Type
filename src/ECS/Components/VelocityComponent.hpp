@@ -39,8 +39,7 @@ struct VelocityComponent {
     /**
      * @brief Construct a new Velocity Component object
      *
-     * @param x_velo Velocity on the x axe
-     * @param y_velo Velocity on the y axe
+     * @param speed_vec Vector containing the speed of the component
      * @param time_as_seconds Time of acceleration of the player
      * @param elapsed_time Elapsed time of the acceleration
      */
