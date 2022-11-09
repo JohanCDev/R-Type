@@ -34,6 +34,8 @@ int main()
     world.register_all_component();
     world.register_all_drawable_object();
     bonus_t bonus_stat;
+
+    // bonus_stat.timer.at(i).second.attack_sp
     // bonus_stat.timer.first = nullptr;
     std::chrono::time_point<std::chrono::steady_clock> start = std::chrono::steady_clock::now();
     auto &speed = world.getRegistry().get_components<SpeedComponent>();
@@ -49,14 +51,6 @@ int main()
         ia_system(world, server);
         wave_system(world, server, waves);
         bonus_system(world, server, bonus_stat);
-        std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
-        double elapsed_time_ns = double(std::chrono::duration_cast<std::chrono::seconds>(end - bonus_stat.timer.first).count());
-        if (elapsed_time_ns >= 4.0 && bonus_stat.bonus == true) {
-            // start = std::chrono::steady_clock::now();
-            speed[bonus_stat.nbr]->speed -= 1;
-            std::cout << i++ << " secondes écoulées" << std::endl;
-            bonus_stat.bonus = false;
-        }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;

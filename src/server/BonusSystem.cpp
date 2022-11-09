@@ -61,27 +61,39 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                             std::cout << "hit bonus entity" << entityId[j]->id << "]."
                                       << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
-                                weapons[j]->stat.x += BOOST_ATTACK;
-                                std::cout << "boost attack ++" << std::endl;
+                                weapons[j]->stat.x += 20;
+                                std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
+                                time.first = std::chrono::steady_clock::now();
+                                time.second.nbr = j;
+                                time.second.speed = 0;
+                                time.second.strengh = 1;
+                                time.second.attack_speed = 0;
+                                bonus_stat.timer.push_back(time);
                             } else if (bonus[i]->bonus_name == Bonus::HEAL) {
                                 if (heal[j]->hp + 20 >= heal[j]->max_hp) {
                                     heal[j]->hp = heal[j]->max_hp;
-                                    std::cout << "je suis full vie" << std::endl;
                                 } else {
                                     heal[j]->hp += 20;
-                                    std::cout << "j'ai récup de la vie'" << std::endl;
                                 }
                             } else if (bonus[i]->bonus_name == Bonus::SPEED) {
-                                std::cout << "je suis rapide" << std::endl;
                                 speed[j]->speed += 1;
-                                bonus_stat.timer.first = std::chrono::steady_clock::now();
-                                // timer = end;
-                                bonus_stat.nbr = j;
-                                bonus_bool = true;
-                                bonus_stat.bonus = true;
+                                std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
+                                time.first = std::chrono::steady_clock::now();
+                                time.second.nbr = j;
+                                time.second.speed = 1;
+                                time.second.strengh = 0;
+                                time.second.attack_speed = 0;
+                                bonus_stat.timer.push_back(time);
                                 r = j;
                             } else if (bonus[i]->bonus_name == Bonus::ATTACK_SPEED) {
-                                weapons[j]->stat.y += 50;
+                                weapons[j]->stat.y += 20;
+                                std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
+                                time.first = std::chrono::steady_clock::now();
+                                time.second.nbr = j;
+                                time.second.speed = 0;
+                                time.second.strengh = 0;
+                                time.second.attack_speed = 1;
+                                bonus_stat.timer.push_back(time);
                             }
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;
@@ -92,6 +104,23 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                     }
                 }
             }
+        }
+    }
+    for(int i = 0; i < bonus_stat.timer.size(); i++) {
+         std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
+        double elapsed_time_ns = double(std::chrono::duration_cast<std::chrono::seconds>(end - bonus_stat.timer[i].first).count());
+        if (elapsed_time_ns >= 6.0) {
+            if (bonus_stat.timer[i].second.speed > 0) {
+                std::cout << "je suis moins rapide" << std::endl;
+                speed[bonus_stat.timer[i].second.nbr]->speed -= 1;
+            } else if (bonus_stat.timer[i].second.strengh > 0) {
+                std::cout << "je suis moins fort" << std::endl;
+                weapons[bonus_stat.timer[i].second.nbr]->stat.x -= 20;
+            } else if (bonus_stat.timer[i].second.strengh) {
+                std::cout << "je suis moins attack rapide" << std::endl;
+                weapons[bonus_stat.timer[i].second.nbr]->stat.y -= 20;
+            }
+            bonus_stat.timer.erase(bonus_stat.timer.cbegin() + i);
         }
     }
     return (0);

@@ -130,10 +130,9 @@ typedef struct stat_bonus_s {
     int speed;
     int strengh;
     int attack_speed;
+    int nbr;
 } stat_bonus_t;
 
 typedef struct bonus_s {
-    std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> timer;
-    int nbr;
-    bool bonus = false;
+    std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;
