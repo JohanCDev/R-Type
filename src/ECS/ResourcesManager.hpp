@@ -12,7 +12,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-
 #include <map>
 #include <optional>
 #include <utility>

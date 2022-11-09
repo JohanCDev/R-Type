@@ -11,14 +11,12 @@
 
 #pragma once
 
-#include "Registry.hpp"
-#include "ResourcesManager.hpp"
-
-#include "Systems/AllSystem.hpp"
-#include "../server/GameStates.hpp"
-
 #include <SFML/Graphics.hpp>
 #include <map>
+#include "../server/GameStates.hpp"
+#include "Registry.hpp"
+#include "ResourcesManager.hpp"
+#include "Systems/AllSystem.hpp"
 
 /**
  * @brief Store entity and usefull function
@@ -60,46 +58,52 @@ class World {
     /**
      * @brief Create a laser entity
      *
-     * @param object
-     * @param team
-     * @param pos
-     * @param speed
-     * @param refresh_time
+     * @param object type of the object
+     * @param team Team of the laser
+     * @param pos base pos of the laser as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the laser as a Vector2i. ex: {0, 0}
+     * @param refresh_time time before the laser is refreshed
+     *
+     * @returns id of the laser
      */
     size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
 
     /**
      * @brief Create a player entity
      *
-     * @param object
-     * @param pos
-     * @param speed
-     * @param refresh_time
+     * @param object type of the object
+     * @param pos base pos of the player as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the player as a Vector2i. ex: {0, 0}
+     * @param refresh_time time before the laser is refreshed
+     *
+     * @returns id of the player
      */
     size_t create_player(GameObject object, Vector2f pos, Vector2i speed, float refresh_time);
 
     /**
      * @brief Create a enemy entity
      *
-     * @param object
-     * @param pos
-     * @param speed
-     * @param health
-     * @param refresh_time
+     * @param object type of the object
+     * @param pos base pos of the enemy as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the enemy as a Vector2i. ex: {0, 0}
+     * @param health base health of the enemy as an unsigned int
+     * @param refresh_time time before the laser is refreshed
+     *
+     * @returns id of the enemy
      */
     size_t create_enemy(GameObject object, Vector2f pos, Vector2i speed, size_t health, float refresh_time);
 
     /**
      * @brief Create a skills entity
      *
-     * @param pos
+     * @param pos base pos of the skill object as a Vector2f. ex: {150.0, 120.0}
      */
     void create_skills(Vector2f pos);
 
     /**
      * @brief settings button
      *
-     * @param pos
+     * @param pos base pos of the settings button as a Vector2f. ex: {150.0, 120.0}
      */
     void create_settings(Vector2f pos);
 
@@ -107,64 +111,136 @@ class World {
      * @brief settings button
      *
      * @param life percentage of life remaining
-     * @param pos
      */
     void create_healthbar(float life);
 
     /**
      * @brief Create a drawable object
-     * 
-     * @param asset_path
-     * @param rect
-     * @param color
-     * @param scale
-     * @param pos
-     * @param speed
-     * @param refresh_time
-     * @param elapsed_time
-     * 
+     *
+     * @param asset_path Path to the asset
+     * @param rect Display rect of object
+     * @param color Color of the rectangle
+     * @param scale Scale of the asset
+     * @param pos Pos of the object
+     * @param speed Speed of the object
+     * @param refresh_time Time before the object is refreshed
+     * @param elapsed_time Time elapsed since the last refresh
+     *
      */
-    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos, Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
-    
+    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+        Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+
     /**
      * @brief Create a text object
-     * 
+     *
      * @param text
      * @param font
      * @param size
      * @param pos
-     * 
+     *
      */
     size_t create_text(std::string text, std::string font, int size, Vector2f pos);
 
     /**
      * @brief Create a button object
-     * 
-     * @param asset 
-     * @param rect 
-     * @param scale 
-     * @param pos 
-     * @param callback 
-     * @return size_t 
+     *
+     * @param asset
+     * @param rect
+     * @param scale
+     * @param pos
+     * @param callback
+     * @return size_t
      */
-    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos, std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
+    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
+        std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
 
+    /**
+     * @brief Registers all drawable objects
+     *
+     */
     void register_all_drawable_object();
 
+    /**
+     * @brief Get the Registry object
+     *
+     * @return Reference to the registry
+     */
     registry &getRegistry();
+
+    /**
+     * @brief Get the Resources Manager object
+     *
+     * @return Reference to the resources manager
+     */
     ResourcesManager &getResourcesManager();
+
+    /**
+     * @brief Get the Window object
+     *
+     * @return Reference to the renderWindow object
+     */
     sf::RenderWindow &getWindow();
+
+    /**
+     * @brief Get the Clock object
+     *
+     * @return Reference to the clock object
+     */
     sf::Clock &getClock();
+
+    /**
+     * @brief Get the Direction object
+     *
+     * @return Reference to the direction
+     */
     Vector2i &getDirection();
+
+    /**
+     * @brief Set the Direction object
+     *
+     * @param direction new direction as a Vector2i. ex: {0, 0}
+     */
     void setDirection(Vector2i direction);
 
     GameState state;
     std::map<std::size_t, GameObject> player_ships;
 
   private:
+    /**
+     * @brief Contains the registry object
+     *
+     */
     registry _r;
+
+    /**
+     * @brief Contains the resources manager object
+     *
+     */
     ResourcesManager _manager;
+
+    /**
+     * @brief SFML window used to draw textures
+     *
+     */
+    sf::RenderWindow _window;
+
+    /**
+     * @brief Clock of the game
+     *
+     */
     sf::Clock _clock;
+
+    /**
+     * @brief Map containing all the drawable components
+     *
+     * The key is the type of the GameObject, the value being the drawableComponent to display
+     *
+     */
     std::map<GameObject, DrawableComponent> _drawMap;
+
+    /**
+     * @brief Player actual direction
+     *
+     */
     Vector2i _player_direction;
 };

@@ -153,6 +153,14 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::LASER, new_laser},
 };
 
+/**
+ * @brief Create a new entity
+ *
+ * @param world The world to add the entity to
+ * @param msg The message containing the entity data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
@@ -165,6 +173,14 @@ void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, S
     newEntity[object](world, srv_entity_id, pos);
 }
 
+/**
+ * @brief Update an entity that has died
+ *
+ * @param world The world to update
+ * @param msg The message containing the entity data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
@@ -186,11 +202,24 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     }
 }
 
+/**
+ * @brief End the game
+ *
+ * @param world The world to update
+ */
 void game_end(sf::RenderWindow &window)
 {
     window.close();
 }
 
+/**
+ * @brief Act on a movement
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void movement(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
@@ -217,6 +246,14 @@ void movement(World &world, NetworkClient &client, Message<GameMessage> msg, Sce
     }
 }
 
+/**
+ * @brief Hit an entity
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
@@ -247,6 +284,14 @@ void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, S
     }
 }
 
+/**
+ * @brief Validate a packet
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
@@ -256,6 +301,13 @@ void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, Sc
     // ok j'en fais quoi ???
 }
 
+/**
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     size_t nb_wave = 0;

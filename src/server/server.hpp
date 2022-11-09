@@ -27,11 +27,27 @@
 
 using boost::asio::ip::udp;
 
+/**
+ * @brief List of all the clients
+ *
+ */
 typedef boost::bimap<std::size_t, udp::endpoint> ClientList;
+/**
+ * @brief Define a value value_type for the client
+ *
+ */
 typedef ClientList::value_type Client;
 // typedef std::pair<std::string, std::size_t> ClientMessage;
+/**
+ * @brief Define a pair of messages and size
+ *
+ */
 typedef std::pair<Message<GameMessage>, std::size_t> ClientMessage;
 
+/**
+ * @brief Network server class containing all infos of server network
+ *
+ */
 class NetworkServer {
   private:
     boost::asio::io_service io_service;
@@ -58,20 +74,83 @@ class NetworkServer {
     NetworkServer(NetworkServer &);
 
   public:
+    /**
+     * @brief Construct a new Network Server object
+     *
+     * @param local_port port to connect the client
+     */
     NetworkServer(unsigned short local_port);
+
+    /**
+     * @brief Destroy the Network Server object
+     *
+     */
     ~NetworkServer();
 
+    /**
+     * @brief Check if the server has messages to receive
+     *
+     * @return True if there is. False if there isn't any
+     */
     bool HasMessages();
+
+    /**
+     * @brief Pop incoming message
+     *
+     * @return Message as a ClientMessage class
+     */
     ClientMessage PopMessage();
 
+    /**
+     * @brief Send a message to a specific client
+     *
+     * @param message message to send
+     * @param clientID ID of the client to notify
+     */
     void SendToClient(std::string message, std::size_t clientID);
+
+    /**
+     * @brief Send a message to all clients connected
+     *
+     * @param message message to send
+     */
     void SendToAll(std::string message);
+
+    /**
+     * @brief Send a message to all clients except one
+     *
+     * @param message message to send
+     * @param clientID ID of the client to ignore
+     */
     void SendToAllExcept(std::string message, std::size_t clientID);
 
+    /**
+     * @brief Send a message to a specific client
+     *
+     * @param message message to send
+     * @param clientID ID of the client to notify
+     */
     void SendToClient(const Message<GameMessage> &message, std::size_t clientID);
+
+    /**
+     * @brief Send a message to all clients connected
+     *
+     * @param message message to send
+     */
     void SendToAll(const Message<GameMessage> &message);
+
+    /**
+     * @brief Send a message to all clients except one
+     *
+     * @param message message to send
+     * @param clientID ID of the client to ignore
+     */
     void SendToAllExcept(const Message<GameMessage> &message, std::size_t clientID);
 
+    /**
+     * @brief Vector containing all the function needed to handle the disconnected clients
+     *
+     */
     std::vector<std::function<void(std::size_t)>> clientDisconnectedHandlers;
     ClientList clients;
 };

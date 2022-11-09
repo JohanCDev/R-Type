@@ -15,6 +15,13 @@
 #include "../ECS/World.hpp"
 #include "game.hpp"
 
+/**
+ * @brief Change the focus of the enemy to go to the closest player
+ *
+ * @param world world to act on
+ * @param server Server with all the informations
+ * @param i Index of the player
+ */
 void update_enemy_focus(World &world, NetworkServer &server, size_t i)
 {
     auto &clients = world.getRegistry().get_components<ClientIDComponent>();
@@ -50,6 +57,13 @@ void update_enemy_focus(World &world, NetworkServer &server, size_t i)
     }
 }
 
+/**
+ * @brief Update sniper enemy actions
+ *
+ * @param world world to act on
+ * @param server server containing all the informations
+ * @param i index of the player
+ */
 void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
 {
     (void)world;
@@ -57,8 +71,19 @@ void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
     (void)i;
 }
 
+/**
+ * @brief Map containing all possible directions
+ *
+ */
 static std::map<size_t, Vector2i> next_pos = {{1, {0, -1}}, {2, {1, 0}}, {3, {0, 1}}, {4, {-1, 0}}};
 
+/**
+ * @brief Update random enemy direction
+ *
+ * @param world world to act on
+ * @param server server containing all the informations
+ * @param i index of the player
+ */
 void update_enemy_odd(World &world, NetworkServer &server, size_t i)
 {
     size_t random = rand() % 1000;
@@ -81,6 +106,10 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
     }
 }
 
+/**
+ * @brief Map function with all enemies AI algoritms
+ *
+ */
 static std::map<GameObject, std::function<void(World &, NetworkServer &, size_t)>> mapFunc = {
     {GameObject::ENEMY_FOCUS, update_enemy_focus}, {GameObject::ENEMY_SNIPER, update_enemy_sniper},
     {GameObject::ENEMY_ODD, update_enemy_odd}};
