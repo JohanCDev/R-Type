@@ -21,3 +21,4 @@ int shooting_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
+int level_up_system(World &world, NetworkServer &server);

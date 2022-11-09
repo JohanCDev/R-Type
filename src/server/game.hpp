@@ -102,6 +102,15 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
 void create_enemy(World &world, NetworkServer &server);
 
 /**
+ * @brief Spend a point to augment a player's stat
+ *
+ * @param world The server's world
+ * @param msg The message received from the client
+ * @param server The server
+ */
+void spend_point(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
  * @brief
  *
  * @param in_wave Boolean to know if the wave is in progress

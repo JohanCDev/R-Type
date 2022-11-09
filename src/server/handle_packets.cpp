@@ -129,3 +129,24 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
         index++;
     }
 }
+
+void spend_point(World &world, ClientMessage msg, NetworkServer &server)
+{
+    auto &levels = world.getRegistry().get_components<LevelComponent>();
+    auto &teams = world.getRegistry().get_components<GameTeamComponent>();
+
+    std::size_t index = 0;
+
+    for (auto &level : levels) {
+        if (level && level.has_value()) {
+            if (level->spent_points >= level->level) {
+                return;
+            }
+            auto &team = teams[index];
+            if (team && team.has_value() && team->team == GameTeam::PLAYER) {
+                level->spent_points++;
+            }
+        }
+        index++;
+    }
+}

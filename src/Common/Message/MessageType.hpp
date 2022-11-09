@@ -16,12 +16,14 @@ enum class GameMessage : uint32_t {
     C2S_LEAVE,
     C2S_SHOOT,
     C2S_MOVEMENT,
+    C2S_SPEND_POINT,
     S2C_ENTITY_NEW,
     S2C_ENTITY_DEAD,
     S2C_GAME_END,
     S2C_MOVEMENT,
     S2C_ENTITY_HIT,
     S2C_WAVE_STATUS,
+    S2C_LEVEL_UP,
     S2C_OK
 };
 
