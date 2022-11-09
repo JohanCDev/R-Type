@@ -1,7 +1,7 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/ECS/Systems)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/ECS/Systems)
 
-list(APPEND SRC ${SRCROOT}/ControllableSystem.cpp ${SRCROOT}/DrawableSystem.cpp
+list(APPEND SRC ${SRCROOT}/ControllableSystem.cpp ${SRCROOT}/DrawableSystem.cpp ${SRCROOT}/ClickableSystem.cpp
  ${SRCROOT}/VelocitySystem.cpp ${SRCROOT}/AllSystem.hpp)
 
 set(SRC

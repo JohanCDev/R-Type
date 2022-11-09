@@ -11,13 +11,18 @@
 
 #pragma once
 
-#include "../../server/server.hpp"
+#include "../../client/client.hpp"
 #include "../../server/game.hpp"
+#include "../../server/server.hpp"
 #include "../World.hpp"
 
-int drawable_system(World &world);
+enum class SceneScreen : uint32_t;
+
+int drawable_system(World &world, sf::RenderWindow &window);
 int controllable_system(World &world, sf::Event event);
-int shooting_system(World &world, NetworkServer &server);
+int collide_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
+int lobby_system(World &world, NetworkServer &server);
+int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client);

@@ -17,12 +17,17 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <memory>
-#include "../ECS/World.hpp"
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
+#include "../ECS/World.hpp"
+#include "scene/Scene.hpp"
 #include "../Common/locked_queue.hpp"
 
 using boost::asio::ip::udp;
+
+class World;
+
+enum class SceneScreen : uint32_t;
 
 class NetworkClient {
   public:
@@ -33,7 +38,16 @@ class NetworkClient {
     void send(const Message<GameMessage> &message);
     bool HasMessages();
     Message<GameMessage> PopMessage();
-    void processMessage(Message<GameMessage> &msg, World &world);
+    void processMessage(Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &current_screen);
+
+    void set_launch_game(bool launch);
+    bool get_launch_game() const;
+
+    void set_players_ready(bool ready);
+    bool get_players_ready() const;
+
+    void set_nb_players(int nb_players);
+    int get_nb_players() const;
 
   private:
     boost::asio::io_service io_service;
@@ -42,6 +56,9 @@ class NetworkClient {
     udp::endpoint remote_endpoint;
     std::array<char, 1024> recv_buffer;
     boost::thread service_thread;
+    bool _players_ready;
+    bool _launch_game;
+    int _nb_players;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
 

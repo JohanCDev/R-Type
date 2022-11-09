@@ -15,6 +15,7 @@
 #include "ResourcesManager.hpp"
 
 #include "Systems/AllSystem.hpp"
+#include "../server/GameStates.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <map>
@@ -28,23 +29,21 @@ class World {
     /**
      * @brief Construct a new World object
      *
-     * @param mode
-     * @param name
+     * @param client
      */
-    World(sf::VideoMode mode, std::string name);
-    World(void);
+    World(bool client);
+
+    /**
+     * @brief Construct a new World object
+     *
+     */
+    World();
 
     /**
      * @brief Destroy the World object
      *
      */
     ~World();
-
-    /**
-     * @brief Register all existing components
-     *
-     */
-    void register_all_component();
 
     /**
      * @brief register all existing systems
@@ -112,6 +111,44 @@ class World {
      */
     void create_healthbar(float life);
 
+    /**
+     * @brief Create a drawable object
+     * 
+     * @param asset_path
+     * @param rect
+     * @param color
+     * @param scale
+     * @param pos
+     * @param speed
+     * @param refresh_time
+     * @param elapsed_time
+     * 
+     */
+    size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos, Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+    
+    /**
+     * @brief Create a text object
+     * 
+     * @param text
+     * @param font
+     * @param size
+     * @param pos
+     * 
+     */
+    size_t create_text(std::string text, std::string font, int size, Vector2f pos);
+
+    /**
+     * @brief Create a button object
+     * 
+     * @param asset 
+     * @param rect 
+     * @param scale 
+     * @param pos 
+     * @param callback 
+     * @return size_t 
+     */
+    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos, std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
+
     void register_all_drawable_object();
 
     registry &getRegistry();
@@ -121,10 +158,12 @@ class World {
     Vector2i &getDirection();
     void setDirection(Vector2i direction);
 
+    GameState state;
+    std::map<std::size_t, GameObject> player_ships;
+
   private:
     registry _r;
     ResourcesManager _manager;
-    sf::RenderWindow _window;
     sf::Clock _clock;
     std::map<GameObject, DrawableComponent> _drawMap;
     Vector2i _player_direction;

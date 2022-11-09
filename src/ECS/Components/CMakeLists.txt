@@ -19,7 +19,9 @@ list(
   ${INCROOT}/MaximumVelocityComponent.hpp
   ${INCROOT}/PositionComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
-  ${INCROOT}/WeaponComponent.hpp)
+  ${INCROOT}/WeaponComponent.hpp
+  ${INCROOT}/TextComponent.hpp
+  ${INCROOT}/ClickableComponent.hpp)
 
 set(SRC
   "${SRC}"

@@ -32,7 +32,7 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
     return (0);
 }
 
-int shooting_system(World &world, NetworkServer &server)
+int collide_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();

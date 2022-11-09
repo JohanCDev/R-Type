@@ -48,6 +48,7 @@ struct Vector2f {
 struct DrawableComponent {
     std::string path;
     Vector4i rect;
+    Vector4i color;
     Vector2f scale;
 
     /**
@@ -59,11 +60,11 @@ struct DrawableComponent {
      * @param yscale 
      */
     DrawableComponent(
-        std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0), Vector2f scale_vec = Vector2f{1.0, 1.0})
-        : path(texture_path), rect(vec), scale(scale_vec)
+        std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0), Vector4i col = Vector4i(255, 255, 255, 255), Vector2f scale_vec = Vector2f{1.0, 1.0})
+        : path(texture_path), rect(vec), color(col), scale(scale_vec)
     {
     }
 
-    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), scale(Vector2f{1.0, 1.0}) {}
+    DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), color(Vector4i(255, 255, 255, 255)), scale(Vector2f{1.0, 1.0}) {}
 
 };
