@@ -9,6 +9,10 @@
  *
  */
 
+/**
+ * @brief Define the WIN32 version
+ *
+ */
 #define _WIN32_WINNT 0x0601
 
 #include <chrono>
@@ -26,6 +30,11 @@ static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkS
     {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot},
     {GameMessage::C2S_START_GAME, start_game}, {GameMessage::C2S_SELECT_SHIP, select_ship}};
 
+/**
+ * @brief Main function
+ *
+ * @return int
+ */
 int main()
 {
     NetworkServer server(60000);

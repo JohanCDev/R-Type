@@ -18,20 +18,40 @@
  *
  */
 struct ControllableComponent {
+    /**
+     * @brief KeyboardInput allowing the player to go up
+     *
+     */
     KeyboardInput up;
+    /**
+     * @brief KeyboardInput allowing the player to go down
+     *
+     */
     KeyboardInput down;
+    /**
+     * @brief KeyboardInput allowing the player to go right
+     *
+     */
     KeyboardInput right;
+    /**
+     * @brief KeyboardInput allowing the player to go left
+     *
+     */
     KeyboardInput left;
+    /**
+     * @brief MouseInput allowing the player to shoot
+     *
+     */
     MouseInput shoot;
 
     /**
      * @brief Construct a new Controllable Component object
      *
-     * @param up_key
-     * @param down_key
-     * @param right_key
-     * @param left_key
-     * @param shoot_key
+     * @param up_key KeyboardInput allowing the player to go up
+     * @param down_key KeyboardInput allowing the player to go down
+     * @param right_key KeyboardInput allowing the player to go right
+     * @param left_key KeyboardInput allowing the player to go left
+     * @param shoot_key MouseInput allowing the player to shoot
      */
     ControllableComponent(KeyboardInput up_key, KeyboardInput down_key, KeyboardInput right_key, KeyboardInput left_key,
         MouseInput shoot_key)

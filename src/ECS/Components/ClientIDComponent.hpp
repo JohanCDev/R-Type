@@ -13,10 +13,25 @@
 
 #include <stdio.h>
 
+/**
+ * @brief Store the client ID
+ *
+ */
 struct ClientIDComponent {
+    /**
+     * @brief Stores the ID of the Client
+     *
+     */
     size_t id;
 
+    /**
+     * @brief Construct a new Client ID Component object
+     *
+     * @param assign_id ID to assign to the client
+     */
     ClientIDComponent(size_t assign_id) : id(assign_id){};
 
-    ClientIDComponent() : id(-1) {}
+    ClientIDComponent() : id(-1)
+    {
+    }
 };

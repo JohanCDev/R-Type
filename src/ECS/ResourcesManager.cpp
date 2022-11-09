@@ -1,5 +1,5 @@
 /**
- * @file RegisterManager.cpp
+ * @file ResourcesManager.cpp
  * @author Tanguy Bellicha (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1

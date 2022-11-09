@@ -11,6 +11,10 @@
 
 #pragma once
 
+/**
+ * @brief Enumerate packets types
+ *
+ */
 enum class GameMessage : uint32_t {
     C2S_JOIN,
     C2S_LEAVE,
@@ -30,8 +34,16 @@ enum class GameMessage : uint32_t {
     S2C_PLAYERS_READY,
 };
 
+/**
+ * @brief Enumerate status of waves
+ *
+ */
 enum class WaveStatus : uint32_t { START, BOSS_START, END };
 
+/**
+ * @brief Enumerate objects of the game
+ *
+ */
 enum class GameObject : uint32_t {
     LASER,
     PLAYER,

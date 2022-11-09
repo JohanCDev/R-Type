@@ -9,6 +9,9 @@
  *
  */
 
+/**
+ * @brief Define the WIN32 version
+ */
 #define _WIN32_WINNT 0x0601
 
 #include <chrono>
@@ -16,15 +19,19 @@
 #include <thread>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
+#include "../ECS/World.hpp"
 #include "client.hpp"
-#include "scene/Scene.hpp"
+#include "proto.hpp"
 #include "scene/game/Game.hpp"
 #include "scene/lobby/Lobby.hpp"
 #include "scene/menu/Menu.hpp"
 #include "scene/option/Option.hpp"
 
-#include "../ECS/World.hpp"
-
+/**
+ * @brief Main function
+ *
+ * @return int
+ */
 int main(void)
 {
     unsigned int port = 0;
