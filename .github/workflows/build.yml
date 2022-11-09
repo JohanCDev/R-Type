@@ -3,14 +3,6 @@ name: Build
 on: push
 
 jobs:
-  # lint:
-  #   name: Linter
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Clang Code Formatter
-  #       uses: Mavrikant/clang-format-action@ubuntu-22.04
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.EPI_MIRRORING_KEY }}
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
