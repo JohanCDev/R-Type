@@ -17,16 +17,55 @@
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
-#define DEFAULT_KEY_TOP                    KeyboardInput::Z
-#define DEFAULT_KEY_RGT                    KeyboardInput::D
-#define DEFAULT_KEY_BOT                    KeyboardInput::S
-#define DEFAULT_KEY_LFT                    KeyboardInput::Q
-#define DEFAULT_KEY_SHOOT                  MouseInput::Left_click
-#define DEFAULT_WAVE_FREQUENCY_BOSS        5
+/**
+ * @brief Default key to move to the top
+ */
+#define DEFAULT_KEY_TOP KeyboardInput::Z
+
+/**
+ * @brief Default key to move to the right
+ */
+#define DEFAULT_KEY_RGT KeyboardInput::D
+
+/**
+ * @brief Default key to move to the bottom
+ */
+#define DEFAULT_KEY_BOT KeyboardInput::S
+
+/**
+ * @brief Default key to move to the left
+ */
+#define DEFAULT_KEY_LFT KeyboardInput::Q
+
+/**
+ * @brief Default key to shoot
+ */
+#define DEFAULT_KEY_SHOOT MouseInput::Left_click
+
+/**
+ * @brief Default number of waves where boss spawn
+ */
+#define DEFAULT_WAVE_FREQUENCY_BOSS 5
+
+/**
+ * @brief Default increment multiplier difficulty between waves
+ */
 #define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
-#define DEFAULT_WAVE_DIFFICULTY            3
-#define DEFAULT_WAVE_TIME_BETWEEN          5.0
-#define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
+
+/**
+ * @brief Default starting wave difficulty
+ */
+#define DEFAULT_WAVE_DIFFICULTY 3
+
+/**
+ * @brief Default time between each waves
+ */
+#define DEFAULT_WAVE_TIME_BETWEEN 5.0
+
+/**
+ * @brief Default time between each mini waves
+ */
+#define DEFAULT_MINI_WAVE_TIME_BETWEEN 0.8
 
 /**
  * @brief Structure containing all the default values for the game
