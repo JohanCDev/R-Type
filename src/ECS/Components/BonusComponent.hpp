@@ -14,20 +14,23 @@
 #include <string>
 
 /**
- * @brief Make the entity able to shoot
+ * @brief enum to get bonus effect
  * 
  */
-
 enum Bonus : uint32_t {ATTACK, ATTACK_SPEED, HEAL, SPEED};
 
+
+/**
+ * @brief Make the entity able to get bonus
+ * 
+ */
 struct BonusComponent {
-    // std::string name;
     Bonus bonus_name;
 
     /**
-     * @brief Construct a new Health Component object
+     * @brief Construct a new bonus Component object
      *
-     * @param hp_value
+     * @param nameBonus
      */
     BonusComponent(Bonus nameBonus) : bonus_name(nameBonus) {};
 };
