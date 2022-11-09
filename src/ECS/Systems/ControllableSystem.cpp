@@ -10,14 +10,23 @@
  */
 
 #include <iostream>
+#include "../Common/Message/Message.hpp"
+#include "../Common/Message/MessageType.hpp"
 #include "../Components/AllComponents.hpp"
 #include "../Registry.hpp"
 #include "../ResourcesManager.hpp"
 #include "../World.hpp"
-#include "../Common/Message/Message.hpp"
-#include "../Common/Message/MessageType.hpp"
 
-Vector2f getShootPosition(World &world, std::optional<PositionComponent> position, std::optional<DrawableComponent> drawable)
+/**
+ * @brief Get the Shoot Position of the entity
+ *
+ * @param world The world
+ * @param position Position of the entity
+ * @param drawable Drawable of the entity
+ * @return Vector2f The position of the shoot
+ */
+Vector2f getShootPosition(
+    World &world, std::optional<PositionComponent> position, std::optional<DrawableComponent> drawable)
 {
     Vector2f shoot_pos;
 
