@@ -17,8 +17,8 @@ void health_up(World &world, std::size_t &e)
     auto &health = world.getRegistry().get_components<HealthComponent>()[e];
 
     if (health && health.has_value()) {
-        health->hp *= 1.1;
         health->max_hp *= 1.1;
+        health->hp *= 1.1;
     }
 }
 
@@ -36,7 +36,7 @@ void atk_spd_up(World &world, std::size_t &e)
     auto &weapon = world.getRegistry().get_components<WeaponComponent>()[e];
 
     if (weapon && weapon.has_value()) {
-        weapon->cooldown_as_milliseconds /= 10;
+        weapon->cooldown_as_milliseconds *= 0.9;
     }
 }
 
