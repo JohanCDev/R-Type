@@ -16,17 +16,37 @@
 /**
  * @brief Define the texture rect to draw
  *
- * @param x start of square in x
- * @param y start of square in y
- * @param x_size size of square in x
- * @param y_size size of square in y
  */
 struct Vector4i {
+    /**
+     * @brief start of square in x
+     *
+     */
     int x;
+    /**
+     * @brief start of square in y
+     *
+     */
     int y;
+    /**
+     * @brief size of square in x
+     *
+     */
     int x_size;
+    /**
+     * @brief size of square in y
+     *
+     */
     int y_size;
 
+    /**
+     * @brief Construct a new Vector 4i object
+     *
+     * @param x_value start of square in x
+     * @param y_value start of square in y
+     * @param size_x size of square in x
+     * @param size_y size of square in y
+     */
     Vector4i(int x_value, int y_value, int size_x, int size_y) : x(x_value), y(y_value), x_size(size_x), y_size(size_y)
     {
     }
@@ -37,7 +57,15 @@ struct Vector4i {
  *
  */
 struct Vector2f {
+    /**
+     * @brief first value of the vector
+     *
+     */
     float x;
+    /**
+     * @brief second value of the vector
+     *
+     */
     float y;
 };
 
@@ -46,17 +74,31 @@ struct Vector2f {
  *
  */
 struct DrawableComponent {
+    /**
+     * @brief Path to the resource
+     *
+     */
     std::string path;
+
+    /**
+     * @brief Rectangle that will be shown at the draw
+     *
+     */
     Vector4i rect;
+
+    /**
+     * @brief Scale of the component
+     *
+     */
     Vector2f scale;
 
     /**
      * @brief Construct a new Drawable Component object
      *
-     * @param texture_path
-     * @param vec
-     * @param xscale
-     * @param yscale
+     * @param texture_path Path to the resource
+     * @param vec Rectangle to be shown
+     * @param xscale Horizontal scale
+     * @param yscale Vertical scale
      */
     DrawableComponent(
         std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0), Vector2f scale_vec = Vector2f{1.0, 1.0})
@@ -64,6 +106,13 @@ struct DrawableComponent {
     {
     }
 
+    /**
+     * @brief Construct a new Drawable Component object
+     *
+     * @param rect Rectangle to be shown
+     * @param scale Scale of the component
+     *
+     */
     DrawableComponent() : rect(Vector4i(0, 0, 0, 0)), scale(Vector2f{1.0, 1.0})
     {
     }
