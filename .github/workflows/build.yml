@@ -93,7 +93,7 @@ jobs:
         with:
           files: "r_type-client, r_type-server"
 
-  deploy_doc:
+  deploy-documentation:
     needs: [build-on-windows, build-on-ubuntu]
     runs-on: ubuntu-latest
     concurrency:
