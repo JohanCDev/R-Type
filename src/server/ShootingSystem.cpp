@@ -68,12 +68,12 @@ int shooting_system(World &world, NetworkServer &server)
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
                             std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id << "]."
                                       << std::endl;
-                            health[j]->hp -= weapons[i]->stat.x;
-                            health[i]->hp -= weapons[j]->stat.x;
+                            health[j]->hp -= weapons[i]->damage;
+                            health[i]->hp -= weapons[j]->damage;
                             if (health[j]->hp > 0) {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[j]->id;
-                                sending_msg << weapons[i]->stat.x;
+                                sending_msg << weapons[i]->damage;
                                 sending_msg << health[j]->max_hp;
                             } else {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
@@ -84,7 +84,7 @@ int shooting_system(World &world, NetworkServer &server)
                             if (health[i]->hp > 0) {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[i]->id;
-                                sending_msg << weapons[j]->stat.x;
+                                sending_msg << weapons[j]->damage;
                                 sending_msg << health[i]->max_hp;
                             } else {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;

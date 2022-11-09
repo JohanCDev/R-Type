@@ -2,7 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/server)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/server)
 
 list(APPEND SRC_SERVER ${SRCROOT}/main.cpp ${SRCROOT}/server.cpp ${SRCROOT}/handle_packets.cpp
-  ${INCROOT}/game.hpp ${INCROOT}/server.hpp ${SRCROOT}/ShootingSystem.cpp ${SRCROOT}/IASystem.cpp ${SRCROOT}/WaveSystem.cpp)
+  ${INCROOT}/game.hpp ${INCROOT}/server.hpp ${SRCROOT}/ShootingSystem.cpp ${SRCROOT}/IASystem.cpp ${SRCROOT}/stat_up.cpp ${SRCROOT}/WaveSystem.cpp)
 
 set(SRC_SERVER
   "${SRC_SERVER}" "${SRC}")

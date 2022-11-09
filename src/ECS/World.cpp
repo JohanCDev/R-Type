@@ -99,7 +99,7 @@ size_t World::create_laser(GameObject object, GameTeam team, Vector2f pos, Vecto
     DrawableComponent drawCompo = this->_drawMap[object];
     this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, drawCompo.scale));
     this->_r.add_component<WeaponComponent>(
-        ent, WeaponComponent("laser", Vector2i{defaultValues[GameObject::PLAYER].atk, 15}, 200));
+        ent, WeaponComponent("laser", defaultValues[GameObject::PLAYER].atk, /*15,*/ 200));
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
@@ -139,7 +139,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
     this->_r.add_component<CollideComponent>(ent, CollideComponent());
     this->_r.add_component<WeaponComponent>(
-        ent, WeaponComponent("meteor", Vector2i{defaultValues[GameObject::ENEMY_FOCUS].atk, 1}, 0));
+        ent, WeaponComponent("meteor", defaultValues[GameObject::ENEMY_FOCUS].atk, /*1,*/ 0));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
     this->_r.add_component<HealthComponent>(ent, HealthComponent(health));
     this->_r.add_component<VelocityComponent>(

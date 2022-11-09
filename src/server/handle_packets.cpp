@@ -134,6 +134,9 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server)
 {
     auto &levels = world.getRegistry().get_components<LevelComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
+    GameStat stat;
+
+    msg.first >> stat;
 
     std::size_t index = 0;
 
@@ -144,6 +147,7 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server)
             }
             auto &team = teams[index];
             if (team && team.has_value() && team->team == GameTeam::PLAYER) {
+                stat_up(world, stat, index);
                 level->spent_points++;
             }
         }

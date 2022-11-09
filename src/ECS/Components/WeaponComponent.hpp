@@ -20,9 +20,9 @@
  */
 struct WeaponComponent {
     std::string name;
-    Vector2i stat;
+    uint32_t damage;
     std::size_t cooldown_as_milliseconds;
 
-    WeaponComponent(std::string weapon_name, Vector2i stat_vec, std::size_t cooldown)
-        : name(weapon_name), stat(stat_vec), cooldown_as_milliseconds(cooldown){};
+    WeaponComponent(std::string weapon_name, uint32_t damage, std::size_t cooldown)
+        : name(weapon_name), damage(damage), cooldown_as_milliseconds(cooldown){};
 };

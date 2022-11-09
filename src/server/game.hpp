@@ -111,6 +111,15 @@ void create_enemy(World &world, NetworkServer &server);
 void spend_point(World &world, ClientMessage msg, NetworkServer &server);
 
 /**
+ * @brief Augments a player's stat
+ *
+ * @param stat Statistic to augment
+ * @param Entity The entity whose stat to augment
+ * @param world The server's world
+ */
+void stat_up(World &world, GameStat &stat, std::size_t &e);
+
+/**
  * @brief
  *
  * @param in_wave Boolean to know if the wave is in progress
