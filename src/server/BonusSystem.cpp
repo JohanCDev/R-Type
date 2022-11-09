@@ -14,7 +14,7 @@
 #include "game.hpp"
 #include "server.hpp"
 
-int bonus_system(World &world, NetworkServer &server)
+int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
     auto &heal = world.getRegistry().get_components<HealthComponent>();
@@ -27,9 +27,9 @@ int bonus_system(World &world, NetworkServer &server)
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
-    std::chrono::time_point<std::chrono::steady_clock> start;
-    // std::chrono::time_point<std::chrono::steady_clock> timer;
-    int tmp = 0;
+    std::chrono::time_point<std::chrono::steady_clock> timer;
+    // int tmp = 0;
+    int r = 0;
     bool bonus_bool = false;
 
     for (size_t i = 0; i < bonus.size(); ++i) {
@@ -73,13 +73,13 @@ int bonus_system(World &world, NetworkServer &server)
                                 }
                             } else if (bonus[i]->bonus_name == Bonus::SPEED) {
                                 std::cout << "je suis rapide" << std::endl;
-                                // timer = start;
-                                start = std::chrono::steady_clock::now();
-                                tmp = j;
                                 speed[j]->speed += 1;
+                                bonus_stat.timer.first = std::chrono::steady_clock::now();
+                                // timer = end;
+                                bonus_stat.nbr = j;
                                 bonus_bool = true;
-                                // velocity[j]->speed.x += 50;
-                                // velocity[j]->speed.y += 50;
+                                bonus_stat.bonus = true;
+                                r = j;
                             } else if (bonus[i]->bonus_name == Bonus::ATTACK_SPEED) {
                                 weapons[j]->stat.y += 50;
                             }
@@ -92,17 +92,6 @@ int bonus_system(World &world, NetworkServer &server)
                     }
                 }
             }
-        }
-    }
-    if (bonus_bool == true) {
-        std::cout << "je passe là" << std::endl;
-        std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
-        double elapsed_time_ns = double(std::chrono::duration_cast<std::chrono::seconds>(end - start).count());
-        if (elapsed_time_ns >= 4.0) {
-            std::cout << 4 << " secondes écoulées, tu cours moins vite" << std::endl;
-            speed[tmp]->speed -= 1;
-            start = std::chrono::steady_clock::now();
-            bonus_bool = false;
         }
     }
     return (0);

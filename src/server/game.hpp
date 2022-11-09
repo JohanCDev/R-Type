@@ -125,3 +125,15 @@ typedef struct wave_s {
     size_t remaining_difficulty;
     sf::Clock clock;
 } waves_t;
+
+typedef struct stat_bonus_s {
+    int speed;
+    int strengh;
+    int attack_speed;
+} stat_bonus_t;
+
+typedef struct bonus_s {
+    std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> timer;
+    int nbr;
+    bool bonus = false;
+} bonus_t;

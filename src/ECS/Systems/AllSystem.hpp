@@ -21,7 +21,7 @@ int shooting_system(World &world, NetworkServer &server);
 int ia_system(World &world, NetworkServer &server);
 int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
-int bonus_system(World &world, NetworkServer &server);
+int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat);
 
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable);
