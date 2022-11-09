@@ -13,6 +13,15 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
 
+/**
+ * @brief Check if there is a collision on a Sprite
+ *
+ * @param manager Resources Manager object
+ * @param sprite Sprite to check
+ * @param position Optional PositionComponent
+ * @param drawable Optional DrawableComponent
+ * @return 1 if there is a collision
+ */
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
 {
@@ -32,6 +41,13 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
     return (0);
 }
 
+/**
+ * @brief Shooting system
+ *
+ * @param world to act on
+ * @param server Server object
+ * @return negative value if there is an error
+ */
 int shooting_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();

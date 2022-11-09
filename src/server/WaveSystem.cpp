@@ -16,6 +16,14 @@
 #include "game.hpp"
 #include "server.hpp"
 
+/**
+ * @brief Create a boss in the world
+ *
+ * @param world World to act on
+ * @param server Server structure
+ * @param waves Waves information
+ * @return Negative value if there is an error
+ */
 int create_boss(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
@@ -43,6 +51,14 @@ int create_boss(World &world, NetworkServer &server, waves_t &waves)
     return 0;
 }
 
+/**
+ * @brief Create a wave in the world
+ *
+ * @param world World to act on
+ * @param server Server structure
+ * @param waves Waves information
+ * @return Negative value if there is an error
+ */
 int create_wave(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
@@ -90,6 +106,14 @@ void create_enemy(World &world, NetworkServer &server)
     server.SendToAll(sending_msg);
 }
 
+/**
+ * @brief Create a wave in the world
+ *
+ * @param world World to act on
+ * @param server Server structure
+ * @param waves Waves information
+ * @return Negative value if there is an error
+ */
 int wave_system(World &world, NetworkServer &server, waves_t &waves)
 {
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
