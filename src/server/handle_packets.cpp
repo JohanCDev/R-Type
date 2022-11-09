@@ -134,13 +134,18 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server)
 {
     auto &levels = world.getRegistry().get_components<LevelComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
+    auto &clients = world.getRegistry().get_components<ClientIDComponent>();
     GameStat stat;
 
     msg.first >> stat;
 
     std::size_t index = 0;
 
-    for (auto &level : levels) {
+    for (auto &client : clients) {
+        if (!(client && client.has_value() && client->id == msg.second)) {
+            index++;
+        }
+        auto &level = levels[index];
         if (level && level.has_value()) {
             if (level->spent_points >= level->level) {
                 return;
@@ -151,6 +156,6 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server)
                 level->spent_points++;
             }
         }
-        index++;
+        break;
     }
 }
