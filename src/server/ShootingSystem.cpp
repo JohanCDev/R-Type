@@ -41,13 +41,6 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
     return (0);
 }
 
-/**
- * @brief Shooting system
- *
- * @param world to act on
- * @param server Server object
- * @return negative value if there is an error
- */
 int shooting_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();

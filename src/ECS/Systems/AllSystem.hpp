@@ -19,7 +19,7 @@
  * @brief Draw all drawables entities
  *
  * @param world The world
- * @return int
+ * @return negative value if there is an error
  */
 int drawable_system(World &world);
 
@@ -28,7 +28,7 @@ int drawable_system(World &world);
  *
  * @param world The world
  * @param event Events received
- * @return int
+ * @return negative value if there is an error
  */
 int controllable_system(World &world, sf::Event event);
 
@@ -37,7 +37,7 @@ int controllable_system(World &world, sf::Event event);
  *
  * @param world The world
  * @param server The server
- * @return int
+ * @return negative value if there is an error
  */
 int shooting_system(World &world, NetworkServer &server);
 
@@ -46,7 +46,7 @@ int shooting_system(World &world, NetworkServer &server);
  *
  * @param world The world
  * @param server The server
- * @return int
+ * @return negative value if there is an error
  */
 int ia_system(World &world, NetworkServer &server);
 
@@ -54,7 +54,7 @@ int ia_system(World &world, NetworkServer &server);
  * @brief Move all movable entities
  *
  * @param world The world
- * @return int
+ * @return negative value if there is an error
  */
 int velocity_system(World &world);
 
@@ -64,6 +64,6 @@ int velocity_system(World &world);
  * @param world The world
  * @param server The server
  * @param waves Current wave
- * @return int
+ * @return negative value if there is an error
  */
 int wave_system(World &world, NetworkServer &server, waves_t &waves);

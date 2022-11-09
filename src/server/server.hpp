@@ -25,11 +25,27 @@
 
 using boost::asio::ip::udp;
 
+/**
+ * @brief List of all the clients
+ *
+ */
 typedef boost::bimap<std::size_t, udp::endpoint> ClientList;
+/**
+ * @brief Define a value value_type for the client
+ *
+ */
 typedef ClientList::value_type Client;
 // typedef std::pair<std::string, std::size_t> ClientMessage;
+/**
+ * @brief Define a pair of messages and size
+ *
+ */
 typedef std::pair<Message<GameMessage>, std::size_t> ClientMessage;
 
+/**
+ * @brief Network server class containing all infos of server network
+ *
+ */
 class NetworkServer {
   private:
     boost::asio::io_service io_service;
