@@ -5,8 +5,6 @@ list(
   APPEND
   SRC
   ${INCROOT}/AllComponents.hpp
-  ${INCROOT}/AccelerationComponent.hpp
-  ${INCROOT}/AnimationComponent.hpp
   ${INCROOT}/CollideComponent.hpp
   ${INCROOT}/ClientIDComponent.hpp
   ${INCROOT}/ControllableComponent.hpp
@@ -16,10 +14,11 @@ list(
   ${INCROOT}/DrawableComponent.hpp
   ${INCROOT}/HealthComponent.hpp
   ${INCROOT}/ImmobileComponent.hpp
-  ${INCROOT}/MaximumVelocityComponent.hpp
   ${INCROOT}/PositionComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
-  ${INCROOT}/WeaponComponent.hpp)
+  ${INCROOT}/WeaponComponent.hpp
+  ${INCROOT}/TextComponent.hpp
+  ${INCROOT}/ClickableComponent.hpp)
 
 set(SRC
   "${SRC}"

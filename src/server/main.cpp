@@ -9,6 +9,10 @@
  *
  */
 
+/**
+ * @brief Define the WIN32 version
+ *
+ */
 #define _WIN32_WINNT 0x0601
 
 #include <chrono>
@@ -23,16 +27,22 @@
 
 static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkServer &)>> mapFunc = {
     {GameMessage::C2S_JOIN, player_joined}, {GameMessage::C2S_LEAVE, player_left},
-    {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot}};
+    {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot},
+    {GameMessage::C2S_START_GAME, start_game}, {GameMessage::C2S_SELECT_SHIP, select_ship}};
 
+/**
+ * @brief Main function
+ *
+ * @return int
+ */
 int main()
 {
     NetworkServer server(60000);
     World world;
+    world.state = GameState::Lobby;
     srand(time(NULL));
     waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
 
-    world.register_all_component();
     world.register_all_drawable_object();
 
     while (1) {
@@ -40,10 +50,16 @@ int main()
             ClientMessage msg = server.PopMessage();
             mapFunc[msg.first.header.id](world, msg, server);
         };
-        velocity_system(world);
-        shooting_system(world, server);
-        ia_system(world, server);
-        wave_system(world, server, waves);
+        switch (world.state) {
+            case GameState::Lobby: lobby_system(world, server); break;
+            case GameState::Playing:
+                velocity_system(world);
+                collide_system(world, server);
+                ia_system(world, server);
+                wave_system(world, server, waves);
+                break;
+            default: break;
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return 0;
