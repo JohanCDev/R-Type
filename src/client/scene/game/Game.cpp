@@ -55,12 +55,12 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 
 void GameScene::init_game(sf::RenderWindow &window)
 {
-    _world.create_drawable_object("assets/bkgd_0.png", Vector4i{0, 0, 2000, 2000}, Vector4i{255, 255, 255, 255},
-        Vector2f{1.0, 1.0}, Vector2f{0, 0}, Vector2i{-2, 0}, 0.04f);
-    _world.create_drawable_object("assets/bkgd_1.png", Vector4i{0, 0, 2000, 2000}, Vector4i{255, 255, 255, 255},
-        Vector2f{1.0, 1.0}, Vector2f{0, 0}, Vector2i{-4, 0}, 0.04f);
-    _world.create_drawable_object("assets/bkgd_2.png", Vector4i{0, 0, 2000, 2000}, Vector4i{255, 255, 255, 255},
-        Vector2f{1.0, 1.0}, Vector2f{0, 0}, Vector2i{-6, 0}, 0.04f);
+    _world.create_drawable_object("assets/background/bkgd_0.png", Vector4i{0, 0, 1000, 1000},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-2, 0}, 0.04f);
+    _world.create_drawable_object("assets/background/bkgd_1.png", Vector4i{0, 0, 1000, 1000},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-4, 0}, 0.04f);
+    _world.create_drawable_object("assets/background/bkgd_2.png", Vector4i{0, 0, 1000, 1000},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-6, 0}, 0.04f);
     _world.create_skills(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
     _world.create_settings(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
     _world.create_healthbar(1);

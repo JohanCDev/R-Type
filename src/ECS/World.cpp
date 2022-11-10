@@ -82,9 +82,9 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/HUD/hud_Life.png");
     this->_manager.register_texture("assets/HUD/Life.png");
     this->_manager.register_texture("assets/Boss/boss1.png");
-    this->_manager.register_texture("assets/bkgd_0.png");
-    this->_manager.register_texture("assets/bkgd_1.png");
-    this->_manager.register_texture("assets/bkgd_2.png");
+    this->_manager.register_texture("assets/background/bkgd_0.png");
+    this->_manager.register_texture("assets/background/bkgd_1.png");
+    this->_manager.register_texture("assets/background/bkgd_2.png");
 }
 
 sf::Clock &World::getClock()
