@@ -17,12 +17,32 @@ class World;
 
 void handle_movement(World &world, NetworkClient &client, sf::Event event);
 
+/**
+ * @brief Game scene of the game
+ *
+ */
 class GameScene : public IScene {
   public:
+    /**
+     * @brief Construct a new Game Scene object
+     *
+     */
     GameScene();
 
+    /**
+     * @brief Run the game scene logic
+     *
+     * @param client Class containing client's network information
+     * @param window Window to update
+     * @param current_screen Current screen of the game
+     */
     void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) override;
 
+    /**
+     * @brief Initialize game screen
+     *
+     * @param window Window to update
+     */
     void init_game(sf::RenderWindow &window);
 
   private:

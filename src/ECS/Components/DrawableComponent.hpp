@@ -103,6 +103,7 @@ struct DrawableComponent {
      *
      * @param texture_path Path to the resource
      * @param vec Rectangle to be shown
+     * @param col Color of the rectangle
      * @param scale_vec Vector Scaling the entity
      */
     DrawableComponent(std::string texture_path, Vector4i vec = Vector4i(0, 0, 0, 0),

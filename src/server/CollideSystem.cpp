@@ -1,5 +1,5 @@
 /**
- * @file ShootingSystem.cpp
+ * @file CollideSystem.cpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1

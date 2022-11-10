@@ -12,6 +12,14 @@
 #include "../Components/AllComponents.hpp"
 #include "../World.hpp"
 
+/**
+ * @brief Check if the positions intersects
+ *
+ * @param click_pos Position of the click
+ * @param draw Drawn component
+ * @param position position of the component to check
+ * @return True if there is an intersection
+ */
 bool pos_intersects(Vector2i click_pos, DrawableComponent draw, PositionComponent position)
 {
     if ((click_pos.x >= position.pos.x && click_pos.x <= (position.pos.x + (draw.rect.x_size * draw.scale.x)))
