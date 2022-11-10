@@ -62,12 +62,6 @@ World::~World()
 {
 }
 
-void World::register_all_system()
-{
-    // this->_r.register_systems(&velocity_system);
-    // this->_r.register_systems(&shooting_system);
-}
-
 void World::register_all_assets()
 {
     this->_manager.register_texture("assets/r-typesheet1.gif");
@@ -88,6 +82,9 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/HUD/hud_Life.png");
     this->_manager.register_texture("assets/HUD/Life.png");
     this->_manager.register_texture("assets/Boss/boss1.png");
+    this->_manager.register_texture("assets/bkgd_0.png");
+    this->_manager.register_texture("assets/bkgd_1.png");
+    this->_manager.register_texture("assets/bkgd_2.png");
 }
 
 sf::Clock &World::getClock()
@@ -183,7 +180,8 @@ size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vect
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
     if (speed.x != 0 || speed.y != 0)
-        this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+        this->_r.add_component<VelocityComponent>(
+            ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NONE));
 
     return (ent.id);

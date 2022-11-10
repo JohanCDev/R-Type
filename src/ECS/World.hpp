@@ -44,12 +44,6 @@ class World {
     ~World();
 
     /**
-     * @brief register all existing systems
-     *
-     */
-    void register_all_system();
-
-    /**
      * @brief register all assets of the game
      *
      */
