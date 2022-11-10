@@ -44,6 +44,30 @@ class World {
     ~World();
 
     /**
+     * @brief Register assets for option scene
+     * 
+     */
+    void register_option_assets();
+
+    /**
+     * @brief Register assets for menu scene
+     * 
+     */
+    void register_menu_assets();
+
+    /**
+     * @brief Register assets for game scene
+     * 
+     */
+    void register_game_assets();
+
+    /**
+     * @brief Register assets for lobby scene
+     * 
+     */
+    void register_lobby_assets();
+
+    /**
      * @brief register all assets of the game
      *
      */

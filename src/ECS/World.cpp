@@ -30,8 +30,6 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
 
-    this->register_all_assets();
-
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
     this->register_all_drawable_object();
 }
@@ -85,6 +83,49 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/background/bkgd_0.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
+}
+
+void World::register_menu_assets()
+{
+    this->_manager.register_texture("assets/background/menu.jpg");
+    this->_manager.register_texture("assets/background/bg-boutton.png");
+}
+
+void World::register_lobby_assets()
+{
+    this->_manager.register_texture("assets/background/lobby.png");
+    this->_manager.register_texture("assets/background/bg-boutton.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_armored_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_damage_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_engineer_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_sniper_spritesheet.png");
+}
+
+void World::register_game_assets()
+{
+    this->_manager.register_texture("assets/r-typesheet1.gif");
+    this->_manager.register_texture("assets/r-typesheet5.gif");
+    this->_manager.register_texture("assets/r-typesheet39.gif");
+    this->_manager.register_texture("assets/SpaceShip/ship_armored_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_damage_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_engineer_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_sniper_spritesheet.png");
+    this->_manager.register_texture("assets/Stats/attack_speed.png");
+    this->_manager.register_texture("assets/Stats/boost_attack.png");
+    this->_manager.register_texture("assets/Stats/boost_hp.png");
+    this->_manager.register_texture("assets/Stats/speed.png");
+    this->_manager.register_texture("assets/Button/home.png");
+    this->_manager.register_texture("assets/HUD/hud_Life.png");
+    this->_manager.register_texture("assets/HUD/Life.png");
+    this->_manager.register_texture("assets/Boss/boss1.png");
+    this->_manager.register_texture("assets/background/bkgd_0.png");
+    this->_manager.register_texture("assets/background/bkgd_1.png");
+    this->_manager.register_texture("assets/background/bkgd_2.png");
+}
+
+void World::register_option_assets()
+{
+    this->_manager.register_texture("assets/Button/home.png");
 }
 
 sf::Clock &World::getClock()

@@ -27,6 +27,7 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
     shootMsg << "shoot";
 
     if (_init == false) {
+        this->_world.register_game_assets();
         this->init_game(window);
         _init = true;
     }

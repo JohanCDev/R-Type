@@ -55,6 +55,7 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     }
 
     if (this->_init == false) {
+        this->_world.register_lobby_assets();
         this->init_lobby(window);
         this->_init = true;
     }
