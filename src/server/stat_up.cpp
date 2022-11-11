@@ -40,7 +40,7 @@ void atk_spd_up(World &world, std::size_t &e)
         weapon->cooldown_as_milliseconds *= 0.9;
     }
 }
-
+/*
 void spd_up(World &world, std::size_t &e)
 {
     auto &max_spd = world.getRegistry().get_components<MaximumVelocityComponent>()[e];
@@ -50,9 +50,9 @@ void spd_up(World &world, std::size_t &e)
         max_spd->y *= 1.1;
     }
 }
-
-static std::map<GameStat, std::function<void(World &, std::size_t &)>> statFunc = {
-    {GameStat::HEALTH, health_up}, {GameStat::DAMAGE, damage_up}, {GameStat::ATK_SPD, atk_spd_up}, {GameStat::SPD, spd_up}};
+*/
+static std::map<GameStat, std::function<void(World &, std::size_t &)>> statFunc = {{GameStat::HEALTH, health_up},
+    {GameStat::DAMAGE, damage_up}, {GameStat::ATK_SPD, atk_spd_up}, /* {GameStat::SPD, spd_up}*/};
 
 void stat_up(World &world, GameStat &stat, std::size_t &e)
 {

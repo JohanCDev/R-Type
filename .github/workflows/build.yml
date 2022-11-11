@@ -3,14 +3,6 @@ name: Build
 on: push
 
 jobs:
-  # lint:
-  #   name: Linter
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Clang Code Formatter
-  #       uses: Mavrikant/clang-format-action@ubuntu-22.04
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.EPI_MIRRORING_KEY }}
   build-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +18,7 @@ jobs:
 
       - name: Build rtype binaries on Ubuntu (desktop)
         run: |
-          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
 
       - name: Check Ubuntu build (desktop)
         uses: andstor/file-existence-action@v1
@@ -92,15 +84,3 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "r_type-client, r_type-server"
-
-  mirror:
-    needs: [build-on-ubuntu, build-on-windows]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url: ${{ secrets.EPI_REPO_URL }}
-          ssh_private_key: ${{ secrets.EPI_MIRRORING_KEY }}

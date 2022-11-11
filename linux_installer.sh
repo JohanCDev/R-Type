@@ -26,7 +26,7 @@ echo "Sudo password: "
 sudo $COMMAND install -y cmake g++ libudev-dev pip pkg-config libgl-dev
 
 echo -e "\033[0;32mINSTALLING CONAN PACKAGE MANAGER\033[0m"
-pip install conan
+sudo pip install conan
 
 if [ -d build ]
 then

@@ -1,5 +1,5 @@
 /**
- * @file loop.cpp
+ * @file handle_packets.cpp
  * @author Tanguy BELLICHA (tanguy.bellicha@epitech.eu)
  * @brief
  * @version 0.1
@@ -23,22 +23,10 @@
 
 void player_joined(World &world, ClientMessage msg, NetworkServer &server)
 {
-    size_t entity_id = 0;
-    Message<GameMessage> sending_msg;
-
-    entity_id = world.create_player(GameObject::PLAYER,
-        Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y}, Vector2i{0, 0},
-        0.04f);
-    world.getRegistry().add_component<ClientIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), ClientIDComponent{msg.second});
-    world.getRegistry().add_component<EntityIDComponent>(
-        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
-    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::PLAYER;
-    sending_msg << entity_id;
-    sending_msg << Vector2f{defaultValues[GameObject::PLAYER].pos.x, defaultValues[GameObject::PLAYER].pos.y};
-    server.SendToAll(sending_msg);
+    (void)msg;
+    (void)server;
+    if (world.state != GameState::Lobby)
+        return;
 }
 
 void player_left(World &world, ClientMessage msg, NetworkServer &server)
@@ -56,10 +44,17 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
             sending_msg << entities[index]->id;
             server.SendToAll(sending_msg);
             std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
+            server.clients.left.erase(msg.second);
+            world.player_ships.erase(msg.second);
             break;
         }
         index++;
     }
+    std::size_t nbr = server.clients.size();
+
+    sending_msg.header.id = GameMessage::S2C_PLAYERS_IN_LOBBY;
+    sending_msg << nbr;
+    server.SendToAll(sending_msg);
 }
 
 void player_moved(World &world, ClientMessage msg, NetworkServer &server)
@@ -91,7 +86,11 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     }
 }
 
-static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 10}}};
+static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 10}},
+    {"assets/SpaceShip/ship_armored_spritesheet.png", Vector2f{130, 40}},
+    {"assets/SpaceShip/ship_damage_spritesheet.png", Vector2f{130, 40}},
+    {"assets/SpaceShip/ship_engineer_spritesheet.png", Vector2f{130, 40}},
+    {"assets/SpaceShip/ship_sniper_spritesheet.png", Vector2f{130, 40}}};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
@@ -159,4 +158,39 @@ void spend_point(World &world, ClientMessage msg, NetworkServer &server)
         }
         break;
     }
+}
+
+void start_game(World &world, ClientMessage msg, NetworkServer &server)
+{
+    Message<GameMessage> sending_msg;
+    size_t entity_id = 0;
+
+    sending_msg.header.id = GameMessage::S2C_START_GAME;
+    sending_msg << "start";
+    server.SendToAll(sending_msg);
+    for (std::map<std::size_t, GameObject>::iterator it = world.player_ships.begin(); it != world.player_ships.end();
+         ++it) {
+        entity_id = world.create_player(it->second,
+            Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y}, Vector2i{0, 0}, 0.04f);
+        world.getRegistry().add_component<ClientIDComponent>(
+            world.getRegistry().entity_from_index(entity_id), ClientIDComponent{it->first});
+        world.getRegistry().add_component<EntityIDComponent>(
+            world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+        std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
+        sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+        sending_msg << it->second;
+        sending_msg << entity_id;
+        sending_msg << Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y};
+        server.SendToAll(sending_msg);
+    }
+    world.state = GameState::Playing;
+}
+
+void select_ship(World &world, ClientMessage msg, NetworkServer &server)
+{
+    (void)server;
+    GameObject ship;
+
+    msg.first >> ship;
+    world.player_ships[msg.second] = ship;
 }

@@ -11,12 +11,18 @@
 
 #pragma once
 
+/**
+ * @brief Enumerate packets types
+ *
+ */
 enum class GameMessage : uint32_t {
     C2S_JOIN,
     C2S_LEAVE,
     C2S_SHOOT,
     C2S_MOVEMENT,
     C2S_SPEND_POINT,
+    C2S_START_GAME,
+    C2S_SELECT_SHIP,
     S2C_ENTITY_NEW,
     S2C_ENTITY_DEAD,
     S2C_GAME_END,
@@ -25,11 +31,38 @@ enum class GameMessage : uint32_t {
     S2C_WAVE_STATUS,
     S2C_LEVEL_UP,
     S2C_UPDATE_STATS,
-    S2C_OK
+    S2C_OK,
+    S2C_START_GAME,
+    S2C_PLAYERS_IN_LOBBY,
+    S2C_PLAYERS_READY,
 };
 
-enum class WaveStatus : uint32_t {START, BOSS_START, END};
+/**
+ * @brief Enumerate status of waves
+ *
+ */
+enum class WaveStatus : uint32_t { START, BOSS_START, END };
 
-enum class GameObject : uint32_t { LASER, PLAYER, BOSS_1, ENEMY_FOCUS, ENEMY_SNIPER, ENEMY_ODD, GAME_OBJECT_COUNT };
-
+/**
+*  @brief Enumerate game stats
+* 
+*/
 enum class GameStat : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD };
+
+/**
+ * @brief Enumerate objects of the game
+ *
+ */
+enum class GameObject : uint32_t {
+    LASER,
+    PLAYER,
+    BOSS_1,
+    ENEMY_FOCUS,
+    ENEMY_SNIPER,
+    ENEMY_ODD,
+    GAME_OBJECT_COUNT,
+    SHIP_ARMORED,
+    SHIP_DAMAGE,
+    SHIP_ENGINEER,
+    SHIP_SNIPER
+};

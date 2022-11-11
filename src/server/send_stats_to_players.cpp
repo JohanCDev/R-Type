@@ -16,7 +16,7 @@ void send_stats_to_players(World &world, NetworkServer &server, std::size_t inde
 {
     auto &health = world.getRegistry().get_components<HealthComponent>()[index];
     auto &weapon = world.getRegistry().get_components<WeaponComponent>()[index];
-    auto &max_spd = world.getRegistry().get_components<MaximumVelocityComponent>()[index];
+    //auto &max_spd = world.getRegistry().get_components<MaximumVelocityComponent>()[index];
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>()[index];
     Message<GameMessage> msg;
 
@@ -28,9 +28,9 @@ void send_stats_to_players(World &world, NetworkServer &server, std::size_t inde
         if (!(weapon && weapon.has_value()))
             return;
         msg << weapon;
-        if (!(max_spd && max_spd.has_value()))
-            return;
-        msg << max_spd;
+        //if (!(max_spd && max_spd.has_value()))
+        //    return;
+        //msg << max_spd;
         msg << entityId->id;
         server.SendToAll(msg);
     }

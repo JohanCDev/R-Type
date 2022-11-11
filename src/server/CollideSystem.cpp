@@ -1,5 +1,5 @@
 /**
- * @file ShootingSystem.cpp
+ * @file CollideSystem.cpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
@@ -13,6 +13,15 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
 
+/**
+ * @brief Check if there is a collision on a Sprite
+ *
+ * @param manager Resources Manager object
+ * @param sprite Sprite to check
+ * @param position Optional PositionComponent
+ * @param drawable Optional DrawableComponent
+ * @return 1 if there is a collision
+ */
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
 {
@@ -32,7 +41,7 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
     return (0);
 }
 
-int shooting_system(World &world, NetworkServer &server)
+int collide_system(World &world, NetworkServer &server)
 {
     auto &weapons = world.getRegistry().get_components<WeaponComponent>();
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
