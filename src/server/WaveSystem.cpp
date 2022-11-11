@@ -94,7 +94,7 @@ int create_wave(World &world, NetworkServer &server, waves_t &waves)
 void create_enemy(World &world, NetworkServer &server)
 {
     size_t entity_id = 0;
-    float random_y = rand() % 500 + 50;
+    float random_y = rand() % 980 + 50;
     GameObject type = (GameObject)(rand() % (((size_t)GameObject::ENEMY_SNIPER + 1) - (size_t)GameObject::ENEMY_FOCUS)
         + (size_t)GameObject::ENEMY_FOCUS);
     Message<GameMessage> sending_msg;
