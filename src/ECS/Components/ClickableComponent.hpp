@@ -17,9 +17,22 @@ class World;
 enum class SceneScreen : uint32_t;
 class NetworkClient;
 
+/**
+ * @brief Makes an entity clickable
+ *
+ */
 struct ClickableComponent {
+    /**
+     * @brief Callback function of the button
+     *
+     */
     std::function<void(World &, SceneScreen &, NetworkClient &)> callback;
 
+    /**
+     * @brief Construct a new Clickable Component object
+     *
+     * @param callback_func callback function to assign to the component
+     */
     ClickableComponent(std::function<void(World &, SceneScreen &, NetworkClient &)> callback_func)
         : callback(callback_func)
     {

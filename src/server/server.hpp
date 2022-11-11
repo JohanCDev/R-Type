@@ -11,6 +11,9 @@
 
 #pragma once
 
+/**
+ * @brief Define boost placeholders
+ */
 #define BOOST_BIND_GLOBAL_PLACEHOLDERS
 
 #include <array>
@@ -23,6 +26,10 @@
 #include "../Common/Message/MessageType.hpp"
 #include "../Common/locked_queue.hpp"
 
+/**
+ * @brief Define the maximum of clients able to connect
+ *
+ */
 #define MAX_CLIENTS 4
 
 using boost::asio::ip::udp;
@@ -152,5 +159,10 @@ class NetworkServer {
      *
      */
     std::vector<std::function<void(std::size_t)>> clientDisconnectedHandlers;
+
+    /**
+     * @brief List of the clients
+     *
+     */
     ClientList clients;
 };
