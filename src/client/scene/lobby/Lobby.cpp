@@ -73,6 +73,9 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
+            current_screen = SceneScreen::GAME;
+        }
         if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
             launch_game(_world, current_screen, client);
         } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num1) {
