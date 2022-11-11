@@ -11,13 +11,17 @@
 
 #pragma once
 
+/**
+ * @brief component speed for player
+ * 
+ */
 struct SpeedComponent {
     int speed;
 
     /**
      * @brief Construct a new Speed Component object
      * 
-     * @param speed_vec
+     * @param speed_vec speed augmentation
      */
     SpeedComponent(int speed_vec)
         : speed(speed_vec)
