@@ -57,5 +57,5 @@ void GameScene::init_game(sf::RenderWindow &window)
 {
     _world.create_skills(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
     _world.create_settings(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
-    _world.create_healthbar(1);
+    _world.create_healthbar(1, 1, Vector2f{(float)window.getSize().x, (float)window.getSize().y});
 }
