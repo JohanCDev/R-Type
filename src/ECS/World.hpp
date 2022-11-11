@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <map>
 #include "../server/GameStates.hpp"
@@ -191,6 +192,13 @@ class World {
     sf::Clock &getClock();
 
     /**
+     * @brief Get the Music object
+     *
+     * @return Reference to the music object
+     */
+    sf::Music &getMusic();
+
+    /**
      * @brief Get the Direction object
      *
      * @return Reference to the direction
@@ -240,6 +248,12 @@ class World {
      *
      */
     sf::Clock _clock;
+
+    /**
+     * @brief Music of the game
+     *
+     */
+    sf::Music _music;
 
     /**
      * @brief Map containing all the drawable components

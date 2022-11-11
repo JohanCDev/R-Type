@@ -49,6 +49,7 @@ int main(void)
     GameScene game;
     LobbyScene lobby;
     OptionScene option;
+
     std::vector<std::reference_wrapper<IScene>> scenes;
     scenes.push_back(menu);
     scenes.push_back(lobby);

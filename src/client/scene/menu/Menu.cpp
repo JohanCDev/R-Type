@@ -13,6 +13,7 @@
 
 MenuScene::MenuScene() : _world(true), _init(false)
 {
+    music_system(this->_world, "./assets/music/mainTheme.wav");
 }
 
 void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)

@@ -110,3 +110,12 @@ int lobby_system(World &world, NetworkServer &server);
  * @return negative value if there is an error
  */
 int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client);
+
+/**
+ * @brief Creates a music
+ *
+ * @param world world to act on
+ * @param music_filepath filepath to music
+ * @return Negative value in case of error
+ */
+int music_system(World &world, const std::string &music_filepath);
