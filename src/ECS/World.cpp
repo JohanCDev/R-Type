@@ -93,9 +93,9 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/HUD/Life.png");
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
-    this->_manager.register_texture("assets/Power-up/speed_attack.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
-    this->_manager.register_texture("assets/Power-up/speed_boost.png");
+    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 sf::Clock &World::getClock()
@@ -324,13 +324,13 @@ void World::register_all_drawable_object()
         DrawableComponent("assets/Power-up/boost_attack.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::BONUS_ATTACK_SPEED,
-        DrawableComponent("assets/Power-up/speed_attack.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
+        DrawableComponent("assets/Power-up/boost_attack_speed.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::BONUS_HEAL,
         DrawableComponent("assets/Power-up/boost_hp.png", Vector4i{0, 0, 512, 512}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::BONUS_SPEED,
-        DrawableComponent("assets/Power-up/speed_boost.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
+        DrawableComponent("assets/Power-up/boost_speed.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::SHIP_ARMORED,
         DrawableComponent("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128},
