@@ -15,18 +15,33 @@
 #include <list>
 #include <queue>
 
+/**
+ * @brief Locked queue class containing all messages infos
+ *
+ * @tparam T Type of the values to act on in queue
+ */
 template <typename T> class LockedQueue {
   private:
     boost::mutex mutex;
     std::queue<T> queue;
 
   public:
+    /**
+     * @brief Push information to queue
+     *
+     * @param value information to push
+     */
     void push(T value)
     {
         boost::mutex::scoped_lock lock(mutex);
         queue.push(value);
     };
 
+    /**
+     * @brief Pop information of queue
+     *
+     * @return information to process
+     */
     T pop()
     {
         boost::mutex::scoped_lock lock(mutex);
@@ -36,6 +51,11 @@ template <typename T> class LockedQueue {
         return value;
     };
 
+    /**
+     * @brief Gets if the queue is empty
+     *
+     * @return True if it is. False if it isn't
+     */
     bool empty()
     {
         boost::mutex::scoped_lock lock(mutex);

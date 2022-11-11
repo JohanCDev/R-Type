@@ -16,6 +16,13 @@
 #include "game.hpp"
 #include "server.hpp"
 
+/**
+ * @brief Create a boss_1 in the world
+ *
+ * @param world World to act on
+ * @param server Server structure
+ * @return Negative value if there is an error
+ */
 int create_boss_1(World &world, NetworkServer &server)
 {
     Message<GameMessage> sending_msg;
@@ -49,6 +56,14 @@ int create_boss_1(World &world, NetworkServer &server)
 static std::map<GameObject, std::function<void(World &, NetworkServer &)>> map_create_boss = {
     {GameObject::BOSS_1, create_boss_1}};
 
+/**
+ * @brief Create a wave in the world
+ *
+ * @param world World to act on
+ * @param server Server structure
+ * @param waves Waves information
+ * @return Negative value if there is an error
+ */
 int create_wave(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
@@ -80,7 +95,7 @@ void create_enemy(World &world, NetworkServer &server)
 {
     size_t entity_id = 0;
     float random_y = rand() % 500 + 50;
-    GameObject type = (GameObject)(rand() % ((size_t)GameObject::GAME_OBJECT_COUNT - (size_t)GameObject::ENEMY_FOCUS)
+    GameObject type = (GameObject)(rand() % (((size_t)GameObject::ENEMY_SNIPER + 1) - (size_t)GameObject::ENEMY_FOCUS)
         + (size_t)GameObject::ENEMY_FOCUS);
     Message<GameMessage> sending_msg;
 

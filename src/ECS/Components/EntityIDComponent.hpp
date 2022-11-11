@@ -13,6 +13,14 @@
 
 #include <stdio.h>
 
+/**
+ * @brief Store the entity ID
+ *
+ */
 struct EntityIDComponent {
+    /**
+     * @brief ID of the entity
+     *
+     */
     size_t id;
 };

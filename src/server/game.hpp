@@ -17,31 +17,89 @@
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
-#define DEFAULT_KEY_TOP                    KeyboardInput::Z
-#define DEFAULT_KEY_RGT                    KeyboardInput::D
-#define DEFAULT_KEY_BOT                    KeyboardInput::S
-#define DEFAULT_KEY_LFT                    KeyboardInput::Q
-#define DEFAULT_KEY_SHOOT                  MouseInput::Left_click
-#define DEFAULT_WAVE_FREQUENCY_BOSS        5
+/**
+ * @brief Default key to move to the top
+ */
+#define DEFAULT_KEY_TOP KeyboardInput::Z
+
+/**
+ * @brief Default key to move to the right
+ */
+#define DEFAULT_KEY_RGT KeyboardInput::D
+
+/**
+ * @brief Default key to move to the bottom
+ */
+#define DEFAULT_KEY_BOT KeyboardInput::S
+
+/**
+ * @brief Default key to move to the left
+ */
+#define DEFAULT_KEY_LFT KeyboardInput::Q
+
+/**
+ * @brief Default key to shoot
+ */
+#define DEFAULT_KEY_SHOOT MouseInput::Left_click
+
+/**
+ * @brief Default number of waves where boss spawn
+ */
+#define DEFAULT_WAVE_FREQUENCY_BOSS 5
+
+/**
+ * @brief Default increment multiplier difficulty between waves
+ */
 #define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
-#define DEFAULT_WAVE_DIFFICULTY            10
-#define DEFAULT_WAVE_TIME_BETWEEN          5.0
-#define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
+
+/**
+ * @brief Default starting wave difficulty
+ */
+#define DEFAULT_WAVE_DIFFICULTY 10
+
+/**
+ * @brief Default time between each waves
+ */
+#define DEFAULT_WAVE_TIME_BETWEEN 5.0
+
+/**
+ * @brief Default time between each mini waves
+ */
+#define DEFAULT_MINI_WAVE_TIME_BETWEEN 0.8
 
 /**
  * @brief Structure containing all the default values for the game
  *
- * @param pos Position of the object
- * @param hp Health of the object
- * @param atk Attack of the object
- * @param spd Speed of the object
- * @param scale Scale of the object
  */
 typedef struct values_s {
+    /**
+     * @brief Position of the object
+     *
+     */
     Vector2f pos;
+
+    /**
+     * @brief Health of the object
+     *
+     */
     int hp;
+
+    /**
+     * @brief Attack of the object
+     *
+     */
     int atk;
+
+    /**
+     * @brief Speed of the object
+     *
+     */
     int spd;
+
+    /**
+     * @brief Scale of the object
+     *
+     */
     float scale;
 } values_t;
 
@@ -51,6 +109,10 @@ typedef struct values_s {
 static std::map<GameObject, values_t> defaultValues = {
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
     {GameObject::PLAYER, {{50, 200}, 100, 100, 8, 2.0}},
+    {GameObject::SHIP_ARMORED, {{50, 200}, 150, 50, 6, 1.0}},
+    {GameObject::SHIP_DAMAGE, {{50, 200}, 80, 120, 6, 1.0}},
+    {GameObject::SHIP_ENGINEER, {{50, 200}, 100, 100, 6, 1.0}},
+    {GameObject::SHIP_SNIPER, {{50, 200}, 150, 50, 6, 1.0}},
     {GameObject::BOSS_1, {{800, 300}, 100, 40, 6, 2.0}},
     {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 6, 1.0}},
     {GameObject::ENEMY_KAMIKAZE, {{800, -1}, 100, 40, 12, 1.0}},
@@ -103,7 +165,25 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
 void create_enemy(World &world, NetworkServer &server);
 
 /**
- * @brief
+ * @brief start game
+ *
+ * @param world The server's world
+ * @param msg Message to process
+ * @param server The server
+ */
+void start_game(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Select a ship
+ *
+ * @param world The server's world
+ * @param msg Message to process
+ * @param server The server
+ */
+void select_ship(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Structure containing waves informations
  *
  * @param in_wave Boolean to know if the wave is in progress
  * @param nb_wave The number of the current wave
@@ -112,9 +192,33 @@ void create_enemy(World &world, NetworkServer &server);
  * @param clock The clock of the wave
  */
 typedef struct wave_s {
+    /**
+     * @brief Boolean to know if the wave is in progress
+     *
+     */
     bool in_wave;
+
+    /**
+     * @brief The number of the current wave
+     *
+     */
     size_t nb_wave;
+
+    /**
+     * @brief The difficulty of the wave
+     *
+     */
     size_t base_difficulty;
+
+    /**
+     * @brief The remaining difficulty of the wave
+     *
+     */
     size_t remaining_difficulty;
+
+    /**
+     * @brief The clock of the wave
+     *
+     */
     sf::Clock clock;
 } waves_t;
