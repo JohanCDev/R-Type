@@ -76,15 +76,6 @@ int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
 
 /**
- * @brief Levels up all players
- *
- * @param world The world
- * @param server The server
- * @return negative value if there is an error
- */
-int level_up_system(World &world, NetworkServer &server);
-
-/**
  * @brief Collide all entities
  *
  * @param world The world
