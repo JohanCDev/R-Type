@@ -29,6 +29,7 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
+    this->_r.register_components<LevelComponent>();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
     this->register_all_drawable_object();
@@ -50,6 +51,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
+    this->_r.register_components<LevelComponent>();
 
     this->register_all_assets();
 
