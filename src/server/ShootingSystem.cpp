@@ -80,7 +80,7 @@ int shooting_system(World &world, NetworkServer &server)
                             } else {
                                 if (teams[j]->team ==  GameTeam::ENEMY) {
                                     // && random_variable % 3 == 0
-                                    bonus_creation(world, server, positions[j]->pos);
+                                    // bonus_creation(world, server, positions[j]->pos);
                                     // clock.time = std::chrono::steady_clock::now();
                                 }
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;

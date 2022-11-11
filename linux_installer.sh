@@ -26,7 +26,7 @@ echo "Sudo password: "
 sudo $COMMAND install -y cmake g++ libudev-dev pip pkg-config libgl-dev
 
 echo -e "\033[0;32mINSTALLING CONAN PACKAGE MANAGER\033[0m"
-pip install conan
+sudo pip install conan
 
 if [ -d build ]
 then
@@ -34,6 +34,7 @@ then
 fi
 
 echo -e "\033[0;32mBUILDING PROJECT\033[0m"
-mkdir -p build; cd build && \
+mkdir -p build; cd build && 
+conan install .. --build=missing -s compiler=gcc -s compiler.version=9 -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
 cmake -DCMAKE_BUILD_TYPE=Release .. && cd ../ && \
 cmake --build build/ -j 3

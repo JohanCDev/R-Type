@@ -30,20 +30,6 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
-if(APPLE)
-  execute_process(COMMAND mkdir build/
-    COMMAND cd build/
-    COMMAND conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
-elseif(WIN32)
-  execute_process(COMMAND mkdir build
-    COMMAND Set-Location build
-    COMMAND conan install .. --build=missing -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
-else()
-  execute_process(COMMAND mkdir build/
-    COMMAND cd build/
-    COMMAND conan install .. --build=missing -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True)
-endif()
-
 # Add ./cmake to the module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 

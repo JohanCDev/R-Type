@@ -9,6 +9,9 @@
  *
  */
 
+/**
+ * @brief Define the WIN32 version
+ */
 #define _WIN32_WINNT 0x0601
 
 #include <chrono>
@@ -16,67 +19,46 @@
 #include <thread>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
-#include "client.hpp"
-
 #include "../ECS/World.hpp"
+#include "client.hpp"
+#include "proto.hpp"
+#include "scene/game/Game.hpp"
+#include "scene/lobby/Lobby.hpp"
+#include "scene/menu/Menu.hpp"
+#include "scene/option/Option.hpp"
 
-void handle_movement(World &world, NetworkClient &client, sf::Event event);
-
+/**
+ * @brief Main function
+ *
+ * @return int
+ */
 int main(void)
 {
-    unsigned short port;
-
+    unsigned int port = 0;
     std::cin >> port;
-    NetworkClient client("localhost", "60000", port);
-    World world(sf::VideoMode(800, 600), "My window");
-
     std::srand(std::time(NULL));
 
-    world.register_all_component();
-    world.register_all_system();
-    world.register_all_assets();
-    world.register_all_drawable_object();
+    NetworkClient client("localhost", "60000", port);
 
-    world.create_skills(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
-    world.create_settings(Vector2f{(float)world.getWindow().getSize().x, (float)world.getWindow().getSize().y});
-    world.create_healthbar(1);
+#if __APPLE__
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window");
+#else
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My window", sf::Style::Fullscreen);
+#endif
+    MenuScene menu;
+    GameScene game;
+    LobbyScene lobby;
+    OptionScene option;
+    std::vector<std::reference_wrapper<IScene>> scenes;
+    scenes.push_back(menu);
+    scenes.push_back(lobby);
+    scenes.push_back(game);
+    scenes.push_back(option);
+    SceneScreen current_screen = SceneScreen::MENU;
 
-    Message<GameMessage> hiMsg;
-    hiMsg.header.id = GameMessage::C2S_JOIN;
-    hiMsg << "Lezgongue";
-
-    Message<GameMessage> byeMsg;
-    byeMsg.header.id = GameMessage::C2S_LEAVE;
-    byeMsg << "Bybye";
-
-    Message<GameMessage> shootMsg;
-    shootMsg.header.id = GameMessage::C2S_SHOOT;
-    shootMsg << "Shoot";
-
-    sf::Event event;
-    Message<GameMessage> msg;
-
-    client.send(hiMsg);
-    while (world.getWindow().isOpen()) {
-        while (client.HasMessages()) {
-            msg = client.PopMessage();
-            client.processMessage(msg, world);
-        }
-        while (world.getWindow().pollEvent(event)) {
-            handle_movement(world, client, event);
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::Space) {
-                client.send(shootMsg);
-            }
-            if (event.type == sf::Event::Closed)
-                world.getWindow().close();
-        }
-
-        world.getWindow().clear(sf::Color::Black);
-        drawable_system(world);
-        velocity_system(world);
-        world.getWindow().display();
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    while (window.isOpen()) {
+        auto &scene = scenes[(int)current_screen].get();
+        scene.run(client, window, current_screen);
     }
-    client.send(byeMsg);
     return 0;
 }

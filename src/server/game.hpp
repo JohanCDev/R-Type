@@ -119,6 +119,10 @@ void create_enemy(World &world, NetworkServer &server);
 
 void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
 
+void start_game(World &world, ClientMessage msg, NetworkServer &server);
+
+void select_ship(World &world, ClientMessage msg, NetworkServer &server);
+
 typedef struct wave_s {
     bool in_wave;
     size_t nb_wave;
@@ -138,6 +142,3 @@ typedef struct bonus_s {
     std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;
 
-// typedef struct clock_s {
-//     std::chrono::time_point<std::chrono::steady_clock> time;
-// } clock_t;
