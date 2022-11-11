@@ -213,7 +213,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
 }
 
 size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale,
-    Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
+    Vector2f pos, Vector2i speed, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
