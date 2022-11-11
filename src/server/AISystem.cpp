@@ -95,8 +95,8 @@ void update_enemy_odd(World &world, NetworkServer &server, size_t i)
 {
     size_t random_spawn = rand() % 1000;
     size_t random_dir = rand() % 1000;
-    Vector2i top_bot = {50, 550};
-    Vector2i left_right = {0, 700};
+    Vector2i top_bot = {50, 1030};
+    Vector2i left_right = {0, 1820};
     Vector2i next_pos = {0, 0};
     Message<GameMessage> sending_msg;
     auto &positions = world.getRegistry().get_components<PositionComponent>();
