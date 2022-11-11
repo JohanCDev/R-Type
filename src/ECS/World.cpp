@@ -56,7 +56,6 @@ World::World() : _r(), _clock()
     this->_r.register_components<ClickableComponent>();
 
     this->register_all_assets();
-
     this->register_all_drawable_object();
 }
 
@@ -137,6 +136,11 @@ void World::register_option_assets()
 sf::Clock &World::getClock()
 {
     return (this->_clock);
+}
+
+sf::Music &World::getMusic()
+{
+    return (this->_music);
 }
 
 ResourcesManager &World::getResourcesManager()
