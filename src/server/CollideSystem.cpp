@@ -87,14 +87,12 @@ int collide_system(World &world, NetworkServer &server)
                                 sending_msg << weapons[i]->stat.x;
                                 sending_msg << health[j]->max_hp;
                             } else {
-                                if (teams[j]->team ==  GameTeam::ENEMY && random_variable % 3 == 0) {
+                                if (teams[j]->team ==  GameTeam::ENEMY) {
                                     bonus_creation(world, server, positions[j]->pos);
-                                    // clock.time = std::chrono::steady_clock::now();
                                 }
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
-                                // std::cout << "l'entité est morte" << std::endl;
                             }
                             server.SendToAll(sending_msg);
                             if (health[i]->hp > 0) {

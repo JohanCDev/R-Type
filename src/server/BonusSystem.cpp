@@ -27,9 +27,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
     std::chrono::time_point<std::chrono::steady_clock> timer;
-    // int tmp = 0;
-    int r = 0;
-    bool bonus_bool = false;
 
     for (size_t i = 0; i < bonus.size(); ++i) {
         auto &bonus_tmp = bonus[i];
@@ -62,7 +59,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
-                        auto &weapon = weapons[j];
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1
                             && teams[j]->team == GameTeam::PLAYER) {
@@ -77,7 +73,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                                 time.second.attack_speed = 0;
                                 bonus_stat.timer.push_back(time);
                             } else if (bonus[i]->bonus_name == Bonus::HEAL) {
-                                if (heal[j]->hp + 20 >= heal[j]->max_hp) {
+                                if (heal[j]->hp + 20 >= (int)heal[j]->max_hp) {
                                     heal[j]->hp = heal[j]->max_hp;
                                 } else {
                                     heal[j]->hp += 20;
@@ -91,7 +87,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                                 time.second.strengh = 0;
                                 time.second.attack_speed = 0;
                                 bonus_stat.timer.push_back(time);
-                                r = j;
                             } else if (bonus[i]->bonus_name == Bonus::ATTACK_SPEED) {
                                 weapons[j]->stat.y += 20;
                                 std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;

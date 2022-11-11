@@ -45,12 +45,6 @@ int main()
     world.register_all_drawable_object();
     bonus_t bonus_stat;
 
-    // bonus_stat.timer.at(i).second.attack_sp
-    // bonus_stat.timer.first = nullptr;
-    std::chrono::time_point<std::chrono::steady_clock> start = std::chrono::steady_clock::now();
-    auto &speed = world.getRegistry().get_components<SpeedComponent>();
-    int i = 0;
-
     while (1) {
         while (server.HasMessages()) {
             ClientMessage msg = server.PopMessage();

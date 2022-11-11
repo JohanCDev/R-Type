@@ -40,7 +40,7 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     Bonus bonus_name;
 
     if (random_variable % 4 == 0) {
-        tmp = GameObject::BONUS;
+        tmp = GameObject::BONUS_ATTACK;
         bonus_name = Bonus::ATTACK;
     } else if (random_variable % 3 == 0) {
         tmp = GameObject::BONUS_ATTACK_SPEED;
