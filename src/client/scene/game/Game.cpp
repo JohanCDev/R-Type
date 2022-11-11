@@ -38,7 +38,8 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
             window.close();
             client.send(byeMsg);
         }
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left
+            || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
             client.send(shootMsg);
         }
     }
@@ -80,14 +81,14 @@ void GameScene::update_parallax()
 
 void GameScene::init_game(sf::RenderWindow &window)
 {
-    _world.create_drawable_object("assets/background/bkgd_0.png", Vector4i{0, 0, 1000, 1000},
-        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-2, 0}, 0.04f);
+    //_world.create_drawable_object("assets/background/bkgd_0.png", Vector4i{0, 0, 1000, 1000},
+    //    Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-2, 0}, 0.04f);
     _world.create_drawable_object("assets/background/bkgd_1.png", Vector4i{0, 0, 1000, 1000},
         Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-4, 0}, 0.04f);
     _world.create_drawable_object("assets/background/bkgd_2.png", Vector4i{0, 0, 1000, 1000},
         Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{0, 0}, Vector2i{-5, 0}, 0.04f);
-    _world.create_drawable_object("assets/background/bkgd_0.png", Vector4i{0, 0, 1000, 1000},
-        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{2000, 0}, Vector2i{-2, 0}, 0.04f);
+    //_world.create_drawable_object("assets/background/bkgd_0.png", Vector4i{0, 0, 1000, 1000},
+    //    Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{2000, 0}, Vector2i{-2, 0}, 0.04f);
     _world.create_drawable_object("assets/background/bkgd_1.png", Vector4i{0, 0, 1000, 1000},
         Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, Vector2f{2000, 0}, Vector2i{-4, 0}, 0.04f);
     _world.create_drawable_object("assets/background/bkgd_2.png", Vector4i{0, 0, 1000, 1000},

@@ -31,6 +31,13 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
             clickable_system(
                 this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
         }
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
+            current_screen = SceneScreen::LOBBY;
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::O) {
+            current_screen = SceneScreen::OPTION;
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Q) {
+            window.close();
+        }
         if (event.type == sf::Event::Closed || current_screen == SceneScreen::NONE)
             window.close();
     }

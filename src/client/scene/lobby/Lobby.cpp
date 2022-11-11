@@ -15,6 +15,11 @@ LobbyScene::LobbyScene() : _world(true), _connected(false), _init(false)
 {
 }
 
+/**
+ * @brief Light Button to play
+ *
+ * @param world World to act on
+ */
 void light_button(World &world)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
@@ -27,6 +32,11 @@ void light_button(World &world)
     }
 }
 
+/**
+ * @brief Shadow play button
+ *
+ * @param world World to act on
+ */
 void shadow_button(World &world)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
@@ -63,8 +73,20 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
             current_screen = SceneScreen::GAME;
+        }
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
+            launch_game(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num1) {
+            select_armored_ship(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num2) {
+            select_damage_ship(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num3) {
+            select_engineer_ship(_world, current_screen, client);
+        } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num4) {
+            select_sniper_ship(_world, current_screen, client);
+        }
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
             clickable_system(
                 this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);

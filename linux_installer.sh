@@ -34,7 +34,7 @@ then
 fi
 
 echo -e "\033[0;32mBUILDING PROJECT\033[0m"
-mkdir -p build; cd build &&
-conan install .. --build=missing -s compiler=gcc -s compiler.version=9 -s compiler.libcxx=libstdc++12 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
+mkdir -p build; cd build && 
+conan install .. --build=missing -s compiler=gcc -s compiler.version=9 -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && \
 cmake -DCMAKE_BUILD_TYPE=Release .. && cd ../ && \
 cmake --build build/ -j 3

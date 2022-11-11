@@ -167,6 +167,7 @@ void create_enemy(World &world, NetworkServer &server);
  * @brief start game
  *
  * @param world The server's world
+ * @param msg Message to process
  * @param server The server
  */
 void start_game(World &world, ClientMessage msg, NetworkServer &server);
@@ -175,6 +176,7 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server);
  * @brief Select a ship
  *
  * @param world The server's world
+ * @param msg Message to process
  * @param server The server
  */
 void select_ship(World &world, ClientMessage msg, NetworkServer &server);

@@ -1,5 +1,5 @@
 /**
- * @file play_callback.cpp
+ * @file callback.cpp
  * @author Cédric Corge (cedric.corge@epitech.eu)
  * @brief
  * @version 0.1
@@ -62,6 +62,12 @@ static std::vector<std::string> asset_vector{"assets/SpaceShip/ship_armored_spri
     "assets/SpaceShip/ship_damage_spritesheet.png", "assets/SpaceShip/ship_engineer_spritesheet.png",
     "assets/SpaceShip/ship_sniper_spritesheet.png"};
 
+/**
+ * @brief Shadow all ships that aren't selected
+ *
+ * @param world World to act on
+ * @param except path to the ship that is chosen
+ */
 void shadow_other_ship(World &world, std::string &except)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
