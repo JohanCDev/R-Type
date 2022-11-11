@@ -32,8 +32,6 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
 
-    this->register_all_assets();
-
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
     this->register_all_drawable_object();
 }
@@ -66,12 +64,6 @@ World::~World()
 {
 }
 
-void World::register_all_system()
-{
-    // this->_r.register_systems(&velocity_system);
-    // this->_r.register_systems(&shooting_system);
-}
-
 void World::register_all_assets()
 {
     this->_manager.register_texture("assets/r-typesheet1.gif");
@@ -92,6 +84,50 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/HUD/hud_Life.png");
     this->_manager.register_texture("assets/HUD/Life.png");
     this->_manager.register_texture("assets/Boss/boss1.png");
+    this->_manager.register_texture("assets/background/bkgd_1.png");
+    this->_manager.register_texture("assets/background/bkgd_2.png");
+}
+
+void World::register_menu_assets()
+{
+    this->_manager.register_texture("assets/background/menu.jpg");
+    this->_manager.register_texture("assets/background/bg-boutton.png");
+}
+
+void World::register_lobby_assets()
+{
+    this->_manager.register_texture("assets/background/lobby.png");
+    this->_manager.register_texture("assets/background/bg-boutton.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_armored_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_damage_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_engineer_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_sniper_spritesheet.png");
+}
+
+void World::register_game_assets()
+{
+    this->_manager.register_texture("assets/r-typesheet1.gif");
+    this->_manager.register_texture("assets/r-typesheet5.gif");
+    this->_manager.register_texture("assets/r-typesheet39.gif");
+    this->_manager.register_texture("assets/SpaceShip/ship_armored_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_damage_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_engineer_spritesheet.png");
+    this->_manager.register_texture("assets/SpaceShip/ship_sniper_spritesheet.png");
+    this->_manager.register_texture("assets/Stats/attack_speed.png");
+    this->_manager.register_texture("assets/Stats/boost_attack.png");
+    this->_manager.register_texture("assets/Stats/boost_hp.png");
+    this->_manager.register_texture("assets/Stats/speed.png");
+    this->_manager.register_texture("assets/Button/home.png");
+    this->_manager.register_texture("assets/HUD/hud_Life.png");
+    this->_manager.register_texture("assets/HUD/Life.png");
+    this->_manager.register_texture("assets/Boss/boss1.png");
+    this->_manager.register_texture("assets/background/bkgd_1.png");
+    this->_manager.register_texture("assets/background/bkgd_2.png");
+}
+
+void World::register_option_assets()
+{
+    this->_manager.register_texture("assets/Button/home.png");
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
     this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
@@ -188,7 +224,8 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
     Entity ent = this->_r.spawn_entity();
 
     DrawableComponent drawCompo = this->_drawMap[object];
-    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, Vector4i{255, 255, 255, 255}, drawCompo.scale));
+    this->_r.add_component<DrawableComponent>(
+        ent, DrawableComponent(drawCompo.path, drawCompo.rect, Vector4i{255, 255, 255, 255}, drawCompo.scale));
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
     this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
@@ -200,8 +237,8 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
     return (ent.id);
 }
 
-size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
-    Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale,
+    Vector2f pos, Vector2i speed, float refresh_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -209,7 +246,8 @@ size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vect
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
     if (speed.x != 0 || speed.y != 0)
-        this->_r.add_component<VelocityComponent>(ent, VelocityComponent(speed, refresh_time, elapsed_time));
+        this->_r.add_component<VelocityComponent>(
+            ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NONE));
 
     return (ent.id);
@@ -324,8 +362,8 @@ void World::register_all_drawable_object()
         DrawableComponent("assets/Power-up/boost_attack.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::BONUS_ATTACK_SPEED,
-        DrawableComponent("assets/Power-up/boost_attack_speed.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
-            Vector2f{0.08, 0.08}));
+        DrawableComponent("assets/Power-up/boost_attack_speed.png", Vector4i{0, 0, 512, 494},
+            Vector4i{255, 255, 255, 255}, Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::BONUS_HEAL,
         DrawableComponent("assets/Power-up/boost_hp.png", Vector4i{0, 0, 512, 512}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));

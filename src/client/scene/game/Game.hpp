@@ -45,6 +45,8 @@ class GameScene : public IScene {
      */
     void init_game(sf::RenderWindow &window);
 
+    void update_parallax();
+
   private:
     Message<GameMessage> msg;
     World _world;
