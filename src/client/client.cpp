@@ -151,6 +151,10 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
     {GameObject::ENEMY_ODD, new_enemy_odd},
     {GameObject::LASER, new_laser},
+    {GameObject::BONUS_ATTACK, new_bonus_attack},
+    {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
+    {GameObject::BONUS_HEAL, new_bonus_heal},
+    {GameObject::BONUS_SPEED, new_bonus_speed},
 };
 
 /**
@@ -392,7 +396,7 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},
         {GameMessage::S2C_WAVE_STATUS, wave_status}, {GameMessage::S2C_OK, ok_packet},
         {GameMessage::S2C_START_GAME, game_start}, {GameMessage::S2C_PLAYERS_READY, players_ready},
-        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_LEVEL_UP, level_up}};
+        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}};
 
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)

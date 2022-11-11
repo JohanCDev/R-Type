@@ -132,6 +132,20 @@ class World {
      */
     void create_healthbar(float life);
 
+
+    /**
+     * @brief Create a bonus object
+     * 
+     * @param object type of the object
+     * @param pos base pos of the enemy as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the enemy as a Vector2i. ex: {0, 0}
+     * @param health base health of the enemy as an unsigned int
+     * @param refresh_time time before the laser is refreshed
+     * @param enumBonus enumeration of bonus stats
+     * @return size_t 
+     */
+    size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus enumBonus);
+
     /**
      * @brief Create a drawable object
      *
