@@ -15,6 +15,11 @@ LobbyScene::LobbyScene() : _world(true), _connected(false), _init(false)
 {
 }
 
+/**
+ * @brief Light Button to play
+ *
+ * @param world World to act on
+ */
 void light_button(World &world)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
@@ -27,6 +32,11 @@ void light_button(World &world)
     }
 }
 
+/**
+ * @brief Shadow play button
+ *
+ * @param world World to act on
+ */
 void shadow_button(World &world)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();

@@ -205,7 +205,7 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
 /**
  * @brief End the game
  *
- * @param world The world to update
+ * @param window The window to close
  */
 void game_end(sf::RenderWindow &window)
 {
@@ -302,6 +302,7 @@ void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, Sc
 }
 
 /**
+ * @brief Log the status of the wave
  *
  * @param world The world to update
  * @param msg The message containing data
@@ -326,6 +327,14 @@ void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, 
     }
 }
 
+/**
+ * @brief Set the number of players
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void players_numbers(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
@@ -336,6 +345,14 @@ void players_numbers(World &world, NetworkClient &client, Message<GameMessage> m
     client.set_nb_players((int)nb_players);
 }
 
+/**
+ * @brief Change scene to go to the screen game
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void game_start(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
@@ -344,6 +361,14 @@ void game_start(World &world, NetworkClient &client, Message<GameMessage> msg, S
     current_screen = SceneScreen::GAME;
 }
 
+/**
+ * @brief Set the player to ready state
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;

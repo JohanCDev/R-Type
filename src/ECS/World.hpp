@@ -126,6 +126,7 @@ class World {
      * @param refresh_time Time before the object is refreshed
      * @param elapsed_time Time elapsed since the last refresh
      *
+     * @returns Negative value if there is an error
      */
     size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
         Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
@@ -138,6 +139,7 @@ class World {
      * @param size
      * @param pos
      *
+     * @returns Negative value if there is an error
      */
     size_t create_text(std::string text, std::string font, int size, Vector2f pos);
 
@@ -202,7 +204,16 @@ class World {
      */
     void setDirection(Vector2i direction);
 
+    /**
+     * @brief State of the game
+     *
+     */
     GameState state;
+
+    /**
+     * @brief Map containing all players' ships
+     *
+     */
     std::map<std::size_t, GameObject> player_ships;
 
   private:

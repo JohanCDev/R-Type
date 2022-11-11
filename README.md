@@ -71,19 +71,7 @@ R-Type is developed with C++. EPITECH doesn't impose any Coding Style to this bu
 
 ## Documentation
 
-### **Code documentation:**
-
-- Doxygen
-
-on Linux:
-
-```sh
-# Run at the root of the project
-doxygen
-
-# Open the generated pages
-xdg-open doc/generated/html/index.html
-```
+### [**Code documentation:**](https://johancdev.github.io/R-Type/)
 
 ### [**RFC documentation**](https://vivacious-hockey-270.notion.site/RFC-c84eaf8ef30541b2992558992e0b03bd)
 
