@@ -11,7 +11,20 @@
 
 #pragma once
 
+/**
+ * @brief Define a level for an entity
+ *
+ */
 struct LevelComponent {
+    /**
+     * @brief Level of an entity
+     *
+     */
     uint32_t level = 0;
+
+     /**
+     * @brief Amount of points spent
+     *
+     */
     uint32_t spent_points = 0;
 };
