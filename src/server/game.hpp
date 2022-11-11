@@ -110,6 +110,18 @@ static std::map<GameObject, values_t> defaultValues = {
 };
 
 /**
+ * @brief check collision between 2 entities
+ * 
+ * @param manager 
+ * @param sprite 
+ * @param position 
+ * @param drawable 
+ * @return int 
+ */
+int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
+    std::optional<DrawableComponent> &drawable);
+
+/**
  * @brief Create a player in server's world and send the packet to the client
  *
  * @param world The server's world
