@@ -33,6 +33,8 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->register_all_assets();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
+
+    this->register_all_sounds();
     this->register_all_drawable_object();
 }
 
@@ -54,6 +56,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<ClickableComponent>();
 
     this->register_all_assets();
+    this->register_all_sounds();
     this->register_all_drawable_object();
 }
 
@@ -61,10 +64,17 @@ World::~World()
 {
 }
 
+<<<<<<< Updated upstream
 void World::register_all_system()
 {
     // this->_r.register_systems(&velocity_system);
     // this->_r.register_systems(&shooting_system);
+=======
+void World::register_all_sounds()
+{
+    this->_sound_effects["dead"] = std::make_shared<sf::Music>();
+    this->_sound_effects["dead"].get()->openFromFile("./assets/music/mainTheme.wav");
+>>>>>>> Stashed changes
 }
 
 void World::register_all_assets()
@@ -112,6 +122,11 @@ registry &World::getRegistry()
 Vector2i &World::getDirection()
 {
     return (this->_player_direction);
+}
+
+const std::map<std::string, std::shared_ptr<sf::Music>> &World::getSoundEffects()
+{
+    return this->_sound_effects;
 }
 
 void World::setDirection(Vector2i direction)
@@ -279,6 +294,7 @@ void World::create_healthbar(float life)
 
 void World::register_all_drawable_object()
 {
+    // this->_sound_effects["death"].play();
     this->_drawMap.emplace(GameObject::BOSS_1,
         DrawableComponent(
             "assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));

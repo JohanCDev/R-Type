@@ -115,6 +115,22 @@ class World {
      */
     void create_healthbar(float life);
 
+<<<<<<< Updated upstream
+=======
+    /**
+     * @brief Create a bonus object
+     *
+     * @param object type of the object
+     * @param pos base pos of the enemy as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the enemy as a Vector2i. ex: {0, 0}
+     * @param health base health of the enemy as an unsigned int
+     * @param refresh_time time before the laser is refreshed
+     * @param enumBonus enumeration of bonus stats
+     * @return size_t
+     */
+    size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus enumBonus);
+
+>>>>>>> Stashed changes
     /**
      * @brief Create a drawable object
      *
@@ -162,6 +178,11 @@ class World {
      *
      */
     void register_all_drawable_object();
+    /**
+     * @brief Registers all sounds
+     *
+     */
+    void register_all_sounds();
 
     /**
      * @brief Get the Registry object
@@ -206,6 +227,13 @@ class World {
     Vector2i &getDirection();
 
     /**
+     * @brief Get the Sound effects map
+     *
+     * @return Reference to the map
+     */
+    const std::map<std::string, std::shared_ptr<sf::Music>> &getSoundEffects();
+
+    /**
      * @brief Set the Direction object
      *
      * @param direction new direction as a Vector2i. ex: {0, 0}
@@ -223,6 +251,12 @@ class World {
      *
      */
     std::map<std::size_t, GameObject> player_ships;
+
+    /**
+     * @brief Map containing all sound effects
+     *
+     */
+    std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
 
   private:
     /**
