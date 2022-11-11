@@ -1,7 +1,24 @@
+/**
+ * @file RefreshSystem.cpp
+ * @author Adam Djebar (adam.djebar@epitech.eu)
+ * @brief
+ * @version 0.1
+ * @date 2022-11-11
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
+#include <iostream>
+/**
+ * @brief Sends the locations of each entity to clients
+ *
+ * @param world world to act on
+ * @param server Server with all the informations
+ */
 int refresh_system(World &world, NetworkServer &server)
 {
     auto &positions = world.getRegistry().get_components<PositionComponent>();
@@ -14,10 +31,12 @@ int refresh_system(World &world, NetworkServer &server)
             auto &id = ids[index];
             if (!(id && id.has_value()))
                 continue;
-            msg << pos;
-            msg << id;
+            msg << pos.value();
+            msg << id->id;
             server.SendToAll(msg);
+            std::cout << "refresh finished for entity " << index << std::endl;
         }
+        index++;
     }
     return 0;
 }

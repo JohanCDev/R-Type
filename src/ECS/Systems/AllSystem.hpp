@@ -101,3 +101,11 @@ int lobby_system(World &world, NetworkServer &server);
  * @return negative value if there is an error
  */
 int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client);
+
+/**
+ * @brief Sends the locations of each entity to clients
+ *
+ * @param world world to act on
+ * @param server Server with all the informations
+ */
+int refresh_system(World &world, NetworkServer &server);

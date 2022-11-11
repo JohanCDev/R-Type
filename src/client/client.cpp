@@ -379,12 +379,42 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+void update_position(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_scene)
+{
+    (void)client;
+    (void)current_scene;
+    registry &r = world.getRegistry();
+    ClientIDComponent entity_id;
+    PositionComponent pos({0, 0});
+
+    std::cout << "bro" << std::endl;
+    msg >> entity_id >> pos;
+
+    auto &entityIdCompo = r.get_components<EntityIDComponent>();
+    auto &posCompo = r.get_components<PositionComponent>();
+
+    size_t index = 0;
+
+    for (auto &idCompo : entityIdCompo) {
+        if (idCompo && idCompo.has_value()) {
+            if (!(posCompo[index] && posCompo[index].has_value()))
+                break;
+            if (idCompo->id == entity_id.id) {
+                posCompo[index] = pos;
+                std::cout << "Entity[" << entity_id.id << "]: at {" << posCompo[index]->pos.x << ", " << posCompo[index]->pos.y << "}" << std::endl;
+                break;
+            }
+        }
+        index++;
+    }
+}
+
 static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>, SceneScreen &)>>
     mapFunc = {{GameMessage::S2C_ENTITY_NEW, new_entity}, {GameMessage::S2C_ENTITY_DEAD, dead_entity},
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},
         {GameMessage::S2C_WAVE_STATUS, wave_status}, {GameMessage::S2C_OK, ok_packet},
         {GameMessage::S2C_START_GAME, game_start}, {GameMessage::S2C_PLAYERS_READY, players_ready},
-        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}};
+        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_UPDATE_POSITION, update_position}};
 
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)
