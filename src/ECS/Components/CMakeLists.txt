@@ -17,7 +17,6 @@ list(
   ${INCROOT}/PositionComponent.hpp
   ${INCROOT}/VelocityComponent.hpp
   ${INCROOT}/WeaponComponent.hpp
-  ${INCROOT}/LevelComponent.hpp
   ${INCROOT}/TextComponent.hpp
   ${INCROOT}/ClickableComponent.hpp)
 
