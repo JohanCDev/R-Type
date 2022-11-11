@@ -87,8 +87,7 @@ int collide_system(World &world, NetworkServer &server)
                                 sending_msg << weapons[i]->stat.x;
                                 sending_msg << health[j]->max_hp;
                             } else {
-                                if (teams[j]->team ==  GameTeam::ENEMY) {
-                                    // && random_variable % 3 == 0
+                                if (teams[j]->team ==  GameTeam::ENEMY && random_variable % 3 == 0) {
                                     bonus_creation(world, server, positions[j]->pos);
                                     // clock.time = std::chrono::steady_clock::now();
                                 }
