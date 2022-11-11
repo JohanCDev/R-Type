@@ -12,6 +12,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <chrono>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include "../ECS/World.hpp"
@@ -68,38 +69,31 @@
 #define DEFAULT_MINI_WAVE_TIME_BETWEEN 0.8
 
 /**
- * @brief Structure containing all the default values for the game
+ * @brief Default time of dispawn bonus
  *
  */
+#define BOOST_DISPAWN 8.0
+
+/**
+ * @brief Default time of bonus timer
+ *
+ */
+#define BOOST_TIMER 4.0
+
+/**
+ * @brief Structure containing all the default values for the game
+ *
+ * @param pos Position of the object
+ * @param hp Health of the object
+ * @param atk Attack of the object
+ * @param spd Speed of the object
+ * @param scale Scale of the object
+ */
 typedef struct values_s {
-    /**
-     * @brief Position of the object
-     *
-     */
     Vector2f pos;
-
-    /**
-     * @brief Health of the object
-     *
-     */
     int hp;
-
-    /**
-     * @brief Attack of the object
-     *
-     */
     int atk;
-
-    /**
-     * @brief Speed of the object
-     *
-     */
     int spd;
-
-    /**
-     * @brief Scale of the object
-     *
-     */
     float scale;
 } values_t;
 
@@ -108,16 +102,24 @@ typedef struct values_s {
  */
 static std::map<GameObject, values_t> defaultValues = {
     {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
-    {GameObject::SHIP_ARMORED, {{50, 200}, 150, 50, 6, 1.0}},
-    {GameObject::SHIP_DAMAGE, {{50, 200}, 80, 120, 6, 1.0}},
-    {GameObject::SHIP_ENGINEER, {{50, 200}, 100, 100, 6, 1.0}},
-    {GameObject::SHIP_SNIPER, {{50, 200}, 150, 50, 6, 1.0}},
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
     {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::ENEMY_SNIPER, {{800, -1}, 100, 40, 4, 1.0}},
     {GameObject::BOSS_1, {{800, 300}, 100, 40, 4, 2.0}},
 };
+
+/**
+ * @brief check collision between 2 entities
+ * 
+ * @param manager 
+ * @param sprite 
+ * @param position 
+ * @param drawable 
+ * @return int 
+ */
+int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
+    std::optional<DrawableComponent> &drawable);
 
 /**
  * @brief Create a player in server's world and send the packet to the client
@@ -164,25 +166,34 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
 void create_enemy(World &world, NetworkServer &server);
 
 /**
- * @brief start game
+ * @brief
  *
  * @param world The server's world
- * @param msg Message to process
- * @param server The server
+ * @param msg The message received from the client
+ * @param pos bonus position
+ */
+void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
+
+/**
+ * @brief
+ *
+ * @param world
+ * @param msg
+ * @param server
  */
 void start_game(World &world, ClientMessage msg, NetworkServer &server);
 
 /**
- * @brief Select a ship
+ * @brief
  *
- * @param world The server's world
- * @param msg Message to process
- * @param server The server
+ * @param world
+ * @param msg
+ * @param server
  */
 void select_ship(World &world, ClientMessage msg, NetworkServer &server);
 
 /**
- * @brief Structure containing waves informations
+ * @brief
  *
  * @param in_wave Boolean to know if the wave is in progress
  * @param nb_wave The number of the current wave
@@ -191,33 +202,20 @@ void select_ship(World &world, ClientMessage msg, NetworkServer &server);
  * @param clock The clock of the wave
  */
 typedef struct wave_s {
-    /**
-     * @brief Boolean to know if the wave is in progress
-     *
-     */
     bool in_wave;
-
-    /**
-     * @brief The number of the current wave
-     *
-     */
     size_t nb_wave;
-
-    /**
-     * @brief The difficulty of the wave
-     *
-     */
     size_t base_difficulty;
-
-    /**
-     * @brief The remaining difficulty of the wave
-     *
-     */
     size_t remaining_difficulty;
-
-    /**
-     * @brief The clock of the wave
-     *
-     */
     sf::Clock clock;
 } waves_t;
+
+typedef struct stat_bonus_s {
+    int speed;
+    int strengh;
+    int attack_speed;
+    int nbr;
+} stat_bonus_t;
+
+typedef struct bonus_s {
+    std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
+} bonus_t;

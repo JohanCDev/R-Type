@@ -28,6 +28,8 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
+    this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
 
     this->register_all_assets();
@@ -50,6 +52,8 @@ World::World() : _r(), _clock()
     this->_r.register_components<PositionComponent>();
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
+    this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SpeedComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
 
@@ -87,6 +91,10 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/HUD/hud_Life.png");
     this->_manager.register_texture("assets/HUD/Life.png");
     this->_manager.register_texture("assets/Boss/boss1.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
+    this->_manager.register_texture("assets/Power-up/boost_hp.png");
+    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 sf::Clock &World::getClock()
@@ -149,6 +157,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<HealthComponent>(ent, HealthComponent(defaultValues[GameObject::PLAYER].hp));
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
+    this->_r.add_component<SpeedComponent>(ent, SpeedComponent(defaultValues[GameObject::PLAYER].spd));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::PLAYER));
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(
@@ -178,8 +187,25 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     return (ent.id);
 }
 
-size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale,
-    Vector2f pos, Vector2i speed, float refresh_time, float elapsed_time)
+size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus bonusName)
+{
+    Entity ent = this->_r.spawn_entity();
+
+    DrawableComponent drawCompo = this->_drawMap[object];
+    this->_r.add_component<DrawableComponent>(ent, DrawableComponent(drawCompo.path, drawCompo.rect, Vector4i{255, 255, 255, 255}, drawCompo.scale));
+    this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
+    this->_r.add_component<ImmobileComponent>(ent, ImmobileComponent(Vector2b(false, false)));
+    this->_r.add_component<DestroyableComponent>(ent, DestroyableComponent(true));
+    this->_r.add_component<HealthComponent>(ent, HealthComponent(100));
+    this->_r.add_component<VelocityComponent>(
+        ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
+    this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName, std::chrono::steady_clock::now()));
+    this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
+    return (ent.id);
+}
+
+size_t World::create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+    Vector2i speed, float refresh_time, float elapsed_time)
 {
     Entity ent = this->_r.spawn_entity();
 
@@ -295,6 +321,21 @@ void World::register_all_drawable_object()
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
         DrawableComponent(
             "assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::BOSS_1,
+        DrawableComponent(
+            "assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+    this->_drawMap.emplace(GameObject::BONUS_ATTACK,
+        DrawableComponent("assets/Power-up/boost_attack.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
+            Vector2f{0.08, 0.08}));
+    this->_drawMap.emplace(GameObject::BONUS_ATTACK_SPEED,
+        DrawableComponent("assets/Power-up/boost_attack_speed.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
+            Vector2f{0.08, 0.08}));
+    this->_drawMap.emplace(GameObject::BONUS_HEAL,
+        DrawableComponent("assets/Power-up/boost_hp.png", Vector4i{0, 0, 512, 512}, Vector4i{255, 255, 255, 255},
+            Vector2f{0.08, 0.08}));
+    this->_drawMap.emplace(GameObject::BONUS_SPEED,
+        DrawableComponent("assets/Power-up/boost_speed.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
+            Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::SHIP_ARMORED,
         DrawableComponent("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128},
             Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
