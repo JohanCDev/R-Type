@@ -48,8 +48,18 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                     && drawable->rect.y_size == 0))
                 sprite.setTextureRect(
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
-                
 
+            std::chrono::time_point<std::chrono::steady_clock> endbonus = std::chrono::steady_clock::now();
+            double elapsed_time_bs =
+                double(std::chrono::duration_cast<std::chrono::seconds>(endbonus - bonus_tmp->_time).count());
+            if (elapsed_time_bs >= 8.0) {
+                std::cout << "il faut prendre se bonus\n" << std::endl;
+                sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                sending_msg << entityId[i]->id;
+                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
+                server.SendToAll(sending_msg);
+                break;
+            }
             for (size_t j = 0; j < destroyables.size(); ++j) {
                 if (j != i && teams[i]->team != teams[j]->team) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
@@ -57,9 +67,9 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                         auto &otherPosition = positions[j];
                         auto &weapon = weapons[j];
 
-                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1 && teams[j]->team == GameTeam::PLAYER) {
-                            std::cout << "hit bonus entity" << entityId[j]->id << "]."
-                                      << std::endl;
+                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1
+                            && teams[j]->team == GameTeam::PLAYER) {
+                            std::cout << "hit bonus entity" << entityId[j]->id << "]." << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
                                 weapons[j]->stat.x += 20;
                                 std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
@@ -106,10 +116,11 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             }
         }
     }
-    for(int i = 0; i < bonus_stat.timer.size(); i++) {
-         std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
-        double elapsed_time_ns = double(std::chrono::duration_cast<std::chrono::seconds>(end - bonus_stat.timer[i].first).count());
-        if (elapsed_time_ns >= 6.0) {
+    for (size_t i = 0; i < bonus_stat.timer.size(); i++) {
+        std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
+        double elapsed_time_ns =
+            double(std::chrono::duration_cast<std::chrono::seconds>(end - bonus_stat.timer[i].first).count());
+        if (elapsed_time_ns >= 4.0) {
             if (bonus_stat.timer[i].second.speed > 0) {
                 std::cout << "je suis moins rapide" << std::endl;
                 speed[bonus_stat.timer[i].second.nbr]->speed -= 1;

@@ -167,7 +167,8 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
     this->_r.add_component<HealthComponent>(ent, HealthComponent(100));
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
-    this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName));
+    // std::chrono::time_point<std::chrono::steady_clock> time = std::chrono::steady_clock::now();
+    this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName, std::chrono::steady_clock::now()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
 
     return (ent.id);

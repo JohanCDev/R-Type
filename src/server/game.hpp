@@ -117,7 +117,8 @@ void create_enemy(World &world, NetworkServer &server);
  * @param clock The clock of the wave
  */
 
-    void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
+void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
+
 typedef struct wave_s {
     bool in_wave;
     size_t nb_wave;
@@ -136,3 +137,7 @@ typedef struct stat_bonus_s {
 typedef struct bonus_s {
     std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;
+
+// typedef struct clock_s {
+//     std::chrono::time_point<std::chrono::steady_clock> time;
+// } clock_t;
