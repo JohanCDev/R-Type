@@ -254,23 +254,25 @@ void World::create_settings(Vector2f pos)
     this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
 }
 
-void World::create_healthbar(float life)
+void World::create_healthbar(int index, float life, Vector2f windowSize)
 {
     Entity ent = this->_r.spawn_entity();
 
     this->_r.add_component<DrawableComponent>(ent,
         DrawableComponent(
-            "assets/HUD/hud_Life.png", Vector4i{0, 0, 1074, 402}, Vector4i{255, 255, 255, 255}, Vector2f{0.1, 0.1}));
-    this->_r.add_component<PositionComponent>(ent, PositionComponent({0, 0}));
-    this->_r.add_component<HealthComponent>(ent, (HealthComponent(1)));
+            "assets/HUD/hud_Life.png", Vector4i{0, 0, 1074, 402}, Vector4i{255, 255, 255, 255}, Vector2f{0.2, 0.2}));
+    this->_r.add_component<PositionComponent>(
+        ent, PositionComponent({(float)(index + 1) * windowSize.x / 6, (float)(windowSize.y / 32)}));
+    this->_r.add_component<HealthComponent>(ent, HealthComponent(1));
 
     Entity ent2 = this->_r.spawn_entity();
 
     this->_r.add_component<DrawableComponent>(ent2,
-        DrawableComponent("assets/HUD/Life.png", Vector4i{0, 0, (int)(674 * life), 53}, Vector4i{255, 255, 255, 255},
-            Vector2f{0.1, 0.1}));
-    this->_r.add_component<PositionComponent>(ent2, PositionComponent({33, 23}));
-    this->_r.add_component<HealthComponent>(ent2, (HealthComponent(1)));
+        DrawableComponent(
+            "assets/HUD/Life.png", Vector4i{0, 0, 1074, 402}, Vector4i{255, 255, 255, 255}, Vector2f{0.2, 0.2}));
+    this->_r.add_component<PositionComponent>(
+        ent2, PositionComponent({(float)(index + 1) * windowSize.x / 6, (float)(windowSize.y / 32)}));
+    this->_r.add_component<HealthComponent>(ent2, HealthComponent(1));
 }
 
 void World::register_all_drawable_object()
