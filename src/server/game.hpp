@@ -168,9 +168,9 @@ void create_enemy(World &world, NetworkServer &server);
 /**
  * @brief
  *
- * @param world
- * @param server
- * @param pos
+ * @param world The server's world
+ * @param msg The message received from the client
+ * @param pos bonus position
  */
 void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
 

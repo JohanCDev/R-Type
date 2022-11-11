@@ -106,38 +106,38 @@ void new_laser(World &world, size_t srv_entity_id, Vector2f pos);
 void new_boss1(World &world, size_t srv_entity_id, Vector2f pos);
 
 /**
- * @brief 
+ * @brief creation of attack bonus
  * 
- * @param world 
- * @param srv_entity_id 
- * @param pos 
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
  */
 void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos);
 
 /**
- * @brief 
+ * @brief creation of attack speed bonus
  * 
- * @param world 
- * @param srv_entity_id 
- * @param pos 
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
  */
 void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos);
 
 /**
- * @brief 
+ * @brief creation of heal bonus
  * 
- * @param world 
- * @param srv_entity_id 
- * @param pos 
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
  */
 void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos);
 
 /**
- * @brief 
+ * @brief creation of speed bonus
  * 
- * @param world 
- * @param srv_entity_id 
- * @param pos 
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
  */
 void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos);
 

@@ -85,6 +85,15 @@ int wave_system(World &world, NetworkServer &server, waves_t &waves);
  */
 int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat);
 
+/**
+ * @brief check collision between two entities
+ * 
+ * @param manager 
+ * @param sprite 
+ * @param position 
+ * @param drawable 
+ * @return int 
+ */
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable);
 
