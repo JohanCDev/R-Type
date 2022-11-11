@@ -280,37 +280,39 @@ void World::create_healthbar(float life)
 void World::register_all_drawable_object()
 {
     this->_drawMap.emplace(GameObject::BOSS_1,
-        DrawableComponent(
-            "assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+        DrawableComponent("assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::BOSS_1].scale, defaultValues[GameObject::BOSS_1].scale}));
     this->_drawMap.emplace(GameObject::LASER, DrawableComponent("assets/r-typesheet1.gif", Vector4i(104, 171, 80, 14)));
     this->_drawMap.emplace(GameObject::PLAYER,
-        DrawableComponent(
-            "assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}));
+        DrawableComponent("assets/r-typesheet5.gif", Vector4i{375, 6, 21, 24}, Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::PLAYER].scale, defaultValues[GameObject::PLAYER].scale}));
     this->_drawMap.emplace(GameObject::ENEMY_FOCUS,
-        DrawableComponent(
-            "assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{0.875, 0.875}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::ENEMY_FOCUS].scale, defaultValues[GameObject::ENEMY_FOCUS].scale}));
     this->_drawMap.emplace(GameObject::ENEMY_KAMIKAZE,
-        DrawableComponent(
-            "assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{0.875, 0.875}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
+            Vector2f{
+                defaultValues[GameObject::ENEMY_KAMIKAZE].scale, defaultValues[GameObject::ENEMY_KAMIKAZE].scale}));
     this->_drawMap.emplace(GameObject::ENEMY_ODD,
-        DrawableComponent(
-            "assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{0.875, 0.875}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::ENEMY_ODD].scale, defaultValues[GameObject::ENEMY_ODD].scale}));
     this->_drawMap.emplace(GameObject::ENEMY_SNIPER,
-        DrawableComponent(
-            "assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{0.875, 0.875}));
-    this->_drawMap.emplace(GameObject::BOSS_1,
-        DrawableComponent(
-            "assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::ENEMY_SNIPER].scale, defaultValues[GameObject::ENEMY_SNIPER].scale}));
     this->_drawMap.emplace(GameObject::SHIP_ARMORED,
         DrawableComponent("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128},
-            Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+            Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::SHIP_ARMORED].scale, defaultValues[GameObject::SHIP_ARMORED].scale}));
     this->_drawMap.emplace(GameObject::SHIP_DAMAGE,
         DrawableComponent("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128},
-            Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+            Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::SHIP_DAMAGE].scale, defaultValues[GameObject::SHIP_DAMAGE].scale}));
     this->_drawMap.emplace(GameObject::SHIP_ENGINEER,
         DrawableComponent("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128},
-            Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+            Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::SHIP_ENGINEER].scale, defaultValues[GameObject::SHIP_ENGINEER].scale}));
     this->_drawMap.emplace(GameObject::SHIP_SNIPER,
         DrawableComponent("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128},
-            Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+            Vector4i{255, 255, 255, 255},
+            Vector2f{defaultValues[GameObject::SHIP_SNIPER].scale, defaultValues[GameObject::SHIP_SNIPER].scale}));
 }
