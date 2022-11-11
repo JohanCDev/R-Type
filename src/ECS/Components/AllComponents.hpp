@@ -11,6 +11,9 @@
 
 #pragma once
 
+#include "BonusComponent.hpp"
+#include "SoundEffectComponent.hpp"
+#include "ClickableComponent.hpp"
 #include "ClientIDComponent.hpp"
 #include "CollideComponent.hpp"
 #include "ControllableComponent.hpp"
@@ -21,7 +24,7 @@
 #include "HealthComponent.hpp"
 #include "ImmobileComponent.hpp"
 #include "PositionComponent.hpp"
+#include "SpeedComponent.hpp"
 #include "TextComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
-#include "ClickableComponent.hpp"

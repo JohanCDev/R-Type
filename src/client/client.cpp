@@ -151,6 +151,10 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
     {GameObject::ENEMY_ODD, new_enemy_odd},
     {GameObject::LASER, new_laser},
+    {GameObject::BONUS_ATTACK, new_bonus_attack},
+    {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
+    {GameObject::BONUS_HEAL, new_bonus_heal},
+    {GameObject::BONUS_SPEED, new_bonus_speed},
 };
 
 /**
@@ -187,6 +191,7 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     (void)current_screen;
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
+    // auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     size_t index = 0;
     auto &sounds = world.getSoundEffects();
 
@@ -381,6 +386,14 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
 
     msg >> ready;
     client.set_players_ready(ready);
+}
+
+void level_up(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
+{
+    (void)world;
+    (void)current_screen;
+    (void)msg;
+    (void)client;
 }
 
 static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>, SceneScreen &)>>

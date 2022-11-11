@@ -45,10 +45,28 @@ class World {
     ~World();
 
     /**
-     * @brief register all existing systems
+     * @brief Register assets for option scene
      *
      */
-    void register_all_system();
+    void register_option_assets();
+
+    /**
+     * @brief Register assets for menu scene
+     *
+     */
+    void register_menu_assets();
+
+    /**
+     * @brief Register assets for game scene
+     *
+     */
+    void register_game_assets();
+
+    /**
+     * @brief Register assets for lobby scene
+     *
+     */
+    void register_lobby_assets();
 
     /**
      * @brief register all assets of the game
@@ -115,8 +133,6 @@ class World {
      */
     void create_healthbar(float life);
 
-<<<<<<< Updated upstream
-=======
     /**
      * @brief Create a bonus object
      *
@@ -129,8 +145,6 @@ class World {
      * @return size_t
      */
     size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus enumBonus);
-
->>>>>>> Stashed changes
     /**
      * @brief Create a drawable object
      *
@@ -146,7 +160,7 @@ class World {
      * @returns Negative value if there is an error
      */
     size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
-        Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+        Vector2i speed = {0, 0}, float refresh_time = 0);
 
     /**
      * @brief Create a text object
