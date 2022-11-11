@@ -1,5 +1,5 @@
 /**
- * @file VelocityComponent.hpp
+ * @file SpeedComponent.hpp
  * @author Louis Maestre (louis.maestre@epitech.eu)
  * @brief
  * @version 0.1
@@ -10,11 +10,6 @@
  */
 
 #pragma once
-
-#include <ctime>
-
-#ifndef SPEEDCOMPONENT_HPP_
-#define SPEEDCOMPONENT_HPP_
 
 struct SpeedComponent {
     int speed;
@@ -29,5 +24,3 @@ struct SpeedComponent {
     {
     }
 };
-
-#endif /* !SPEEDCOMPONENT_HPP_ */

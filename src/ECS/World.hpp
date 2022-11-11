@@ -114,6 +114,17 @@ class World {
      */
     void create_healthbar(float life);
 
+
+    /**
+     * @brief Create a bonus object
+     * 
+     * @param object 
+     * @param pos 
+     * @param speed 
+     * @param refresh_time 
+     * @param enumBonus 
+     * @return size_t 
+     */
     size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus enumBonus);
 
     /**

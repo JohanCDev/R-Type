@@ -12,27 +12,73 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <chrono>
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
-#include <chrono>
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
-#define DEFAULT_KEY_TOP                    KeyboardInput::Z
-#define DEFAULT_KEY_RGT                    KeyboardInput::D
-#define DEFAULT_KEY_BOT                    KeyboardInput::S
-#define DEFAULT_KEY_LFT                    KeyboardInput::Q
-#define DEFAULT_KEY_SHOOT                  MouseInput::Left_click
-#define DEFAULT_WAVE_FREQUENCY_BOSS        5
-#define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
-#define DEFAULT_WAVE_DIFFICULTY            1
-#define DEFAULT_WAVE_TIME_BETWEEN          5.0
-#define DEFAULT_MINI_WAVE_TIME_BETWEEN     0.8
-#define BOOST_ATTACK                       50
-#define BOOST_ATTACK_SPEED                 50
-#define BOOST_SPEED                        50
-#define BOOST_HEAL                         50
+/**
+ * @brief Default key to move to the top
+ */
+#define DEFAULT_KEY_TOP KeyboardInput::Z
 
+/**
+ * @brief Default key to move to the right
+ */
+#define DEFAULT_KEY_RGT KeyboardInput::D
+
+/**
+ * @brief Default key to move to the bottom
+ */
+#define DEFAULT_KEY_BOT KeyboardInput::S
+
+/**
+ * @brief Default key to move to the left
+ */
+#define DEFAULT_KEY_LFT KeyboardInput::Q
+
+/**
+ * @brief Default key to shoot
+ */
+#define DEFAULT_KEY_SHOOT MouseInput::Left_click
+
+/**
+ * @brief Default number of waves where boss spawn
+ */
+#define DEFAULT_WAVE_FREQUENCY_BOSS 5
+
+/**
+ * @brief Default increment multiplier difficulty between waves
+ */
+#define DEFAULT_WAVE_DIFFICULTY_MULTIPLIER 1.4
+
+/**
+ * @brief Default starting wave difficulty
+ */
+#define DEFAULT_WAVE_DIFFICULTY 3
+
+/**
+ * @brief Default time between each waves
+ */
+#define DEFAULT_WAVE_TIME_BETWEEN 5.0
+
+/**
+ * @brief Default time between each mini waves
+ */
+#define DEFAULT_MINI_WAVE_TIME_BETWEEN 0.8
+
+/**
+ * @brief Default time of dispawn bonus
+ *
+ */
+#define BOOST_DISPAWN 8.0
+
+/**
+ * @brief Default time of bonus timer
+ *
+ */
+#define BOOST_TIMER 4.0
 
 /**
  * @brief Structure containing all the default values for the game
@@ -110,19 +156,39 @@ void create_enemy(World &world, NetworkServer &server);
 /**
  * @brief
  *
+ * @param world
+ * @param server
+ * @param pos
+ */
+void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
+
+/**
+ * @brief
+ *
+ * @param world
+ * @param msg
+ * @param server
+ */
+void start_game(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief
+ *
+ * @param world
+ * @param msg
+ * @param server
+ */
+void select_ship(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief
+ *
  * @param in_wave Boolean to know if the wave is in progress
  * @param nb_wave The number of the current wave
  * @param base_difficulty The difficulty of the wave
  * @param remaining_difficulty The remaining difficulty of the wave
  * @param clock The clock of the wave
  */
-
-void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
-
-void start_game(World &world, ClientMessage msg, NetworkServer &server);
-
-void select_ship(World &world, ClientMessage msg, NetworkServer &server);
-
 typedef struct wave_s {
     bool in_wave;
     size_t nb_wave;
@@ -141,4 +207,3 @@ typedef struct stat_bonus_s {
 typedef struct bonus_s {
     std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;
-

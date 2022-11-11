@@ -1,15 +1,17 @@
-/*
-** EPITECH PROJECT, 2022
-** R-Type
-** File description:
-** BoostSystem
-*/
+/**
+ * @file BonusSystem.cpp
+ * @author your name (you@domain.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-11-11
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
-// #include "BoostSystem.hpp"
 #include "../Common/Message/Message.hpp"
 #include "../Common/Message/MessageType.hpp"
 #include "../ECS/Components/AllComponents.hpp"
-// #include "ShootingSystem.hpp"
 #include "../ECS/World.hpp"
 #include "game.hpp"
 #include "server.hpp"
@@ -47,7 +49,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             std::chrono::time_point<std::chrono::steady_clock> endbonus = std::chrono::steady_clock::now();
             double elapsed_time_bs =
                 double(std::chrono::duration_cast<std::chrono::seconds>(endbonus - bonus_tmp->_time).count());
-            if (elapsed_time_bs >= 8.0) {
+            if (elapsed_time_bs >= BOOST_DISPAWN) {
                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                 sending_msg << entityId[i]->id;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
@@ -112,7 +114,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
         std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
         double elapsed_time_ns =
             double(std::chrono::duration_cast<std::chrono::seconds>(end - bonus_stat.timer[i].first).count());
-        if (elapsed_time_ns >= 4.0) {
+        if (elapsed_time_ns >= BOOST_TIMER) {
             if (bonus_stat.timer[i].second.speed > 0) {
                 speed[bonus_stat.timer[i].second.nbr]->speed -= 1;
             } else if (bonus_stat.timer[i].second.strengh > 0) {

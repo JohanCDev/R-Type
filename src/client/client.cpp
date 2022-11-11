@@ -151,7 +151,7 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
     {GameObject::ENEMY_ODD, new_enemy_odd},
     {GameObject::LASER, new_laser},
-    {GameObject::BONUS_ATTACK, new_bonus},
+    {GameObject::BONUS_ATTACK, new_bonus_attack},
     {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
     {GameObject::BONUS_HEAL, new_bonus_heal},
     {GameObject::BONUS_SPEED, new_bonus_speed},

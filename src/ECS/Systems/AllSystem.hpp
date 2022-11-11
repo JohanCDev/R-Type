@@ -74,6 +74,15 @@ int velocity_system(World &world);
  * @return negative value if there is an error
  */
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
+
+/**
+ * @brief Bonus spawn if ennemy die
+ *
+ * @param world The world
+ * @param server The server
+ * @param bonus_stat stat bonus for player
+ * @return
+ */
 int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat);
 
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
