@@ -71,7 +71,7 @@
  * @brief Structure containing all the default values for the game
  *
  */
-typedef struct values_s {
+typedef struct myValues_s {
     /**
      * @brief Position of the object
      *
@@ -101,23 +101,23 @@ typedef struct values_s {
      *
      */
     float scale;
-} values_t;
+} myValues_t;
 
 /**
  * @brief Default values for each GameObject (pos, hp, atk, spd, scale)
  */
-static std::map<GameObject, values_t> defaultValues = {
+static std::map<GameObject, myValues_t> defaultValues = {
     {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
-    {GameObject::PLAYER, {{50, 200}, 100, 100, 8, 2.0}},
-    {GameObject::SHIP_ARMORED, {{50, 200}, 150, 50, 6, 1.0}},
-    {GameObject::SHIP_DAMAGE, {{50, 200}, 80, 120, 6, 1.0}},
-    {GameObject::SHIP_ENGINEER, {{50, 200}, 100, 100, 6, 1.0}},
-    {GameObject::SHIP_SNIPER, {{50, 200}, 150, 50, 6, 1.0}},
-    {GameObject::BOSS_1, {{800, 300}, 100, 40, 6, 2.0}},
-    {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 6, 1.0}},
-    {GameObject::ENEMY_KAMIKAZE, {{800, -1}, 100, 40, 12, 1.0}},
-    {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 6, 1.0}},
-    {GameObject::ENEMY_SNIPER, {{800, -1}, 100, 40, 6, 1.0}},
+    {GameObject::PLAYER, {{64, 540}, 100, 100, 8, 2.0}},
+    {GameObject::SHIP_ARMORED, {{64, 540}, 150, 50, 6, 1.0}},
+    {GameObject::SHIP_DAMAGE, {{64, 540}, 80, 120, 6, 1.0}},
+    {GameObject::SHIP_ENGINEER, {{64, 540}, 100, 100, 6, 1.0}},
+    {GameObject::SHIP_SNIPER, {{64, 540}, 150, 50, 6, 1.0}},
+    {GameObject::BOSS_1, {{1920, 300}, 100, 40, 6, 2.0}},
+    {GameObject::ENEMY_FOCUS, {{1920, -1}, 100, 40, 6, 1.0}},
+    {GameObject::ENEMY_KAMIKAZE, {{1920, -1}, 100, 40, 12, 1.0}},
+    {GameObject::ENEMY_ODD, {{1920, -1}, 100, 40, 6, 1.0}},
+    {GameObject::ENEMY_SNIPER, {{1920, -1}, 100, 40, 6, 1.0}},
 };
 
 /**
