@@ -42,6 +42,7 @@ int main()
     world.state = GameState::Lobby;
     srand(time(NULL));
     waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
+    bool adapt_difficulty = true;
 
     world.register_all_drawable_object();
 
@@ -53,6 +54,10 @@ int main()
         switch (world.state) {
             case GameState::Lobby: lobby_system(world, server); break;
             case GameState::Playing:
+                if (adapt_difficulty) {
+                    adapt_difficulty = false;
+                    waves.base_difficulty = DEFAULT_WAVE_DIFFICULTY * server.clients.size();
+                }
                 velocity_system(world);
                 collide_system(world, server);
                 wave_system(world, server, waves);
