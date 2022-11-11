@@ -383,6 +383,14 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+void level_up(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
+{
+    (void)world;
+    (void)current_screen;
+    (void)msg;
+    (void)client;
+}
+
 static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>, SceneScreen &)>>
     mapFunc = {{GameMessage::S2C_ENTITY_NEW, new_entity}, {GameMessage::S2C_ENTITY_DEAD, dead_entity},
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},

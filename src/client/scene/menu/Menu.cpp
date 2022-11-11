@@ -22,6 +22,7 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
     sf::Event event;
 
     if (this->_init == false) {
+        this->_world.register_menu_assets();
         this->init_menu(window);
         this->_init = true;
     }

@@ -21,6 +21,7 @@ void OptionScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScre
     sf::Event event;
 
     if (this->_init == false) {
+        this->_world.register_option_assets();
         this->init_option(window);
         this->_init = true;
     }
