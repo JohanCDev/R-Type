@@ -87,11 +87,19 @@ jobs:
   build-on-rpi-arm:
     runs-on: self-hosted
     steps:
-      - name: Install conan
-        uses: turtlebrowser/get-conan@main
+      - name: Install prerequisiteries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pkg-config libgl-dev git
 
-      - name: Checkout repository
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+
+      - name: Install conan
+        run: |
+          sudo apt install -y python3-pip
+          sudo pip3 install conan
+          which conan
+          conan --version
 
       - name: Build rtype binaries on Raspberry (desktop)
         run: |
