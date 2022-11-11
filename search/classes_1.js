@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['clientidcomponent_127',['ClientIDComponent',['../dc/dc7/structClientIDComponent.html',1,'']]],
-  ['collidecomponent_128',['CollideComponent',['../d2/d81/structCollideComponent.html',1,'']]],
-  ['controllablecomponent_129',['ControllableComponent',['../db/d09/structControllableComponent.html',1,'']]]
+  ['destroyablecomponent_312',['DestroyableComponent',['../d2/d63/structDestroyableComponent.html',1,'']]],
+  ['drawablecomponent_313',['DrawableComponent',['../d0/d12/structDrawableComponent.html',1,'']]]
 ];

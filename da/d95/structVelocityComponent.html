@@ -107,14 +107,14 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2b522fcea679e098667ae5151d073a0a"><td class="memItemLeft" align="right" valign="top"><a id="a2b522fcea679e098667ae5151d073a0a"></a>
-<a class="el" href="../../da/d35/structVector2i.html">Vector2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>speed</b></td></tr>
+<tr class="memitem:a2b522fcea679e098667ae5151d073a0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d35/structVector2i.html">Vector2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d95/structVelocityComponent.html#a2b522fcea679e098667ae5151d073a0a">speed</a></td></tr>
+<tr class="memdesc:a2b522fcea679e098667ae5151d073a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speed of the component.  <a href="../../da/d95/structVelocityComponent.html#a2b522fcea679e098667ae5151d073a0a">More...</a><br /></td></tr>
 <tr class="separator:a2b522fcea679e098667ae5151d073a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e0b0031ba0d80714dfc892348017601"><td class="memItemLeft" align="right" valign="top"><a id="a4e0b0031ba0d80714dfc892348017601"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>seconds</b></td></tr>
+<tr class="memitem:a4e0b0031ba0d80714dfc892348017601"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d95/structVelocityComponent.html#a4e0b0031ba0d80714dfc892348017601">seconds</a></td></tr>
+<tr class="memdesc:a4e0b0031ba0d80714dfc892348017601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seconds of acceleration.  <a href="../../da/d95/structVelocityComponent.html#a4e0b0031ba0d80714dfc892348017601">More...</a><br /></td></tr>
 <tr class="separator:a4e0b0031ba0d80714dfc892348017601"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a115b221868ee11b1085423b6024c5cac"><td class="memItemLeft" align="right" valign="top"><a id="a115b221868ee11b1085423b6024c5cac"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>coeff</b></td></tr>
+<tr class="memitem:a115b221868ee11b1085423b6024c5cac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d95/structVelocityComponent.html#a115b221868ee11b1085423b6024c5cac">coeff</a></td></tr>
+<tr class="memdesc:a115b221868ee11b1085423b6024c5cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coefficient of acceleration.  <a href="../../da/d95/structVelocityComponent.html#a115b221868ee11b1085423b6024c5cac">More...</a><br /></td></tr>
 <tr class="separator:a115b221868ee11b1085423b6024c5cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -163,13 +163,61 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>coeff</b></td></tr>
 <p>Construct a new Velocity Component object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x_velo</td><td></td></tr>
-    <tr><td class="paramname">y_velo</td><td></td></tr>
-    <tr><td class="paramname">time_as_seconds</td><td></td></tr>
-    <tr><td class="paramname">elapsed_time</td><td></td></tr>
+    <tr><td class="paramname">speed_vec</td><td>Vector containing the speed of the component </td></tr>
+    <tr><td class="paramname">time_as_seconds</td><td>Time of acceleration of the player </td></tr>
+    <tr><td class="paramname">elapsed_time</td><td>Elapsed time of the acceleration </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a115b221868ee11b1085423b6024c5cac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a115b221868ee11b1085423b6024c5cac">&#9670;&nbsp;</a></span>coeff</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VelocityComponent::coeff</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coefficient of acceleration. </p>
+
+</div>
+</div>
+<a id="a4e0b0031ba0d80714dfc892348017601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e0b0031ba0d80714dfc892348017601">&#9670;&nbsp;</a></span>seconds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VelocityComponent::seconds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Seconds of acceleration. </p>
+
+</div>
+</div>
+<a id="a2b522fcea679e098667ae5151d073a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b522fcea679e098667ae5151d073a0a">&#9670;&nbsp;</a></span>speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d35/structVector2i.html">Vector2i</a> VelocityComponent::speed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Speed of the component. </p>
 
 </div>
 </div>

@@ -94,21 +94,22 @@ $(document).ready(function(){initNavTree('de/da6/Entity_8hpp_source.html','../..
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="../../da/d61/classEntity.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../da/d61/classEntity.html">Entity</a> {</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="../../da/d61/classEntity.html#af2c293da6dd58678a610e5b66826215e">   26</a></span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../da/d61/classEntity.html#af2c293da6dd58678a610e5b66826215e">Entity</a>(<span class="keywordtype">size_t</span> entity_id) : id(entity_id){};</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../db/d16/classregistry.html">registry</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">size_t</span> id;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="../../da/d61/classEntity.html#a15adfa5c02b836a2e0b9ea31c0a90e26">   36</a></span>&#160;    <span class="keyword">operator</span> size_t()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> id;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="../../da/d61/classEntity.html#af2c293da6dd58678a610e5b66826215e">   25</a></span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../da/d61/classEntity.html#af2c293da6dd58678a610e5b66826215e">Entity</a>(<span class="keywordtype">size_t</span> entity_id) : <a class="code" href="../../da/d61/classEntity.html#acb52e3e254e5a92aebb3c3ac35b14608">id</a>(entity_id){};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../db/d16/classregistry.html">registry</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="../../da/d61/classEntity.html#acb52e3e254e5a92aebb3c3ac35b14608">   33</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="../../da/d61/classEntity.html#acb52e3e254e5a92aebb3c3ac35b14608">id</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="../../da/d61/classEntity.html#a15adfa5c02b836a2e0b9ea31c0a90e26">   40</a></span>&#160;    <span class="keyword">operator</span> size_t()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="../../da/d61/classEntity.html#acb52e3e254e5a92aebb3c3ac35b14608">id</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    };</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassregistry_html"><div class="ttname"><a href="../../db/d16/classregistry.html">registry</a></div><div class="ttdoc">Storage of all sparse_array.</div><div class="ttdef"><b>Definition:</b> Registry.hpp:30</div></div>
-<div class="ttc" id="aclassEntity_html_af2c293da6dd58678a610e5b66826215e"><div class="ttname"><a href="../../da/d61/classEntity.html#af2c293da6dd58678a610e5b66826215e">Entity::Entity</a></div><div class="ttdeci">Entity(size_t entity_id)</div><div class="ttdoc">Construct a new Entity object.</div><div class="ttdef"><b>Definition:</b> Entity.hpp:26</div></div>
+<div class="ttc" id="aclassEntity_html_acb52e3e254e5a92aebb3c3ac35b14608"><div class="ttname"><a href="../../da/d61/classEntity.html#acb52e3e254e5a92aebb3c3ac35b14608">Entity::id</a></div><div class="ttdeci">size_t id</div><div class="ttdoc">Store entity's ID.</div><div class="ttdef"><b>Definition:</b> Entity.hpp:33</div></div>
+<div class="ttc" id="aclassEntity_html_af2c293da6dd58678a610e5b66826215e"><div class="ttname"><a href="../../da/d61/classEntity.html#af2c293da6dd58678a610e5b66826215e">Entity::Entity</a></div><div class="ttdeci">Entity(size_t entity_id)</div><div class="ttdoc">Construct a new Entity object.</div><div class="ttdef"><b>Definition:</b> Entity.hpp:25</div></div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="../../da/d61/classEntity.html">Entity</a></div><div class="ttdoc">Entity class.</div><div class="ttdef"><b>Definition:</b> Entity.hpp:18</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

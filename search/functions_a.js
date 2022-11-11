@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['player_5fjoined_235',['player_joined',['../d8/d39/game_8hpp.html#ad789b4bd9fafe50a77719ad2e3901214',1,'handle_packets.cpp']]],
-  ['player_5fleft_236',['player_left',['../d8/d39/game_8hpp.html#aac96bbaa0506a110a38a7ea57c14d3c4',1,'handle_packets.cpp']]],
-  ['player_5fmoved_237',['player_moved',['../d8/d39/game_8hpp.html#a700fc31f8e509b78365b819ad154f984',1,'handle_packets.cpp']]],
-  ['player_5fshot_238',['player_shot',['../d8/d39/game_8hpp.html#ad0a96ea33de24174e9474ff03f4cf56f',1,'handle_packets.cpp']]],
-  ['positioncomponent_239',['PositionComponent',['../d2/d0d/structPositionComponent.html#a874d4d316b9198d9f4fa2cf5c7f8c289',1,'PositionComponent']]]
+  ['main_476',['main',['../df/d62/client_2main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.cpp'],['../d6/d7a/server_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
+  ['menuscene_477',['MenuScene',['../d2/da6/classMenuScene.html#afcc0dcde491eac4e970d68e8896bf4cb',1,'MenuScene']]],
+  ['movement_478',['movement',['../d9/d95/client_8cpp.html#af0405857556b8249c7ab99ad03e73bf3',1,'client.cpp']]]
 ];

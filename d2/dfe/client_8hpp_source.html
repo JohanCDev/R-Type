@@ -97,46 +97,85 @@ $(document).ready(function(){initNavTree('d2/dfe/client_8hpp_source.html','../..
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;boost/thread.hpp&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../ECS/World.hpp&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;../Common/Message/Message.hpp&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../Common/Message/MessageType.hpp&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../Common/locked_queue.hpp&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="../../d9/d5d/classNetworkClient.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a>(std::string host, std::string server_port, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> local_port = 0);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    ~<a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../Common/Message/Message.hpp&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;../Common/Message/MessageType.hpp&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../ECS/World.hpp&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../db/de8/Scene_8hpp.html">scene/Scene.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../Common/locked_queue.hpp&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">class </span><a class="code" href="../../d6/d39/classWorld.html">World</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">enum class</span> <a class="code" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> : uint32_t;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> send(<span class="keyword">const</span> std::string &amp;message);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> send(<span class="keyword">const</span> <a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> &amp;message);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">bool</span> HasMessages();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> PopMessage();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> processMessage(<a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> &amp;msg, <a class="code" href="../../d6/d39/classWorld.html">World</a> &amp;world);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    boost::asio::io_service io_service;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    udp::socket socket;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    udp::endpoint server_endpoint;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    udp::endpoint remote_endpoint;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::array&lt;char, 1024&gt; recv_buffer;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    boost::thread service_thread;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="../../d2/d8b/classLockedQueue.html">LockedQueue&lt;Message&lt;GameMessage&gt;</a>&gt; incomingMessages;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> start_receive();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> handle_receive(<span class="keyword">const</span> std::error_code &amp;error, std::size_t bytes_transferred);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> run_service();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a>(<a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="../../d9/d5d/classNetworkClient.html">   37</a></span>&#160;class <a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="../../d9/d5d/classNetworkClient.html#aeb02cfcb79882eb7a052fbf115216599">NetworkClient</a>(std::string host, std::string server_port, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> local_port = 0);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="../../d9/d5d/classNetworkClient.html#ab82fb597494c89b4a7ba9fd0d4b659c4">~NetworkClient</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a58aa98babae92ed89f439fd1e09511ec">send</a>(<span class="keyword">const</span> std::string &amp;message);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a58aa98babae92ed89f439fd1e09511ec">send</a>(<span class="keyword">const</span> <a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> &amp;message);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a5bec8dd69cc02b95fa0e858f2453876f">HasMessages</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> <a class="code" href="../../d9/d5d/classNetworkClient.html#a64a91933d611cd30d9ff7735107f10e4">PopMessage</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a26979ba2e3f8c59d410faef75899d7e2">processMessage</a>(<a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> &amp;msg, <a class="code" href="../../d6/d39/classWorld.html">World</a> &amp;world);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a26979ba2e3f8c59d410faef75899d7e2">processMessage</a>(<a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> &amp;msg, <a class="code" href="../../d6/d39/classWorld.html">World</a> &amp;world, sf::RenderWindow &amp;window, <a class="code" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a458ac77edf3c790c0b09eba7f30d34fc">set_launch_game</a>(<span class="keywordtype">bool</span> launch);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a3d6d7b7e0833bac7621d9aeda0ae2965">get_launch_game</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a94a0d82f855586b3aea4aae55289011a">set_players_ready</a>(<span class="keywordtype">bool</span> ready);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a189f420ef793a2479f5c792d027af5a2">get_players_ready</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#aca0b4d220914cba41f12e9f6f0dafac0">set_nb_players</a>(<span class="keywordtype">int</span> nb_players);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d9/d5d/classNetworkClient.html#a692a1682e2a0062dc2cac50fec780303">get_nb_players</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    boost::asio::io_service io_service;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    udp::socket socket;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    udp::endpoint server_endpoint;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    udp::endpoint remote_endpoint;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    std::array&lt;char, 1024&gt; recv_buffer;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    boost::thread service_thread;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">bool</span> _players_ready;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">bool</span> _launch_game;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">int</span> _nb_players;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="../../d2/d8b/classLockedQueue.html">LockedQueue&lt;Message&lt;GameMessage&gt;</a>&gt; incomingMessages;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">void</span> start_receive();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">void</span> handle_receive(<span class="keyword">const</span> std::error_code &amp;error, std::size_t bytes_transferred);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">void</span> run_service();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="../../d9/d5d/classNetworkClient.html#aeb02cfcb79882eb7a052fbf115216599">NetworkClient</a>(<a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassWorld_html"><div class="ttname"><a href="../../d6/d39/classWorld.html">World</a></div><div class="ttdoc">Store entity and usefull function.</div><div class="ttdef"><b>Definition:</b> World.hpp:26</div></div>
-<div class="ttc" id="aclassNetworkClient_html"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html">NetworkClient</a></div><div class="ttdef"><b>Definition:</b> client.hpp:27</div></div>
-<div class="ttc" id="astructMessage_html"><div class="ttname"><a href="../../d8/dd0/structMessage.html">Message</a></div><div class="ttdef"><b>Definition:</b> Message.hpp:24</div></div>
-<div class="ttc" id="aclassLockedQueue_html"><div class="ttname"><a href="../../d2/d8b/classLockedQueue.html">LockedQueue</a></div><div class="ttdef"><b>Definition:</b> locked_queue.hpp:18</div></div>
+<div class="ttc" id="aScene_8hpp_html_a8e522ea30a64635ba6cde06510aba200"><div class="ttname"><a href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a></div><div class="ttdeci">SceneScreen</div><div class="ttdoc">All scenes represented as an enum going from 0 to 4.</div><div class="ttdef"><b>Definition:</b> Scene.hpp:21</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a64a91933d611cd30d9ff7735107f10e4"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a64a91933d611cd30d9ff7735107f10e4">NetworkClient::PopMessage</a></div><div class="ttdeci">Message&lt; GameMessage &gt; PopMessage()</div><div class="ttdoc">Pop incoming message from the server.</div><div class="ttdef"><b>Definition:</b> client.cpp:94</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a94a0d82f855586b3aea4aae55289011a"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a94a0d82f855586b3aea4aae55289011a">NetworkClient::set_players_ready</a></div><div class="ttdeci">void set_players_ready(bool ready)</div><div class="ttdoc">Set the players ready value.</div><div class="ttdef"><b>Definition:</b> client.cpp:123</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a5bec8dd69cc02b95fa0e858f2453876f"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a5bec8dd69cc02b95fa0e858f2453876f">NetworkClient::HasMessages</a></div><div class="ttdeci">bool HasMessages()</div><div class="ttdoc">Check if client has incoming messages of the server.</div><div class="ttdef"><b>Definition:</b> client.cpp:89</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a58aa98babae92ed89f439fd1e09511ec"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a58aa98babae92ed89f439fd1e09511ec">NetworkClient::send</a></div><div class="ttdeci">void send(const std::string &amp;message)</div><div class="ttdoc">Send a message to the server.</div><div class="ttdef"><b>Definition:</b> client.cpp:72</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a189f420ef793a2479f5c792d027af5a2"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a189f420ef793a2479f5c792d027af5a2">NetworkClient::get_players_ready</a></div><div class="ttdeci">bool get_players_ready() const</div><div class="ttdoc">Get the players_ready value.</div><div class="ttdef"><b>Definition:</b> client.cpp:128</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a26979ba2e3f8c59d410faef75899d7e2"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a26979ba2e3f8c59d410faef75899d7e2">NetworkClient::processMessage</a></div><div class="ttdeci">void processMessage(Message&lt; GameMessage &gt; &amp;msg, World &amp;world)</div><div class="ttdoc">Process a message.</div></div>
+<div class="ttc" id="aclassNetworkClient_html_ab82fb597494c89b4a7ba9fd0d4b659c4"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#ab82fb597494c89b4a7ba9fd0d4b659c4">NetworkClient::~NetworkClient</a></div><div class="ttdeci">~NetworkClient()</div><div class="ttdoc">Destroy the Network Client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:33</div></div>
+<div class="ttc" id="aclassWorld_html"><div class="ttname"><a href="../../d6/d39/classWorld.html">World</a></div><div class="ttdoc">Store entity and usefull function.</div><div class="ttdef"><b>Definition:</b> World.hpp:25</div></div>
+<div class="ttc" id="aclassNetworkClient_html_aeb02cfcb79882eb7a052fbf115216599"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#aeb02cfcb79882eb7a052fbf115216599">NetworkClient::NetworkClient</a></div><div class="ttdeci">NetworkClient(std::string host, std::string server_port, unsigned short local_port=0)</div><div class="ttdoc">Construct a new Network Client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:21</div></div>
+<div class="ttc" id="aclassNetworkClient_html_aca0b4d220914cba41f12e9f6f0dafac0"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#aca0b4d220914cba41f12e9f6f0dafac0">NetworkClient::set_nb_players</a></div><div class="ttdeci">void set_nb_players(int nb_players)</div><div class="ttdoc">Set the nb players.</div><div class="ttdef"><b>Definition:</b> client.cpp:133</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a692a1682e2a0062dc2cac50fec780303"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a692a1682e2a0062dc2cac50fec780303">NetworkClient::get_nb_players</a></div><div class="ttdeci">int get_nb_players() const</div><div class="ttdoc">Get the nb players.</div><div class="ttdef"><b>Definition:</b> client.cpp:138</div></div>
+<div class="ttc" id="aclassNetworkClient_html"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html">NetworkClient</a></div><div class="ttdoc">Network client class.</div><div class="ttdef"><b>Definition:</b> client.hpp:37</div></div>
+<div class="ttc" id="aclassNetworkClient_html_a458ac77edf3c790c0b09eba7f30d34fc"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a458ac77edf3c790c0b09eba7f30d34fc">NetworkClient::set_launch_game</a></div><div class="ttdeci">void set_launch_game(bool launch)</div><div class="ttdoc">Set the launch value.</div><div class="ttdef"><b>Definition:</b> client.cpp:113</div></div>
+<div class="ttc" id="aScene_8hpp_html"><div class="ttname"><a href="../../db/de8/Scene_8hpp.html">Scene.hpp</a></div></div>
+<div class="ttc" id="aclassNetworkClient_html_a3d6d7b7e0833bac7621d9aeda0ae2965"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html#a3d6d7b7e0833bac7621d9aeda0ae2965">NetworkClient::get_launch_game</a></div><div class="ttdeci">bool get_launch_game() const</div><div class="ttdoc">Get the launch value.</div><div class="ttdef"><b>Definition:</b> client.cpp:118</div></div>
+<div class="ttc" id="astructMessage_html"><div class="ttname"><a href="../../d8/dd0/structMessage.html">Message&lt; GameMessage &gt;</a></div></div>
+<div class="ttc" id="aclassLockedQueue_html"><div class="ttname"><a href="../../d2/d8b/classLockedQueue.html">LockedQueue</a></div><div class="ttdoc">Locked queue class containing all messages infos.</div><div class="ttdef"><b>Definition:</b> locked_queue.hpp:23</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

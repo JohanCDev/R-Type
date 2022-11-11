@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['registry_2ehpp_190',['Registry.hpp',['../db/dd1/Registry_8hpp.html',1,'']]],
-  ['resourcesmanager_2ehpp_191',['ResourcesManager.hpp',['../d0/d17/ResourcesManager_8hpp.html',1,'']]]
+  ['positioncomponent_2ehpp_387',['PositionComponent.hpp',['../de/da1/PositionComponent_8hpp.html',1,'']]],
+  ['proto_2ehpp_388',['proto.hpp',['../dc/d78/proto_8hpp.html',1,'']]]
 ];

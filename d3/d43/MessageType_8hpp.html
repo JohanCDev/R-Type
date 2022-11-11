@@ -96,29 +96,37 @@ $(document).ready(function(){initNavTree('d3/d43/MessageType_8hpp.html','../../'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a539d6c542a8e6287800e238b9ba0eb7c"><td class="memItemLeft" align="right" valign="top"><a id="a539d6c542a8e6287800e238b9ba0eb7c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>GameMessage</b> : uint32_t { <br />
+<tr class="memitem:a539d6c542a8e6287800e238b9ba0eb7c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> : uint32_t { <br />
 &#160;&#160;<b>C2S_JOIN</b>, 
 <b>C2S_LEAVE</b>, 
 <b>C2S_SHOOT</b>, 
 <b>C2S_MOVEMENT</b>, 
 <br />
-&#160;&#160;<b>S2C_ENTITY_NEW</b>, 
+&#160;&#160;<b>C2S_START_GAME</b>, 
+<b>C2S_SELECT_SHIP</b>, 
+<b>S2C_ENTITY_NEW</b>, 
 <b>S2C_ENTITY_DEAD</b>, 
-<b>S2C_GAME_END</b>, 
-<b>S2C_MOVEMENT</b>, 
 <br />
-&#160;&#160;<b>S2C_ENTITY_HIT</b>, 
+&#160;&#160;<b>S2C_GAME_END</b>, 
+<b>S2C_MOVEMENT</b>, 
+<b>S2C_ENTITY_HIT</b>, 
 <b>S2C_WAVE_STATUS</b>, 
-<b>S2C_OK</b>
+<br />
+&#160;&#160;<b>S2C_OK</b>, 
+<b>S2C_START_GAME</b>, 
+<b>S2C_PLAYERS_IN_LOBBY</b>, 
+<b>S2C_PLAYERS_READY</b>
 <br />
  }</td></tr>
+<tr class="memdesc:a539d6c542a8e6287800e238b9ba0eb7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerate packets types.  <a href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">More...</a><br /></td></tr>
 <tr class="separator:a539d6c542a8e6287800e238b9ba0eb7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a278fa4ed07a92a8874fd355479d9df93"><td class="memItemLeft" align="right" valign="top"><a id="a278fa4ed07a92a8874fd355479d9df93"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>WaveStatus</b> : uint32_t { <b>START</b>, 
+<tr class="memitem:a278fa4ed07a92a8874fd355479d9df93"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">WaveStatus</a> : uint32_t { <b>START</b>, 
 <b>BOSS_START</b>, 
 <b>END</b>
  }</td></tr>
+<tr class="memdesc:a278fa4ed07a92a8874fd355479d9df93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerate status of waves.  <a href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">More...</a><br /></td></tr>
 <tr class="separator:a278fa4ed07a92a8874fd355479d9df93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cc2658890520c7e810a94d461683541"><td class="memItemLeft" align="right" valign="top"><a id="a1cc2658890520c7e810a94d461683541"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>GameObject</b> : uint32_t { <br />
+<tr class="memitem:a1cc2658890520c7e810a94d461683541"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">GameObject</a> : uint32_t { <br />
 &#160;&#160;<b>LASER</b>, 
 <b>PLAYER</b>, 
 <b>BOSS_1</b>, 
@@ -126,9 +134,15 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<b>ENEMY_SNIPER</b>, 
 <b>ENEMY_ODD</b>, 
-<b>GAME_OBJECT_COUNT</b>
+<b>GAME_OBJECT_COUNT</b>, 
+<b>SHIP_ARMORED</b>, 
+<br />
+&#160;&#160;<b>SHIP_DAMAGE</b>, 
+<b>SHIP_ENGINEER</b>, 
+<b>SHIP_SNIPER</b>
 <br />
  }</td></tr>
+<tr class="memdesc:a1cc2658890520c7e810a94d461683541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerate objects of the game.  <a href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">More...</a><br /></td></tr>
 <tr class="separator:a1cc2658890520c7e810a94d461683541"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -136,7 +150,80 @@ Enumerations</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-10-16</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a539d6c542a8e6287800e238b9ba0eb7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a539d6c542a8e6287800e238b9ba0eb7c">&#9670;&nbsp;</a></span>GameMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> : uint32_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enumerate packets types. </p>
+
+</div>
+</div>
+<a id="a1cc2658890520c7e810a94d461683541"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cc2658890520c7e810a94d461683541">&#9670;&nbsp;</a></span>GameObject</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">GameObject</a> : uint32_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enumerate objects of the game. </p>
+
+</div>
+</div>
+<a id="a278fa4ed07a92a8874fd355479d9df93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a278fa4ed07a92a8874fd355479d9df93">&#9670;&nbsp;</a></span>WaveStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">WaveStatus</a> : uint32_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enumerate status of waves. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

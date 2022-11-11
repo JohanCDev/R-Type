@@ -1,11 +1,21 @@
 var searchData=
 [
-  ['wave_5fs_114',['wave_s',['../d6/d5c/structwave__s.html',1,'']]],
-  ['waves_5ft_115',['waves_t',['../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d',1,'game.hpp']]],
-  ['wavesystem_2ecpp_116',['WaveSystem.cpp',['../db/d61/WaveSystem_8cpp.html',1,'']]],
-  ['weaponcomponent_117',['WeaponComponent',['../df/de1/structWeaponComponent.html',1,'']]],
-  ['weaponcomponent_2ehpp_118',['WeaponComponent.hpp',['../d3/d34/WeaponComponent_8hpp.html',1,'']]],
-  ['world_119',['World',['../d6/d39/classWorld.html',1,'World'],['../d6/d39/classWorld.html#a5e8f344e50f3f175753369b14587c2e1',1,'World::World()']]],
-  ['world_2ecpp_120',['World.cpp',['../d7/dfe/World_8cpp.html',1,'']]],
-  ['world_2ehpp_121',['World.hpp',['../d0/dbb/World_8hpp.html',1,'']]]
+  ['rect_214',['rect',['../d0/d12/structDrawableComponent.html#aafc3b29cbfc74d721d6537778b6b3bae',1,'DrawableComponent']]],
+  ['reference_5ftype_215',['reference_type',['../d6/d51/classsparse__array.html#ae00c5b30838e89f0d368d55e0ba6a54d',1,'sparse_array']]],
+  ['register_5fall_5fassets_216',['register_all_assets',['../d6/d39/classWorld.html#aa3844f7d1841a5ef38b8d5c6fcd47362',1,'World']]],
+  ['register_5fall_5fdrawable_5fobject_217',['register_all_drawable_object',['../d6/d39/classWorld.html#a067e4ff4c77e49ab0382413d3858a015',1,'World']]],
+  ['register_5fall_5fsystem_218',['register_all_system',['../d6/d39/classWorld.html#ad6e57f2e9184da0b1ba75c3bcae5efd2',1,'World']]],
+  ['register_5fcomponents_219',['register_components',['../db/d16/classregistry.html#a4eeaec0635986a359b387b0357ca2d20',1,'registry']]],
+  ['register_5ffont_220',['register_font',['../d9/d98/classResourcesManager.html#a32ac3170c96511f644738b3b5f37cafb',1,'ResourcesManager']]],
+  ['register_5fsystems_221',['register_systems',['../db/d16/classregistry.html#acd62a96b23ae72abaaf38b89e9b592db',1,'registry']]],
+  ['register_5ftexture_222',['register_texture',['../d9/d98/classResourcesManager.html#a07e284a5716ce8130c254dec191996e9',1,'ResourcesManager']]],
+  ['registry_223',['registry',['../db/d16/classregistry.html',1,'']]],
+  ['registry_2ehpp_224',['Registry.hpp',['../db/dd1/Registry_8hpp.html',1,'']]],
+  ['remaining_5fdifficulty_225',['remaining_difficulty',['../d6/d5c/structwave__s.html#a0d868cb7d11d8bd59af7d9d79925601a',1,'wave_s']]],
+  ['remove_5fcomponent_226',['remove_component',['../db/d16/classregistry.html#a4f652db0b0a87d502b7f18f0d3470cc2',1,'registry']]],
+  ['resourcesmanager_227',['ResourcesManager',['../d9/d98/classResourcesManager.html',1,'ResourcesManager'],['../d9/d98/classResourcesManager.html#a7fe5ff24c1df6a60214bea3ca474d155',1,'ResourcesManager::ResourcesManager()']]],
+  ['resourcesmanager_2ecpp_228',['ResourcesManager.cpp',['../d7/d8f/ResourcesManager_8cpp.html',1,'']]],
+  ['resourcesmanager_2ehpp_229',['ResourcesManager.hpp',['../d0/d17/ResourcesManager_8hpp.html',1,'']]],
+  ['right_230',['right',['../db/d09/structControllableComponent.html#ac6b5f4ac2a8c2dea951c9cdfafe48cb2',1,'ControllableComponent']]],
+  ['run_231',['run',['../db/d9f/classGameScene.html#ac931463ede7523b86c74b704d80e37ce',1,'GameScene::run()'],['../de/df0/classLobbyScene.html#a44c75b1d903b6d15962b5babd49a4e55',1,'LobbyScene::run()'],['../d2/da6/classMenuScene.html#aa2578c422182bd73cb027791d17859fb',1,'MenuScene::run()'],['../dc/d54/classOptionScene.html#ad6402797a5a6a6d2c9e8407ec1248e6f',1,'OptionScene::run()'],['../db/da8/classIScene.html#abb6c58890f1b3a25533e672b9dac9bef',1,'IScene::run()']]]
 ];

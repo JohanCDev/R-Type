@@ -10,5 +10,6 @@ var classNetworkServer =
     [ "SendToAllExcept", "d5/d9a/classNetworkServer.html#a541631260647a770802d2eeacce01707", null ],
     [ "SendToClient", "d5/d9a/classNetworkServer.html#a17a100101370085672932633cf56d2ea", null ],
     [ "SendToClient", "d5/d9a/classNetworkServer.html#a8856d4faf603687663d39bdcfc656f85", null ],
-    [ "clientDisconnectedHandlers", "d5/d9a/classNetworkServer.html#a564d8d2590ba1801558fe8e163e87b0a", null ]
+    [ "clientDisconnectedHandlers", "d5/d9a/classNetworkServer.html#a5c7704aa5c7b54a3ed201124da9d702d", null ],
+    [ "clients", "d5/d9a/classNetworkServer.html#ad4d3c8f21d70b2f63b979a9a539f3861", null ]
 ];

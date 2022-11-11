@@ -9,6 +9,7 @@ var dir_b1a122bf62c958266ec5bf64d14fde5a =
     [ "Registry.hpp", "db/dd1/Registry_8hpp.html", [
       [ "registry", "db/d16/classregistry.html", "db/d16/classregistry" ]
     ] ],
+    [ "ResourcesManager.cpp", "d7/d8f/ResourcesManager_8cpp.html", null ],
     [ "ResourcesManager.hpp", "d0/d17/ResourcesManager_8hpp.html", [
       [ "ResourcesManager", "d9/d98/classResourcesManager.html", "d9/d98/classResourcesManager" ]
     ] ],

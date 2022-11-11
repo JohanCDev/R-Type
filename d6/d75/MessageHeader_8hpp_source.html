@@ -94,21 +94,28 @@ $(document).ready(function(){initNavTree('d6/d75/MessageHeader_8hpp_source.html'
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;boost/serialization/serialization.hpp&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="../../d8/db5/structMessageHeader.html">   16</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="../../d8/db5/structMessageHeader.html">MessageHeader</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    T <span class="keywordtype">id</span>{};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::size_t size = 0;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span>boost::serialization::access;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span> Archive&gt; <span class="keywordtype">void</span> serialize(Archive &amp;ar, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> version)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        ar &amp;id;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        ar &amp;size;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        (void)version;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="../../d8/db5/structMessageHeader.html">   21</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="../../d8/db5/structMessageHeader.html">MessageHeader</a> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="../../d8/db5/structMessageHeader.html#ab268604c80711362d38e30cea3452ee7">   26</a></span>&#160;    T <span class="keywordtype">id</span>{};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="../../d8/db5/structMessageHeader.html#a4a7750fef929d630e6b1fe5d3d84ad05">   32</a></span>&#160;    std::size_t <a class="code" href="../../d8/db5/structMessageHeader.html#a4a7750fef929d630e6b1fe5d3d84ad05">size</a> = 0;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="../../d8/db5/structMessageHeader.html#ac98d07dd8f7b70e16ccb9a01abf56b9c">   38</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span>boost::serialization::access;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="../../d8/db5/structMessageHeader.html#a6f9c62fe0d3c88b57076e55a157d58af">   47</a></span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span> Archive&gt; <span class="keywordtype">void</span> <a class="code" href="../../d8/db5/structMessageHeader.html#a6f9c62fe0d3c88b57076e55a157d58af">serialize</a>(Archive &amp;ar, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> version)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        ar &amp;<a class="code" href="../../d8/db5/structMessageHeader.html#ab268604c80711362d38e30cea3452ee7">id</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        ar &amp;<a class="code" href="../../d8/db5/structMessageHeader.html#a4a7750fef929d630e6b1fe5d3d84ad05">size</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        (void)version;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructMessageHeader_html"><div class="ttname"><a href="../../d8/db5/structMessageHeader.html">MessageHeader</a></div><div class="ttdef"><b>Definition:</b> MessageHeader.hpp:16</div></div>
+<div class="ttc" id="astructMessageHeader_html_a4a7750fef929d630e6b1fe5d3d84ad05"><div class="ttname"><a href="../../d8/db5/structMessageHeader.html#a4a7750fef929d630e6b1fe5d3d84ad05">MessageHeader::size</a></div><div class="ttdeci">std::size_t size</div><div class="ttdoc">Size of the message.</div><div class="ttdef"><b>Definition:</b> MessageHeader.hpp:32</div></div>
+<div class="ttc" id="astructMessageHeader_html_a6f9c62fe0d3c88b57076e55a157d58af"><div class="ttname"><a href="../../d8/db5/structMessageHeader.html#a6f9c62fe0d3c88b57076e55a157d58af">MessageHeader::serialize</a></div><div class="ttdeci">void serialize(Archive &amp;ar, const unsigned int version)</div><div class="ttdoc">Class used to serialize.</div><div class="ttdef"><b>Definition:</b> MessageHeader.hpp:47</div></div>
+<div class="ttc" id="astructMessageHeader_html"><div class="ttname"><a href="../../d8/db5/structMessageHeader.html">MessageHeader</a></div><div class="ttdoc">Struct containing the message header.</div><div class="ttdef"><b>Definition:</b> MessageHeader.hpp:21</div></div>
+<div class="ttc" id="astructMessageHeader_html_ab268604c80711362d38e30cea3452ee7"><div class="ttname"><a href="../../d8/db5/structMessageHeader.html#ab268604c80711362d38e30cea3452ee7">MessageHeader::id</a></div><div class="ttdeci">T id</div><div class="ttdoc">Id of the message.</div><div class="ttdef"><b>Definition:</b> MessageHeader.hpp:26</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

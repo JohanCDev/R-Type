@@ -91,39 +91,411 @@ $(document).ready(function(){initNavTree('db/d6b/AllSystem_8hpp.html','../../');
 <div class="title">AllSystem.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="../../df/d0a/server_8hpp_source.html">../../server/server.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d2/dfe/client_8hpp_source.html">../../client/client.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d8/d39/game_8hpp_source.html">../../server/game.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../df/d0a/server_8hpp_source.html">../../server/server.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d0/dbb/World_8hpp_source.html">../World.hpp</a>&quot;</code><br />
 </div>
 <p><a href="../../db/d6b/AllSystem_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af2bc0a60592ec989b5a3bd17a2fec0dc"><td class="memItemLeft" align="right" valign="top"><a id="af2bc0a60592ec989b5a3bd17a2fec0dc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>drawable_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world)</td></tr>
-<tr class="separator:af2bc0a60592ec989b5a3bd17a2fec0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="memItemLeft" align="right" valign="top"><a id="a0efff610c64cd6ce0cffeccd8e6d6f05"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>controllable_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, sf::Event event)</td></tr>
+<tr class="memitem:a62ae88b77d435731d5eb24b35c43b6a7"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> uint32_t int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#a62ae88b77d435731d5eb24b35c43b6a7">drawable_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, sf::RenderWindow &amp;window)</td></tr>
+<tr class="memdesc:a62ae88b77d435731d5eb24b35c43b6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scene screen.  <a href="../../db/d6b/AllSystem_8hpp.html#a62ae88b77d435731d5eb24b35c43b6a7">More...</a><br /></td></tr>
+<tr class="separator:a62ae88b77d435731d5eb24b35c43b6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#a0efff610c64cd6ce0cffeccd8e6d6f05">controllable_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, sf::Event event)</td></tr>
+<tr class="memdesc:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update all controllable entities.  <a href="../../db/d6b/AllSystem_8hpp.html#a0efff610c64cd6ce0cffeccd8e6d6f05">More...</a><br /></td></tr>
 <tr class="separator:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b3cd118b593d02f227a503a895be4d2"><td class="memItemLeft" align="right" valign="top"><a id="a8b3cd118b593d02f227a503a895be4d2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>shooting_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memitem:a8b3cd118b593d02f227a503a895be4d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#a8b3cd118b593d02f227a503a895be4d2">shooting_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memdesc:a8b3cd118b593d02f227a503a895be4d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check collision between entities if they have a collider.  <a href="../../db/d6b/AllSystem_8hpp.html#a8b3cd118b593d02f227a503a895be4d2">More...</a><br /></td></tr>
 <tr class="separator:a8b3cd118b593d02f227a503a895be4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ddc60aece91af41db4a5986c5422e7f"><td class="memItemLeft" align="right" valign="top"><a id="a7ddc60aece91af41db4a5986c5422e7f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ia_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memitem:a7ddc60aece91af41db4a5986c5422e7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#a7ddc60aece91af41db4a5986c5422e7f">ia_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memdesc:a7ddc60aece91af41db4a5986c5422e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the AI function of each type of entities.  <a href="../../db/d6b/AllSystem_8hpp.html#a7ddc60aece91af41db4a5986c5422e7f">More...</a><br /></td></tr>
 <tr class="separator:a7ddc60aece91af41db4a5986c5422e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb6eed6b470f68323e0c10edb7368218"><td class="memItemLeft" align="right" valign="top"><a id="aeb6eed6b470f68323e0c10edb7368218"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>velocity_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world)</td></tr>
+<tr class="memitem:aeb6eed6b470f68323e0c10edb7368218"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#aeb6eed6b470f68323e0c10edb7368218">velocity_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world)</td></tr>
+<tr class="memdesc:aeb6eed6b470f68323e0c10edb7368218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move all movable entities.  <a href="../../db/d6b/AllSystem_8hpp.html#aeb6eed6b470f68323e0c10edb7368218">More...</a><br /></td></tr>
 <tr class="separator:aeb6eed6b470f68323e0c10edb7368218"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afced48f3e6fe3797b8ba7c4e9a31fbce"><td class="memItemLeft" align="right" valign="top"><a id="afced48f3e6fe3797b8ba7c4e9a31fbce"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>wave_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, <a class="el" href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">waves_t</a> &amp;waves)</td></tr>
+<tr class="memitem:afced48f3e6fe3797b8ba7c4e9a31fbce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#afced48f3e6fe3797b8ba7c4e9a31fbce">wave_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, <a class="el" href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">waves_t</a> &amp;waves)</td></tr>
+<tr class="memdesc:afced48f3e6fe3797b8ba7c4e9a31fbce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a wave if needed.  <a href="../../db/d6b/AllSystem_8hpp.html#afced48f3e6fe3797b8ba7c4e9a31fbce">More...</a><br /></td></tr>
 <tr class="separator:afced48f3e6fe3797b8ba7c4e9a31fbce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6da0385474ea29829571dd528724ab0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#ab6da0385474ea29829571dd528724ab0">collide_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memdesc:ab6da0385474ea29829571dd528724ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collide all entities.  <a href="../../db/d6b/AllSystem_8hpp.html#ab6da0385474ea29829571dd528724ab0">More...</a><br /></td></tr>
+<tr class="separator:ab6da0385474ea29829571dd528724ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0a76b0ed1e9c2be6c3ae0c25f017e8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#ad0a76b0ed1e9c2be6c3ae0c25f017e8d">lobby_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memdesc:ad0a76b0ed1e9c2be6c3ae0c25f017e8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lobby system.  <a href="../../db/d6b/AllSystem_8hpp.html#ad0a76b0ed1e9c2be6c3ae0c25f017e8d">More...</a><br /></td></tr>
+<tr class="separator:ad0a76b0ed1e9c2be6c3ae0c25f017e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b7f89d6a9e4786ad0602bf4d604d69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/AllSystem_8hpp.html#a92b7f89d6a9e4786ad0602bf4d604d69">clickable_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../da/d35/structVector2i.html">Vector2i</a> click_pos, <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen, <a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client)</td></tr>
+<tr class="memdesc:a92b7f89d6a9e4786ad0602bf4d604d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clickable system.  <a href="../../db/d6b/AllSystem_8hpp.html#a92b7f89d6a9e4786ad0602bf4d604d69">More...</a><br /></td></tr>
+<tr class="separator:a92b7f89d6a9e4786ad0602bf4d604d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Cédric Corge (<a href="#" onclick="location.href='mai'+'lto:'+'ced'+'ri'+'c.c'+'or'+'ge@'+'ep'+'ite'+'ch'+'.eu'; return false;">cedri<span style="display: none;">.nosp@m.</span>c.co<span style="display: none;">.nosp@m.</span>rge@e<span style="display: none;">.nosp@m.</span>pite<span style="display: none;">.nosp@m.</span>ch.eu</a>) </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-10-17</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a92b7f89d6a9e4786ad0602bf4d604d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b7f89d6a9e4786ad0602bf4d604d69">&#9670;&nbsp;</a></span>clickable_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int clickable_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../da/d35/structVector2i.html">Vector2i</a>&#160;</td>
+          <td class="paramname"><em>click_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;&#160;</td>
+          <td class="paramname"><em>current_screen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;&#160;</td>
+          <td class="paramname"><em>client</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clickable system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">click_pos</td><td>pos of the click </td></tr>
+    <tr><td class="paramname">current_screen</td><td>current screen </td></tr>
+    <tr><td class="paramname">client</td><td>client struct </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="ab6da0385474ea29829571dd528724ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6da0385474ea29829571dd528724ab0">&#9670;&nbsp;</a></span>collide_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int collide_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Collide all entities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="a0efff610c64cd6ce0cffeccd8e6d6f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0efff610c64cd6ce0cffeccd8e6d6f05">&#9670;&nbsp;</a></span>controllable_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int controllable_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Event&#160;</td>
+          <td class="paramname"><em>event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update all controllable entities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">event</td><td>Events received </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="a62ae88b77d435731d5eb24b35c43b6a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62ae88b77d435731d5eb24b35c43b6a7">&#9670;&nbsp;</a></span>drawable_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> uint32_t int drawable_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Scene screen. </p>
+<p>Draw all drawables entities</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">window</td><td>The window </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="a7ddc60aece91af41db4a5986c5422e7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddc60aece91af41db4a5986c5422e7f">&#9670;&nbsp;</a></span>ia_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ia_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call the AI function of each type of entities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="ad0a76b0ed1e9c2be6c3ae0c25f017e8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0a76b0ed1e9c2be6c3ae0c25f017e8d">&#9670;&nbsp;</a></span>lobby_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lobby_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lobby system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="a8b3cd118b593d02f227a503a895be4d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b3cd118b593d02f227a503a895be4d2">&#9670;&nbsp;</a></span>shooting_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int shooting_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check collision between entities if they have a collider. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="aeb6eed6b470f68323e0c10edb7368218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6eed6b470f68323e0c10edb7368218">&#9670;&nbsp;</a></span>velocity_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int velocity_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move all movable entities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="afced48f3e6fe3797b8ba7c4e9a31fbce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afced48f3e6fe3797b8ba7c4e9a31fbce">&#9670;&nbsp;</a></span>wave_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wave_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">waves_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>waves</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start a wave if needed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">waves</td><td>Current wave </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

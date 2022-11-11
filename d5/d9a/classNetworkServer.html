@@ -93,43 +93,376 @@ $(document).ready(function(){initNavTree('d5/d9a/classNetworkServer.html','../..
 <div class="title">NetworkServer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Network server class containing all infos of server network.  
+ <a href="../../d5/d9a/classNetworkServer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../df/d0a/server_8hpp_source.html">server.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0c186453ad2f0c3ed77c22834d3500a2"><td class="memItemLeft" align="right" valign="top"><a id="a0c186453ad2f0c3ed77c22834d3500a2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>NetworkServer</b> (unsigned short local_port)</td></tr>
+<tr class="memitem:a0c186453ad2f0c3ed77c22834d3500a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a0c186453ad2f0c3ed77c22834d3500a2">NetworkServer</a> (unsigned short local_port)</td></tr>
+<tr class="memdesc:a0c186453ad2f0c3ed77c22834d3500a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Network Server object.  <a href="../../d5/d9a/classNetworkServer.html#a0c186453ad2f0c3ed77c22834d3500a2">More...</a><br /></td></tr>
 <tr class="separator:a0c186453ad2f0c3ed77c22834d3500a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a071a231593feeff52698ffa0bf17b060"><td class="memItemLeft" align="right" valign="top"><a id="a071a231593feeff52698ffa0bf17b060"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>HasMessages</b> ()</td></tr>
+<tr class="memitem:a450382ee444f54b8d238f161d1514cff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a450382ee444f54b8d238f161d1514cff">~NetworkServer</a> ()</td></tr>
+<tr class="memdesc:a450382ee444f54b8d238f161d1514cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Network Server object.  <a href="../../d5/d9a/classNetworkServer.html#a450382ee444f54b8d238f161d1514cff">More...</a><br /></td></tr>
+<tr class="separator:a450382ee444f54b8d238f161d1514cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071a231593feeff52698ffa0bf17b060"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a071a231593feeff52698ffa0bf17b060">HasMessages</a> ()</td></tr>
+<tr class="memdesc:a071a231593feeff52698ffa0bf17b060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the server has messages to receive.  <a href="../../d5/d9a/classNetworkServer.html#a071a231593feeff52698ffa0bf17b060">More...</a><br /></td></tr>
 <tr class="separator:a071a231593feeff52698ffa0bf17b060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f62ef677e739331f76f351e44cab573"><td class="memItemLeft" align="right" valign="top"><a id="a2f62ef677e739331f76f351e44cab573"></a>
-ClientMessage&#160;</td><td class="memItemRight" valign="bottom"><b>PopMessage</b> ()</td></tr>
+<tr class="memitem:a2f62ef677e739331f76f351e44cab573"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a2f62ef677e739331f76f351e44cab573">PopMessage</a> ()</td></tr>
+<tr class="memdesc:a2f62ef677e739331f76f351e44cab573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop incoming message.  <a href="../../d5/d9a/classNetworkServer.html#a2f62ef677e739331f76f351e44cab573">More...</a><br /></td></tr>
 <tr class="separator:a2f62ef677e739331f76f351e44cab573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8856d4faf603687663d39bdcfc656f85"><td class="memItemLeft" align="right" valign="top"><a id="a8856d4faf603687663d39bdcfc656f85"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendToClient</b> (std::string message, std::size_t clientID)</td></tr>
+<tr class="memitem:a8856d4faf603687663d39bdcfc656f85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a8856d4faf603687663d39bdcfc656f85">SendToClient</a> (std::string message, std::size_t clientID)</td></tr>
+<tr class="memdesc:a8856d4faf603687663d39bdcfc656f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to a specific client.  <a href="../../d5/d9a/classNetworkServer.html#a8856d4faf603687663d39bdcfc656f85">More...</a><br /></td></tr>
 <tr class="separator:a8856d4faf603687663d39bdcfc656f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d5ad49ea421d866c09dbbacec3d19b3"><td class="memItemLeft" align="right" valign="top"><a id="a4d5ad49ea421d866c09dbbacec3d19b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendToAll</b> (std::string message)</td></tr>
+<tr class="memitem:a4d5ad49ea421d866c09dbbacec3d19b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a4d5ad49ea421d866c09dbbacec3d19b3">SendToAll</a> (std::string message)</td></tr>
+<tr class="memdesc:a4d5ad49ea421d866c09dbbacec3d19b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to all clients connected.  <a href="../../d5/d9a/classNetworkServer.html#a4d5ad49ea421d866c09dbbacec3d19b3">More...</a><br /></td></tr>
 <tr class="separator:a4d5ad49ea421d866c09dbbacec3d19b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a541631260647a770802d2eeacce01707"><td class="memItemLeft" align="right" valign="top"><a id="a541631260647a770802d2eeacce01707"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendToAllExcept</b> (std::string message, std::size_t clientID)</td></tr>
+<tr class="memitem:a541631260647a770802d2eeacce01707"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a541631260647a770802d2eeacce01707">SendToAllExcept</a> (std::string message, std::size_t clientID)</td></tr>
+<tr class="memdesc:a541631260647a770802d2eeacce01707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to all clients except one.  <a href="../../d5/d9a/classNetworkServer.html#a541631260647a770802d2eeacce01707">More...</a><br /></td></tr>
 <tr class="separator:a541631260647a770802d2eeacce01707"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17a100101370085672932633cf56d2ea"><td class="memItemLeft" align="right" valign="top"><a id="a17a100101370085672932633cf56d2ea"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendToClient</b> (const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; GameMessage &gt; &amp;message, std::size_t clientID)</td></tr>
+<tr class="memitem:a17a100101370085672932633cf56d2ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a17a100101370085672932633cf56d2ea">SendToClient</a> (const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt; &amp;message, std::size_t clientID)</td></tr>
+<tr class="memdesc:a17a100101370085672932633cf56d2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to a specific client.  <a href="../../d5/d9a/classNetworkServer.html#a17a100101370085672932633cf56d2ea">More...</a><br /></td></tr>
 <tr class="separator:a17a100101370085672932633cf56d2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9854d6e05f38dde5d0e8de4c8ed5b49d"><td class="memItemLeft" align="right" valign="top"><a id="a9854d6e05f38dde5d0e8de4c8ed5b49d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendToAll</b> (const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; GameMessage &gt; &amp;message)</td></tr>
+<tr class="memitem:a9854d6e05f38dde5d0e8de4c8ed5b49d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a9854d6e05f38dde5d0e8de4c8ed5b49d">SendToAll</a> (const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt; &amp;message)</td></tr>
+<tr class="memdesc:a9854d6e05f38dde5d0e8de4c8ed5b49d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to all clients connected.  <a href="../../d5/d9a/classNetworkServer.html#a9854d6e05f38dde5d0e8de4c8ed5b49d">More...</a><br /></td></tr>
 <tr class="separator:a9854d6e05f38dde5d0e8de4c8ed5b49d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23e2f196ec4ede7d332f840abd6055f6"><td class="memItemLeft" align="right" valign="top"><a id="a23e2f196ec4ede7d332f840abd6055f6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendToAllExcept</b> (const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; GameMessage &gt; &amp;message, std::size_t clientID)</td></tr>
+<tr class="memitem:a23e2f196ec4ede7d332f840abd6055f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a23e2f196ec4ede7d332f840abd6055f6">SendToAllExcept</a> (const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt; &amp;message, std::size_t clientID)</td></tr>
+<tr class="memdesc:a23e2f196ec4ede7d332f840abd6055f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to all clients except one.  <a href="../../d5/d9a/classNetworkServer.html#a23e2f196ec4ede7d332f840abd6055f6">More...</a><br /></td></tr>
 <tr class="separator:a23e2f196ec4ede7d332f840abd6055f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a564d8d2590ba1801558fe8e163e87b0a"><td class="memItemLeft" align="right" valign="top"><a id="a564d8d2590ba1801558fe8e163e87b0a"></a>
-std::vector&lt; std::function&lt; void(uint32_t)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>clientDisconnectedHandlers</b></td></tr>
-<tr class="separator:a564d8d2590ba1801558fe8e163e87b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c7704aa5c7b54a3ed201124da9d702d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::function&lt; void(std::size_t)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#a5c7704aa5c7b54a3ed201124da9d702d">clientDisconnectedHandlers</a></td></tr>
+<tr class="memdesc:a5c7704aa5c7b54a3ed201124da9d702d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing all the function needed to handle the disconnected clients.  <a href="../../d5/d9a/classNetworkServer.html#a5c7704aa5c7b54a3ed201124da9d702d">More...</a><br /></td></tr>
+<tr class="separator:a5c7704aa5c7b54a3ed201124da9d702d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d3c8f21d70b2f63b979a9a539f3861"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d0a/server_8hpp.html#ae061a2ee24383c1f86bc859d3a4ddc4f">ClientList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html#ad4d3c8f21d70b2f63b979a9a539f3861">clients</a></td></tr>
+<tr class="memdesc:ad4d3c8f21d70b2f63b979a9a539f3861"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of the clients.  <a href="../../d5/d9a/classNetworkServer.html#ad4d3c8f21d70b2f63b979a9a539f3861">More...</a><br /></td></tr>
+<tr class="separator:ad4d3c8f21d70b2f63b979a9a539f3861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Network server class containing all infos of server network. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0c186453ad2f0c3ed77c22834d3500a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c186453ad2f0c3ed77c22834d3500a2">&#9670;&nbsp;</a></span>NetworkServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NetworkServer::NetworkServer </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>local_port</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a new Network Server object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">local_port</td><td>port to connect the client </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a450382ee444f54b8d238f161d1514cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a450382ee444f54b8d238f161d1514cff">&#9670;&nbsp;</a></span>~NetworkServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NetworkServer::~NetworkServer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy the Network Server object. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a071a231593feeff52698ffa0bf17b060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071a231593feeff52698ffa0bf17b060">&#9670;&nbsp;</a></span>HasMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NetworkServer::HasMessages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the server has messages to receive. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if there is. False if there isn't any </dd></dl>
+
+</div>
+</div>
+<a id="a2f62ef677e739331f76f351e44cab573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f62ef677e739331f76f351e44cab573">&#9670;&nbsp;</a></span>PopMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a> NetworkServer::PopMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pop incoming message. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d8/dd0/structMessage.html" title="Message structure.">Message</a> as a ClientMessage class </dd></dl>
+
+</div>
+</div>
+<a id="a9854d6e05f38dde5d0e8de4c8ed5b49d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9854d6e05f38dde5d0e8de4c8ed5b49d">&#9670;&nbsp;</a></span>SendToAll() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkServer::SendToAll </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to all clients connected. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4d5ad49ea421d866c09dbbacec3d19b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5ad49ea421d866c09dbbacec3d19b3">&#9670;&nbsp;</a></span>SendToAll() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkServer::SendToAll </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to all clients connected. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a23e2f196ec4ede7d332f840abd6055f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23e2f196ec4ede7d332f840abd6055f6">&#9670;&nbsp;</a></span>SendToAllExcept() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkServer::SendToAllExcept </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>clientID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to all clients except one. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
+    <tr><td class="paramname">clientID</td><td>ID of the client to ignore </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a541631260647a770802d2eeacce01707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a541631260647a770802d2eeacce01707">&#9670;&nbsp;</a></span>SendToAllExcept() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkServer::SendToAllExcept </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>clientID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to all clients except one. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
+    <tr><td class="paramname">clientID</td><td>ID of the client to ignore </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a17a100101370085672932633cf56d2ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a100101370085672932633cf56d2ea">&#9670;&nbsp;</a></span>SendToClient() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkServer::SendToClient </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>clientID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to a specific client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
+    <tr><td class="paramname">clientID</td><td>ID of the client to notify </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8856d4faf603687663d39bdcfc656f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8856d4faf603687663d39bdcfc656f85">&#9670;&nbsp;</a></span>SendToClient() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkServer::SendToClient </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>clientID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to a specific client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to send </td></tr>
+    <tr><td class="paramname">clientID</td><td>ID of the client to notify </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5c7704aa5c7b54a3ed201124da9d702d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c7704aa5c7b54a3ed201124da9d702d">&#9670;&nbsp;</a></span>clientDisconnectedHandlers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::function&lt;void(std::size_t)&gt; &gt; NetworkServer::clientDisconnectedHandlers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vector containing all the function needed to handle the disconnected clients. </p>
+
+</div>
+</div>
+<a id="ad4d3c8f21d70b2f63b979a9a539f3861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d3c8f21d70b2f63b979a9a539f3861">&#9670;&nbsp;</a></span>clients</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d0a/server_8hpp.html#ae061a2ee24383c1f86bc859d3a4ddc4f">ClientList</a> NetworkServer::clients</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>List of the clients. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/server/<a class="el" href="../../df/d0a/server_8hpp_source.html">server.hpp</a></li>
 <li>src/server/<a class="el" href="../../df/dd7/server_8cpp.html">server.cpp</a></li>

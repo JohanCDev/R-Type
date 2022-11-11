@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['world_253',['World',['../d6/d39/classWorld.html#a5e8f344e50f3f175753369b14587c2e1',1,'World']]]
+  ['quit_5fcallback_511',['quit_callback',['../df/dda/AllCallback_8hpp.html#ae03ef59d911bfebbc1e0b3d4a54aefaf',1,'quit_callback(World &amp;world, SceneScreen &amp;current_screen, NetworkClient &amp;client):&#160;callback.cpp'],['../de/de2/callback_8cpp.html#ae03ef59d911bfebbc1e0b3d4a54aefaf',1,'quit_callback(World &amp;world, SceneScreen &amp;current_screen, NetworkClient &amp;client):&#160;callback.cpp']]]
 ];

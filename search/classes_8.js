@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['maximumvelocitycomponent_140',['MaximumVelocityComponent',['../d3/dab/structMaximumVelocityComponent.html',1,'']]],
-  ['message_141',['Message',['../d8/dd0/structMessage.html',1,'']]],
-  ['messageheader_142',['MessageHeader',['../d8/db5/structMessageHeader.html',1,'']]]
+  ['networkclient_330',['NetworkClient',['../d9/d5d/classNetworkClient.html',1,'']]],
+  ['networkserver_331',['NetworkServer',['../d5/d9a/classNetworkServer.html',1,'']]]
 ];

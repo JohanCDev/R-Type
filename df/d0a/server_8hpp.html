@@ -111,18 +111,29 @@ $(document).ready(function(){initNavTree('df/d0a/server_8hpp.html','../../'); in
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Network server class containing all infos of server network.  <a href="../../d5/d9a/classNetworkServer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae32d133147b9dd7a9b1bfe370a71b72e"><td class="memItemLeft" align="right" valign="top"><a id="ae32d133147b9dd7a9b1bfe370a71b72e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/server_8hpp.html#ae32d133147b9dd7a9b1bfe370a71b72e">BOOST_BIND_GLOBAL_PLACEHOLDERS</a></td></tr>
+<tr class="memdesc:ae32d133147b9dd7a9b1bfe370a71b72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define boost placeholders. <br /></td></tr>
+<tr class="separator:ae32d133147b9dd7a9b1bfe370a71b72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8f91f93d75a07f0ae45077db45b3eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/server_8hpp.html#a0a8f91f93d75a07f0ae45077db45b3eb">MAX_CLIENTS</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:a0a8f91f93d75a07f0ae45077db45b3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the maximum of clients able to connect.  <a href="../../df/d0a/server_8hpp.html#a0a8f91f93d75a07f0ae45077db45b3eb">More...</a><br /></td></tr>
+<tr class="separator:a0a8f91f93d75a07f0ae45077db45b3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae061a2ee24383c1f86bc859d3a4ddc4f"><td class="memItemLeft" align="right" valign="top"><a id="ae061a2ee24383c1f86bc859d3a4ddc4f"></a>
-typedef boost::bimap&lt; std::size_t, udp::endpoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ClientList</b></td></tr>
+<tr class="memitem:ae061a2ee24383c1f86bc859d3a4ddc4f"><td class="memItemLeft" align="right" valign="top">typedef boost::bimap&lt; std::size_t, udp::endpoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/server_8hpp.html#ae061a2ee24383c1f86bc859d3a4ddc4f">ClientList</a></td></tr>
+<tr class="memdesc:ae061a2ee24383c1f86bc859d3a4ddc4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all the clients.  <a href="../../df/d0a/server_8hpp.html#ae061a2ee24383c1f86bc859d3a4ddc4f">More...</a><br /></td></tr>
 <tr class="separator:ae061a2ee24383c1f86bc859d3a4ddc4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a621a3d0b1af26fc6b724a97c867da53b"><td class="memItemLeft" align="right" valign="top"><a id="a621a3d0b1af26fc6b724a97c867da53b"></a>
-typedef ClientList::value_type&#160;</td><td class="memItemRight" valign="bottom"><b>Client</b></td></tr>
+<tr class="memitem:a621a3d0b1af26fc6b724a97c867da53b"><td class="memItemLeft" align="right" valign="top">typedef ClientList::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/server_8hpp.html#a621a3d0b1af26fc6b724a97c867da53b">Client</a></td></tr>
+<tr class="memdesc:a621a3d0b1af26fc6b724a97c867da53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a value value_type for the client.  <a href="../../df/d0a/server_8hpp.html#a621a3d0b1af26fc6b724a97c867da53b">More...</a><br /></td></tr>
 <tr class="separator:a621a3d0b1af26fc6b724a97c867da53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6adc690f30803335a1fddd313266e6d3"><td class="memItemLeft" align="right" valign="top"><a id="a6adc690f30803335a1fddd313266e6d3"></a>
-typedef std::pair&lt; <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; GameMessage &gt;, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ClientMessage</b></td></tr>
+<tr class="memitem:a6adc690f30803335a1fddd313266e6d3"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; <a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt; <a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a> &gt;, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a></td></tr>
+<tr class="memdesc:a6adc690f30803335a1fddd313266e6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a pair of messages and size.  <a href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">More...</a><br /></td></tr>
 <tr class="separator:a6adc690f30803335a1fddd313266e6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -131,7 +142,73 @@ typedef std::pair&lt; <a class="el" href="../../d8/dd0/structMessage.html">Messa
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-10-05</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a0a8f91f93d75a07f0ae45077db45b3eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8f91f93d75a07f0ae45077db45b3eb">&#9670;&nbsp;</a></span>MAX_CLIENTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_CLIENTS&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define the maximum of clients able to connect. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a621a3d0b1af26fc6b724a97c867da53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621a3d0b1af26fc6b724a97c867da53b">&#9670;&nbsp;</a></span>Client</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef ClientList::value_type <a class="el" href="../../df/d0a/server_8hpp.html#a621a3d0b1af26fc6b724a97c867da53b">Client</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a value value_type for the client. </p>
+
+</div>
+</div>
+<a id="ae061a2ee24383c1f86bc859d3a4ddc4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae061a2ee24383c1f86bc859d3a4ddc4f">&#9670;&nbsp;</a></span>ClientList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef boost::bimap&lt;std::size_t, udp::endpoint&gt; <a class="el" href="../../df/d0a/server_8hpp.html#ae061a2ee24383c1f86bc859d3a4ddc4f">ClientList</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>List of all the clients. </p>
+
+</div>
+</div>
+<a id="a6adc690f30803335a1fddd313266e6d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6adc690f30803335a1fddd313266e6d3">&#9670;&nbsp;</a></span>ClientMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::pair&lt;<a class="el" href="../../d8/dd0/structMessage.html">Message</a>&lt;<a class="el" href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a>&gt;, std::size_t&gt; <a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a pair of messages and size. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

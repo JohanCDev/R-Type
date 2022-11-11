@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('db/d43/ControllableSystem_8cpp.html','
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;../Common/Message/Message.hpp&quot;</code><br />
+<code>#include &quot;../Common/Message/MessageType.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../db/d8f/AllComponents_8hpp_source.html">../Components/AllComponents.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../db/dd1/Registry_8hpp_source.html">../Registry.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d0/d17/ResourcesManager_8hpp_source.html">../ResourcesManager.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d0/dbb/World_8hpp_source.html">../World.hpp</a>&quot;</code><br />
-<code>#include &quot;../Common/Message/Message.hpp&quot;</code><br />
-<code>#include &quot;../Common/Message/MessageType.hpp&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aee299856ed69a968911c93ec3e8592b2"><td class="memItemLeft" align="right" valign="top"><a id="aee299856ed69a968911c93ec3e8592b2"></a>
-<a class="el" href="../../db/ded/structVector2f.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getShootPosition</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, std::optional&lt; <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> &gt; position, std::optional&lt; <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> &gt; drawable)</td></tr>
+<tr class="memitem:aee299856ed69a968911c93ec3e8592b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/ded/structVector2f.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d43/ControllableSystem_8cpp.html#aee299856ed69a968911c93ec3e8592b2">getShootPosition</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, std::optional&lt; <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> &gt; position, std::optional&lt; <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> &gt; drawable)</td></tr>
+<tr class="memdesc:aee299856ed69a968911c93ec3e8592b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Shoot Position of the entity.  <a href="../../db/d43/ControllableSystem_8cpp.html#aee299856ed69a968911c93ec3e8592b2">More...</a><br /></td></tr>
 <tr class="separator:aee299856ed69a968911c93ec3e8592b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="memItemLeft" align="right" valign="top"><a id="a0efff610c64cd6ce0cffeccd8e6d6f05"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>controllable_system</b> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, sf::Event event)</td></tr>
+<tr class="memitem:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d43/ControllableSystem_8cpp.html#a0efff610c64cd6ce0cffeccd8e6d6f05">controllable_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, sf::Event event)</td></tr>
+<tr class="memdesc:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update all controllable entities.  <a href="../../db/d43/ControllableSystem_8cpp.html#a0efff610c64cd6ce0cffeccd8e6d6f05">More...</a><br /></td></tr>
 <tr class="separator:a0efff610c64cd6ce0cffeccd8e6d6f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -113,7 +113,91 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>controllable_system</b
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-10-16</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a0efff610c64cd6ce0cffeccd8e6d6f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0efff610c64cd6ce0cffeccd8e6d6f05">&#9670;&nbsp;</a></span>controllable_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int controllable_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Event&#160;</td>
+          <td class="paramname"><em>event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update all controllable entities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">event</td><td>Events received </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>negative value if there is an error </dd></dl>
+
+</div>
+</div>
+<a id="aee299856ed69a968911c93ec3e8592b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee299856ed69a968911c93ec3e8592b2">&#9670;&nbsp;</a></span>getShootPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/ded/structVector2f.html">Vector2f</a> getShootPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> &gt;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> &gt;&#160;</td>
+          <td class="paramname"><em>drawable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the Shoot Position of the entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">position</td><td>Position of the entity </td></tr>
+    <tr><td class="paramname">drawable</td><td>Drawable of the entity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../db/ded/structVector2f.html" title="Define a vector of float.">Vector2f</a> The position of the shoot </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
