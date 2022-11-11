@@ -253,7 +253,6 @@ void ok_packet(World &world, NetworkClient &client, Message<GameMessage> msg, Sc
     (void)client;
     (void)msg;
     (void)current_screen;
-    // ok j'en fais quoi ???
 }
 
 void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
