@@ -1,4 +1,4 @@
-name: Publish Release
+name: Publish Documentation
 
 on:
   workflow_dispatch:
@@ -9,7 +9,6 @@ on:
         default: "[UPD] Documentation"
 
   deploy-documentation:
-    needs: [build-on-windows, build-on-ubuntu]
     runs-on: ubuntu-latest
     concurrency:
       group: "pages"
