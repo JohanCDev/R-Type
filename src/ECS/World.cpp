@@ -29,6 +29,7 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SoundEffectComponent>();
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
 
@@ -51,6 +52,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SoundEffectComponent>();
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
@@ -122,15 +124,15 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
+    this->_manager.register_texture("assets/Power-up/boost_hp.png");
+    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 void World::register_option_assets()
 {
     this->_manager.register_texture("assets/Button/home.png");
-    this->_manager.register_texture("assets/Power-up/boost_attack.png");
-    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
-    this->_manager.register_texture("assets/Power-up/boost_hp.png");
-    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 sf::Clock &World::getClock()
@@ -219,6 +221,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("./assets/music/mainTheme.wav"));
 
     return (ent.id);
 }
