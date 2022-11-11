@@ -37,8 +37,7 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
             window.close();
             client.send(byeMsg);
         }
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left
-            || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
             client.send(shootMsg);
         }
     }

@@ -55,5 +55,9 @@ enum class GameObject : uint32_t {
     SHIP_ARMORED,
     SHIP_DAMAGE,
     SHIP_ENGINEER,
-    SHIP_SNIPER
+    SHIP_SNIPER,
+    BONUS_ATTACK,
+    BONUS_ATTACK_SPEED,
+    BONUS_HEAL,
+    BONUS_SPEED
 };
