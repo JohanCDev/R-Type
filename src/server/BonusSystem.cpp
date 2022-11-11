@@ -23,7 +23,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &speed = world.getRegistry().get_components<SpeedComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
-    // auto &health = world.getRegistry().get_components<HealthComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
@@ -33,7 +32,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
     bool bonus_bool = false;
 
     for (size_t i = 0; i < bonus.size(); ++i) {
-        // std::cout << "j'ai trouvé un bonus" << std::endl;
         auto &bonus_tmp = bonus[i];
         auto &position = positions[i];
         auto &drawable = drawables[i];
@@ -53,7 +51,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             double elapsed_time_bs =
                 double(std::chrono::duration_cast<std::chrono::seconds>(endbonus - bonus_tmp->_time).count());
             if (elapsed_time_bs >= 8.0) {
-                std::cout << "il faut prendre se bonus\n" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                 sending_msg << entityId[i]->id;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
@@ -122,13 +119,10 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             double(std::chrono::duration_cast<std::chrono::seconds>(end - bonus_stat.timer[i].first).count());
         if (elapsed_time_ns >= 4.0) {
             if (bonus_stat.timer[i].second.speed > 0) {
-                std::cout << "je suis moins rapide" << std::endl;
                 speed[bonus_stat.timer[i].second.nbr]->speed -= 1;
             } else if (bonus_stat.timer[i].second.strengh > 0) {
-                std::cout << "je suis moins fort" << std::endl;
                 weapons[bonus_stat.timer[i].second.nbr]->stat.x -= 20;
             } else if (bonus_stat.timer[i].second.strengh) {
-                std::cout << "je suis moins attack rapide" << std::endl;
                 weapons[bonus_stat.timer[i].second.nbr]->stat.y -= 20;
             }
             bonus_stat.timer.erase(bonus_stat.timer.cbegin() + i);

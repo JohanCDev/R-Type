@@ -29,6 +29,8 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
+    this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
 
     this->register_all_assets();

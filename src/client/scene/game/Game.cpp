@@ -47,7 +47,7 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
         client.processMessage(this->msg, _world, window, current_screen);
     }
     window.clear(sf::Color::Black);
-    // drawable_system(_world, window);
+    drawable_system(_world, window);
     velocity_system(_world);
     window.display();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
