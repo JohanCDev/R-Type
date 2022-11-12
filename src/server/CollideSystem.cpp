@@ -93,7 +93,6 @@ int collide_system(World &world, NetworkServer &server)
                                 }
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
-                                std::cout << "entity dead" << std::endl;
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             }
                             server.SendToAll(sending_msg);
