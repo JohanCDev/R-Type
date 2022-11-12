@@ -71,7 +71,8 @@ int collide_system(World &world, NetworkServer &server)
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
-                if (j != i && teams[i]->team != teams[j]->team && teams[i]->team != GameTeam::NEUTRAL && teams[j]->team != GameTeam::NEUTRAL) {
+                if (j != i && teams[i]->team != teams[j]->team && teams[i]->team != GameTeam::NEUTRAL
+                    && teams[j]->team != GameTeam::NEUTRAL) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
@@ -87,11 +88,12 @@ int collide_system(World &world, NetworkServer &server)
                                 sending_msg << weapons[i]->stat.x;
                                 sending_msg << health[j]->max_hp;
                             } else {
-                                if (teams[j]->team ==  GameTeam::ENEMY && random_variable % 3 == 0) {
+                                if (teams[j]->team == GameTeam::ENEMY && random_variable % 3 == 0) {
                                     bonus_creation(world, server, positions[j]->pos);
                                 }
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
+                                std::cout << "entity dead" << std::endl;
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(j));
                             }
                             server.SendToAll(sending_msg);
