@@ -13,6 +13,7 @@
 
 #include <string>
 #include <chrono>
+#include <SFML/Audio.hpp>
 
 /**
  * @brief Add sound effect for entities
@@ -20,11 +21,12 @@
  */
 struct SoundEffectComponent {
     std::string soundEffect;
+    // sf::SoundBuffer soundEffect;
 
     /**
      * @brief Construct a new Sound Effect Component object
      *
      * @param soundEffect string of sound effect
      */
-    SoundEffectComponent(std::string sound) : soundEffect(sound) {};
+    SoundEffectComponent(const std::string &sound) : soundEffect(sound) {};
 };

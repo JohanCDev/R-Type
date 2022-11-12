@@ -191,7 +191,7 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     (void)current_screen;
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
-    // auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
+    auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     size_t index = 0;
     auto &sounds = world.getSoundEffects();
 
@@ -199,9 +199,10 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
-                sounds.find("dead")->second.get()->stop();
-                usleep(10000);
-                sounds.find("dead")->second.get()->play();
+                if (sound[index] && sound[index]->soundEffect.compare("explosion") == 0) {
+                    sounds.find("dead")->second.get()->stop();
+                    sounds.find("dead")->second.get()->play();
+                }
                 std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
