@@ -85,6 +85,10 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack.png");
+    this->_manager.register_texture("assets/Power-up/boost_hp.png");
+    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 void World::register_menu_assets()
@@ -122,10 +126,10 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
-    this->_manager.register_texture("assets/Stats/attack_speed.png");
-    this->_manager.register_texture("assets/Stats/boost_attack.png");
-    this->_manager.register_texture("assets/Stats/boost_hp.png");
-    this->_manager.register_texture("assets/Stats/speed.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack.png");
+    this->_manager.register_texture("assets/Power-up/boost_hp.png");
+    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 void World::register_option_assets()
@@ -356,7 +360,7 @@ void World::create_border_entities()
     this->_r.add_component<WeaponComponent>(player_border, WeaponComponent("meteor", Vector2i{99999, 1}, 0));
     this->_r.add_component<DestroyableComponent>(player_border, DestroyableComponent(true));
     this->_r.add_component<GameTeamComponent>(player_border, GameTeamComponent(GameTeam::ENEMY));
-    this->_r.add_component<EntityIDComponent>(player_border, EntityIDComponent(player_border));
+    this->_r.add_component<EntityIDComponent>(player_border, EntityIDComponent((size_t)player_border));
 
     Entity enemy_border = this->_r.spawn_entity();
 
@@ -367,7 +371,7 @@ void World::create_border_entities()
     this->_r.add_component<WeaponComponent>(enemy_border, WeaponComponent("meteor", Vector2i{99999, 1}, 0));
     this->_r.add_component<DestroyableComponent>(enemy_border, DestroyableComponent(true));
     this->_r.add_component<GameTeamComponent>(enemy_border, GameTeamComponent(GameTeam::PLAYER));
-    this->_r.add_component<EntityIDComponent>(enemy_border, EntityIDComponent(enemy_border));
+    this->_r.add_component<EntityIDComponent>(enemy_border, EntityIDComponent((size_t)enemy_border));
 }
 
 void World::register_all_drawable_object()
