@@ -201,6 +201,9 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
             if (entityId->id == id_entity.id) {
                 if (sound[index] && sound[index]->soundEffect.compare("explosion") == 0) {
                     sounds.find("dead")->second.get()->stop();
+#if __APPLE__
+                    usleep(10000);
+#endif
                     sounds.find("dead")->second.get()->play();
                 }
                 std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
