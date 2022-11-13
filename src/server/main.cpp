@@ -61,6 +61,7 @@ int main()
                     adapt_difficulty = false;
                     waves.base_difficulty = DEFAULT_WAVE_DIFFICULTY * server.clients.size();
                     waves.remaining_difficulty = waves.base_difficulty;
+                }
                 if (refreshClock.getElapsedTime().asSeconds() > 1.0f) {
                     refresh_system(world, server);
                     refreshClock.restart();

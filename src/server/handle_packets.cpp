@@ -109,8 +109,8 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
             if (i.value().id == msg.second) {
                 velocity[index]->speed.x = move.x * speed[index]->speed;
                 velocity[index]->speed.y = move.y * speed[index]->speed;
-                std::cout << "Player[" << msg.second << "]: Velocity{" << velocity[index]->speed.x << ", "
-                          << velocity[index]->speed.y << "}" << std::endl;
+                // std::cout << "Player[" << msg.second << "]: Velocity{" << velocity[index]->speed.x << ", "
+                        //   << velocity[index]->speed.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entities[index]->id;
                 sending_msg << velocity[index]->speed;

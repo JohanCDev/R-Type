@@ -58,8 +58,6 @@ void NetworkClient::handle_receive(const std::error_code &error, std::size_t byt
             boost::archive::binary_iarchive ia(s);
             ia >> gameMsg;
 
-            // std::cout << gameMsg.body
-
             if (gameMsg.size() != 0)
                 incomingMessages.push(gameMsg);
         } catch (...) {
@@ -211,19 +209,19 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
-                if (sound[index] && sound[index]->soundEffect.compare("explosion") == 0) {
+                if (sound[index] && sound[index].has_value() && sound[index]->soundEffect.compare("explosion") == 0) {
                     sounds.find("dead")->second.get()->stop();
-#if __APPLE__
+// #if __APPLE__
                     usleep(10000);
-#endif
+// #endif
                     sounds.find("dead")->second.get()->setVolume(client.getSoundVolume());
                     sounds.find("dead")->second.get()->play();
                 }
-                if (sound[index] && sound[index]->soundEffect.compare("bonus") == 0) {
+                if (sound[index] && sound[index].has_value() && sound[index]->soundEffect.compare("bonus") == 0) {
                     sounds.find("bonus")->second.get()->stop();
-#if __APPLE__
+// #if __APPLE__
                     usleep(10000);
-#endif
+// #endif
                     sounds.find("bonus")->second.get()->setVolume(client.getSoundVolume());
                     sounds.find("bonus")->second.get()->play();
                 }
@@ -290,8 +288,8 @@ void movement(World &world, NetworkClient &client, Message<GameMessage> msg, Sce
     for (auto &idCompo : entityId) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
-                std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
-                          << std::endl;
+                // std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
+                        //   << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
                 break;

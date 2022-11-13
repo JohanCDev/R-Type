@@ -60,7 +60,7 @@ enum class GameObject : uint32_t {
     BOSS_1,
     ENEMY_FOCUS,
     ENEMY_KAMIKAZE,
-    ENEMY_SNIPER
+    ENEMY_SNIPER,
     BONUS_ATTACK,
     BONUS_ATTACK_SPEED,
     BONUS_HEAL,

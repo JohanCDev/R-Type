@@ -72,7 +72,7 @@ void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     Message<GameMessage> sending_msg;
     int random_dir = rand() % 2;
-    int random_shoot = rand() % 400;
+    int random_shoot = rand() % 64;
     size_t entity_id = 0;
 
     if (positions[i]->pos.x < 1820 && velocity[i]->speed.x != 0) {
