@@ -18,7 +18,7 @@ int end_game_system(World &world, NetworkServer &server)
 
     int alivePlayers = 0;
 
-    for (auto& client : clients) {
+    for (auto &client : clients) {
         if (client && client.has_value())
             alivePlayers++;
     }
@@ -28,6 +28,16 @@ int end_game_system(World &world, NetworkServer &server)
         msg.header.id = GameMessage::S2C_GAME_END;
         msg << "end";
         server.SendToAll(msg);
+        auto &drawables = world.getRegistry().get_components<DrawableComponent>();
+        auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
+        for (size_t i = 0; i < drawables.size(); i++) {
+            if (drawables[i] && drawables[i].has_value()) {
+                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
+                msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                msg << entityId[i]->id;
+                server.SendToAll(msg);
+            }
+        }
         world.state = GameState::Over;
     }
     return 0;
