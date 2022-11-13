@@ -87,12 +87,12 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat);
 
 /**
  * @brief check collision between two entities
- * 
- * @param manager 
- * @param sprite 
- * @param position 
- * @param drawable 
- * @return int 
+ *
+ * @param manager
+ * @param sprite
+ * @param position
+ * @param drawable
+ * @return int
  */
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable);
@@ -122,13 +122,14 @@ int lobby_system(World &world, NetworkServer &server);
  * @param client client struct
  * @return negative value if there is an error
  */
-int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client);
+int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Creates a music
  *
  * @param world world to act on
  * @param music_filepath filepath to music
+ * @param volume volume of the music
  * @return Negative value in case of error
  */
-int music_system(World &world, const std::string &music_filepath);
+int music_system(World &world, const std::string &music_filepath, float &volume);

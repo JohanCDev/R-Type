@@ -148,6 +148,9 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
     this->_manager.register_texture("assets/Power-up/boost_speed.png");
+    this->_manager.register_texture("assets/Button/button_volume.png");
+    this->_manager.register_texture("assets/Button/button_less_volume.png");
+    this->_manager.register_texture("assets/Button/button_more_volume.png");
 }
 
 void World::register_option_assets()
@@ -298,10 +301,10 @@ size_t World::create_text(std::string text, std::string font, int size, Vector2f
     return (ent.id);
 }
 
-size_t World::create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
-    std::function<void(World &, SceneScreen &, NetworkClient &)> callback)
+size_t World::create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+    std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback)
 {
-    size_t id = this->create_drawable_object(asset, rect, Vector4i{255, 255, 255, 255}, scale, pos);
+    size_t id = this->create_drawable_object(asset, rect, color, scale, pos);
     this->_r.add_component((Entity)id, ClickableComponent(callback));
     return (id);
 }

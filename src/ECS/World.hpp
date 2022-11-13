@@ -184,8 +184,8 @@ class World {
      * @param callback
      * @return size_t
      */
-    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
-        std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
+    size_t create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+        std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback);
 
     /**
      * @brief Registers all drawable objects

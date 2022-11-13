@@ -49,7 +49,7 @@ void shadow_button(World &world)
     }
 }
 
-void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)
+void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume)
 {
     Message<GameMessage> msg;
     Message<GameMessage> hiMsg;
@@ -73,23 +73,20 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
-        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
-            current_screen = SceneScreen::GAME;
-        }
         if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
-            launch_game(_world, current_screen, client);
+            launch_game(_world, current_screen, client, volume);
         } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num1) {
-            select_armored_ship(_world, current_screen, client);
+            select_armored_ship(_world, current_screen, client, volume);
         } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num2) {
-            select_damage_ship(_world, current_screen, client);
+            select_damage_ship(_world, current_screen, client, volume);
         } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num3) {
-            select_engineer_ship(_world, current_screen, client);
+            select_engineer_ship(_world, current_screen, client, volume);
         } else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num4) {
-            select_sniper_ship(_world, current_screen, client);
+            select_sniper_ship(_world, current_screen, client, volume);
         }
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(
-                this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y},
+                current_screen, client, volume);
         }
     }
 
@@ -135,21 +132,21 @@ void LobbyScene::init_lobby(sf::RenderWindow &window)
         Vector4i{255, 255, 255, 255}, Vector2f{1.9, 1.6}, Vector2f{0, 0});
 
     pos = {164, (float)window.getSize().y / 2};
-    _world.create_button("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0},
-        pos, &select_armored_ship);
+    _world.create_button("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, pos, &select_armored_ship);
     pos = {600, (float)window.getSize().y / 2};
-    _world.create_button("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0},
-        pos, &select_damage_ship);
+    _world.create_button("assets/SpaceShip/ship_damage_spritesheet.png", Vector4i{0, 0, 128, 128},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, pos, &select_damage_ship);
     pos = {1000, (float)window.getSize().y / 2};
-    _world.create_button("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0},
-        pos, &select_engineer_ship);
+    _world.create_button("assets/SpaceShip/ship_engineer_spritesheet.png", Vector4i{0, 0, 128, 128},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, pos, &select_engineer_ship);
     pos = {1500, (float)window.getSize().y / 2};
-    _world.create_button("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128}, Vector2f{2.0, 2.0},
-        pos, &select_sniper_ship);
+    _world.create_button("assets/SpaceShip/ship_sniper_spritesheet.png", Vector4i{0, 0, 128, 128},
+        Vector4i{255, 255, 255, 255}, Vector2f{2.0, 2.0}, pos, &select_sniper_ship);
 
     pos = {(float)window.getSize().x / 2 - 131.4f, (float)window.getSize().y - 124.0f};
-    _world.create_button(
-        "assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector2f{0.4, 0.4}, pos, &launch_game);
+    _world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector4i{255, 255, 255, 255},
+        Vector2f{0.4, 0.4}, pos, &launch_game);
     _world.create_text("PLAY", "assets/font/EMINOR-BlackItalic.ttf", 40,
         Vector2f{static_cast<float>(window.getSize().x / 2 - 40), pos.y + 40});
 }

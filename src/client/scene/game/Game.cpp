@@ -15,7 +15,7 @@ GameScene::GameScene() : _world(true), _init(false), _option(false)
 {
 }
 
-void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)
+void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume)
 {
     sf::Event event;
     Message<GameMessage> byeMsg;
@@ -42,6 +42,12 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
             this->_option = !this->_option;
             this->display_option(this->_option);
         }
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+            if (clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y},
+                    current_screen, client, volume)
+                == 1)
+                continue;
+        }
         if ((event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)) {
             client.send(shootMsg);
@@ -64,6 +70,7 @@ static std::vector<std::string> parallax_assets_vector{
     "assets/background/bkgd_1.png",
     "assets/background/bkgd_2.png",
 };
+
 void GameScene::update_parallax()
 {
     auto &drawables = _world.getRegistry().get_components<DrawableComponent>();
@@ -121,5 +128,13 @@ void GameScene::init_game(sf::RenderWindow &window)
     _world.create_settings(Vector2f{(float)window.getSize().x, (float)window.getSize().y});
     _world.create_healthbar(1);
     _world.create_drawable_object("assets/background/bg-settings.png", Vector4i{0, 0, 1074, 402},
-        Vector4i{255, 255, 255, 0}, Vector2f{1.0, 1.0}, Vector2f{0, 0});
+        Vector4i{255, 255, 255, 0}, Vector2f{1.0, 1.0},
+        Vector2f{window.getSize().x / 2 - 537, window.getSize().y / 2 - 201});
+    _world.create_button("assets/Button/button_less_volume.png", Vector4i{0, 0, 319, 319}, Vector4i{255, 255, 255, 0},
+        Vector2f{0.5, 0.5}, Vector2f{window.getSize().x / 2 - 300, window.getSize().y / 2 - 50}, &down_sound);
+    _world.create_drawable_object("assets/Button/button_volume.png", Vector4i{0, 0, 319, 319},
+        Vector4i{255, 255, 255, 0}, Vector2f{0.5, 0.5},
+        Vector2f{window.getSize().x / 2 - 75, window.getSize().y / 2 - 50});
+    _world.create_button("assets/Button/button_more_volume.png", Vector4i{0, 0, 319, 319}, Vector4i{255, 255, 255, 0},
+        Vector2f{0.5, 0.5}, Vector2f{window.getSize().x / 2 + 150, window.getSize().y / 2 - 50}, &up_sound);
 }

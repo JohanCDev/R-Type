@@ -12,7 +12,7 @@
 #include "client.hpp"
 #include "proto.hpp"
 
-void new_player(World &world, size_t srv_entity_id, Vector2f pos)
+void new_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -23,7 +23,7 @@ void new_player(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos)
+void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -34,7 +34,7 @@ void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos)
+void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -45,7 +45,7 @@ void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos)
+void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -56,7 +56,7 @@ void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos)
+void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -67,7 +67,7 @@ void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Player[" << srv_entity_id << "]: joined the game at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos)
+void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -78,7 +78,7 @@ void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos)
+void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -89,7 +89,7 @@ void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos)
+void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -100,7 +100,7 @@ void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Enemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_boss1(World &world, size_t srv_entity_id, Vector2f pos)
+void new_boss1(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -111,7 +111,7 @@ void new_boss1(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "Boss1[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_laser(World &world, size_t srv_entity_id, Vector2f pos)
+void new_laser(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -123,11 +123,12 @@ void new_laser(World &world, size_t srv_entity_id, Vector2f pos)
 #if __APPLE__
     usleep(10000);
 #endif
+    world.getSoundEffects().find("laser")->second.get()->setVolume(client.getSoundVolume());
     world.getSoundEffects().find("laser")->second.get()->play();
     std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos)
+void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -138,7 +139,7 @@ void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos)
+void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -150,7 +151,7 @@ void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos)
+void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
@@ -161,7 +162,7 @@ void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos)
     std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
 
-void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos)
+void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)
 {
     size_t new_entity_id;
     PositionComponent position(pos);
