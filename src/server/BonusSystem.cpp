@@ -68,7 +68,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1
                             && teams[j]->team == GameTeam::PLAYER) {
-                            std::cout << "hit bonus entity [" << entityId[j]->id << "]." << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
                                 weapons[j]->stat.x += 20;
                                 std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;

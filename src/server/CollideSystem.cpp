@@ -72,9 +72,6 @@ int collide_system(World &world, NetworkServer &server)
                                 health[j]->hp = 0;
                             if (health[i]->hp < 0)
                                 health[i]->hp = 0;
-                            std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id
-                                      << "]. They now have " << health[i]->hp << " and " << health[j]->hp << " hp."
-                                      << std::endl;
                             if (health[j]->hp > 0) {
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_HIT;
                                 sending_msg << entityId[j]->id;
@@ -84,7 +81,6 @@ int collide_system(World &world, NetworkServer &server)
                                 server.SendToAll(sending_msg);
                                 sending_msg = Message<GameMessage>();
                             } else {
-                                std::cout << "Entity[" << entityId[j]->id << "] is dead." << std::endl;
                                 if (teams[j]->team == GameTeam::ENEMY && random_variable % 3 == 0) {
                                     bonus_creation(world, server, positions[j]->pos);
                                 }
@@ -104,7 +100,6 @@ int collide_system(World &world, NetworkServer &server)
                                 server.SendToAll(sending_msg);
                                 sending_msg = Message<GameMessage>();
                             } else {
-                                std::cout << "Entity[" << entityId[i]->id << "] is dead." << std::endl;
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[i]->id;
                                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));

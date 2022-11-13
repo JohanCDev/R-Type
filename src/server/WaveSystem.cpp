@@ -32,8 +32,6 @@ int create_boss_1(World &world, NetworkServer &server)
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
 
-    std::cout << "Boss[" << entity_id << "]: created at Position{" << defaultValues[GameObject::BOSS_1].pos.x << ", "
-              << defaultValues[GameObject::BOSS_1].pos.y << "}" << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << GameObject::BOSS_1;
     sending_msg << entity_id;
@@ -83,7 +81,6 @@ int create_wave(World &world, NetworkServer &server, waves_t &waves)
         waves.base_difficulty *= DEFAULT_WAVE_DIFFICULTY_MULTIPLIER;
         waves.remaining_difficulty = waves.base_difficulty;
     }
-    std::cout << "Wave " << waves.nb_wave << " started with difficulty " << waves.base_difficulty << std::endl;
     sending_msg.header.id = GameMessage::S2C_WAVE_STATUS;
     sending_msg << WaveStatus::START;
     sending_msg << waves.nb_wave;
@@ -103,8 +100,6 @@ void create_enemy(World &world, NetworkServer &server)
         Vector2i{-defaultValues[type].spd, 0}, defaultValues[type].hp, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-    std::cout << "Enemy[" << entity_id << "]: created at Position{" << defaultValues[type].pos.x << ", " << random_y
-              << "} with type " << (size_t)type << std::endl;
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
     sending_msg << type;
     sending_msg << entity_id;
@@ -146,7 +141,6 @@ int wave_system(World &world, NetworkServer &server, waves_t &waves)
     if (remaining_enemies == 0 && waves.in_wave && waves.remaining_difficulty == 0) {
         waves.in_wave = false;
         waves.clock.restart();
-        std::cout << "Wave " << waves.nb_wave << " ended" << std::endl;
         sending_msg.header.id = GameMessage::S2C_WAVE_STATUS;
         sending_msg << WaveStatus::END;
         sending_msg << waves.nb_wave;
