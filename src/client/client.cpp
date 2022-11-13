@@ -202,7 +202,6 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     (void)current_screen;
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
-    auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     size_t index = 0;
 
     msg >> id_entity;

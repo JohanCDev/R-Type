@@ -65,14 +65,12 @@ static std::map<GameObject, std::function<void(World &, NetworkServer &)>> map_c
 int create_wave(World &world, NetworkServer &server, waves_t &waves)
 {
     Message<GameMessage> sending_msg;
-    size_t num_boss = 0;
     GameObject type;
 
     waves.in_wave = true;
     waves.nb_wave++;
     waves.clock.restart();
     if (waves.nb_wave > 0 && waves.nb_wave % DEFAULT_WAVE_FREQUENCY_BOSS == 0) {
-        num_boss = waves.nb_wave / DEFAULT_WAVE_FREQUENCY_BOSS;
         // type = (GameObject)((size_t)GameObject::BOSS_1 + num_boss - 1);
         type = GameObject::BOSS_1;
         map_create_boss[type](world, server);

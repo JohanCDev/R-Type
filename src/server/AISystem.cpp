@@ -173,8 +173,8 @@ void update_boss_1(World &world, NetworkServer &server, size_t i)
                 if (positions[i]->pos.x <= 1420)
                     velocity[i]->speed.x = 0;
                 if (random_shoot == 2) {
-                    for (int i = 0; i < 3; ++i) {
-                        Vector2f shoot_pos = {positions[i]->pos.x, positions[i]->pos.y + i * 50};
+                    for (int s = 0; s < 3; s++) {
+                        Vector2f shoot_pos = {positions[i]->pos.x, positions[i]->pos.y + s * 50};
                         entity_id = world.create_laser_enemy(GameObject::LASER_ENEMY, GameTeam::ENEMY, shoot_pos,
                             Vector2i{defaultValues[GameObject::LASER_ENEMY].spd, 0}, 0.04f);
                         world.getRegistry().add_component<EntityIDComponent>(
