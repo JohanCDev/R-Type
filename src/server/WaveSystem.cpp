@@ -73,7 +73,8 @@ int create_wave(World &world, NetworkServer &server, waves_t &waves)
     waves.clock.restart();
     if (waves.nb_wave > 0 && waves.nb_wave % DEFAULT_WAVE_FREQUENCY_BOSS == 0) {
         num_boss = waves.nb_wave / DEFAULT_WAVE_FREQUENCY_BOSS;
-        type = (GameObject)((size_t)GameObject::BOSS_1 + num_boss - 1);
+        // type = (GameObject)((size_t)GameObject::BOSS_1 + num_boss - 1);
+        type = GameObject::BOSS_1;
         map_create_boss[type](world, server);
         return 0;
     }
