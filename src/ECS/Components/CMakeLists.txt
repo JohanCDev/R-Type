@@ -19,7 +19,9 @@ list(
   ${INCROOT}/VelocityComponent.hpp
   ${INCROOT}/WeaponComponent.hpp
   ${INCROOT}/TextComponent.hpp
-  ${INCROOT}/ClickableComponent.hpp)
+  ${INCROOT}/ClickableComponent.hpp
+  ${INCROOT}/BonusComponent.hpp
+  ${INCROOT}/SoundEffectComponent.hpp)
 
 set(SRC
   "${SRC}"

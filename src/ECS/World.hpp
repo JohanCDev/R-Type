@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <map>
 #include "../server/GameStates.hpp"
@@ -44,10 +45,28 @@ class World {
     ~World();
 
     /**
-     * @brief register all existing systems
+     * @brief Register assets for option scene
      *
      */
-    void register_all_system();
+    void register_option_assets();
+
+    /**
+     * @brief Register assets for menu scene
+     *
+     */
+    void register_menu_assets();
+
+    /**
+     * @brief Register assets for game scene
+     *
+     */
+    void register_game_assets();
+
+    /**
+     * @brief Register assets for lobby scene
+     *
+     */
+    void register_lobby_assets();
 
     /**
      * @brief register all assets of the game
@@ -130,6 +149,17 @@ class World {
     void create_healthbar(float life);
 
     /**
+     * @brief Create a bonus object
+     *
+     * @param object type of the object
+     * @param pos base pos of the enemy as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the enemy as a Vector2i. ex: {0, 0}
+     * @param refresh_time time before the laser is refreshed
+     * @param enumBonus enumeration of bonus stats
+     * @return size_t
+     */
+    size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus enumBonus);
+    /**
      * @brief Create a drawable object
      *
      * @param asset_path Path to the asset
@@ -139,12 +169,11 @@ class World {
      * @param pos Pos of the object
      * @param speed Speed of the object
      * @param refresh_time Time before the object is refreshed
-     * @param elapsed_time Time elapsed since the last refresh
      *
      * @returns Negative value if there is an error
      */
     size_t create_drawable_object(std::string asset_path, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
-        Vector2i speed = {0, 0}, float refresh_time = 0, float elapsed_time = 0);
+        Vector2i speed = {0, 0}, float refresh_time = 0);
 
     /**
      * @brief Create a text object
@@ -168,14 +197,19 @@ class World {
      * @param callback
      * @return size_t
      */
-    size_t create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
-        std::function<void(World &, SceneScreen &, NetworkClient &)> callback);
+    size_t create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+        std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback);
 
     /**
      * @brief Registers all drawable objects
      *
      */
     void register_all_drawable_object();
+    /**
+     * @brief Registers all sounds
+     *
+     */
+    void register_all_sounds();
 
     /**
      * @brief Get the Registry object
@@ -206,11 +240,25 @@ class World {
     sf::Clock &getClock();
 
     /**
+     * @brief Get the Music object
+     *
+     * @return Reference to the music object
+     */
+    sf::Music &getMusic();
+
+    /**
      * @brief Get the Direction object
      *
      * @return Reference to the direction
      */
     Vector2i &getDirection();
+
+    /**
+     * @brief Get the Sound effects map
+     *
+     * @return Reference to the map
+     */
+    const std::map<std::string, std::shared_ptr<sf::Music>> &getSoundEffects();
 
     /**
      * @brief Set the Direction object
@@ -230,6 +278,13 @@ class World {
      *
      */
     std::map<std::size_t, GameObject> player_ships;
+
+    /**
+     * @brief Map containing all sound effects
+     *
+     */
+    std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
+    void create_border_entities();
 
   private:
     /**
@@ -255,6 +310,12 @@ class World {
      *
      */
     sf::Clock _clock;
+
+    /**
+     * @brief Music of the game
+     *
+     */
+    sf::Music _music;
 
     /**
      * @brief Map containing all the drawable components

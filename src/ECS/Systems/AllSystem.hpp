@@ -76,6 +76,28 @@ int velocity_system(World &world);
 int wave_system(World &world, NetworkServer &server, waves_t &waves);
 
 /**
+ * @brief Bonus spawn if ennemy die
+ *
+ * @param world The world
+ * @param server The server
+ * @param bonus_stat stat bonus for player
+ * @return
+ */
+int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat);
+
+/**
+ * @brief check collision between two entities
+ *
+ * @param manager Resources manager
+ * @param sprite Sprite to check collision
+ * @param position Position of the sprite
+ * @param drawable drawable component of drawable
+ * @return 1 if there is a collision
+ */
+int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
+    std::optional<DrawableComponent> &drawable);
+
+/**
  * @brief Collide all entities
  *
  * @param world The world
@@ -83,6 +105,7 @@ int wave_system(World &world, NetworkServer &server, waves_t &waves);
  * @return negative value if there is an error
  */
 int collide_system(World &world, NetworkServer &server);
+
 /**
  * @brief Lobby system
  *
@@ -91,6 +114,7 @@ int collide_system(World &world, NetworkServer &server);
  * @return negative value if there is an error
  */
 int lobby_system(World &world, NetworkServer &server);
+
 /**
  * @brief Clickable system
  *
@@ -98,6 +122,25 @@ int lobby_system(World &world, NetworkServer &server);
  * @param click_pos pos of the click
  * @param current_screen current screen
  * @param client client struct
+ * @param volume volume
  * @return negative value if there is an error
  */
-int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client);
+int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client, float &volume);
+
+/**
+ * @brief Sends the locations of each entity to clients
+ *
+ * @param world world to act on
+ * @param server Server with all the informations
+ */
+int refresh_system(World &world, NetworkServer &server);
+
+/**
+ * @brief Creates a music
+ *
+ * @param world world to act on
+ * @param music_filepath filepath to music
+ * @param volume volume of the music
+ * @return Negative value in case of error
+ */
+int music_system(World &world, const std::string &music_filepath, float &volume);

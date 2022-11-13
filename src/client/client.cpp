@@ -24,6 +24,7 @@ NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned
     this->_nb_players = 0;
     this->_players_ready = false;
     this->_launch_game = false;
+    this->_sound_volume = 50.0f;
     udp::resolver resolver(io_service);
     udp::resolver::query query(udp::v4(), host, server_port);
     server_endpoint = *resolver.resolve(query);
@@ -140,7 +141,17 @@ int NetworkClient::get_nb_players() const
     return (_nb_players);
 }
 
-static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newEntity = {
+float NetworkClient::getSoundVolume() const
+{
+    return (_sound_volume);
+}
+
+void NetworkClient::setSoundVolume(float volume)
+{
+    this->_sound_volume = volume;
+}
+
+static std::map<GameObject, std::function<void(World &, size_t, Vector2f, NetworkClient &)>> newEntity = {
     {GameObject::PLAYER, new_player},
     {GameObject::SHIP_ARMORED, new_armored_player},
     {GameObject::SHIP_DAMAGE, new_damage_player},
@@ -152,6 +163,10 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
     {GameObject::LASER, new_laser},
     {GameObject::LASER_ENEMY, new_laser_enemy},
+    {GameObject::BONUS_ATTACK, new_bonus_attack},
+    {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
+    {GameObject::BONUS_HEAL, new_bonus_heal},
+    {GameObject::BONUS_SPEED, new_bonus_speed},
 };
 
 /**
@@ -171,7 +186,7 @@ void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, S
     GameObject object;
 
     msg >> pos >> srv_entity_id >> object;
-    newEntity[object](world, srv_entity_id, pos);
+    newEntity[object](world, srv_entity_id, pos, client);
 }
 
 /**
@@ -183,6 +198,45 @@ void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, S
  * @param current_screen The current screen
  */
 void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
+{
+    (void)client;
+    (void)current_screen;
+    EntityIDComponent id_entity;
+    auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
+    auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
+    size_t index = 0;
+    auto &sounds = world.getSoundEffects();
+
+    msg >> id_entity;
+    for (auto &entityId : entityIdCompo) {
+        if (entityId && entityId.has_value()) {
+            if (entityId->id == id_entity.id) {
+                if (sound[index] && sound[index]->soundEffect.compare("explosion") == 0) {
+                    sounds.find("dead")->second.get()->stop();
+#if __APPLE__
+                    usleep(10000);
+#endif
+                    sounds.find("dead")->second.get()->setVolume(client.getSoundVolume());
+                    sounds.find("dead")->second.get()->play();
+                }
+                if (sound[index] && sound[index]->soundEffect.compare("bonus") == 0) {
+                    sounds.find("bonus")->second.get()->stop();
+#if __APPLE__
+                    usleep(10000);
+#endif
+                    sounds.find("bonus")->second.get()->setVolume(client.getSoundVolume());
+                    sounds.find("bonus")->second.get()->play();
+                }
+                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
+                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
+                break;
+            }
+        }
+        index++;
+    }
+}
+
+void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
     (void)current_screen;
@@ -378,17 +432,61 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+void update_position(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_scene)
+{
+    (void)client;
+    (void)current_scene;
+    registry &r = world.getRegistry();
+    ClientIDComponent entity_id;
+    PositionComponent pos({0, 0});
+
+    msg >> entity_id >> pos;
+    auto &entityIdCompo = r.get_components<EntityIDComponent>();
+    auto &posCompo = r.get_components<PositionComponent>();
+
+    size_t index = 0;
+
+    for (auto &idCompo : entityIdCompo) {
+        if (idCompo && idCompo.has_value()) {
+            if (!(posCompo[index] && posCompo[index].has_value()))
+                break;
+            if (idCompo->id == entity_id.id) {
+                posCompo[index] = pos;
+                break;
+            }
+        }
+        index++;
+    }
+}
+
+/**
+ * @brief Handle the level up
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
+void level_up(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
+{
+    (void)world;
+    (void)current_screen;
+    (void)msg;
+    (void)client;
+}
+
 static std::map<GameMessage, std::function<void(World &, NetworkClient &, Message<GameMessage>, SceneScreen &)>>
     mapFunc = {{GameMessage::S2C_ENTITY_NEW, new_entity}, {GameMessage::S2C_ENTITY_DEAD, dead_entity},
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},
         {GameMessage::S2C_WAVE_STATUS, wave_status}, {GameMessage::S2C_OK, ok_packet},
         {GameMessage::S2C_START_GAME, game_start}, {GameMessage::S2C_PLAYERS_READY, players_ready},
-        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}};
+        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_BONUS_DEAD, bonus_dead_entity}, {GameMessage::S2C_UPDATE_POSITION, update_position}};
 
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)
 {
-    (mapFunc[msg.header.id])(world, *this, msg, screen);
+    if (mapFunc.contains(msg.header.id))
+        (mapFunc[msg.header.id])(world, *this, msg, screen);
     if (msg.header.id == GameMessage::S2C_GAME_END) {
         game_end(window);
     }

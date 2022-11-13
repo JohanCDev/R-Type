@@ -36,7 +36,7 @@ class GameScene : public IScene {
      * @param window Window to update
      * @param current_screen Current screen of the game
      */
-    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) override;
+    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume) override;
 
     /**
      * @brief Initialize game screen
@@ -45,8 +45,35 @@ class GameScene : public IScene {
      */
     void init_game(sf::RenderWindow &window);
 
+    /**
+     * @brief Update the parallax display
+     *
+     */
+    void update_parallax();
+
+    /**
+     * @brief Display the option screen
+     *
+     */
+    void display_option(bool display);
+
   private:
+    /**
+     * @brief Message queue of the client
+     *
+     */
     Message<GameMessage> msg;
+
+    /**
+     * @brief World of the game
+     *
+     */
     World _world;
+
+    /**
+     * @brief Is the world initialized ?
+     *
+     */
     bool _init;
+    bool _option;
 };

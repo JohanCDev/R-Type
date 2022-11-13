@@ -13,15 +13,6 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
 
-/**
- * @brief Check if there is a collision on a Sprite
- *
- * @param manager Resources Manager object
- * @param sprite Sprite to check
- * @param position Optional PositionComponent
- * @param drawable Optional DrawableComponent
- * @return 1 if there is a collision
- */
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable)
 {
@@ -51,6 +42,8 @@ int collide_system(World &world, NetworkServer &server)
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
+    std::srand(std::time(nullptr));
+    int random_variable = std::rand();
 
     for (size_t i = 0; i < weapons.size(); ++i) {
         auto &weapon = weapons[i];
@@ -69,7 +62,8 @@ int collide_system(World &world, NetworkServer &server)
                     sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
-                if (j != i && teams[i]->team != teams[j]->team) {
+                if (j != i && teams[i]->team != teams[j]->team && teams[i]->team != GameTeam::NEUTRAL
+                    && teams[j]->team != GameTeam::NEUTRAL) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
                         if (check_collision(world.getResourcesManager(), sprite, positions[j], drawables[j]) == 1) {
                             health[j]->hp -= weapons[i]->stat.x;
@@ -91,6 +85,9 @@ int collide_system(World &world, NetworkServer &server)
                                 sending_msg = Message<GameMessage>();
                             } else {
                                 std::cout << "Entity[" << entityId[j]->id << "] is dead." << std::endl;
+                                if (teams[j]->team == GameTeam::ENEMY && random_variable % 3 == 0) {
+                                    bonus_creation(world, server, positions[j]->pos);
+                                }
                                 sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                                 sending_msg << entityId[j]->id;
                                 server.SendToAll(sending_msg);
