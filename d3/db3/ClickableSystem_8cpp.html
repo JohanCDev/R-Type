@@ -99,9 +99,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a92fc2e17db256b2d6dc660081cfbc610"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db3/ClickableSystem_8cpp.html#a92fc2e17db256b2d6dc660081cfbc610">pos_intersects</a> (<a class="el" href="../../da/d35/structVector2i.html">Vector2i</a> click_pos, <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> draw, <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> position)</td></tr>
 <tr class="memdesc:a92fc2e17db256b2d6dc660081cfbc610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the positions intersects.  <a href="../../d3/db3/ClickableSystem_8cpp.html#a92fc2e17db256b2d6dc660081cfbc610">More...</a><br /></td></tr>
 <tr class="separator:a92fc2e17db256b2d6dc660081cfbc610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92b7f89d6a9e4786ad0602bf4d604d69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db3/ClickableSystem_8cpp.html#a92b7f89d6a9e4786ad0602bf4d604d69">clickable_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../da/d35/structVector2i.html">Vector2i</a> click_pos, <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen, <a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client)</td></tr>
-<tr class="memdesc:a92b7f89d6a9e4786ad0602bf4d604d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clickable system.  <a href="../../d3/db3/ClickableSystem_8cpp.html#a92b7f89d6a9e4786ad0602bf4d604d69">More...</a><br /></td></tr>
-<tr class="separator:a92b7f89d6a9e4786ad0602bf4d604d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3db8d0cef89b581e1303eb9cdabf1e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db3/ClickableSystem_8cpp.html#a3e3db8d0cef89b581e1303eb9cdabf1e">clickable_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../da/d35/structVector2i.html">Vector2i</a> click_pos, <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen, <a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client, float &amp;volume)</td></tr>
+<tr class="memdesc:a3e3db8d0cef89b581e1303eb9cdabf1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clickable system.  <a href="../../d3/db3/ClickableSystem_8cpp.html#a3e3db8d0cef89b581e1303eb9cdabf1e">More...</a><br /></td></tr>
+<tr class="separator:a3e3db8d0cef89b581e1303eb9cdabf1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Cédric Corge (<a href="#" onclick="location.href='mai'+'lto:'+'ced'+'ri'+'c.c'+'or'+'ge@'+'ep'+'ite'+'ch'+'.eu'; return false;">cedri<span style="display: none;">.nosp@m.</span>c.co<span style="display: none;">.nosp@m.</span>rge@e<span style="display: none;">.nosp@m.</span>pite<span style="display: none;">.nosp@m.</span>ch.eu</a>) </dd></dl>
@@ -109,8 +109,8 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2022-11-03</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a92b7f89d6a9e4786ad0602bf4d604d69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92b7f89d6a9e4786ad0602bf4d604d69">&#9670;&nbsp;</a></span>clickable_system()</h2>
+<a id="a3e3db8d0cef89b581e1303eb9cdabf1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e3db8d0cef89b581e1303eb9cdabf1e">&#9670;&nbsp;</a></span>clickable_system()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,7 +137,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;&#160;</td>
-          <td class="paramname"><em>client</em>&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>volume</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -154,6 +160,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">click_pos</td><td>pos of the click </td></tr>
     <tr><td class="paramname">current_screen</td><td>current screen </td></tr>
     <tr><td class="paramname">client</td><td>client struct </td></tr>
+    <tr><td class="paramname">volume</td><td>volume </td></tr>
   </table>
   </dd>
 </dl>

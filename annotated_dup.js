@@ -7,6 +7,7 @@ var annotated_dup =
     [ "CollideComponent", "d2/d81/structCollideComponent.html", "d2/d81/structCollideComponent" ],
     [ "ControllableComponent", "db/d09/structControllableComponent.html", "db/d09/structControllableComponent" ],
     [ "DestroyableComponent", "d2/d63/structDestroyableComponent.html", "d2/d63/structDestroyableComponent" ],
+    [ "DoubleLaserComponent", "d1/d94/structDoubleLaserComponent.html", "d1/d94/structDoubleLaserComponent" ],
     [ "DrawableComponent", "d0/d12/structDrawableComponent.html", "d0/d12/structDrawableComponent" ],
     [ "Entity", "da/d61/classEntity.html", "da/d61/classEntity" ],
     [ "EntityIDComponent", "d6/dae/structEntityIDComponent.html", "d6/dae/structEntityIDComponent" ],

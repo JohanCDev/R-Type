@@ -112,9 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afcc0dcde491eac4e970d68e8896bf4cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da6/classMenuScene.html#afcc0dcde491eac4e970d68e8896bf4cb">MenuScene</a> ()</td></tr>
 <tr class="memdesc:afcc0dcde491eac4e970d68e8896bf4cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Menu Scene object.  <a href="../../d2/da6/classMenuScene.html#afcc0dcde491eac4e970d68e8896bf4cb">More...</a><br /></td></tr>
 <tr class="separator:afcc0dcde491eac4e970d68e8896bf4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2578c422182bd73cb027791d17859fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da6/classMenuScene.html#aa2578c422182bd73cb027791d17859fb">run</a> (<a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client, sf::RenderWindow &amp;window, <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen) override</td></tr>
-<tr class="memdesc:aa2578c422182bd73cb027791d17859fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the menu scene logic.  <a href="../../d2/da6/classMenuScene.html#aa2578c422182bd73cb027791d17859fb">More...</a><br /></td></tr>
-<tr class="separator:aa2578c422182bd73cb027791d17859fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b88b7a3f475ca24ecaae287a7b0d88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da6/classMenuScene.html#a58b88b7a3f475ca24ecaae287a7b0d88">run</a> (<a class="el" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client, sf::RenderWindow &amp;window, <a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen, float &amp;volume) override</td></tr>
+<tr class="memdesc:a58b88b7a3f475ca24ecaae287a7b0d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the menu scene logic.  <a href="../../d2/da6/classMenuScene.html#a58b88b7a3f475ca24ecaae287a7b0d88">More...</a><br /></td></tr>
+<tr class="separator:a58b88b7a3f475ca24ecaae287a7b0d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab86d7e635da51bce5145093845ec7311"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da6/classMenuScene.html#ab86d7e635da51bce5145093845ec7311">init_menu</a> (sf::RenderWindow &amp;window)</td></tr>
 <tr class="memdesc:ab86d7e635da51bce5145093845ec7311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the menu scene.  <a href="../../d2/da6/classMenuScene.html#ab86d7e635da51bce5145093845ec7311">More...</a><br /></td></tr>
 <tr class="separator:ab86d7e635da51bce5145093845ec7311"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,8 +172,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2578c422182bd73cb027791d17859fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2578c422182bd73cb027791d17859fb">&#9670;&nbsp;</a></span>run()</h2>
+<a id="a58b88b7a3f475ca24ecaae287a7b0d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58b88b7a3f475ca24ecaae287a7b0d88">&#9670;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +197,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;&#160;</td>
-          <td class="paramname"><em>current_screen</em>&#160;</td>
+          <td class="paramname"><em>current_screen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>volume</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -218,11 +224,12 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">client</td><td>Class containing client's network information </td></tr>
     <tr><td class="paramname">window</td><td>Window to update </td></tr>
     <tr><td class="paramname">current_screen</td><td>Current screen of the game </td></tr>
+    <tr><td class="paramname">volume</td><td>Volume of the game </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="../../db/da8/classIScene.html#abb6c58890f1b3a25533e672b9dac9bef">IScene</a>.</p>
+<p>Implements <a class="el" href="../../db/da8/classIScene.html#a6eb59f1384d1ca1e2baa43b765cf86bc">IScene</a>.</p>
 
 </div>
 </div>

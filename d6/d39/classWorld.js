@@ -5,7 +5,7 @@ var classWorld =
     [ "~World", "d6/d39/classWorld.html#a8c73fba541a5817fff65147ba47cd827", null ],
     [ "create_bonus", "d6/d39/classWorld.html#a13cc678b11b6b52c4910259407a8cd65", null ],
     [ "create_border_entities", "d6/d39/classWorld.html#ac6a6072fc555d6d139dec1a910ce6f6d", null ],
-    [ "create_button", "d6/d39/classWorld.html#a76ac28ec6051ec9c196b8c9db5fc2b71", null ],
+    [ "create_button", "d6/d39/classWorld.html#ad4776d0e112b74a660ffcbefd34417cd", null ],
     [ "create_drawable_object", "d6/d39/classWorld.html#a1a627b5dbf74b12caa4eb9938f02378d", null ],
     [ "create_enemy", "d6/d39/classWorld.html#a76f81ae8d702514f34d019a0841972b7", null ],
     [ "create_healthbar", "d6/d39/classWorld.html#a42cdab1e784f38ca97bd5d45ddac3441", null ],

@@ -100,25 +100,25 @@ $(document).ready(function(){initNavTree('dd/df6/Menu_8hpp_source.html','../../'
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="../../d2/da6/classMenuScene.html#afcc0dcde491eac4e970d68e8896bf4cb">MenuScene</a>();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d2/da6/classMenuScene.html#aa2578c422182bd73cb027791d17859fb">run</a>(<a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client, sf::RenderWindow &amp;window, <a class="code" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d2/da6/classMenuScene.html#ab86d7e635da51bce5145093845ec7311">init_menu</a>(sf::RenderWindow &amp;window);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="../../d6/d39/classWorld.html">World</a> _world;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> _init;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d2/da6/classMenuScene.html#a58b88b7a3f475ca24ecaae287a7b0d88">run</a>(<a class="code" href="../../d9/d5d/classNetworkClient.html">NetworkClient</a> &amp;client, sf::RenderWindow &amp;window, <a class="code" href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a> &amp;current_screen, <span class="keywordtype">float</span> &amp;volume) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d2/da6/classMenuScene.html#ab86d7e635da51bce5145093845ec7311">init_menu</a>(sf::RenderWindow &amp;window);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="../../d6/d39/classWorld.html">World</a> _world;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> _init;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aScene_8hpp_html_a8e522ea30a64635ba6cde06510aba200"><div class="ttname"><a href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a></div><div class="ttdeci">SceneScreen</div><div class="ttdoc">All scenes represented as an enum going from 0 to 4.</div><div class="ttdef"><b>Definition:</b> Scene.hpp:21</div></div>
 <div class="ttc" id="aclassMenuScene_html_afcc0dcde491eac4e970d68e8896bf4cb"><div class="ttname"><a href="../../d2/da6/classMenuScene.html#afcc0dcde491eac4e970d68e8896bf4cb">MenuScene::MenuScene</a></div><div class="ttdeci">MenuScene()</div><div class="ttdoc">Construct a new Menu Scene object.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:14</div></div>
 <div class="ttc" id="aclassMenuScene_html"><div class="ttname"><a href="../../d2/da6/classMenuScene.html">MenuScene</a></div><div class="ttdoc">Menu scene of the game.</div><div class="ttdef"><b>Definition:</b> Menu.hpp:22</div></div>
+<div class="ttc" id="aclassMenuScene_html_a58b88b7a3f475ca24ecaae287a7b0d88"><div class="ttname"><a href="../../d2/da6/classMenuScene.html#a58b88b7a3f475ca24ecaae287a7b0d88">MenuScene::run</a></div><div class="ttdeci">void run(NetworkClient &amp;client, sf::RenderWindow &amp;window, SceneScreen &amp;current_screen, float &amp;volume) override</div><div class="ttdoc">Run the menu scene logic.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:18</div></div>
 <div class="ttc" id="aclassWorld_html"><div class="ttname"><a href="../../d6/d39/classWorld.html">World</a></div><div class="ttdoc">Store entity and usefull function.</div><div class="ttdef"><b>Definition:</b> World.hpp:26</div></div>
 <div class="ttc" id="aclassNetworkClient_html"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html">NetworkClient</a></div><div class="ttdoc">Network client class.</div><div class="ttdef"><b>Definition:</b> client.hpp:37</div></div>
 <div class="ttc" id="aclassIScene_html"><div class="ttname"><a href="../../db/da8/classIScene.html">IScene</a></div><div class="ttdoc">Interface for all scenes.</div><div class="ttdef"><b>Definition:</b> Scene.hpp:27</div></div>
 <div class="ttc" id="aclassMenuScene_html_ab86d7e635da51bce5145093845ec7311"><div class="ttname"><a href="../../d2/da6/classMenuScene.html#ab86d7e635da51bce5145093845ec7311">MenuScene::init_menu</a></div><div class="ttdeci">void init_menu(sf::RenderWindow &amp;window)</div><div class="ttdoc">Init the menu scene.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:52</div></div>
-<div class="ttc" id="aclassMenuScene_html_aa2578c422182bd73cb027791d17859fb"><div class="ttname"><a href="../../d2/da6/classMenuScene.html#aa2578c422182bd73cb027791d17859fb">MenuScene::run</a></div><div class="ttdeci">void run(NetworkClient &amp;client, sf::RenderWindow &amp;window, SceneScreen &amp;current_screen) override</div><div class="ttdoc">Run the menu scene logic.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:19</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

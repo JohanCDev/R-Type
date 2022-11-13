@@ -5,6 +5,7 @@ var MessageType_8hpp =
       [ "C2S_LEAVE", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca025d7b7a56bdef30fb21d619124fde5a", null ],
       [ "C2S_SHOOT", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca63e6930f011cb8c6af7ad4f3abad3429", null ],
       [ "C2S_MOVEMENT", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca172c19f3706f978a3e338bd7689e423b", null ],
+      [ "C2S_SPEND_POINT", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca2a5d5d995cf1f7f7ea69a42fdb33985f", null ],
       [ "C2S_START_GAME", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca0aa52279a7553b79b1638417eb178606", null ],
       [ "C2S_SELECT_SHIP", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7caaa632abf823549f13cda9bb139f6b6d3", null ],
       [ "S2C_ENTITY_NEW", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7cac3392acdcf34b57dbf34e2dc96215fc1", null ],
@@ -17,6 +18,9 @@ var MessageType_8hpp =
       [ "S2C_START_GAME", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7cab8969cfdac7e7fd908671af80df6489c", null ],
       [ "S2C_PLAYERS_IN_LOBBY", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca0339d84c21c91baa2ef02e67ed154a44", null ],
       [ "S2C_PLAYERS_READY", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca8c55bf065905096c09ac0a09cf99ceeb", null ],
+      [ "S2C_UPDATE_POSITION", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca4c92e0ac398d66149cc1367479e1d99f", null ],
+      [ "S2C_LEVEL_UP", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca60506249ab21e4c3d524e522915fdb60", null ],
+      [ "S2C_UPDATE_STATS", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca26fdefd3ad4caa1b67048c800dd03b9e", null ],
       [ "S2C_BONUS_DEAD", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca333fa25654b8edc14529b4b7289d8d3c", null ]
     ] ],
     [ "GameObject", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541", [
@@ -34,7 +38,15 @@ var MessageType_8hpp =
       [ "BONUS_ATTACK", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a6f2eaa5f0885dda98419b8267d0d61e0", null ],
       [ "BONUS_ATTACK_SPEED", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a3d4a12a7cfc036731a5af16b2b027af2", null ],
       [ "BONUS_HEAL", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a720d1ef2fed4585c20ecb51ebeddc562", null ],
-      [ "BONUS_SPEED", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541ab7dfacde933270f949ad0c68266ca6fa", null ]
+      [ "BONUS_SPEED", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541ab7dfacde933270f949ad0c68266ca6fa", null ],
+      [ "BONUS_DOUBLE", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a6068abf5fc448c08b0a3ed186f95d7d6", null ]
+    ] ],
+    [ "GameStat", "d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b", [
+      [ "HEALTH", "d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25ba785a1e256fca0cd6be7b3dced4281845", null ],
+      [ "DAMAGE", "d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25ba806bb06d54f268f1d2ce74bde5b48f34", null ],
+      [ "SPD", "d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25baed504d8761c0f48e13d9d14e94a23627", null ],
+      [ "ATK_SPD", "d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25babc61cf8f18e97dfe6d3167387e42da6a", null ],
+      [ "DOUBLE", "d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25bafd3e4ece78a7d422280d5ed379482229", null ]
     ] ],
     [ "WaveStatus", "d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93", [
       [ "START", "d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93ab078ffd28db767c502ac367053f6e0ac", null ],

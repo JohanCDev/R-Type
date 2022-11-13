@@ -23,10 +23,15 @@ var game_8hpp =
     [ "bonus_creation", "d8/d39/game_8hpp.html#acde020fa50025e06d11f91206198c3c6", null ],
     [ "check_collision", "d8/d39/game_8hpp.html#a9d2c53819ce366cdd1e41309aad9bbfd", null ],
     [ "create_enemy", "d8/d39/game_8hpp.html#adafc73f58296ebeb87850869df90cb81", null ],
+    [ "end_game_system", "d8/d39/game_8hpp.html#a92adea9341462bd895fde2a7a41602ce", null ],
+    [ "level_up_system", "d8/d39/game_8hpp.html#ab9bec0efdfe31e36fe9e14357bcdb4a9", null ],
     [ "player_joined", "d8/d39/game_8hpp.html#ad789b4bd9fafe50a77719ad2e3901214", null ],
     [ "player_left", "d8/d39/game_8hpp.html#aac96bbaa0506a110a38a7ea57c14d3c4", null ],
     [ "player_moved", "d8/d39/game_8hpp.html#a700fc31f8e509b78365b819ad154f984", null ],
     [ "player_shot", "d8/d39/game_8hpp.html#ad0a96ea33de24174e9474ff03f4cf56f", null ],
     [ "select_ship", "d8/d39/game_8hpp.html#ae386c0b630b3e5fabb3f0f206b7aa742", null ],
-    [ "start_game", "d8/d39/game_8hpp.html#a79a41c669b219df844e78ed04ed40134", null ]
+    [ "send_stats_to_players", "d8/d39/game_8hpp.html#a7c65d224e0d43efdad6d4dcd1742519e", null ],
+    [ "spend_point", "d8/d39/game_8hpp.html#a3cccad2583afb53588005783081a83e7", null ],
+    [ "start_game", "d8/d39/game_8hpp.html#a79a41c669b219df844e78ed04ed40134", null ],
+    [ "stat_up", "d8/d39/game_8hpp.html#afcad35c5ea3a914a881d2d29e7bb02a6", null ]
 ];

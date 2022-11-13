@@ -7,6 +7,7 @@ var hierarchy =
     [ "CollideComponent", "d2/d81/structCollideComponent.html", null ],
     [ "ControllableComponent", "db/d09/structControllableComponent.html", null ],
     [ "DestroyableComponent", "d2/d63/structDestroyableComponent.html", null ],
+    [ "DoubleLaserComponent", "d1/d94/structDoubleLaserComponent.html", null ],
     [ "DrawableComponent", "d0/d12/structDrawableComponent.html", null ],
     [ "Entity", "da/d61/classEntity.html", null ],
     [ "EntityIDComponent", "d6/dae/structEntityIDComponent.html", null ],

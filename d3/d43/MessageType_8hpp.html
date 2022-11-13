@@ -102,20 +102,25 @@ Enumerations</h2></td></tr>
 <b>C2S_SHOOT</b>, 
 <b>C2S_MOVEMENT</b>, 
 <br />
-&#160;&#160;<b>C2S_START_GAME</b>, 
+&#160;&#160;<b>C2S_SPEND_POINT</b>, 
+<b>C2S_START_GAME</b>, 
 <b>C2S_SELECT_SHIP</b>, 
 <b>S2C_ENTITY_NEW</b>, 
-<b>S2C_ENTITY_DEAD</b>, 
 <br />
-&#160;&#160;<b>S2C_GAME_END</b>, 
+&#160;&#160;<b>S2C_ENTITY_DEAD</b>, 
+<b>S2C_GAME_END</b>, 
 <b>S2C_MOVEMENT</b>, 
 <b>S2C_ENTITY_HIT</b>, 
-<b>S2C_WAVE_STATUS</b>, 
 <br />
-&#160;&#160;<b>S2C_OK</b>, 
+&#160;&#160;<b>S2C_WAVE_STATUS</b>, 
+<b>S2C_OK</b>, 
 <b>S2C_START_GAME</b>, 
 <b>S2C_PLAYERS_IN_LOBBY</b>, 
-<b>S2C_PLAYERS_READY</b>, 
+<br />
+&#160;&#160;<b>S2C_PLAYERS_READY</b>, 
+<b>S2C_UPDATE_POSITION</b>, 
+<b>S2C_LEVEL_UP</b>, 
+<b>S2C_UPDATE_STATS</b>, 
 <br />
 &#160;&#160;<b>S2C_BONUS_DEAD</b>
 <br />
@@ -146,11 +151,23 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<b>BONUS_ATTACK_SPEED</b>, 
 <b>BONUS_HEAL</b>, 
-<b>BONUS_SPEED</b>
+<b>BONUS_SPEED</b>, 
+<b>BONUS_DOUBLE</b>
 <br />
  }</td></tr>
 <tr class="memdesc:a1cc2658890520c7e810a94d461683541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerate objects of the game.  <a href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">More...</a><br /></td></tr>
 <tr class="separator:a1cc2658890520c7e810a94d461683541"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfac04030c3e5e31613ada2865b7d25b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b">GameStat</a> : uint32_t { <br />
+&#160;&#160;<b>HEALTH</b>, 
+<b>DAMAGE</b>, 
+<b>SPD</b>, 
+<b>ATK_SPD</b>, 
+<br />
+&#160;&#160;<b>DOUBLE</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:adfac04030c3e5e31613ada2865b7d25b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerate game stats.  <a href="../../d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b">More...</a><br /></td></tr>
+<tr class="separator:adfac04030c3e5e31613ada2865b7d25b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Tanguy Bellicha (<a href="#" onclick="location.href='mai'+'lto:'+'tan'+'gu'+'y.b'+'el'+'lic'+'ha'+'@ep'+'it'+'ech'+'.e'+'u'; return false;">tangu<span style="display: none;">.nosp@m.</span>y.be<span style="display: none;">.nosp@m.</span>llich<span style="display: none;">.nosp@m.</span>a@ep<span style="display: none;">.nosp@m.</span>itech<span style="display: none;">.nosp@m.</span>.eu</a>) </dd></dl>
@@ -203,6 +220,30 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enumerate objects of the game. </p>
+
+</div>
+</div>
+<a id="adfac04030c3e5e31613ada2865b7d25b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfac04030c3e5e31613ada2865b7d25b">&#9670;&nbsp;</a></span>GameStat</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b">GameStat</a> : uint32_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enumerate game stats. </p>
 
 </div>
 </div>

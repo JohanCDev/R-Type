@@ -126,6 +126,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d9a/handle__packets_8cpp.html#ae386c0b630b3e5fabb3f0f206b7aa742">select_ship</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a> msg, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
 <tr class="memdesc:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the ship.  <a href="../../dc/d9a/handle__packets_8cpp.html#ae386c0b630b3e5fabb3f0f206b7aa742">More...</a><br /></td></tr>
 <tr class="separator:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cccad2583afb53588005783081a83e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d9a/handle__packets_8cpp.html#a3cccad2583afb53588005783081a83e7">spend_point</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a> msg, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memdesc:a3cccad2583afb53588005783081a83e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spends a point to augment a player's stat.  <a href="../../dc/d9a/handle__packets_8cpp.html#a3cccad2583afb53588005783081a83e7">More...</a><br /></td></tr>
+<tr class="separator:a3cccad2583afb53588005783081a83e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Tanguy BELLICHA (<a href="#" onclick="location.href='mai'+'lto:'+'tan'+'gu'+'y.b'+'el'+'lic'+'ha'+'@ep'+'it'+'ech'+'.e'+'u'; return false;">tangu<span style="display: none;">.nosp@m.</span>y.be<span style="display: none;">.nosp@m.</span>llich<span style="display: none;">.nosp@m.</span>a@ep<span style="display: none;">.nosp@m.</span>itech<span style="display: none;">.nosp@m.</span>.eu</a>) </dd></dl>
@@ -391,6 +394,50 @@ Functions</h2></td></tr>
     <tr><td class="paramname">world</td><td>The server's world </td></tr>
     <tr><td class="paramname">msg</td><td><a class="el" href="../../d8/dd0/structMessage.html" title="Message structure.">Message</a> to process </td></tr>
     <tr><td class="paramname">server</td><td>server informations </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3cccad2583afb53588005783081a83e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cccad2583afb53588005783081a83e7">&#9670;&nbsp;</a></span>spend_point()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spend_point </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a>&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Spends a point to augment a player's stat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>world to act on </td></tr>
+    <tr><td class="paramname">msg</td><td>The client's message </td></tr>
+    <tr><td class="paramname">server</td><td>The game's server </td></tr>
   </table>
   </dd>
 </dl>

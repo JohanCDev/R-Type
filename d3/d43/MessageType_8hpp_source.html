@@ -97,44 +97,52 @@ $(document).ready(function(){initNavTree('d3/d43/MessageType_8hpp_source.html','
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    C2S_LEAVE,</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    C2S_SHOOT,</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    C2S_MOVEMENT,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    C2S_START_GAME,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    C2S_SELECT_SHIP,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    S2C_ENTITY_NEW,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    S2C_ENTITY_DEAD,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    S2C_GAME_END,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    S2C_MOVEMENT,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    S2C_ENTITY_HIT,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    S2C_WAVE_STATUS,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    S2C_OK,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    S2C_START_GAME,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    S2C_PLAYERS_IN_LOBBY,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    S2C_PLAYERS_READY,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    S2C_BONUS_DEAD,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">   42</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">WaveStatus</a> : uint32_t { START, BOSS_START, END };</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">   48</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">GameObject</a> : uint32_t {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    LASER,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    PLAYER,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    BOSS_1,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    ENEMY_FOCUS,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    ENEMY_SNIPER,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    ENEMY_ODD,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    GAME_OBJECT_COUNT,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    SHIP_ARMORED,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    SHIP_DAMAGE,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    SHIP_ENGINEER,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    SHIP_SNIPER,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    BONUS_ATTACK,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    BONUS_ATTACK_SPEED,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    BONUS_HEAL,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    BONUS_SPEED</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    C2S_SPEND_POINT,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    C2S_START_GAME,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    C2S_SELECT_SHIP,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    S2C_ENTITY_NEW,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    S2C_ENTITY_DEAD,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    S2C_GAME_END,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    S2C_MOVEMENT,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    S2C_ENTITY_HIT,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    S2C_WAVE_STATUS,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    S2C_OK,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    S2C_START_GAME,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    S2C_PLAYERS_IN_LOBBY,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    S2C_PLAYERS_READY,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    S2C_UPDATE_POSITION,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    S2C_LEVEL_UP,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    S2C_UPDATE_STATS,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    S2C_BONUS_DEAD,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">   46</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">WaveStatus</a> : uint32_t { START, BOSS_START, END };</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">   52</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">GameObject</a> : uint32_t {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    LASER,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    PLAYER,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    BOSS_1,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    ENEMY_FOCUS,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    ENEMY_SNIPER,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ENEMY_ODD,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    GAME_OBJECT_COUNT,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    SHIP_ARMORED,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    SHIP_DAMAGE,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    SHIP_ENGINEER,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    SHIP_SNIPER,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    BONUS_ATTACK,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    BONUS_ATTACK_SPEED,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    BONUS_HEAL,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    BONUS_SPEED,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    BONUS_DOUBLE</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="../../d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b">   75</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="../../d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b">GameStat</a> : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD, DOUBLE };</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aMessageType_8hpp_html_a1cc2658890520c7e810a94d461683541"><div class="ttname"><a href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">GameObject</a></div><div class="ttdeci">GameObject</div><div class="ttdoc">Enumerate objects of the game.</div><div class="ttdef"><b>Definition:</b> MessageType.hpp:48</div></div>
-<div class="ttc" id="aMessageType_8hpp_html_a278fa4ed07a92a8874fd355479d9df93"><div class="ttname"><a href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">WaveStatus</a></div><div class="ttdeci">WaveStatus</div><div class="ttdoc">Enumerate status of waves.</div><div class="ttdef"><b>Definition:</b> MessageType.hpp:42</div></div>
+<div class="ttc" id="aMessageType_8hpp_html_a1cc2658890520c7e810a94d461683541"><div class="ttname"><a href="../../d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541">GameObject</a></div><div class="ttdeci">GameObject</div><div class="ttdoc">Enumerate objects of the game.</div><div class="ttdef"><b>Definition:</b> MessageType.hpp:52</div></div>
+<div class="ttc" id="aMessageType_8hpp_html_adfac04030c3e5e31613ada2865b7d25b"><div class="ttname"><a href="../../d3/d43/MessageType_8hpp.html#adfac04030c3e5e31613ada2865b7d25b">GameStat</a></div><div class="ttdeci">GameStat</div><div class="ttdoc">Enumerate game stats.</div><div class="ttdef"><b>Definition:</b> MessageType.hpp:75</div></div>
+<div class="ttc" id="aMessageType_8hpp_html_a278fa4ed07a92a8874fd355479d9df93"><div class="ttname"><a href="../../d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93">WaveStatus</a></div><div class="ttdeci">WaveStatus</div><div class="ttdoc">Enumerate status of waves.</div><div class="ttdef"><b>Definition:</b> MessageType.hpp:46</div></div>
 <div class="ttc" id="aMessageType_8hpp_html_a539d6c542a8e6287800e238b9ba0eb7c"><div class="ttname"><a href="../../d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7c">GameMessage</a></div><div class="ttdeci">GameMessage</div><div class="ttdoc">Enumerate packets types.</div><div class="ttdef"><b>Definition:</b> MessageType.hpp:18</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

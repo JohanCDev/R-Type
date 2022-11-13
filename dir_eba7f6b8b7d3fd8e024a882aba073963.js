@@ -17,6 +17,9 @@ var dir_eba7f6b8b7d3fd8e024a882aba073963 =
     [ "DestroyableComponent.hpp", "d0/ddc/DestroyableComponent_8hpp.html", [
       [ "DestroyableComponent", "d2/d63/structDestroyableComponent.html", "d2/d63/structDestroyableComponent" ]
     ] ],
+    [ "DoubleLaserComponent.hpp", "d3/dfc/DoubleLaserComponent_8hpp.html", [
+      [ "DoubleLaserComponent", "d1/d94/structDoubleLaserComponent.html", "d1/d94/structDoubleLaserComponent" ]
+    ] ],
     [ "DrawableComponent.hpp", "dd/d9f/DrawableComponent_8hpp.html", [
       [ "Vector4i", "d2/dc5/structVector4i.html", "d2/dc5/structVector4i" ],
       [ "Vector2f", "db/ded/structVector2f.html", "db/ded/structVector2f" ],
@@ -40,7 +43,9 @@ var dir_eba7f6b8b7d3fd8e024a882aba073963 =
       [ "Vector2i", "da/d35/structVector2i.html", "da/d35/structVector2i" ],
       [ "PositionComponent", "d2/d0d/structPositionComponent.html", "d2/d0d/structPositionComponent" ]
     ] ],
-    [ "SoundEffectComponent.hpp", "d2/d2f/SoundEffectComponent_8hpp_source.html", null ],
+    [ "SoundEffectComponent.hpp", "d2/d2f/SoundEffectComponent_8hpp.html", [
+      [ "SoundEffectComponent", "d2/d07/structSoundEffectComponent.html", "d2/d07/structSoundEffectComponent" ]
+    ] ],
     [ "SpeedComponent.hpp", "dc/d94/SpeedComponent_8hpp.html", [
       [ "SpeedComponent", "d8/d4e/structSpeedComponent.html", "d8/d4e/structSpeedComponent" ]
     ] ],

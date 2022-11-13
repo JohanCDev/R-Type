@@ -1,13 +1,15 @@
 var AllCallback_8hpp =
 [
-    [ "go_to_game", "df/dda/AllCallback_8hpp.html#ab3ba461177bf95a055e44c5689aa4c18", null ],
-    [ "go_to_lobby", "df/dda/AllCallback_8hpp.html#a8444317aadf03e405ad46466f84a10f5", null ],
-    [ "go_to_menu", "df/dda/AllCallback_8hpp.html#a8f688315ac862c0d260545f3f4a97ca8", null ],
-    [ "go_to_option", "df/dda/AllCallback_8hpp.html#aef6864a5805269f4990d6b656daecc0d", null ],
-    [ "launch_game", "df/dda/AllCallback_8hpp.html#aa9f99149f108f3835aef82456f69d1bb", null ],
-    [ "quit_callback", "df/dda/AllCallback_8hpp.html#ae03ef59d911bfebbc1e0b3d4a54aefaf", null ],
-    [ "select_armored_ship", "df/dda/AllCallback_8hpp.html#a8a5a69c0014b44568f5962829caf1681", null ],
-    [ "select_damage_ship", "df/dda/AllCallback_8hpp.html#a0c05b971257402a449d58091f158689b", null ],
-    [ "select_engineer_ship", "df/dda/AllCallback_8hpp.html#a17d95caf36e393d9f52a07e6d44955c8", null ],
-    [ "select_sniper_ship", "df/dda/AllCallback_8hpp.html#a73daf8778ca41fe19eec1dda0892f9dd", null ]
+    [ "down_sound", "df/dda/AllCallback_8hpp.html#ae7e550513396968055e98a1e593f5c32", null ],
+    [ "go_to_game", "df/dda/AllCallback_8hpp.html#abc2f89fce05007f84539ec62fc4b4dd3", null ],
+    [ "go_to_lobby", "df/dda/AllCallback_8hpp.html#a5172a510976732b42a87ab0df7f7d487", null ],
+    [ "go_to_menu", "df/dda/AllCallback_8hpp.html#ae9da2092d88d527dd1f72c25f8703979", null ],
+    [ "go_to_option", "df/dda/AllCallback_8hpp.html#ad744ec834ffa43ea270dd00e952fd726", null ],
+    [ "launch_game", "df/dda/AllCallback_8hpp.html#a98478a56d195ea2fb846782c3ee241ba", null ],
+    [ "quit_callback", "df/dda/AllCallback_8hpp.html#a5fdb8a96d7a70a282ecd7ba2e14d3a5f", null ],
+    [ "select_armored_ship", "df/dda/AllCallback_8hpp.html#ad970597a38d2d3ac23fca3943f8df7d5", null ],
+    [ "select_damage_ship", "df/dda/AllCallback_8hpp.html#a5dd50ec70f35e17e1917560123e754a1", null ],
+    [ "select_engineer_ship", "df/dda/AllCallback_8hpp.html#a2dbda21cb385a7d4b19034720276cca4", null ],
+    [ "select_sniper_ship", "df/dda/AllCallback_8hpp.html#a45366e11d23253eea574642ba8406130", null ],
+    [ "up_sound", "df/dda/AllCallback_8hpp.html#a3218debef63b96d0c74a6b645db7b60e", null ]
 ];

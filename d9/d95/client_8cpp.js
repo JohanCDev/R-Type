@@ -11,5 +11,6 @@ var client_8cpp =
     [ "ok_packet", "d9/d95/client_8cpp.html#a51a08594a42f56dc9836e312a0a29304", null ],
     [ "players_numbers", "d9/d95/client_8cpp.html#a10b008fd7ef780c4f55ec98ce7466c81", null ],
     [ "players_ready", "d9/d95/client_8cpp.html#a42a2125027734cd919e3040686324161", null ],
+    [ "update_position", "d9/d95/client_8cpp.html#abb2ce7e0bb1f3067d0da42051a9b60df", null ],
     [ "wave_status", "d9/d95/client_8cpp.html#af30708bb8a36fb93569b66b56683f3a3", null ]
 ];
