@@ -57,6 +57,7 @@ int main()
                 if (adapt_difficulty) {
                     adapt_difficulty = false;
                     waves.base_difficulty = DEFAULT_WAVE_DIFFICULTY * server.clients.size();
+                    waves.remaining_difficulty = waves.base_difficulty;
                 }
                 velocity_system(world);
                 collide_system(world, server);
