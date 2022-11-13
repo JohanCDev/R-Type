@@ -70,7 +70,8 @@ int controllable_system(World &world, sf::Event event)
                         && drawable[index]->rect.y_size == 0)) {
                     world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f);
                 } else {
-                    world.create_laser(GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f);
+                    world.create_laser(
+                        GameObject::LASER, GameTeam::PLAYER, shoot_pos, Vector2i{15, 0}, 0.04f);
                 }
             }
         }
