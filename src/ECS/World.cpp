@@ -32,6 +32,7 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<SoundEffectComponent>();
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
+    this->_r.register_components<LevelComponent>();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
 
@@ -58,6 +59,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
+    this->_r.register_components<LevelComponent>();
 
     this->register_all_assets();
     this->register_all_sounds();
@@ -225,6 +227,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(
             KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
+    this->_r.add_component<LevelComponent>(ent, {0, 0});
 
     return (ent.id);
 }

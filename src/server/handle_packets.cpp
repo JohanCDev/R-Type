@@ -198,3 +198,34 @@ void select_ship(World &world, ClientMessage msg, NetworkServer &server)
     msg.first >> ship;
     world.player_ships[msg.second] = ship;
 }
+
+void spend_point(World &world, ClientMessage msg, NetworkServer &server)
+{
+    auto &levels = world.getRegistry().get_components<LevelComponent>();
+    auto &teams = world.getRegistry().get_components<GameTeamComponent>();
+    auto &clients = world.getRegistry().get_components<ClientIDComponent>();
+    GameStat stat;
+
+    msg.first >> stat;
+
+    std::size_t index = 0;
+
+    for (auto &client : clients) {
+        if (!(client && client.has_value() && client->id == msg.second)) {
+            index++;
+        }
+        auto &level = levels[index];
+        if (level && level.has_value()) {
+            if (level->spent_points >= level->level) {
+                return;
+            }
+            auto &team = teams[index];
+            if (team && team.has_value() && team->team == GameTeam::PLAYER) {
+                stat_up(world, stat, index);
+                send_stats_to_players(world, server, index);
+                level->spent_points++;
+            }
+        }
+        break;
+    }
+}
