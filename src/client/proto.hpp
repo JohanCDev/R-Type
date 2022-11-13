@@ -81,6 +81,7 @@ void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos, NetworkCl
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_enemy_kamikaze(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -120,6 +121,7 @@ void new_laser(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_laser_enemy(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
