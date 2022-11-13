@@ -160,6 +160,15 @@ void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos, NetworkCli
 void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
 /**
+ * @brief creation of double laser bonus
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ */
+void new_bonus_double(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
+
+/**
  * @brief Handle the movement message from the server
  *
  * @param world The world

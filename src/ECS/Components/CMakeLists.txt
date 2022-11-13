@@ -21,7 +21,8 @@ list(
   ${INCROOT}/TextComponent.hpp
   ${INCROOT}/ClickableComponent.hpp
   ${INCROOT}/BonusComponent.hpp
-  ${INCROOT}/SoundEffectComponent.hpp)
+  ${INCROOT}/SoundEffectComponent.hpp
+  ${INCROOT}/DoubleLaserComponent.hpp)
 
 set(SRC
   "${SRC}"
