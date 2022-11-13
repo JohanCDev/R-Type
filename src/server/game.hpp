@@ -296,6 +296,14 @@ void send_stats_to_players(World &world, NetworkServer &server, std::size_t inde
  * @brief Handles players' leveling up
  *
  * @param world world to act on
- * @param e server The server
+ * @param server The server
  */
 int level_up_system(World &world, NetworkServer &server);
+
+/**
+ * @brief Handles the end of the game
+ *
+ * @param world world to act on
+ * @param server The server
+ */
+int end_game_system(World &world, NetworkServer &server);
