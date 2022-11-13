@@ -72,8 +72,11 @@ void World::register_all_sounds()
 {
     this->_sound_effects["dead"] = std::make_shared<sf::Music>();
     this->_sound_effects["dead"].get()->openFromFile("./assets/music/explosion.wav");
+    this->_sound_effects["dead"].get()->setVolume(30);
     this->_sound_effects["laser"] = std::make_shared<sf::Music>();
     this->_sound_effects["laser"].get()->openFromFile("./assets/music/laser.wav");
+    this->_sound_effects["bonus"] = std::make_shared<sf::Music>();
+    this->_sound_effects["bonus"].get()->openFromFile("./assets/music/bonus.wav");
     // this->_sound_effects["dead"].get()->setVolume(40.f);
 }
 
@@ -196,7 +199,7 @@ size_t World::create_laser(GameObject object, GameTeam team, Vector2f pos, Vecto
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<HealthComponent>(ent, HealthComponent(defaultValues[GameObject::LASER].hp));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(team));
-    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("laser"));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("laser", true));
     return (ent.id);
 }
 
@@ -239,7 +242,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
-    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("explosion"));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("explosion", true));
 
     return (ent.id);
 }
@@ -259,6 +262,7 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName, std::chrono::steady_clock::now()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("bonus", true));
     return (ent.id);
 }
 

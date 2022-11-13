@@ -21,12 +21,12 @@
  */
 struct SoundEffectComponent {
     std::string soundEffect;
-    // sf::SoundBuffer soundEffect;
+    bool _alive;
 
     /**
      * @brief Construct a new Sound Effect Component object
      *
      * @param soundEffect string of sound effect
      */
-    SoundEffectComponent(const std::string &sound) : soundEffect(sound) {};
+    SoundEffectComponent(const std::string &sound, bool alive = true) : soundEffect(sound), _alive(alive) {};
 };
