@@ -54,6 +54,5 @@ enum class GameObject : uint32_t {
     BOSS_1,
     ENEMY_FOCUS,
     ENEMY_KAMIKAZE,
-    ENEMY_ODD,
     ENEMY_SNIPER
 };

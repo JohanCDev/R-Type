@@ -149,7 +149,6 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::BOSS_1, new_boss1},
     {GameObject::ENEMY_FOCUS, new_enemy_focus},
     {GameObject::ENEMY_KAMIKAZE, new_enemy_kamikaze},
-    {GameObject::ENEMY_ODD, new_enemy_odd},
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
     {GameObject::LASER, new_laser},
 };

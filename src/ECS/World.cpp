@@ -293,9 +293,6 @@ void World::register_all_drawable_object()
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
             Vector2f{
                 defaultValues[GameObject::ENEMY_KAMIKAZE].scale, defaultValues[GameObject::ENEMY_KAMIKAZE].scale}));
-    this->_drawMap.emplace(GameObject::ENEMY_ODD,
-        DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
-            Vector2f{defaultValues[GameObject::ENEMY_ODD].scale, defaultValues[GameObject::ENEMY_ODD].scale}));
     this->_drawMap.emplace(GameObject::ENEMY_SNIPER,
         DrawableComponent("assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255},
             Vector2f{defaultValues[GameObject::ENEMY_SNIPER].scale, defaultValues[GameObject::ENEMY_SNIPER].scale}));

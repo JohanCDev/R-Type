@@ -116,7 +116,6 @@ static std::map<GameObject, myValues_t> defaultValues = {
     {GameObject::BOSS_1, {{1920, 300}, 100, 40, 8, 2.0}},
     {GameObject::ENEMY_FOCUS, {{1920, -1}, 100, 40, 10, 1.0}},
     {GameObject::ENEMY_KAMIKAZE, {{1920, -1}, 100, 40, 20, 1.0}},
-    {GameObject::ENEMY_ODD, {{1920, -1}, 100, 40, 10, 1.0}},
     {GameObject::ENEMY_SNIPER, {{1920, -1}, 100, 40, 10, 1.0}},
 };
 
