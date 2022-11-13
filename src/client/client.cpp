@@ -24,6 +24,7 @@ NetworkClient::NetworkClient(std::string host, std::string server_port, unsigned
     this->_nb_players = 0;
     this->_players_ready = false;
     this->_launch_game = false;
+    this->_sound_volume = 50.0f;
     udp::resolver resolver(io_service);
     udp::resolver::query query(udp::v4(), host, server_port);
     server_endpoint = *resolver.resolve(query);
@@ -140,7 +141,17 @@ int NetworkClient::get_nb_players() const
     return (_nb_players);
 }
 
-static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newEntity = {
+float NetworkClient::getSoundVolume() const
+{
+    return (_sound_volume);
+}
+
+void NetworkClient::setSoundVolume(float volume)
+{
+    this->_sound_volume = volume;
+}
+
+static std::map<GameObject, std::function<void(World &, size_t, Vector2f, NetworkClient &)>> newEntity = {
     {GameObject::PLAYER, new_player},
     {GameObject::SHIP_ARMORED, new_armored_player},
     {GameObject::SHIP_DAMAGE, new_damage_player},
@@ -174,7 +185,7 @@ void new_entity(World &world, NetworkClient &client, Message<GameMessage> msg, S
     GameObject object;
 
     msg >> pos >> srv_entity_id >> object;
-    newEntity[object](world, srv_entity_id, pos);
+    newEntity[object](world, srv_entity_id, pos, client);
 }
 
 /**
@@ -204,6 +215,7 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
 #if __APPLE__
                     usleep(10000);
 #endif
+                    sounds.find("dead")->second.get()->setVolume(client.getSoundVolume());
                     sounds.find("dead")->second.get()->play();
                 }
                 if (sound[index] && sound[index]->soundEffect.compare("bonus") == 0) {
@@ -211,6 +223,7 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
 #if __APPLE__
                     usleep(10000);
 #endif
+                    sounds.find("bonus")->second.get()->setVolume(client.getSoundVolume());
                     sounds.find("bonus")->second.get()->play();
                 }
                 std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;

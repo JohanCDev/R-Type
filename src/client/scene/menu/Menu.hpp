@@ -34,7 +34,7 @@ class MenuScene : public IScene {
      * @param window Window to update
      * @param current_screen Current screen of the game
      */
-    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) override;
+    void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume) override;
 
     /**
      * @brief Init the menu scene

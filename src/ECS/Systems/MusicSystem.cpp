@@ -12,12 +12,12 @@
 #include "../Components/AllComponents.hpp"
 #include "../World.hpp"
 
-int music_system(World &world, const std::string &music_filepath)
+int music_system(World &world, const std::string &music_filepath, float &volume)
 {
     if (world.getMusic().openFromFile(music_filepath) == false)
         return -1;
     world.getMusic().setLoop(true);
-    world.getMusic().setVolume(60);
+    world.getMusic().setVolume(volume);
     world.getMusic().play();
     return 0;
 }

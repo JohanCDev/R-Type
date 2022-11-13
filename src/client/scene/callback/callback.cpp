@@ -11,42 +11,42 @@
 
 #include "../Scene.hpp"
 
-void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &client)
+void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)client;
     current_screen = SceneScreen::LOBBY;
 }
 
-void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client)
+void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)client;
     current_screen = SceneScreen::MENU;
 }
 
-void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client)
+void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)client;
     current_screen = SceneScreen::GAME;
 }
 
-void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &client)
+void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)client;
     current_screen = SceneScreen::OPTION;
 }
 
-void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &client)
+void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)client;
     current_screen = SceneScreen::NONE;
 }
 
-void launch_game(World &world, SceneScreen &current_screen, NetworkClient &client)
+void launch_game(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     if (client.get_players_ready() == false)
@@ -83,7 +83,7 @@ void shadow_other_ship(World &world, std::string &except)
     }
 }
 
-void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
+void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)current_screen;
@@ -98,7 +98,7 @@ void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClien
     client.send(msg);
 }
 
-void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
+void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)current_screen;
@@ -113,7 +113,7 @@ void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient
     client.send(msg);
 }
 
-void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
+void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)current_screen;
@@ -128,7 +128,7 @@ void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClie
     client.send(msg);
 }
 
-void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient &client)
+void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
     (void)current_screen;
@@ -141,4 +141,18 @@ void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient
     GameObject obj = GameObject::SHIP_SNIPER;
     msg << obj;
     client.send(msg);
+}
+
+void up_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
+{
+    if (client.getSoundVolume() + 10 > 100)
+        return;
+    client.setSoundVolume(client.getSoundVolume() + 10);
+}
+
+void down_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
+{
+    if (client.getSoundVolume() - 10 < 0)
+        return;
+    client.setSoundVolume(client.getSoundVolume() - 10);
 }

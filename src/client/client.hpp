@@ -137,6 +137,20 @@ class NetworkClient {
      */
     int get_nb_players() const;
 
+    /**
+     * @brief Set the nb players
+     *
+     * @param volume volume value
+     */
+    void setSoundVolume(float volume);
+
+    /**
+     * @brief Get the nb players
+     *
+     * @return nb_players
+     */
+    float getSoundVolume() const;
+
   private:
     boost::asio::io_service io_service;
     udp::socket socket;
@@ -147,6 +161,7 @@ class NetworkClient {
     bool _players_ready;
     bool _launch_game;
     int _nb_players;
+    float _sound_volume;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
 
