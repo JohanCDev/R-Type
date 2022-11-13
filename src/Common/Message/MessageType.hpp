@@ -20,6 +20,7 @@ enum class GameMessage : uint32_t {
     C2S_LEAVE,
     C2S_SHOOT,
     C2S_MOVEMENT,
+    C2S_SPEND_POINT,
     C2S_START_GAME,
     C2S_SELECT_SHIP,
     S2C_ENTITY_NEW,
@@ -32,6 +33,9 @@ enum class GameMessage : uint32_t {
     S2C_START_GAME,
     S2C_PLAYERS_IN_LOBBY,
     S2C_PLAYERS_READY,
+    S2C_BONUS_DEAD,
+    S2C_LEVEL_UP,
+    S2C_UPDATE_STATS,
     S2C_BONUS_DEAD,
 };
 
