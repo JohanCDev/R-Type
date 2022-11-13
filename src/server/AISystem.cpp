@@ -205,13 +205,6 @@ static std::map<GameObject, std::function<void(World &, NetworkServer &, size_t)
     {GameObject::ENEMY_FOCUS, update_enemy_focus}, {GameObject::ENEMY_KAMIKAZE, update_enemy_kamikaze},
     {GameObject::ENEMY_SNIPER, update_enemy_sniper}, {GameObject::BOSS_1, update_boss_1}};
 
-/**
- * @brief
- *
- * @param world The world
- * @param server The server
- * @return int
- */
 int ia_system(World &world, NetworkServer &server)
 {
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();

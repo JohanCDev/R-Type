@@ -35,6 +35,7 @@ class GameScene : public IScene {
      * @param client Class containing client's network information
      * @param window Window to update
      * @param current_screen Current screen of the game
+     * @param volume Volume of the game
      */
     void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume) override;
 
@@ -75,5 +76,10 @@ class GameScene : public IScene {
      *
      */
     bool _init;
+
+    /**
+     * @brief Is the option screen displayed ?
+     *
+     */
     bool _option;
 };

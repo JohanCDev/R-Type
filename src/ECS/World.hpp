@@ -81,7 +81,6 @@ class World {
      * @param team Team of the laser
      * @param pos base pos of the laser as a Vector2f. ex: {150.0, 120.0}
      * @param speed base speed of the laser as a Vector2i. ex: {0, 0}
-     * @param scale scale of the laser as a Vector2f. ex: {1.0, 1.0}
      * @param refresh_time time before the laser is refreshed
      *
      * @returns id of the laser
@@ -95,7 +94,6 @@ class World {
      * @param team Team of the laser
      * @param pos base pos of the laser as a Vector2f. ex: {150.0, 120.0}
      * @param speed base speed of the laser as a Vector2i. ex: {0, 0}
-     * @param scale scale of the laser as a Vector2f. ex: {1.0, 1.0}
      * @param refresh_time time before the laser is refreshed
      *
      * @returns id of the laser
@@ -178,10 +176,10 @@ class World {
     /**
      * @brief Create a text object
      *
-     * @param text
-     * @param font
-     * @param size
-     * @param pos
+     * @param text Text to display
+     * @param font Font to use
+     * @param size Font Size
+     * @param pos Position of the text
      *
      * @returns Negative value if there is an error
      */
@@ -190,12 +188,13 @@ class World {
     /**
      * @brief Create a button object
      *
-     * @param asset
-     * @param rect
-     * @param scale
-     * @param pos
-     * @param callback
-     * @return size_t
+     * @param asset asset of the button
+     * @param rect Size of the button
+     * @param color Color of the button
+     * @param scale Scale of the button
+     * @param pos Pos of the button
+     * @param callback Function to call on click
+     * @return ID of the button
      */
     size_t create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
         std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback);
@@ -205,11 +204,6 @@ class World {
      *
      */
     void register_all_drawable_object();
-    /**
-     * @brief Registers all sounds
-     *
-     */
-    void register_all_sounds();
 
     /**
      * @brief Get the Registry object
@@ -254,13 +248,6 @@ class World {
     Vector2i &getDirection();
 
     /**
-     * @brief Get the Sound effects map
-     *
-     * @return Reference to the map
-     */
-    const std::map<std::string, std::shared_ptr<sf::Music>> &getSoundEffects();
-
-    /**
      * @brief Set the Direction object
      *
      * @param direction new direction as a Vector2i. ex: {0, 0}
@@ -280,10 +267,9 @@ class World {
     std::map<std::size_t, GameObject> player_ships;
 
     /**
-     * @brief Map containing all sound effects
+     * @brief Create a border entities object that will destroy objects passing through
      *
      */
-    std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
     void create_border_entities();
 
   private:
