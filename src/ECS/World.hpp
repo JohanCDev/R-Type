@@ -145,7 +145,6 @@ class World {
      * @return size_t
      */
     size_t create_bonus(GameObject object, Vector2f pos, Vector2i speed, float refresh_time, Bonus enumBonus);
-
     /**
      * @brief Create a drawable object
      *
@@ -193,6 +192,11 @@ class World {
      *
      */
     void register_all_drawable_object();
+    /**
+     * @brief Registers all sounds
+     *
+     */
+    void register_all_sounds();
 
     /**
      * @brief Get the Registry object
@@ -237,6 +241,13 @@ class World {
     Vector2i &getDirection();
 
     /**
+     * @brief Get the Sound effects map
+     *
+     * @return Reference to the map
+     */
+    const std::map<std::string, std::shared_ptr<sf::Music>> &getSoundEffects();
+
+    /**
      * @brief Set the Direction object
      *
      * @param direction new direction as a Vector2i. ex: {0, 0}
@@ -255,6 +266,11 @@ class World {
      */
     std::map<std::size_t, GameObject> player_ships;
 
+    /**
+     * @brief Map containing all sound effects
+     *
+     */
+    std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
     void create_border_entities();
 
   private:

@@ -29,10 +29,13 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SoundEffectComponent>();
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
+
+    this->register_all_sounds();
     this->register_all_drawable_object();
 }
 
@@ -51,16 +54,30 @@ World::World() : _r(), _clock()
     this->_r.register_components<VelocityComponent>();
     this->_r.register_components<WeaponComponent>();
     this->_r.register_components<BonusComponent>();
+    this->_r.register_components<SoundEffectComponent>();
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
 
     this->register_all_assets();
+    this->register_all_sounds();
     this->register_all_drawable_object();
 }
 
 World::~World()
 {
+}
+
+void World::register_all_sounds()
+{
+    this->_sound_effects["dead"] = std::make_shared<sf::Music>();
+    this->_sound_effects["dead"].get()->openFromFile("./assets/music/explosion.wav");
+    this->_sound_effects["dead"].get()->setVolume(30);
+    this->_sound_effects["laser"] = std::make_shared<sf::Music>();
+    this->_sound_effects["laser"].get()->openFromFile("./assets/music/laser.wav");
+    this->_sound_effects["bonus"] = std::make_shared<sf::Music>();
+    this->_sound_effects["bonus"].get()->openFromFile("./assets/music/bonus.wav");
+    // this->_sound_effects["dead"].get()->setVolume(40.f);
 }
 
 void World::register_all_assets()
@@ -126,8 +143,8 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
-    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
+    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
     this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
@@ -135,10 +152,6 @@ void World::register_game_assets()
 void World::register_option_assets()
 {
     this->_manager.register_texture("assets/Button/home.png");
-    this->_manager.register_texture("assets/Power-up/boost_attack.png");
-    this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
-    this->_manager.register_texture("assets/Power-up/boost_hp.png");
-    this->_manager.register_texture("assets/Power-up/boost_speed.png");
 }
 
 sf::Clock &World::getClock()
@@ -166,6 +179,11 @@ Vector2i &World::getDirection()
     return (this->_player_direction);
 }
 
+const std::map<std::string, std::shared_ptr<sf::Music>> &World::getSoundEffects()
+{
+    return this->_sound_effects;
+}
+
 void World::setDirection(Vector2i direction)
 {
     this->_player_direction = direction;
@@ -185,6 +203,7 @@ size_t World::create_laser(GameObject object, GameTeam team, Vector2f pos, Vecto
     this->_r.add_component<PositionComponent>(ent, PositionComponent(pos));
     this->_r.add_component<HealthComponent>(ent, HealthComponent(defaultValues[GameObject::LASER].hp));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(team));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("laser", true));
     return (ent.id);
 }
 
@@ -227,6 +246,7 @@ size_t World::create_enemy(GameObject object, Vector2f pos, Vector2i speed, size
     this->_r.add_component<VelocityComponent>(
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::ENEMY));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("explosion", true));
 
     return (ent.id);
 }
@@ -246,6 +266,7 @@ size_t World::create_bonus(GameObject object, Vector2f pos, Vector2i speed, floa
         ent, VelocityComponent(speed, refresh_time, this->_clock.getElapsedTime().asSeconds()));
     this->_r.add_component<BonusComponent>(ent, BonusComponent(bonusName, std::chrono::steady_clock::now()));
     this->_r.add_component<GameTeamComponent>(ent, GameTeamComponent(GameTeam::NEUTRAL));
+    this->_r.add_component<SoundEffectComponent>(ent, SoundEffectComponent("bonus", true));
     return (ent.id);
 }
 
@@ -376,6 +397,7 @@ void World::create_border_entities()
 
 void World::register_all_drawable_object()
 {
+    // this->_sound_effects["death"].play();
     this->_drawMap.emplace(GameObject::BOSS_1,
         DrawableComponent(
             "assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));

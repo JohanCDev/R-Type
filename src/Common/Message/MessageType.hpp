@@ -32,6 +32,7 @@ enum class GameMessage : uint32_t {
     S2C_START_GAME,
     S2C_PLAYERS_IN_LOBBY,
     S2C_PLAYERS_READY,
+    S2C_BONUS_DEAD,
 };
 
 /**
