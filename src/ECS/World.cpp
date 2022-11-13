@@ -122,6 +122,7 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
+    this->_manager.register_texture("assets/background/bg-settings.png");
 }
 
 void World::register_option_assets()

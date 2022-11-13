@@ -45,10 +45,21 @@ class GameScene : public IScene {
      */
     void init_game(sf::RenderWindow &window);
 
+    /**
+     * @brief Update the position of parallax entities
+     *
+     */
     void update_parallax();
+
+    /**
+     * @brief Display the option screen
+     *
+     */
+    void display_option(bool display);
 
   private:
     Message<GameMessage> msg;
     World _world;
     bool _init;
+    bool _option;
 };
