@@ -152,6 +152,8 @@ void update_boss_1(World &world, NetworkServer &server, size_t i)
     Message<GameMessage> sending_msg;
     Vector2i nearest_player_pos = {0, 0};
     bool default_player = false;
+    size_t random_shoot = rand() % 10;
+    size_t entity_id = 0;
 
     for (size_t c = 0; c < clients.size(); ++c) {
         if (clients[c]) {
@@ -164,13 +166,27 @@ void update_boss_1(World &world, NetworkServer &server, size_t i)
                 nearest_player_pos.y = positions[c]->pos.y;
                 if (std::abs(positions[i]->pos.y - positions[c]->pos.y) <= defaultValues[GameObject::BOSS_1].spd)
                     velocity[i]->speed.y = 0;
-                else if (nearest_player_pos.y > positions[i]->pos.y) {
+                else if (nearest_player_pos.y > positions[i]->pos.y)
                     velocity[i]->speed.y = defaultValues[GameObject::BOSS_1].spd;
-                } else {
+                else
                     velocity[i]->speed.y = -defaultValues[GameObject::BOSS_1].spd;
-                }
                 if (positions[i]->pos.x <= 1420)
                     velocity[i]->speed.x = 0;
+                if (random_shoot == 2) {
+                    for (int i = 0; i < 3; ++i) {
+                        Vector2f shoot_pos = {positions[i]->pos.x, positions[i]->pos.y + i * 50};
+                        entity_id = world.create_laser_enemy(GameObject::LASER_ENEMY, GameTeam::ENEMY, shoot_pos,
+                            Vector2i{defaultValues[GameObject::LASER_ENEMY].spd, 0}, 0.04f);
+                        world.getRegistry().add_component<EntityIDComponent>(
+                            world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+                        sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+                        sending_msg << GameObject::LASER_ENEMY;
+                        sending_msg << entity_id;
+                        sending_msg << shoot_pos;
+                        server.SendToAll(sending_msg);
+                        sending_msg = Message<GameMessage>();
+                    }
+                }
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entities[i]->id;
                 sending_msg << velocity[i]->speed;
