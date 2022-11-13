@@ -56,7 +56,7 @@ int main()
         switch (world.state) {
             case GameState::Lobby: lobby_system(world, server); break;
             case GameState::Playing:
-                if (refreshClock.getElapsedTime().asSeconds() > 1.0f) {
+                if (refreshClock.getElapsedTime().asSeconds() > 0.3f) {
                     refresh_system(world, server);
                     refreshClock.restart();
                 }
@@ -65,6 +65,7 @@ int main()
                 ia_system(world, server);
                 wave_system(world, server, waves);
                 bonus_system(world, server, bonus_stat);
+                destroy_outdated_entities(world, server);
                 end_game_system(world, server);
                 break;
             default: break;

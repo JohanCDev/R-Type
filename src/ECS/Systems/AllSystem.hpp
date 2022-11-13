@@ -125,7 +125,8 @@ int lobby_system(World &world, NetworkServer &server);
  * @param volume volume
  * @return negative value if there is an error
  */
-int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client, float &volume);
+int clickable_system(
+    World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Sends the locations of each entity to clients
@@ -144,3 +145,11 @@ int refresh_system(World &world, NetworkServer &server);
  * @return Negative value in case of error
  */
 int music_system(World &world, const std::string &music_filepath, float &volume);
+
+/**
+ * @brief Destroy entities out of screen
+ *
+ * @param world
+ * @param server
+ */
+void destroy_outdated_entities(World &world, NetworkServer &server);
