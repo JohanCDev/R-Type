@@ -433,6 +433,14 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+/**
+ * @brief Handle the level up
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void level_up(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;
@@ -451,7 +459,8 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)
 {
-    (mapFunc[msg.header.id])(world, *this, msg, screen);
+    if (mapFunc.contains(msg.header.id))
+        (mapFunc[msg.header.id])(world, *this, msg, screen);
     if (msg.header.id == GameMessage::S2C_GAME_END) {
         game_end(window);
     }

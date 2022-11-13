@@ -46,7 +46,7 @@ class GameScene : public IScene {
     void init_game(sf::RenderWindow &window);
 
     /**
-     * @brief Update the position of parallax entities
+     * @brief Update the parallax display
      *
      */
     void update_parallax();
@@ -58,8 +58,22 @@ class GameScene : public IScene {
     void display_option(bool display);
 
   private:
+    /**
+     * @brief Message queue of the client
+     *
+     */
     Message<GameMessage> msg;
+
+    /**
+     * @brief World of the game
+     *
+     */
     World _world;
+
+    /**
+     * @brief Is the world initialized ?
+     *
+     */
     bool _init;
     bool _option;
 };
