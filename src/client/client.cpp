@@ -325,8 +325,16 @@ void wave_status(World &world, NetworkClient &client, Message<GameMessage> msg, 
     msg >> status;
 
     switch (status) {
-        case WaveStatus::START: std::cout << "Wave " << nb_wave << " is starting" << std::endl; break;
-        case WaveStatus::BOSS_START: std::cout << "Boss wave " << nb_wave << " is starting" << std::endl; break;
+        case WaveStatus::START:
+            std::cout << "Wave " << nb_wave << " is starting" << std::endl;
+            world.create_text("Wave " + std::to_string(nb_wave) + " is starting", "assets/font/EMINOR-BlackItalic.ttf",
+                64, {700, 480});
+            break;
+        case WaveStatus::BOSS_START:
+            std::cout << "Boss " << nb_wave / DEFAULT_WAVE_FREQUENCY_BOSS << " is coming" << std::endl;
+            world.create_text("Boss " + std::to_string(nb_wave / DEFAULT_WAVE_FREQUENCY_BOSS) + " is coming",
+                "assets/font/EMINOR-BlackItalic.ttf", 64, {700, 480});
+            break;
         case WaveStatus::END: std::cout << "Wave " << nb_wave << " ended" << std::endl; break;
     }
 }
