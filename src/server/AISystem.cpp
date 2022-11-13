@@ -20,7 +20,7 @@
  *
  * @param world The world
  * @param server The server
- * @param i The index of the enemy
+ * @param i The index of the entity
  */
 void update_enemy_focus(World &world, NetworkServer &server, size_t i)
 {
@@ -58,6 +58,13 @@ void update_enemy_focus(World &world, NetworkServer &server, size_t i)
     }
 }
 
+/**
+ * @brief Stay on the right of the screen and move vertically
+ *
+ * @param world The world
+ * @param server The server
+ * @param i The index of the entity
+ */
 void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
 {
     auto &clients = world.getRegistry().get_components<ClientIDComponent>();
@@ -101,7 +108,7 @@ void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
  *
  * @param world The world
  * @param server The server
- * @param i The index of the enemy
+ * @param i The index of the entity
  */
 void update_enemy_kamikaze(World &world, NetworkServer &server, size_t i)
 {
@@ -111,11 +118,56 @@ void update_enemy_kamikaze(World &world, NetworkServer &server, size_t i)
 }
 
 /**
+ * @brief Stay on the right of the screen and follow the nearest player vertically
+ *
+ * @param world The world
+ * @param server The server
+ * @param i The index of the entity
+ */
+void update_boss_1(World &world, NetworkServer &server, size_t i)
+{
+    auto &clients = world.getRegistry().get_components<ClientIDComponent>();
+    auto &velocity = world.getRegistry().get_components<VelocityComponent>();
+    auto &entities = world.getRegistry().get_components<EntityIDComponent>();
+    auto &positions = world.getRegistry().get_components<PositionComponent>();
+    Message<GameMessage> sending_msg;
+    Vector2i nearest_player_pos = {0, 0};
+    bool default_player = false;
+
+    for (size_t c = 0; c < clients.size(); ++c) {
+        if (clients[c]) {
+            if (!default_player) {
+                nearest_player_pos.y = positions[c]->pos.y;
+                default_player = true;
+            }
+            if (std::abs(nearest_player_pos.y - positions[i]->pos.y)
+                >= std::abs(positions[i]->pos.y - positions[c]->pos.y)) {
+                nearest_player_pos.y = positions[c]->pos.y;
+                if (std::abs(positions[i]->pos.y - positions[c]->pos.y) <= defaultValues[GameObject::BOSS_1].spd)
+                    velocity[i]->speed.y = 0;
+                else if (nearest_player_pos.y > positions[i]->pos.y) {
+                    velocity[i]->speed.y = defaultValues[GameObject::BOSS_1].spd;
+                } else {
+                    velocity[i]->speed.y = -defaultValues[GameObject::BOSS_1].spd;
+                }
+                if (positions[i]->pos.x <= 1420)
+                    velocity[i]->speed.x = 0;
+                sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+                sending_msg << entities[i]->id;
+                sending_msg << velocity[i]->speed;
+                server.SendToAll(sending_msg);
+                sending_msg = Message<GameMessage>();
+            }
+        }
+    }
+}
+
+/**
  * @brief Call a function by a GameObject type
  */
 static std::map<GameObject, std::function<void(World &, NetworkServer &, size_t)>> mapFunc = {
     {GameObject::ENEMY_FOCUS, update_enemy_focus}, {GameObject::ENEMY_KAMIKAZE, update_enemy_kamikaze},
-    {GameObject::ENEMY_SNIPER, update_enemy_sniper}, {GameObject::BOSS_1, update_enemy_focus}};
+    {GameObject::ENEMY_SNIPER, update_enemy_sniper}, {GameObject::BOSS_1, update_boss_1}};
 
 /**
  * @brief
