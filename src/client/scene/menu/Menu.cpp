@@ -27,8 +27,8 @@ void MenuScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
 
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(
-                this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y},
+                current_screen, client);
         }
         if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P) {
             current_screen = SceneScreen::LOBBY;
