@@ -132,3 +132,11 @@ int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_scre
  * @return Negative value in case of error
  */
 int music_system(World &world, const std::string &music_filepath);
+
+/**
+ * @brief Destroy entities out of screen
+ *
+ * @param world
+ * @param server
+ */
+void destroy_outdated_entities(World &world, NetworkServer &server);
