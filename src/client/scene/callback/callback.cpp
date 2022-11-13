@@ -15,12 +15,14 @@ void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &clien
 {
     (void)world;
     (void)client;
+    (void)volume;
     current_screen = SceneScreen::LOBBY;
 }
 
 void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
+    (void)volume;
     (void)client;
     current_screen = SceneScreen::MENU;
 }
@@ -29,6 +31,7 @@ void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client
 {
     (void)world;
     (void)client;
+    (void)volume;
     current_screen = SceneScreen::GAME;
 }
 
@@ -36,6 +39,7 @@ void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &clie
 {
     (void)world;
     (void)client;
+    (void)volume;
     current_screen = SceneScreen::OPTION;
 }
 
@@ -43,12 +47,14 @@ void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &cli
 {
     (void)world;
     (void)client;
+    (void)volume;
     current_screen = SceneScreen::NONE;
 }
 
 void launch_game(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
+    (void)volume;
     if (client.get_players_ready() == false)
         return;
     Message<GameMessage> msg;
@@ -86,6 +92,7 @@ void shadow_other_ship(World &world, std::string &except)
 void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     (void)world;
+    (void)volume;
     (void)current_screen;
 
     std::string except = "assets/SpaceShip/ship_armored_spritesheet.png";
@@ -102,6 +109,7 @@ void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient
 {
     (void)world;
     (void)current_screen;
+    (void)volume;
 
     std::string except = "assets/SpaceShip/ship_damage_spritesheet.png";
     shadow_other_ship(world, except);
@@ -117,6 +125,7 @@ void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClie
 {
     (void)world;
     (void)current_screen;
+    (void)volume;
 
     std::string except = "assets/SpaceShip/ship_engineer_spritesheet.png";
     shadow_other_ship(world, except);
@@ -132,6 +141,7 @@ void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient
 {
     (void)world;
     (void)current_screen;
+    (void)volume;
 
     std::string except = "assets/SpaceShip/ship_sniper_spritesheet.png";
     shadow_other_ship(world, except);
@@ -145,6 +155,9 @@ void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient
 
 void up_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
+    (void)world;
+    (void)current_screen;
+    (void)volume;
     if (client.getSoundVolume() + 10 > 100)
         return;
     client.setSoundVolume(client.getSoundVolume() + 10);
@@ -152,6 +165,9 @@ void up_sound(World &world, SceneScreen &current_screen, NetworkClient &client, 
 
 void down_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
+    (void)world;
+    (void)current_screen;
+    (void)volume;
     if (client.getSoundVolume() - 10 < 0)
         return;
     client.setSoundVolume(client.getSoundVolume() - 10);
