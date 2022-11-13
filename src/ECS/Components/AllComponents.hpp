@@ -28,4 +28,5 @@
 #include "TextComponent.hpp"
 #include "VelocityComponent.hpp"
 #include "WeaponComponent.hpp"
+#include "DoubleLaserComponent.hpp"
 #include "LevelComponent.hpp"

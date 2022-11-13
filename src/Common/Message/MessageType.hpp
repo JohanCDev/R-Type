@@ -64,11 +64,12 @@ enum class GameObject : uint32_t {
     BONUS_ATTACK,
     BONUS_ATTACK_SPEED,
     BONUS_HEAL,
-    BONUS_SPEED
+    BONUS_SPEED,
+    BONUS_DOUBLE
 };
 
 /**
  *  @brief Enumerate game stats
  *
  */
-enum class GameStat : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD };
+enum class GameStat : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD, DOUBLE };
