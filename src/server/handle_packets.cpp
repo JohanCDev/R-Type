@@ -38,18 +38,21 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     int random_variable = std::rand();
     Bonus bonus_name;
 
-    if (random_variable % 4 == 0) {
+    if (random_variable % 5 == 0) {
         tmp = GameObject::BONUS_ATTACK;
         bonus_name = Bonus::ATTACK;
-    } else if (random_variable % 3 == 0) {
+    } else if (random_variable % 4 == 0) {
         tmp = GameObject::BONUS_ATTACK_SPEED;
         bonus_name = Bonus::ATTACK_SPEED;
-    } else if (random_variable % 2 == 0) {
+    } else if (random_variable % 3 == 0) {
         tmp = GameObject::BONUS_HEAL;
         bonus_name = Bonus::HEAL;
-    } else {
+    } else if (random_variable % 2 == 0) {
         tmp = GameObject::BONUS_SPEED;
         bonus_name = Bonus::SPEED;
+    } else {
+        tmp = GameObject::BONUS_DOUBLE;
+        bonus_name = Bonus::DOUBLE;
     }
 
     entity_id = world.create_bonus(
@@ -133,6 +136,7 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
     sparse_array<PositionComponent> &position = r.get_components<PositionComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
     sparse_array<DrawableComponent> &draw = r.get_components<DrawableComponent>();
+    sparse_array<DoubleLaserComponent> &laser = r.get_components<DoubleLaserComponent>();
     std::size_t index = 0;
     Message<GameMessage> sending_msg;
     size_t entity_id = 0;
@@ -157,6 +161,25 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 sending_msg << entity_id;
                 sending_msg << Vector2i{defaultValues[GameObject::LASER].spd, 0};
                 server.SendToAll(sending_msg);
+                if (laser[index]->_double == true) {
+                    Vector2f shootPos2 = shootMap[draw[index]->path];
+                    entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
+                        Vector2f{position[index]->pos.x + shootPos2.x, position[index]->pos.y + shootPos2.y - 30},
+                        Vector2i{defaultValues[GameObject::LASER].spd, 0}, 0.04f);
+                    std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
+                            << position[index]->pos.y << "}" << std::endl;
+                    world.getRegistry().add_component<EntityIDComponent>(
+                        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+                    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+                    sending_msg << GameObject::LASER;
+                    sending_msg << entity_id;
+                    sending_msg << Vector2f{position[index]->pos.x + shootPos2.x, position[index]->pos.y + shootPos2.y - 30};
+                    server.SendToAll(sending_msg);
+                    sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+                    sending_msg << entity_id;
+                    sending_msg << Vector2i{defaultValues[GameObject::LASER].spd, 0};
+                    server.SendToAll(sending_msg);
+                }
                 break;
             }
         }

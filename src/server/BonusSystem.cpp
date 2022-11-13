@@ -27,6 +27,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
     auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
+    auto &laser = world.getRegistry().get_components<DoubleLaserComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
     std::chrono::time_point<std::chrono::steady_clock> timer;
@@ -67,7 +68,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1
                             && teams[j]->team == GameTeam::PLAYER) {
-                            std::cout << "hit bonus entity" << entityId[j]->id << "]." << std::endl;
+                            std::cout << "hit bonus entity [" << entityId[j]->id << "]." << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
                                 weapons[j]->stat.x += 20;
                                 std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
@@ -101,6 +102,11 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                                 time.second.strengh = 0;
                                 time.second.attack_speed = 1;
                                 bonus_stat.timer.push_back(time);
+                            } else if (bonus[i]->bonus_name == Bonus::DOUBLE) {
+                                laser[j]->_double = true;
+                                std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
+                                time.first = std::chrono::steady_clock::now();
+                                bonus_stat.timer.push_back(time);
                             }
                             sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
                             sending_msg << entityId[i]->id;
@@ -124,6 +130,8 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                 weapons[bonus_stat.timer[i].second.nbr]->stat.x -= 20;
             } else if (bonus_stat.timer[i].second.strengh) {
                 weapons[bonus_stat.timer[i].second.nbr]->stat.y -= 20;
+            } else if (laser[bonus_stat.timer[i].second.nbr] && laser[bonus_stat.timer[i].second.nbr]->_double == true) {
+                laser[bonus_stat.timer[i].second.nbr]->_double = false;
             }
             bonus_stat.timer.erase(bonus_stat.timer.cbegin() + i);
         }
