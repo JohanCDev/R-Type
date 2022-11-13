@@ -38,26 +38,29 @@ void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
     int random_variable = std::rand();
     Bonus bonus_name;
 
-    if (random_variable % 4 == 0) {
+    if (random_variable % 5 == 0) {
         tmp = GameObject::BONUS_ATTACK;
         bonus_name = Bonus::ATTACK;
-    } else if (random_variable % 3 == 0) {
+    } else if (random_variable % 4 == 0) {
         tmp = GameObject::BONUS_ATTACK_SPEED;
         bonus_name = Bonus::ATTACK_SPEED;
-    } else if (random_variable % 2 == 0) {
+    } else if (random_variable % 3 == 0) {
         tmp = GameObject::BONUS_HEAL;
         bonus_name = Bonus::HEAL;
-    } else {
+    } else if (random_variable % 2 == 0) {
         tmp = GameObject::BONUS_SPEED;
         bonus_name = Bonus::SPEED;
+    } else {
+        tmp = GameObject::BONUS_DOUBLE;
+        bonus_name = Bonus::DOUBLE;
     }
 
     entity_id = world.create_bonus(
-        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f, Bonus::ATTACK);
+        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f, bonus_name);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
-    sending_msg << GameObject::BONUS_ATTACK;
+    sending_msg << tmp;
     sending_msg << entity_id;
     sending_msg << Vector2f{pos.x, pos.y};
     server.SendToAll(sending_msg);
