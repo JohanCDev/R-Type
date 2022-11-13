@@ -140,6 +140,7 @@ int wave_system(World &world, NetworkServer &server, waves_t &waves)
         sending_msg << WaveStatus::END;
         sending_msg << waves.nb_wave;
         server.SendToAll(sending_msg);
+        level_up_system(world, server);
     }
     return 0;
 }

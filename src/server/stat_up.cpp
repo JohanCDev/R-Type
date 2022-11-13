@@ -12,6 +12,12 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
 
+/**
+ * @brief Augments the player's health
+ *
+ * @param world world to act on
+ * @param e Player's entity ID
+ */
 void health_up(World &world, std::size_t &e)
 {
     auto &health = world.getRegistry().get_components<HealthComponent>()[e];
@@ -23,6 +29,12 @@ void health_up(World &world, std::size_t &e)
     }
 }
 
+/**
+ * @brief Augments the player's damage
+ *
+ * @param world world to act on
+ * @param e Player's entity ID
+ */
 void damage_up(World &world, std::size_t &e)
 {
     auto &weapon = world.getRegistry().get_components<WeaponComponent>()[e];
@@ -32,6 +44,12 @@ void damage_up(World &world, std::size_t &e)
     }
 }
 
+/**
+ * @brief Augments the player's attack speed
+ *
+ * @param world world to act on
+ * @param e Player's entity ID
+ */
 void atk_spd_up(World &world, std::size_t &e)
 {
     auto &weapon = world.getRegistry().get_components<WeaponComponent>()[e];
@@ -56,5 +74,6 @@ static std::map<GameStat, std::function<void(World &, std::size_t &)>> statFunc 
 
 void stat_up(World &world, GameStat &stat, std::size_t &e)
 {
-    statFunc[stat](world, e);
+    if (statFunc.contains(stat))
+        statFunc[stat](world, e);
 }
