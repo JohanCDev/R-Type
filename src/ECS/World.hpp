@@ -62,11 +62,26 @@ class World {
      * @param team Team of the laser
      * @param pos base pos of the laser as a Vector2f. ex: {150.0, 120.0}
      * @param speed base speed of the laser as a Vector2i. ex: {0, 0}
+     * @param scale scale of the laser as a Vector2f. ex: {1.0, 1.0}
      * @param refresh_time time before the laser is refreshed
      *
      * @returns id of the laser
      */
     size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
+
+    /**
+     * @brief Create a laser entity in the enemy team
+     *
+     * @param object type of the object
+     * @param team Team of the laser
+     * @param pos base pos of the laser as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the laser as a Vector2i. ex: {0, 0}
+     * @param scale scale of the laser as a Vector2f. ex: {1.0, 1.0}
+     * @param refresh_time time before the laser is refreshed
+     *
+     * @returns id of the laser
+     */
+    size_t create_laser_enemy(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
 
     /**
      * @brief Create a player entity
