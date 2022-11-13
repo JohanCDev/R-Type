@@ -106,29 +106,6 @@ void create_enemy(World &world, NetworkServer &server)
     server.SendToAll(sending_msg);
 }
 
-int level_up_system(World &world, NetworkServer &server)
-{
-    auto &levels = world.getRegistry().get_components<LevelComponent>();
-    auto &teams = world.getRegistry().get_components<GameTeamComponent>();
-    Message<GameMessage> level_up_msg;
-
-    std::size_t index = 0;
-
-    for (auto &level : levels) {
-        if (level && level.has_value()) {
-            auto &team = teams[index];
-            if (team && team.has_value() && team->team == GameTeam::PLAYER) {
-                level->level++;
-            }
-        }
-        index++;
-    }
-    level_up_msg.header.id = GameMessage::S2C_LEVEL_UP;
-    level_up_msg << "ONE UP";
-    server.SendToAll(level_up_msg);
-    return 0;
-}
-
 int wave_system(World &world, NetworkServer &server, waves_t &waves)
 {
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
