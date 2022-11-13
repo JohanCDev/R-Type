@@ -25,9 +25,6 @@ int end_game_system(World &world, NetworkServer &server, waves_t &waves)
     if (!alivePlayers) {
         Message<GameMessage> msg;
 
-        msg.header.id = GameMessage::S2C_GAME_END;
-        msg << "end";
-        server.SendToAll(msg);
         auto &drawables = world.getRegistry().get_components<DrawableComponent>();
         auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
         for (size_t i = 0; i < drawables.size(); i++) {
@@ -38,6 +35,9 @@ int end_game_system(World &world, NetworkServer &server, waves_t &waves)
                 server.SendToAll(msg);
             }
         }
+        msg.header.id = GameMessage::S2C_GAME_END;
+        msg << "end";
+        server.SendToAll(msg);
         waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
         world.player_ships.clear();
         world.state = GameState::Lobby;
