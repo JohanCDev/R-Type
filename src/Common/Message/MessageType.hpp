@@ -46,6 +46,7 @@ enum class WaveStatus : uint32_t { START, BOSS_START, END };
  */
 enum class GameObject : uint32_t {
     LASER,
+    LASER_ENEMY,
     PLAYER,
     SHIP_ARMORED,
     SHIP_DAMAGE,

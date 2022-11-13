@@ -108,6 +108,7 @@ typedef struct myValues_s {
  */
 static std::map<GameObject, myValues_t> defaultValues = {
     {GameObject::LASER, {{-1, -1}, 1, -1, 14, 1.0}},
+    {GameObject::LASER_ENEMY, {{-1, -1}, 1, -1, -14, -1.0}},
     {GameObject::PLAYER, {{64, 540}, 100, 100, 12, 2.0}},
     {GameObject::SHIP_ARMORED, {{64, 540}, 150, 50, 12, 1.0}},
     {GameObject::SHIP_DAMAGE, {{64, 540}, 80, 120, 12, 1.0}},
@@ -116,7 +117,7 @@ static std::map<GameObject, myValues_t> defaultValues = {
     {GameObject::BOSS_1, {{1920, 300}, 100, 40, 8, 2.0}},
     {GameObject::ENEMY_FOCUS, {{1920, -1}, 100, 40, 10, 1.0}},
     {GameObject::ENEMY_KAMIKAZE, {{1920, -1}, 100, 40, 20, 1.0}},
-    {GameObject::ENEMY_SNIPER, {{1920, -1}, 100, 40, 10, 1.0}},
+    {GameObject::ENEMY_SNIPER, {{1920, -1}, 100, 40, 10, 0.75}},
 };
 
 /**
