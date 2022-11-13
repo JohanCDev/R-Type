@@ -1,6 +1,7 @@
 var dir_eba7f6b8b7d3fd8e024a882aba073963 =
 [
     [ "AllComponents.hpp", "db/d8f/AllComponents_8hpp.html", null ],
+    [ "BonusComponent.hpp", "d1/d52/BonusComponent_8hpp.html", "d1/d52/BonusComponent_8hpp" ],
     [ "ClickableComponent.hpp", "d9/dd4/ClickableComponent_8hpp.html", [
       [ "ClickableComponent", "dc/dc0/structClickableComponent.html", "dc/dc0/structClickableComponent" ]
     ] ],
@@ -32,9 +33,16 @@ var dir_eba7f6b8b7d3fd8e024a882aba073963 =
       [ "Vector2b", "d6/d08/structVector2b.html", "d6/d08/structVector2b" ],
       [ "ImmobileComponent", "d8/d5f/structImmobileComponent.html", "d8/d5f/structImmobileComponent" ]
     ] ],
+    [ "LevelComponent.hpp", "da/d21/LevelComponent_8hpp.html", [
+      [ "LevelComponent", "d6/d16/structLevelComponent.html", "d6/d16/structLevelComponent" ]
+    ] ],
     [ "PositionComponent.hpp", "de/da1/PositionComponent_8hpp.html", [
       [ "Vector2i", "da/d35/structVector2i.html", "da/d35/structVector2i" ],
       [ "PositionComponent", "d2/d0d/structPositionComponent.html", "d2/d0d/structPositionComponent" ]
+    ] ],
+    [ "SoundEffectComponent.hpp", "d2/d2f/SoundEffectComponent_8hpp_source.html", null ],
+    [ "SpeedComponent.hpp", "dc/d94/SpeedComponent_8hpp.html", [
+      [ "SpeedComponent", "d8/d4e/structSpeedComponent.html", "d8/d4e/structSpeedComponent" ]
     ] ],
     [ "TextComponent.hpp", "d0/d06/TextComponent_8hpp.html", [
       [ "TextComponent", "d2/d1a/structTextComponent.html", "d2/d1a/structTextComponent" ]

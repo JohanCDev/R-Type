@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['clickablecomponent_308',['ClickableComponent',['../dc/dc0/structClickableComponent.html',1,'']]],
-  ['clientidcomponent_309',['ClientIDComponent',['../dc/dc7/structClientIDComponent.html',1,'']]],
-  ['collidecomponent_310',['CollideComponent',['../d2/d81/structCollideComponent.html',1,'']]],
-  ['controllablecomponent_311',['ControllableComponent',['../db/d09/structControllableComponent.html',1,'']]]
+  ['bonus_5fs_352',['bonus_s',['../d0/da2/structbonus__s.html',1,'']]],
+  ['bonuscomponent_353',['BonusComponent',['../d2/d73/structBonusComponent.html',1,'']]]
 ];

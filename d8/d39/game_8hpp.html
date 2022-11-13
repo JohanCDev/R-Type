@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('d8/d39/game_8hpp.html','../../'); init
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;SFML/Graphics.hpp&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d3/d68/Message_8hpp_source.html">../Common/Message/Message.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d3/d43/MessageType_8hpp_source.html">../Common/Message/MessageType.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d0/dbb/World_8hpp_source.html">../ECS/World.hpp</a>&quot;</code><br />
@@ -108,7 +109,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing all the default values for the game.  <a href="../../d1/dc0/structvalues__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d5c/structwave__s.html">wave_s</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing waves informations.  <a href="../../d6/d5c/structwave__s.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing wave information.  <a href="../../d6/d5c/structwave__s.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd2/structstat__bonus__s.html">stat_bonus_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing bonus statistics.  <a href="../../d5/dd2/structstat__bonus__s.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/da2/structbonus__s.html">bonus_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer of the bonus.  <a href="../../d0/da2/structbonus__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -153,18 +160,37 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#ab558c6f433bf648c1112d82f5c47e893">DEFAULT_MINI_WAVE_TIME_BETWEEN</a>&#160;&#160;&#160;0.8</td></tr>
 <tr class="memdesc:ab558c6f433bf648c1112d82f5c47e893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default time between each mini waves. <br /></td></tr>
 <tr class="separator:ab558c6f433bf648c1112d82f5c47e893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ac91beff92cd3b0e3c3f4be2167088"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a29ac91beff92cd3b0e3c3f4be2167088">BOOST_DISPAWN</a>&#160;&#160;&#160;8.0</td></tr>
+<tr class="memdesc:a29ac91beff92cd3b0e3c3f4be2167088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default time of dispawn bonus.  <a href="../../d8/d39/game_8hpp.html#a29ac91beff92cd3b0e3c3f4be2167088">More...</a><br /></td></tr>
+<tr class="separator:a29ac91beff92cd3b0e3c3f4be2167088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cbe743d7a7b9ec51a4278e7e57859aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a9cbe743d7a7b9ec51a4278e7e57859aa">BOOST_TIMER</a>&#160;&#160;&#160;4.0</td></tr>
+<tr class="memdesc:a9cbe743d7a7b9ec51a4278e7e57859aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default time of bonus timer.  <a href="../../d8/d39/game_8hpp.html#a9cbe743d7a7b9ec51a4278e7e57859aa">More...</a><br /></td></tr>
+<tr class="separator:a9cbe743d7a7b9ec51a4278e7e57859aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a1fabeb1ce0708ac0d3f41476ecd192db"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d1/dc0/structvalues__s.html">values_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a1fabeb1ce0708ac0d3f41476ecd192db">values_t</a></td></tr>
-<tr class="memdesc:a1fabeb1ce0708ac0d3f41476ecd192db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing all the default values for the game.  <a href="../../d8/d39/game_8hpp.html#a1fabeb1ce0708ac0d3f41476ecd192db">More...</a><br /></td></tr>
+<tr class="memitem:a1fabeb1ce0708ac0d3f41476ecd192db"><td class="memItemLeft" align="right" valign="top"><a id="a1fabeb1ce0708ac0d3f41476ecd192db"></a>
+typedef struct <a class="el" href="../../d1/dc0/structvalues__s.html">values_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a1fabeb1ce0708ac0d3f41476ecd192db">values_t</a></td></tr>
+<tr class="memdesc:a1fabeb1ce0708ac0d3f41476ecd192db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing all the default values for the game. <br /></td></tr>
 <tr class="separator:a1fabeb1ce0708ac0d3f41476ecd192db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaefa74bd3e815c00a1342d9cdcaac58d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d6/d5c/structwave__s.html">wave_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">waves_t</a></td></tr>
-<tr class="memdesc:aaefa74bd3e815c00a1342d9cdcaac58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing waves informations.  <a href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">More...</a><br /></td></tr>
+<tr class="memitem:aaefa74bd3e815c00a1342d9cdcaac58d"><td class="memItemLeft" align="right" valign="top"><a id="aaefa74bd3e815c00a1342d9cdcaac58d"></a>
+typedef struct <a class="el" href="../../d6/d5c/structwave__s.html">wave_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">waves_t</a></td></tr>
+<tr class="memdesc:aaefa74bd3e815c00a1342d9cdcaac58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing wave information. <br /></td></tr>
 <tr class="separator:aaefa74bd3e815c00a1342d9cdcaac58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab968cd8ec01d2e8c0380db54c86cb4a0"><td class="memItemLeft" align="right" valign="top"><a id="ab968cd8ec01d2e8c0380db54c86cb4a0"></a>
+typedef struct <a class="el" href="../../d5/dd2/structstat__bonus__s.html">stat_bonus_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#ab968cd8ec01d2e8c0380db54c86cb4a0">stat_bonus_t</a></td></tr>
+<tr class="memdesc:ab968cd8ec01d2e8c0380db54c86cb4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing bonus statistics. <br /></td></tr>
+<tr class="separator:ab968cd8ec01d2e8c0380db54c86cb4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b762a6dd03b2a79674b72079b2d3a80"><td class="memItemLeft" align="right" valign="top"><a id="a9b762a6dd03b2a79674b72079b2d3a80"></a>
+typedef struct <a class="el" href="../../d0/da2/structbonus__s.html">bonus_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a9b762a6dd03b2a79674b72079b2d3a80">bonus_t</a></td></tr>
+<tr class="memdesc:a9b762a6dd03b2a79674b72079b2d3a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer of the bonus. <br /></td></tr>
+<tr class="separator:a9b762a6dd03b2a79674b72079b2d3a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a9d2c53819ce366cdd1e41309aad9bbfd">check_collision</a> (<a class="el" href="../../d9/d98/classResourcesManager.html">ResourcesManager</a> &amp;manager, sf::Sprite sprite, std::optional&lt; <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> &gt; &amp;position, std::optional&lt; <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> &gt; &amp;drawable)</td></tr>
+<tr class="memdesc:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">check collision between two entities  <a href="../../d8/d39/game_8hpp.html#a9d2c53819ce366cdd1e41309aad9bbfd">More...</a><br /></td></tr>
+<tr class="separator:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad789b4bd9fafe50a77719ad2e3901214"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#ad789b4bd9fafe50a77719ad2e3901214">player_joined</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a> msg, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
 <tr class="memdesc:ad789b4bd9fafe50a77719ad2e3901214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a player in server's world and send the packet to the client.  <a href="../../d8/d39/game_8hpp.html#ad789b4bd9fafe50a77719ad2e3901214">More...</a><br /></td></tr>
 <tr class="separator:ad789b4bd9fafe50a77719ad2e3901214"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,11 +206,14 @@ Functions</h2></td></tr>
 <tr class="memitem:adafc73f58296ebeb87850869df90cb81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#adafc73f58296ebeb87850869df90cb81">create_enemy</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
 <tr class="memdesc:adafc73f58296ebeb87850869df90cb81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an enemy in the server's world and send the packet to the client.  <a href="../../d8/d39/game_8hpp.html#adafc73f58296ebeb87850869df90cb81">More...</a><br /></td></tr>
 <tr class="separator:adafc73f58296ebeb87850869df90cb81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde020fa50025e06d11f91206198c3c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#acde020fa50025e06d11f91206198c3c6">bonus_creation</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, <a class="el" href="../../db/ded/structVector2f.html">Vector2f</a> pos)</td></tr>
+<tr class="memdesc:acde020fa50025e06d11f91206198c3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creation of bonus.  <a href="../../d8/d39/game_8hpp.html#acde020fa50025e06d11f91206198c3c6">More...</a><br /></td></tr>
+<tr class="separator:acde020fa50025e06d11f91206198c3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79a41c669b219df844e78ed04ed40134"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#a79a41c669b219df844e78ed04ed40134">start_game</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a> msg, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
-<tr class="memdesc:a79a41c669b219df844e78ed04ed40134"><td class="mdescLeft">&#160;</td><td class="mdescRight">start game  <a href="../../d8/d39/game_8hpp.html#a79a41c669b219df844e78ed04ed40134">More...</a><br /></td></tr>
+<tr class="memdesc:a79a41c669b219df844e78ed04ed40134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the game.  <a href="../../d8/d39/game_8hpp.html#a79a41c669b219df844e78ed04ed40134">More...</a><br /></td></tr>
 <tr class="separator:a79a41c669b219df844e78ed04ed40134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d39/game_8hpp.html#ae386c0b630b3e5fabb3f0f206b7aa742">select_ship</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../df/d0a/server_8hpp.html#a6adc690f30803335a1fddd313266e6d3">ClientMessage</a> msg, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
-<tr class="memdesc:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select a ship.  <a href="../../d8/d39/game_8hpp.html#ae386c0b630b3e5fabb3f0f206b7aa742">More...</a><br /></td></tr>
+<tr class="memdesc:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the ship.  <a href="../../d8/d39/game_8hpp.html#ae386c0b630b3e5fabb3f0f206b7aa742">More...</a><br /></td></tr>
 <tr class="separator:ae386c0b630b3e5fabb3f0f206b7aa742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -196,50 +225,136 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2022-11-06</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022 </dd></dl>
-</div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="a1fabeb1ce0708ac0d3f41476ecd192db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fabeb1ce0708ac0d3f41476ecd192db">&#9670;&nbsp;</a></span>values_t</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a29ac91beff92cd3b0e3c3f4be2167088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ac91beff92cd3b0e3c3f4be2167088">&#9670;&nbsp;</a></span>BOOST_DISPAWN</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="../../d1/dc0/structvalues__s.html">values_s</a> <a class="el" href="../../d8/d39/game_8hpp.html#a1fabeb1ce0708ac0d3f41476ecd192db">values_t</a></td>
+          <td class="memname">#define BOOST_DISPAWN&#160;&#160;&#160;8.0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Structure containing all the default values for the game. </p>
+<p>Default time of dispawn bonus. </p>
 
 </div>
 </div>
-<a id="aaefa74bd3e815c00a1342d9cdcaac58d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaefa74bd3e815c00a1342d9cdcaac58d">&#9670;&nbsp;</a></span>waves_t</h2>
+<a id="a9cbe743d7a7b9ec51a4278e7e57859aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cbe743d7a7b9ec51a4278e7e57859aa">&#9670;&nbsp;</a></span>BOOST_TIMER</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="../../d6/d5c/structwave__s.html">wave_s</a> <a class="el" href="../../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d">waves_t</a></td>
+          <td class="memname">#define BOOST_TIMER&#160;&#160;&#160;4.0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Structure containing waves informations. </p>
+<p>Default time of bonus timer. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="acde020fa50025e06d11f91206198c3c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acde020fa50025e06d11f91206198c3c6">&#9670;&nbsp;</a></span>bonus_creation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bonus_creation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../db/ded/structVector2f.html">Vector2f</a>&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creation of bonus. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">in_wave</td><td>Boolean to know if the wave is in progress </td></tr>
-    <tr><td class="paramname">nb_wave</td><td>The number of the current wave </td></tr>
-    <tr><td class="paramname">base_difficulty</td><td>The difficulty of the wave </td></tr>
-    <tr><td class="paramname">remaining_difficulty</td><td>The remaining difficulty of the wave </td></tr>
-    <tr><td class="paramname">clock</td><td>The clock of the wave </td></tr>
+    <tr><td class="paramname">world</td><td>The server's world </td></tr>
+    <tr><td class="paramname">server</td><td>server informations </td></tr>
+    <tr><td class="paramname">pos</td><td>bonus position </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
+<a id="a9d2c53819ce366cdd1e41309aad9bbfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d2c53819ce366cdd1e41309aad9bbfd">&#9670;&nbsp;</a></span>check_collision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int check_collision </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d98/classResourcesManager.html">ResourcesManager</a> &amp;&#160;</td>
+          <td class="paramname"><em>manager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Sprite&#160;</td>
+          <td class="paramname"><em>sprite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>drawable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check collision between two entities </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">manager</td><td>Resources manager </td></tr>
+    <tr><td class="paramname">sprite</td><td>Sprite to check collision </td></tr>
+    <tr><td class="paramname">position</td><td>Position of the sprite </td></tr>
+    <tr><td class="paramname">drawable</td><td>drawable component of drawable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if there is a collision </dd></dl>
+
+</div>
+</div>
 <a id="adafc73f58296ebeb87850869df90cb81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adafc73f58296ebeb87850869df90cb81">&#9670;&nbsp;</a></span>create_enemy()</h2>
 
@@ -485,12 +600,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Select a ship. </p>
+<p>Select the ship. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>The server's world </td></tr>
     <tr><td class="paramname">msg</td><td><a class="el" href="../../d8/dd0/structMessage.html" title="Message structure.">Message</a> to process </td></tr>
-    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">server</td><td>server informations </td></tr>
   </table>
   </dd>
 </dl>
@@ -529,12 +644,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>start game </p>
+<p>Start the game. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">world</td><td>The server's world </td></tr>
     <tr><td class="paramname">msg</td><td><a class="el" href="../../d8/dd0/structMessage.html" title="Message structure.">Message</a> to process </td></tr>
-    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">server</td><td>server informations </td></tr>
   </table>
   </dd>
 </dl>

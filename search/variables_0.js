@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['atk_562',['atk',['../d1/dc0/structvalues__s.html#ab9e6ba0afd581318e401fb3911a0dc20',1,'values_s']]],
-  ['axis_563',['axis',['../d8/d5f/structImmobileComponent.html#afb30bf9414c0ce91f32275ce633548d0',1,'ImmobileComponent']]]
+  ['_5fsound_5feffects_639',['_sound_effects',['../d6/d39/classWorld.html#adfe4d7a69a8469c4c8fd08a44336a0c8',1,'World']]],
+  ['_5ftime_640',['_time',['../d2/d73/structBonusComponent.html#a165a149120d6327beb82afd70e0308a5',1,'BonusComponent']]]
 ];

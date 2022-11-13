@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sparse_5farray_336',['sparse_array',['../d6/d51/classsparse__array.html',1,'']]],
-  ['sparse_5farray_3c_20entity_20_3e_337',['sparse_array&lt; Entity &gt;',['../d6/d51/classsparse__array.html',1,'']]]
+  ['registry_381',['registry',['../db/d16/classregistry.html',1,'']]],
+  ['resourcesmanager_382',['ResourcesManager',['../d9/d98/classResourcesManager.html',1,'']]]
 ];

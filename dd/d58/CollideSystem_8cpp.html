@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('dd/d58/CollideSystem_8cpp.html','../..
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/CollideSystem_8cpp.html#a9d2c53819ce366cdd1e41309aad9bbfd">check_collision</a> (<a class="el" href="../../d9/d98/classResourcesManager.html">ResourcesManager</a> &amp;manager, sf::Sprite sprite, std::optional&lt; <a class="el" href="../../d2/d0d/structPositionComponent.html">PositionComponent</a> &gt; &amp;position, std::optional&lt; <a class="el" href="../../d0/d12/structDrawableComponent.html">DrawableComponent</a> &gt; &amp;drawable)</td></tr>
-<tr class="memdesc:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is a collision on a Sprite.  <a href="../../dd/d58/CollideSystem_8cpp.html#a9d2c53819ce366cdd1e41309aad9bbfd">More...</a><br /></td></tr>
+<tr class="memdesc:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">check collision between two entities  <a href="../../dd/d58/CollideSystem_8cpp.html#a9d2c53819ce366cdd1e41309aad9bbfd">More...</a><br /></td></tr>
 <tr class="separator:a9d2c53819ce366cdd1e41309aad9bbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6da0385474ea29829571dd528724ab0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/CollideSystem_8cpp.html#ab6da0385474ea29829571dd528724ab0">collide_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
 <tr class="memdesc:ab6da0385474ea29829571dd528724ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collide all entities.  <a href="../../dd/d58/CollideSystem_8cpp.html#ab6da0385474ea29829571dd528724ab0">More...</a><br /></td></tr>
@@ -148,13 +148,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if there is a collision on a Sprite. </p>
+<p>check collision between two entities </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">manager</td><td>Resources Manager object </td></tr>
-    <tr><td class="paramname">sprite</td><td>Sprite to check </td></tr>
-    <tr><td class="paramname">position</td><td>Optional <a class="el" href="../../d2/d0d/structPositionComponent.html" title="Contains the entity position.">PositionComponent</a> </td></tr>
-    <tr><td class="paramname">drawable</td><td>Optional <a class="el" href="../../d0/d12/structDrawableComponent.html" title="Make the entity drawable.">DrawableComponent</a> </td></tr>
+    <tr><td class="paramname">manager</td><td>Resources manager </td></tr>
+    <tr><td class="paramname">sprite</td><td>Sprite to check collision </td></tr>
+    <tr><td class="paramname">position</td><td>Position of the sprite </td></tr>
+    <tr><td class="paramname">drawable</td><td>drawable component of drawable </td></tr>
   </table>
   </dd>
 </dl>

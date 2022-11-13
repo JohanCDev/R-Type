@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['max_5fhp_582',['max_hp',['../d1/d29/structHealthComponent.html#adb6b785d2c53181d4451fc3b589452ad',1,'HealthComponent']]]
+  ['left_663',['left',['../db/d09/structControllableComponent.html#aaf8ef5f3b400bd40a6151a09504cb138',1,'ControllableComponent']]],
+  ['level_664',['level',['../d6/d16/structLevelComponent.html#a783045a3ce50960ac236d7e07330c707',1,'LevelComponent']]]
 ];

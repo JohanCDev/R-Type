@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['path_585',['path',['../d0/d12/structDrawableComponent.html#ac7c36c10df4d9a1d38437ef0aac5ec24',1,'DrawableComponent']]],
-  ['player_5fships_586',['player_ships',['../d6/d39/classWorld.html#adaca0b96c883e020e24170a01211ecf5',1,'World']]],
-  ['pos_587',['pos',['../d2/d0d/structPositionComponent.html#a38a2931befefdde2da7a353f37f8dabe',1,'PositionComponent::pos()'],['../d1/dc0/structvalues__s.html#ac5a547d5479241f6d7ac90787947fe18',1,'values_s::pos()']]]
+  ['name_666',['name',['../df/de1/structWeaponComponent.html#a9f4b101b2256d63276ec708ba500d637',1,'WeaponComponent']]],
+  ['nb_5fwave_667',['nb_wave',['../d6/d5c/structwave__s.html#a9d33068b75309fb547ff731f92fde719',1,'wave_s']]],
+  ['nbr_668',['nbr',['../d5/dd2/structstat__bonus__s.html#a8d24bb27090dda4b7045bd4c596aa055',1,'stat_bonus_s']]]
 ];

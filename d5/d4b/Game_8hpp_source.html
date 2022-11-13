@@ -106,18 +106,23 @@ $(document).ready(function(){initNavTree('d5/d4b/Game_8hpp_source.html','../../'
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../db/d9f/classGameScene.html#a018bc3139792c43e4ab66eb518d79ddc">init_game</a>(sf::RenderWindow &amp;window);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> msg;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="../../d6/d39/classWorld.html">World</a> _world;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">bool</span> _init;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../db/d9f/classGameScene.html#aa4f83af072961b24eb1e1c4b99cad4ea">update_parallax</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="../../d8/dd0/structMessage.html">Message&lt;GameMessage&gt;</a> msg;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="../../d6/d39/classWorld.html">World</a> _world;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> _init;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aScene_8hpp_html_a8e522ea30a64635ba6cde06510aba200"><div class="ttname"><a href="../../db/de8/Scene_8hpp.html#a8e522ea30a64635ba6cde06510aba200">SceneScreen</a></div><div class="ttdeci">SceneScreen</div><div class="ttdoc">All scenes represented as an enum going from 0 to 4.</div><div class="ttdef"><b>Definition:</b> Scene.hpp:21</div></div>
 <div class="ttc" id="aclassGameScene_html_ac931463ede7523b86c74b704d80e37ce"><div class="ttname"><a href="../../db/d9f/classGameScene.html#ac931463ede7523b86c74b704d80e37ce">GameScene::run</a></div><div class="ttdeci">void run(NetworkClient &amp;client, sf::RenderWindow &amp;window, SceneScreen &amp;current_screen) override</div><div class="ttdoc">Run the game scene logic.</div><div class="ttdef"><b>Definition:</b> Game.cpp:18</div></div>
 <div class="ttc" id="aGame_8hpp_html_a811c16a061ff67e590f745c45bd8f23d"><div class="ttname"><a href="../../d5/d4b/Game_8hpp.html#a811c16a061ff67e590f745c45bd8f23d">handle_movement</a></div><div class="ttdeci">void handle_movement(World &amp;world, NetworkClient &amp;client, sf::Event event)</div><div class="ttdoc">Handle the movement message from the server.</div><div class="ttdef"><b>Definition:</b> handle_movement.cpp:21</div></div>
-<div class="ttc" id="aclassGameScene_html_a018bc3139792c43e4ab66eb518d79ddc"><div class="ttname"><a href="../../db/d9f/classGameScene.html#a018bc3139792c43e4ab66eb518d79ddc">GameScene::init_game</a></div><div class="ttdeci">void init_game(sf::RenderWindow &amp;window)</div><div class="ttdoc">Initialize game screen.</div><div class="ttdef"><b>Definition:</b> Game.cpp:57</div></div>
-<div class="ttc" id="aclassWorld_html"><div class="ttname"><a href="../../d6/d39/classWorld.html">World</a></div><div class="ttdoc">Store entity and usefull function.</div><div class="ttdef"><b>Definition:</b> World.hpp:25</div></div>
+<div class="ttc" id="aclassGameScene_html_aa4f83af072961b24eb1e1c4b99cad4ea"><div class="ttname"><a href="../../db/d9f/classGameScene.html#aa4f83af072961b24eb1e1c4b99cad4ea">GameScene::update_parallax</a></div><div class="ttdeci">void update_parallax()</div><div class="ttdoc">Update the parallax display.</div><div class="ttdef"><b>Definition:</b> Game.cpp:64</div></div>
+<div class="ttc" id="aclassGameScene_html_a018bc3139792c43e4ab66eb518d79ddc"><div class="ttname"><a href="../../db/d9f/classGameScene.html#a018bc3139792c43e4ab66eb518d79ddc">GameScene::init_game</a></div><div class="ttdeci">void init_game(sf::RenderWindow &amp;window)</div><div class="ttdoc">Initialize game screen.</div><div class="ttdef"><b>Definition:</b> Game.cpp:82</div></div>
+<div class="ttc" id="aclassWorld_html"><div class="ttname"><a href="../../d6/d39/classWorld.html">World</a></div><div class="ttdoc">Store entity and usefull function.</div><div class="ttdef"><b>Definition:</b> World.hpp:26</div></div>
 <div class="ttc" id="aclassNetworkClient_html"><div class="ttname"><a href="../../d9/d5d/classNetworkClient.html">NetworkClient</a></div><div class="ttdoc">Network client class.</div><div class="ttdef"><b>Definition:</b> client.hpp:37</div></div>
 <div class="ttc" id="aclassIScene_html"><div class="ttname"><a href="../../db/da8/classIScene.html">IScene</a></div><div class="ttdoc">Interface for all scenes.</div><div class="ttdef"><b>Definition:</b> Scene.hpp:27</div></div>
 <div class="ttc" id="aclassGameScene_html"><div class="ttname"><a href="../../db/d9f/classGameScene.html">GameScene</a></div><div class="ttdoc">Game scene of the game.</div><div class="ttdef"><b>Definition:</b> Game.hpp:24</div></div>

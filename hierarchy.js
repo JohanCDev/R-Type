@@ -1,5 +1,7 @@
 var hierarchy =
 [
+    [ "bonus_s", "d0/da2/structbonus__s.html", null ],
+    [ "BonusComponent", "d2/d73/structBonusComponent.html", null ],
     [ "ClickableComponent", "dc/dc0/structClickableComponent.html", null ],
     [ "ClientIDComponent", "dc/dc7/structClientIDComponent.html", null ],
     [ "CollideComponent", "d2/d81/structCollideComponent.html", null ],
@@ -17,6 +19,7 @@ var hierarchy =
       [ "MenuScene", "d2/da6/classMenuScene.html", null ],
       [ "OptionScene", "dc/d54/classOptionScene.html", null ]
     ] ],
+    [ "LevelComponent", "d6/d16/structLevelComponent.html", null ],
     [ "LockedQueue< T >", "d2/d8b/classLockedQueue.html", null ],
     [ "LockedQueue< ClientMessage >", "d2/d8b/classLockedQueue.html", null ],
     [ "LockedQueue< Message< GameMessage > >", "d2/d8b/classLockedQueue.html", null ],
@@ -29,8 +32,11 @@ var hierarchy =
     [ "PositionComponent", "d2/d0d/structPositionComponent.html", null ],
     [ "registry", "db/d16/classregistry.html", null ],
     [ "ResourcesManager", "d9/d98/classResourcesManager.html", null ],
+    [ "SoundEffectComponent", "d2/d07/structSoundEffectComponent.html", null ],
     [ "sparse_array< Component >", "d6/d51/classsparse__array.html", null ],
     [ "sparse_array< Entity >", "d6/d51/classsparse__array.html", null ],
+    [ "SpeedComponent", "d8/d4e/structSpeedComponent.html", null ],
+    [ "stat_bonus_s", "d5/dd2/structstat__bonus__s.html", null ],
     [ "TextComponent", "d2/d1a/structTextComponent.html", null ],
     [ "values_s", "d1/dc0/structvalues__s.html", null ],
     [ "Vector2b", "d6/d08/structVector2b.html", null ],

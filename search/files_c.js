@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['registry_2ehpp_389',['Registry.hpp',['../db/dd1/Registry_8hpp.html',1,'']]],
-  ['resourcesmanager_2ecpp_390',['ResourcesManager.cpp',['../d7/d8f/ResourcesManager_8cpp.html',1,'']]],
-  ['resourcesmanager_2ehpp_391',['ResourcesManager.hpp',['../d0/d17/ResourcesManager_8hpp.html',1,'']]]
+  ['positioncomponent_2ehpp_441',['PositionComponent.hpp',['../de/da1/PositionComponent_8hpp.html',1,'']]],
+  ['proto_2ehpp_442',['proto.hpp',['../dc/d78/proto_8hpp.html',1,'']]]
 ];

@@ -1,5 +1,7 @@
 var annotated_dup =
 [
+    [ "bonus_s", "d0/da2/structbonus__s.html", "d0/da2/structbonus__s" ],
+    [ "BonusComponent", "d2/d73/structBonusComponent.html", "d2/d73/structBonusComponent" ],
     [ "ClickableComponent", "dc/dc0/structClickableComponent.html", "dc/dc0/structClickableComponent" ],
     [ "ClientIDComponent", "dc/dc7/structClientIDComponent.html", "dc/dc7/structClientIDComponent" ],
     [ "CollideComponent", "d2/d81/structCollideComponent.html", "d2/d81/structCollideComponent" ],
@@ -13,6 +15,7 @@ var annotated_dup =
     [ "HealthComponent", "d1/d29/structHealthComponent.html", "d1/d29/structHealthComponent" ],
     [ "ImmobileComponent", "d8/d5f/structImmobileComponent.html", "d8/d5f/structImmobileComponent" ],
     [ "IScene", "db/da8/classIScene.html", "db/da8/classIScene" ],
+    [ "LevelComponent", "d6/d16/structLevelComponent.html", "d6/d16/structLevelComponent" ],
     [ "LobbyScene", "de/df0/classLobbyScene.html", "de/df0/classLobbyScene" ],
     [ "LockedQueue", "d2/d8b/classLockedQueue.html", "d2/d8b/classLockedQueue" ],
     [ "MenuScene", "d2/da6/classMenuScene.html", "d2/da6/classMenuScene" ],
@@ -24,7 +27,10 @@ var annotated_dup =
     [ "PositionComponent", "d2/d0d/structPositionComponent.html", "d2/d0d/structPositionComponent" ],
     [ "registry", "db/d16/classregistry.html", "db/d16/classregistry" ],
     [ "ResourcesManager", "d9/d98/classResourcesManager.html", "d9/d98/classResourcesManager" ],
+    [ "SoundEffectComponent", "d2/d07/structSoundEffectComponent.html", "d2/d07/structSoundEffectComponent" ],
     [ "sparse_array", "d6/d51/classsparse__array.html", "d6/d51/classsparse__array" ],
+    [ "SpeedComponent", "d8/d4e/structSpeedComponent.html", "d8/d4e/structSpeedComponent" ],
+    [ "stat_bonus_s", "d5/dd2/structstat__bonus__s.html", "d5/dd2/structstat__bonus__s" ],
     [ "TextComponent", "d2/d1a/structTextComponent.html", "d2/d1a/structTextComponent" ],
     [ "values_s", "d1/dc0/structvalues__s.html", "d1/dc0/structvalues__s" ],
     [ "Vector2b", "d6/d08/structVector2b.html", "d6/d08/structVector2b" ],

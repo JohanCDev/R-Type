@@ -16,7 +16,8 @@ var MessageType_8hpp =
       [ "S2C_OK", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca7b03af61666ceec3358a3d2ac97339c3", null ],
       [ "S2C_START_GAME", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7cab8969cfdac7e7fd908671af80df6489c", null ],
       [ "S2C_PLAYERS_IN_LOBBY", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca0339d84c21c91baa2ef02e67ed154a44", null ],
-      [ "S2C_PLAYERS_READY", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca8c55bf065905096c09ac0a09cf99ceeb", null ]
+      [ "S2C_PLAYERS_READY", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca8c55bf065905096c09ac0a09cf99ceeb", null ],
+      [ "S2C_BONUS_DEAD", "d3/d43/MessageType_8hpp.html#a539d6c542a8e6287800e238b9ba0eb7ca333fa25654b8edc14529b4b7289d8d3c", null ]
     ] ],
     [ "GameObject", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541", [
       [ "LASER", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541ad97026430a9e5d1a0c48ef2cad3755b1", null ],
@@ -29,7 +30,11 @@ var MessageType_8hpp =
       [ "SHIP_ARMORED", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a7364c4b90a95865d5861efd87d05b5b1", null ],
       [ "SHIP_DAMAGE", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541abf40136e2e68163a4ec81ad90f013b3b", null ],
       [ "SHIP_ENGINEER", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541adfa2084415d3265c48437f0e5b90c469", null ],
-      [ "SHIP_SNIPER", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541adafcaa2567cfdb977730873ded824088", null ]
+      [ "SHIP_SNIPER", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541adafcaa2567cfdb977730873ded824088", null ],
+      [ "BONUS_ATTACK", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a6f2eaa5f0885dda98419b8267d0d61e0", null ],
+      [ "BONUS_ATTACK_SPEED", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a3d4a12a7cfc036731a5af16b2b027af2", null ],
+      [ "BONUS_HEAL", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541a720d1ef2fed4585c20ecb51ebeddc562", null ],
+      [ "BONUS_SPEED", "d3/d43/MessageType_8hpp.html#a1cc2658890520c7e810a94d461683541ab7dfacde933270f949ad0c68266ca6fa", null ]
     ] ],
     [ "WaveStatus", "d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93", [
       [ "START", "d3/d43/MessageType_8hpp.html#a278fa4ed07a92a8874fd355479d9df93ab078ffd28db767c502ac367053f6e0ac", null ],
