@@ -131,6 +131,16 @@ bool NetworkClient::get_players_ready() const
     return (this->_players_ready);
 }
 
+void NetworkClient::set_connected(bool connected)
+{
+    this->_connected = connected;
+}
+
+bool NetworkClient::get_connected() const
+{
+    return (this->_connected);
+}
+
 void NetworkClient::set_nb_players(int nb_players)
 {
     this->_nb_players = nb_players;
@@ -267,6 +277,7 @@ void game_end(World &world, NetworkClient &client, Message<GameMessage> msg, Sce
     (void)world;
     (void)msg;
     (void)client;
+    world.setDirection(Vector2i{0, 0});
     current_screen = SceneScreen::ENDGAME;
 }
 

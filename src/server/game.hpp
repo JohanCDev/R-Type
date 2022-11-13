@@ -305,5 +305,6 @@ int level_up_system(World &world, NetworkServer &server);
  *
  * @param world world to act on
  * @param server The server
+ * @param waves the waves
  */
-int end_game_system(World &world, NetworkServer &server);
+int end_game_system(World &world, NetworkServer &server, waves_t &waves);

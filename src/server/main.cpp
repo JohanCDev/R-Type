@@ -66,7 +66,7 @@ int main()
                 wave_system(world, server, waves);
                 bonus_system(world, server, bonus_stat);
                 destroy_outdated_entities(world, server);
-                end_game_system(world, server);
+                end_game_system(world, server, waves);
                 break;
             default: break;
         }

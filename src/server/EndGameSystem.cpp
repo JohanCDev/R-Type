@@ -12,7 +12,7 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
 
-int end_game_system(World &world, NetworkServer &server)
+int end_game_system(World &world, NetworkServer &server, waves_t &waves)
 {
     auto &clients = world.getRegistry().get_components<ClientIDComponent>();
 
@@ -38,7 +38,9 @@ int end_game_system(World &world, NetworkServer &server)
                 server.SendToAll(msg);
             }
         }
-        world.state = GameState::Over;
+        waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
+        world.player_ships.clear();
+        world.state = GameState::Lobby;
     }
     return 0;
 }

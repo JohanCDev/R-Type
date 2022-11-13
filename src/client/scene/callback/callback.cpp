@@ -32,6 +32,9 @@ void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client
     (void)world;
     (void)client;
     (void)volume;
+    client.set_launch_game(false);
+    client.set_players_ready(false);
+    client.set_nb_players(false);
     current_screen = SceneScreen::GAME;
 }
 
@@ -61,6 +64,10 @@ void launch_game(World &world, SceneScreen &current_screen, NetworkClient &clien
     msg.header.id = GameMessage::C2S_START_GAME;
     msg << "start";
     client.send(msg);
+    client.set_launch_game(false);
+    client.set_players_ready(false);
+    client.set_nb_players(false);
+    client.set_connected(false);
     current_screen = SceneScreen::GAME;
 }
 

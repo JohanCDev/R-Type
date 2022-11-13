@@ -37,7 +37,6 @@ void EndGameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScr
         if (event.type == sf::Event::Closed || current_screen == SceneScreen::NONE)
             window.close();
     }
-
     window.clear(sf::Color::Black);
     drawable_system(this->_world, window);
     window.display();

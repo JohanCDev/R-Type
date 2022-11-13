@@ -59,7 +59,7 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
     (void)client;
     sf::Event event;
 
-    if (_connected == false) {
+    if (client.get_connected() == false) {
         client.send(hiMsg);
         _connected = true;
     }

@@ -124,6 +124,20 @@ class NetworkClient {
     bool get_players_ready() const;
 
     /**
+     * @brief Set the players ready value
+     *
+     * @param ready new launch value
+     */
+    void set_connected(bool connected);
+
+    /**
+     * @brief Get the players_ready value
+     *
+     * @return the value
+     */
+    bool get_connected() const;
+
+    /**
      * @brief Set the nb players
      *
      * @param nb_players nb_players value
@@ -161,6 +175,7 @@ class NetworkClient {
     bool _players_ready;
     bool _launch_game;
     int _nb_players;
+    bool _connected;
     float _sound_volume;
 
     LockedQueue<Message<GameMessage>> incomingMessages;
