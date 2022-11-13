@@ -33,6 +33,7 @@ enum class GameMessage : uint32_t {
     S2C_START_GAME,
     S2C_PLAYERS_IN_LOBBY,
     S2C_PLAYERS_READY,
+    S2C_UPDATE_POSITION,
     S2C_LEVEL_UP,
     S2C_UPDATE_STATS,
     S2C_BONUS_DEAD,
@@ -63,11 +64,12 @@ enum class GameObject : uint32_t {
     BONUS_ATTACK,
     BONUS_ATTACK_SPEED,
     BONUS_HEAL,
-    BONUS_SPEED
+    BONUS_SPEED,
+    BONUS_DOUBLE
 };
 
 /**
  *  @brief Enumerate game stats
  *
  */
-enum class GameStat : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD };
+enum class GameStat : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD, DOUBLE };

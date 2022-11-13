@@ -39,7 +39,7 @@ class IScene {
      * @param window Window to update
      * @param current_screen Current screen of the game
      */
-    virtual void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen) = 0;
+    virtual void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume) = 0;
 
   private:
 };

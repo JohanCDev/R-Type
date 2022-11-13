@@ -32,6 +32,7 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<SoundEffectComponent>();
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
+    this->_r.register_components<DoubleLaserComponent>();
     this->_r.register_components<LevelComponent>();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
@@ -59,6 +60,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
+    this->_r.register_components<DoubleLaserComponent>();
     this->_r.register_components<LevelComponent>();
 
     this->register_all_assets();
@@ -108,6 +110,7 @@ void World::register_all_assets()
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
     this->_manager.register_texture("assets/Power-up/boost_speed.png");
+    this->_manager.register_texture("assets/Power-up/boost_double.png");
 }
 
 void World::register_menu_assets()
@@ -145,10 +148,15 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
+    this->_manager.register_texture("assets/background/bg-settings.png");
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
     this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
     this->_manager.register_texture("assets/Power-up/boost_speed.png");
+    this->_manager.register_texture("assets/Button/button_volume.png");
+    this->_manager.register_texture("assets/Button/button_less_volume.png");
+    this->_manager.register_texture("assets/Button/button_more_volume.png");
+    this->_manager.register_texture("assets/Power-up/boost_double.png");
 }
 
 void World::register_option_assets()
@@ -227,6 +235,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(
             KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
+    this->_r.add_component<DoubleLaserComponent>(ent, DoubleLaserComponent(false));
     this->_r.add_component<LevelComponent>(ent, {0, 0});
 
     return (ent.id);
@@ -300,10 +309,10 @@ size_t World::create_text(std::string text, std::string font, int size, Vector2f
     return (ent.id);
 }
 
-size_t World::create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
-    std::function<void(World &, SceneScreen &, NetworkClient &)> callback)
+size_t World::create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+    std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback)
 {
-    size_t id = this->create_drawable_object(asset, rect, Vector4i{255, 255, 255, 255}, scale, pos);
+    size_t id = this->create_drawable_object(asset, rect, color, scale, pos);
     this->_r.add_component((Entity)id, ClickableComponent(callback));
     return (id);
 }
@@ -431,6 +440,9 @@ void World::register_all_drawable_object()
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::BONUS_SPEED,
         DrawableComponent("assets/Power-up/boost_speed.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
+            Vector2f{0.08, 0.08}));
+    this->_drawMap.emplace(GameObject::BONUS_DOUBLE,
+        DrawableComponent("assets/Power-up/boost_double.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
     this->_drawMap.emplace(GameObject::SHIP_ARMORED,
         DrawableComponent("assets/SpaceShip/ship_armored_spritesheet.png", Vector4i{0, 0, 128, 128},
