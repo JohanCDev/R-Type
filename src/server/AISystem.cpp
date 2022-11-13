@@ -67,39 +67,18 @@ void update_enemy_focus(World &world, NetworkServer &server, size_t i)
  */
 void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
 {
-    auto &clients = world.getRegistry().get_components<ClientIDComponent>();
     auto &velocity = world.getRegistry().get_components<VelocityComponent>();
     auto &entities = world.getRegistry().get_components<EntityIDComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     Message<GameMessage> sending_msg;
-    Vector2i nearest_player_pos = {0, 0};
-    bool default_player = false;
 
-    for (size_t c = 0; c < clients.size(); ++c) {
-        if (clients[c]) {
-            if (!default_player) {
-                nearest_player_pos.y = positions[c]->pos.y;
-                default_player = true;
-            }
-            if (std::abs(nearest_player_pos.y - positions[i]->pos.y)
-                >= std::abs(positions[i]->pos.y - positions[c]->pos.y)) {
-                nearest_player_pos.y = positions[c]->pos.y;
-                if (std::abs(positions[i]->pos.y - positions[c]->pos.y) <= defaultValues[GameObject::ENEMY_SNIPER].spd)
-                    velocity[i]->speed.y = 0;
-                else if (nearest_player_pos.y > positions[i]->pos.y) {
-                    velocity[i]->speed.y = defaultValues[GameObject::ENEMY_SNIPER].spd;
-                } else {
-                    velocity[i]->speed.y = -defaultValues[GameObject::ENEMY_SNIPER].spd;
-                }
-                if (positions[i]->pos.x <= 1820)
-                    velocity[i]->speed.x = 0;
-                sending_msg.header.id = GameMessage::S2C_MOVEMENT;
-                sending_msg << entities[i]->id;
-                sending_msg << velocity[i]->speed;
-                server.SendToAll(sending_msg);
-                sending_msg = Message<GameMessage>();
-            }
-        }
+    if (positions[i]->pos.x < 1820 && velocity[i]->speed.x != 0) {
+        velocity[i]->speed.x = 0;
+        sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+        sending_msg << entities[i]->id;
+        sending_msg << velocity[i]->speed;
+        server.SendToAll(sending_msg);
+        sending_msg = Message<GameMessage>();
     }
 }
 
@@ -157,6 +136,7 @@ void update_boss_1(World &world, NetworkServer &server, size_t i)
                 sending_msg << velocity[i]->speed;
                 server.SendToAll(sending_msg);
                 sending_msg = Message<GameMessage>();
+                break;
             }
         }
     }
