@@ -23,4 +23,12 @@ struct EntityIDComponent {
      *
      */
     size_t id;
+
+    EntityIDComponent(size_t entity_id) : id(entity_id)
+    {
+    }
+
+    EntityIDComponent() : id(0)
+    {
+    }
 };

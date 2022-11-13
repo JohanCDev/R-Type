@@ -24,6 +24,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     auto &speed = world.getRegistry().get_components<SpeedComponent>();
+    auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
@@ -50,12 +51,14 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             double elapsed_time_bs =
                 double(std::chrono::duration_cast<std::chrono::seconds>(endbonus - bonus_tmp->_time).count());
             if (elapsed_time_bs >= BOOST_DISPAWN) {
-                sending_msg.header.id = GameMessage::S2C_ENTITY_DEAD;
+                sound[i]->_alive = false;
+                sending_msg.header.id = GameMessage::S2C_BONUS_DEAD;
                 sending_msg << entityId[i]->id;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(i));
                 server.SendToAll(sending_msg);
                 break;
             }
+            sound[i]->_alive = true;
             for (size_t j = 0; j < destroyables.size(); ++j) {
                 if (j != i && teams[i]->team != teams[j]->team) {
                     if (destroyables[j] && destroyables[j]->destroyable == true) {
