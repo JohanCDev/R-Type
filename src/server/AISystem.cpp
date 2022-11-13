@@ -71,14 +71,54 @@ void update_enemy_sniper(World &world, NetworkServer &server, size_t i)
     auto &entities = world.getRegistry().get_components<EntityIDComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
     Message<GameMessage> sending_msg;
+    int random_dir = rand() % 2;
+    int random_shoot = rand() % 400;
+    size_t entity_id = 0;
 
     if (positions[i]->pos.x < 1820 && velocity[i]->speed.x != 0) {
         velocity[i]->speed.x = 0;
+        if (random_dir == 1)
+            velocity[i]->speed.y = defaultValues[GameObject::ENEMY_SNIPER].spd;
+        else
+            velocity[i]->speed.y = -defaultValues[GameObject::ENEMY_SNIPER].spd;
         sending_msg.header.id = GameMessage::S2C_MOVEMENT;
         sending_msg << entities[i]->id;
         sending_msg << velocity[i]->speed;
         server.SendToAll(sending_msg);
         sending_msg = Message<GameMessage>();
+    } else if (velocity[i]->speed.x == 0) {
+        if (positions[i]->pos.y < 100 && velocity[i]->speed.y == -defaultValues[GameObject::ENEMY_SNIPER].spd) {
+            velocity[i]->speed.y = defaultValues[GameObject::ENEMY_SNIPER].spd;
+            sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+            sending_msg << entities[i]->id;
+            sending_msg << velocity[i]->speed;
+            server.SendToAll(sending_msg);
+            sending_msg = Message<GameMessage>();
+        } else if (positions[i]->pos.y > 980 && velocity[i]->speed.y == defaultValues[GameObject::ENEMY_SNIPER].spd) {
+            velocity[i]->speed.y = -defaultValues[GameObject::ENEMY_SNIPER].spd;
+            sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+            sending_msg << entities[i]->id;
+            sending_msg << velocity[i]->speed;
+            server.SendToAll(sending_msg);
+            sending_msg = Message<GameMessage>();
+        }
+        if (random_shoot == 1) {
+            entity_id = world.create_laser_enemy(GameObject::LASER_ENEMY, GameTeam::ENEMY, positions[i]->pos,
+                Vector2i{defaultValues[GameObject::LASER_ENEMY].spd, 0}, 0.04f);
+            world.getRegistry().add_component<EntityIDComponent>(
+                world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+            sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+            sending_msg << GameObject::LASER_ENEMY;
+            sending_msg << entity_id;
+            sending_msg << positions[i]->pos;
+            server.SendToAll(sending_msg);
+            sending_msg = Message<GameMessage>();
+            sending_msg.header.id = GameMessage::S2C_MOVEMENT;
+            sending_msg << entity_id;
+            sending_msg << Vector2i{defaultValues[GameObject::LASER_ENEMY].spd, 0};
+            server.SendToAll(sending_msg);
+            sending_msg = Message<GameMessage>();
+        }
     }
 }
 
@@ -162,7 +202,7 @@ int ia_system(World &world, NetworkServer &server)
     auto &objects = world.getRegistry().get_components<GameObjectComponent>();
 
     for (size_t i = 0; i < teams.size(); ++i)
-        if (teams[i] && teams[i]->team == GameTeam::ENEMY)
+        if (teams[i] && teams[i]->team == GameTeam::ENEMY && objects[i] && objects[i]->type != GameObject::LASER_ENEMY)
             mapFunc[objects[i]->type](world, server, i);
     return 0;
 }
