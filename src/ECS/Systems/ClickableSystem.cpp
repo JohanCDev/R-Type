@@ -37,10 +37,10 @@ int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_scre
 
     for (size_t i = 0; i < clickables.size(); ++i) {
         auto &clickable = clickables[i];
-
         if (clickable && clickable.has_value()) {
             if (pos_intersects(click_pos, drawables[i].value(), positions[i].value()) == true) {
                 (clickable->callback)(world, current_screen, client);
+                break;
             }
         }
     }
