@@ -151,6 +151,7 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f)>> newE
     {GameObject::ENEMY_KAMIKAZE, new_enemy_kamikaze},
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
     {GameObject::LASER, new_laser},
+    {GameObject::LASER_ENEMY, new_laser_enemy},
 };
 
 /**

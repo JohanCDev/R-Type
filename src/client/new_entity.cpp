@@ -116,8 +116,21 @@ void new_laser(World &world, size_t srv_entity_id, Vector2f pos)
     size_t new_entity_id = 0;
     PositionComponent position(pos);
 
-    new_entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f);
+    new_entity_id = world.create_laser(
+        GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
     std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+}
+
+void new_laser_enemy(World &world, size_t srv_entity_id, Vector2f pos)
+{
+    size_t new_entity_id = 0;
+    PositionComponent position(pos);
+
+    new_entity_id = world.create_laser_enemy(
+        GameObject::LASER_ENEMY, GameTeam::ENEMY, position.pos, Vector2i{0, 0}, 0.04f);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+    std::cout << "LaserEnemy[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }

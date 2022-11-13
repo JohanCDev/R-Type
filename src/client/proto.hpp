@@ -106,6 +106,15 @@ void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos);
 void new_laser(World &world, size_t srv_entity_id, Vector2f pos);
 
 /**
+ * @brief Create a laser in the world for enemy team
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ */
+void new_laser_enemy(World &world, size_t srv_entity_id, Vector2f pos);
+
+/**
  * @brief Create a enemy of type BOSS_A in the world
  *
  * @param world The world
