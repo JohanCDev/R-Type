@@ -204,11 +204,6 @@ class World {
      *
      */
     void register_all_drawable_object();
-    /**
-     * @brief Registers all sounds
-     *
-     */
-    void register_all_sounds();
 
     /**
      * @brief Get the Registry object
@@ -253,13 +248,6 @@ class World {
     Vector2i &getDirection();
 
     /**
-     * @brief Get the Sound effects map
-     *
-     * @return Reference to the map
-     */
-    const std::map<std::string, std::shared_ptr<sf::Music>> &getSoundEffects();
-
-    /**
      * @brief Set the Direction object
      *
      * @param direction new direction as a Vector2i. ex: {0, 0}
@@ -277,12 +265,6 @@ class World {
      *
      */
     std::map<std::size_t, GameObject> player_ships;
-
-    /**
-     * @brief Map containing all sound effects
-     *
-     */
-    std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
 
     /**
      * @brief Create a border entities object that will destroy objects passing through

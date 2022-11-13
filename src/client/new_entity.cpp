@@ -120,12 +120,6 @@ void new_laser(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &
     new_entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
-    world.getSoundEffects().find("laser")->second.get()->stop();
-#if __APPLE__
-    usleep(10000);
-#endif
-    world.getSoundEffects().find("laser")->second.get()->setVolume(client.getSoundVolume());
-    world.getSoundEffects().find("laser")->second.get()->play();
 }
 
 void new_laser_enemy(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client)

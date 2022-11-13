@@ -204,28 +204,11 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
     auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     size_t index = 0;
-    auto &sounds = world.getSoundEffects();
 
     msg >> id_entity;
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
-                if (sound[index] && sound[index].has_value() && sound[index]->soundEffect.compare("explosion") == 0) {
-                    sounds.find("dead")->second.get()->stop();
-#if __APPLE__
-                    usleep(10000);
-#endif
-                    sounds.find("dead")->second.get()->setVolume(client.getSoundVolume());
-                    sounds.find("dead")->second.get()->play();
-                }
-                if (sound[index] && sound[index].has_value() && sound[index]->soundEffect.compare("bonus") == 0) {
-                    sounds.find("bonus")->second.get()->stop();
-#if __APPLE__
-                    usleep(10000);
-#endif
-                    sounds.find("bonus")->second.get()->setVolume(client.getSoundVolume());
-                    sounds.find("bonus")->second.get()->play();
-                }
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
             }
