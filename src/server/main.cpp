@@ -42,6 +42,7 @@ int main()
     world.state = GameState::Lobby;
     srand(time(NULL));
     waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
+    sf::Clock refreshClock;
 
     world.register_all_drawable_object();
     bonus_t bonus_stat;
@@ -55,6 +56,10 @@ int main()
         switch (world.state) {
             case GameState::Lobby: lobby_system(world, server); break;
             case GameState::Playing:
+                if (refreshClock.getElapsedTime().asSeconds() > 1.0f) {
+                    refresh_system(world, server);
+                    refreshClock.restart();
+                }
                 velocity_system(world);
                 collide_system(world, server);
                 ia_system(world, server);
