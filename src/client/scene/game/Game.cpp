@@ -129,12 +129,14 @@ void GameScene::init_game(sf::RenderWindow &window)
     _world.create_healthbar(1);
     _world.create_drawable_object("assets/background/bg-settings.png", Vector4i{0, 0, 1074, 402},
         Vector4i{255, 255, 255, 0}, Vector2f{1.0, 1.0},
-        Vector2f{window.getSize().x / 2 - 537, window.getSize().y / 2 - 201});
+        Vector2f{(float)window.getSize().x / 2.0f - 537.0f, (float)window.getSize().y / 2.0f - 201.0f});
     _world.create_button("assets/Button/button_less_volume.png", Vector4i{0, 0, 319, 319}, Vector4i{255, 255, 255, 0},
-        Vector2f{0.5, 0.5}, Vector2f{window.getSize().x / 2 - 300, window.getSize().y / 2 - 50}, &down_sound);
+        Vector2f{0.5, 0.5},
+        Vector2f{(float)window.getSize().x / 2.0f - 300.0f, (float)window.getSize().y / 2.0f - 50.0f}, &down_sound);
     _world.create_drawable_object("assets/Button/button_volume.png", Vector4i{0, 0, 319, 319},
         Vector4i{255, 255, 255, 0}, Vector2f{0.5, 0.5},
-        Vector2f{window.getSize().x / 2 - 75, window.getSize().y / 2 - 50});
+        Vector2f{(float)window.getSize().x / 2.0f - 75.0f, (float)window.getSize().y / 2.0f - 50.0f});
     _world.create_button("assets/Button/button_more_volume.png", Vector4i{0, 0, 319, 319}, Vector4i{255, 255, 255, 0},
-        Vector2f{0.5, 0.5}, Vector2f{window.getSize().x / 2 + 150, window.getSize().y / 2 - 50}, &up_sound);
+        Vector2f{0.5, 0.5},
+        Vector2f{(float)window.getSize().x / 2.0f + 150.0f, (float)window.getSize().y / 2.0f - 50.0f}, &up_sound);
 }
