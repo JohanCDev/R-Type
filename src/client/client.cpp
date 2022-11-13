@@ -438,7 +438,8 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)
 {
-    (mapFunc[msg.header.id])(world, *this, msg, screen);
+    if (mapFunc.contains(msg.header.id))
+        (mapFunc[msg.header.id])(world, *this, msg, screen);
     if (msg.header.id == GameMessage::S2C_GAME_END) {
         game_end(window);
     }
