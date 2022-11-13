@@ -191,6 +191,43 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     (void)current_screen;
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
+    auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
+    size_t index = 0;
+    auto &sounds = world.getSoundEffects();
+
+    msg >> id_entity;
+    for (auto &entityId : entityIdCompo) {
+        if (entityId && entityId.has_value()) {
+            if (entityId->id == id_entity.id) {
+                if (sound[index] && sound[index]->soundEffect.compare("explosion") == 0) {
+                    sounds.find("dead")->second.get()->stop();
+#if __APPLE__
+                    usleep(10000);
+#endif
+                    sounds.find("dead")->second.get()->play();
+                }
+                if (sound[index] && sound[index]->soundEffect.compare("bonus") == 0) {
+                    sounds.find("bonus")->second.get()->stop();
+#if __APPLE__
+                    usleep(10000);
+#endif
+                    sounds.find("bonus")->second.get()->play();
+                }
+                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
+                world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
+                break;
+            }
+        }
+        index++;
+    }
+}
+
+void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
+{
+    (void)client;
+    (void)current_screen;
+    EntityIDComponent id_entity;
+    auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
     size_t index = 0;
 
     msg >> id_entity;
@@ -404,7 +441,7 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},
         {GameMessage::S2C_WAVE_STATUS, wave_status}, {GameMessage::S2C_OK, ok_packet},
         {GameMessage::S2C_START_GAME, game_start}, {GameMessage::S2C_PLAYERS_READY, players_ready},
-        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}};
+        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_BONUS_DEAD, bonus_dead_entity}};
 
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)

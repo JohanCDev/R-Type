@@ -12,6 +12,7 @@
 #pragma once
 
 #include "BonusComponent.hpp"
+#include "SoundEffectComponent.hpp"
 #include "ClickableComponent.hpp"
 #include "ClientIDComponent.hpp"
 #include "CollideComponent.hpp"
