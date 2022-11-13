@@ -148,7 +148,6 @@ void up_sound(World &world, SceneScreen &current_screen, NetworkClient &client, 
     if (client.getSoundVolume() + 10 > 100)
         return;
     client.setSoundVolume(client.getSoundVolume() + 10);
-    std::cout << client.getSoundVolume() << std::endl;
 }
 
 void down_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume)
@@ -156,5 +155,4 @@ void down_sound(World &world, SceneScreen &current_screen, NetworkClient &client
     if (client.getSoundVolume() - 10 < 0)
         return;
     client.setSoundVolume(client.getSoundVolume() - 10);
-    std::cout << client.getSoundVolume() << std::endl;
 }

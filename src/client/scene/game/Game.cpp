@@ -42,9 +42,9 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
             this->_option = !this->_option;
             this->display_option(this->_option);
         }
-        if (this->_option == true && event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Subtract)
+        if (this->_option == true && event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Down)
             down_sound(_world, current_screen, client, volume);
-        if (this->_option == true && event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Add)
+        if (this->_option == true && event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up)
             up_sound(_world, current_screen, client, volume);
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             if (clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y},
