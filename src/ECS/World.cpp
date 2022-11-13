@@ -355,11 +355,11 @@ void World::create_border_entities()
 
     this->_r.add_component<DrawableComponent>(
         player_border, DrawableComponent("assets/background/menu.jpg", Vector4i{0, 0, 1, 1080}));
-    this->_r.add_component<PositionComponent>(player_border, PositionComponent({3000, 0}));
+    this->_r.add_component<PositionComponent>(player_border, PositionComponent({2200, 0}));
     this->_r.add_component<HealthComponent>(player_border, (HealthComponent(99999999)));
     this->_r.add_component<WeaponComponent>(player_border, WeaponComponent("meteor", Vector2i{99999, 1}, 0));
     this->_r.add_component<DestroyableComponent>(player_border, DestroyableComponent(true));
-    this->_r.add_component<GameTeamComponent>(player_border, GameTeamComponent(GameTeam::ENEMY));
+    this->_r.add_component<GameTeamComponent>(player_border, GameTeamComponent(GameTeam::NONE));
     this->_r.add_component<EntityIDComponent>(player_border, EntityIDComponent((size_t)player_border));
 
     Entity enemy_border = this->_r.spawn_entity();
