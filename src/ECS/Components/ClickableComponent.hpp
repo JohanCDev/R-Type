@@ -26,14 +26,14 @@ struct ClickableComponent {
      * @brief Callback function of the button
      *
      */
-    std::function<void(World &, SceneScreen &, NetworkClient &)> callback;
+    std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback;
 
     /**
      * @brief Construct a new Clickable Component object
      *
      * @param callback_func callback function to assign to the component
      */
-    ClickableComponent(std::function<void(World &, SceneScreen &, NetworkClient &)> callback_func)
+    ClickableComponent(std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback_func)
         : callback(callback_func)
     {
     }

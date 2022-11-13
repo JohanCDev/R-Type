@@ -29,7 +29,8 @@ bool pos_intersects(Vector2i click_pos, DrawableComponent draw, PositionComponen
     return (false);
 }
 
-int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client)
+int clickable_system(
+    World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client, float &volume)
 {
     auto &drawables = world.getRegistry().get_components<DrawableComponent>();
     auto &positions = world.getRegistry().get_components<PositionComponent>();
@@ -40,7 +41,8 @@ int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_scre
 
         if (clickable && clickable.has_value()) {
             if (pos_intersects(click_pos, drawables[i].value(), positions[i].value()) == true) {
-                (clickable->callback)(world, current_screen, client);
+                (clickable->callback)(world, current_screen, client, volume);
+                return (1);
             }
         }
     }

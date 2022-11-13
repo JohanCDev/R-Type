@@ -15,23 +15,24 @@ OptionScene::OptionScene() : _world(true), _init(false)
 {
 }
 
-void OptionScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen)
+void OptionScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume)
 {
     (void)client;
     sf::Event event;
 
     if (this->_init == false) {
+        this->_world.register_option_assets();
         this->init_option(window);
         this->_init = true;
     }
 
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(
-                this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y}, current_screen, client);
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y},
+                current_screen, client, volume);
         }
         if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::M) {
-            go_to_menu(_world, current_screen, client);
+            go_to_menu(_world, current_screen, client, volume);
         }
         if (event.type == sf::Event::Closed || current_screen == SceneScreen::NONE)
             window.close();
@@ -53,6 +54,6 @@ void OptionScene::init_option(sf::RenderWindow &window)
     // pos, &up_sound);
 
     pos = {(float)window.getSize().x / 2 - 80.0f, (float)window.getSize().y - 170};
-    this->_world.create_button(
-        "assets/Button/home.png", Vector4i{0, 0, 319, 319}, Vector2f{0.5, 0.5}, pos, &go_to_menu);
+    this->_world.create_button("assets/Button/home.png", Vector4i{0, 0, 319, 319}, Vector4i{255, 255, 255, 255},
+        Vector2f{0.5, 0.5}, pos, &go_to_menu);
 }

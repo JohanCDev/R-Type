@@ -23,4 +23,21 @@ struct EntityIDComponent {
      *
      */
     size_t id;
+
+    /**
+     * @brief Construct a new Entity ID Component object
+     *
+     * @param entity_id ID to attribute
+     */
+    EntityIDComponent(size_t entity_id) : id(entity_id)
+    {
+    }
+
+    /**
+     * @brief Construct a new Entity ID Component object that will have 0 as ID
+     *
+     */
+    EntityIDComponent() : id(0)
+    {
+    }
 };

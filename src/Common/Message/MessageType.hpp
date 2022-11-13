@@ -20,6 +20,7 @@ enum class GameMessage : uint32_t {
     C2S_LEAVE,
     C2S_SHOOT,
     C2S_MOVEMENT,
+    C2S_SPEND_POINT,
     C2S_START_GAME,
     C2S_SELECT_SHIP,
     S2C_ENTITY_NEW,
@@ -33,6 +34,9 @@ enum class GameMessage : uint32_t {
     S2C_PLAYERS_IN_LOBBY,
     S2C_PLAYERS_READY,
     S2C_UPDATE_POSITION
+    S2C_LEVEL_UP,
+    S2C_UPDATE_STATS,
+    S2C_BONUS_DEAD,
 };
 
 /**
@@ -56,5 +60,15 @@ enum class GameObject : uint32_t {
     SHIP_ARMORED,
     SHIP_DAMAGE,
     SHIP_ENGINEER,
-    SHIP_SNIPER
+    SHIP_SNIPER,
+    BONUS_ATTACK,
+    BONUS_ATTACK_SPEED,
+    BONUS_HEAL,
+    BONUS_SPEED
 };
+
+/**
+ *  @brief Enumerate game stats
+ *
+ */
+enum class GameStat : uint32_t { HEALTH, DAMAGE, SPD, ATK_SPD };

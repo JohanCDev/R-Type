@@ -49,16 +49,18 @@ int main(void)
     GameScene game;
     LobbyScene lobby;
     OptionScene option;
+
     std::vector<std::reference_wrapper<IScene>> scenes;
     scenes.push_back(menu);
     scenes.push_back(lobby);
     scenes.push_back(game);
     scenes.push_back(option);
     SceneScreen current_screen = SceneScreen::MENU;
+    float volume = 50.0f;
 
     while (window.isOpen()) {
         auto &scene = scenes[(int)current_screen].get();
-        scene.run(client, window, current_screen);
+        scene.run(client, window, current_screen, volume);
     }
     return 0;
 }

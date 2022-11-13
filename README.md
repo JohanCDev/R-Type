@@ -71,9 +71,11 @@ R-Type is developed with C++. EPITECH doesn't impose any Coding Style to this bu
 
 ## Documentation
 
-### [**Code documentation:**](https://johancdev.github.io/R-Type/)
+### [**Code documentation**](https://johancdev.github.io/R-Type/)
 
 ### [**RFC documentation**](https://vivacious-hockey-270.notion.site/RFC-c84eaf8ef30541b2992558992e0b03bd)
+
+### [**User Manual**](https://vivacious-hockey-270.notion.site/User-Manual-bedf8a4fab1d47c69c328477684df7ba)
 
 # Authors
 
