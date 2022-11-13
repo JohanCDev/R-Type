@@ -16,6 +16,7 @@ void new_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient 
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_player(GameObject::PLAYER, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -27,6 +28,7 @@ void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos, Networ
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_player(GameObject::SHIP_ARMORED, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -38,6 +40,7 @@ void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos, Network
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_player(GameObject::SHIP_DAMAGE, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -49,6 +52,7 @@ void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos, Netwo
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_player(GameObject::SHIP_ENGINEER, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -60,6 +64,7 @@ void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos, Network
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_player(GameObject::SHIP_SNIPER, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -71,6 +76,7 @@ void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos, NetworkCl
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_enemy(GameObject::ENEMY_FOCUS, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -82,6 +88,7 @@ void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos, NetworkC
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_enemy(GameObject::ENEMY_SNIPER, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -93,6 +100,7 @@ void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos, NetworkClie
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_enemy(GameObject::ENEMY_ODD, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -104,6 +112,7 @@ void new_boss1(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_enemy(GameObject::BOSS_1, position.pos, Vector2i{0, 0}, 1, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -132,6 +141,7 @@ void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos, NetworkC
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_bonus(GameObject::BONUS_ATTACK, position.pos, Vector2i{0, 0}, 0.04f, Bonus::ATTACK);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -143,6 +153,7 @@ void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos, Ne
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id =
         world.create_bonus(GameObject::BONUS_ATTACK_SPEED, position.pos, Vector2i{0, 0}, 0.04f, Bonus::ATTACK_SPEED);
@@ -155,6 +166,7 @@ void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos, NetworkCli
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_bonus(GameObject::BONUS_HEAL, position.pos, Vector2i{0, 0}, 0.04f, Bonus::HEAL);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -166,6 +178,7 @@ void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkCl
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_bonus(GameObject::BONUS_SPEED, position.pos, Vector2i{0, 0}, 0.04f, Bonus::SPEED);
     world.getRegistry().add_component<EntityIDComponent>(
@@ -177,6 +190,7 @@ void new_bonus_double(World &world, size_t srv_entity_id, Vector2f pos, NetworkC
 {
     size_t new_entity_id;
     PositionComponent position(pos);
+    (void)client;
 
     new_entity_id = world.create_bonus(GameObject::BONUS_DOUBLE, position.pos, Vector2i{0, 0}, 0.04f, Bonus::DOUBLE);
     world.getRegistry().add_component<EntityIDComponent>(

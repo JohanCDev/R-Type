@@ -92,6 +92,14 @@ void GameScene::update_parallax()
     }
 }
 
+/**
+ * @brief Compare two colors
+ *
+ * @param first_color First color to compare
+ * @param second_color Second color to compare
+ *
+ * @return true if they are the same
+ */
 bool compare_color(Vector4i first_color, Vector4i second_color)
 {
     if (first_color.x == second_color.x && first_color.y == second_color.y && first_color.x_size == second_color.x_size
@@ -101,6 +109,11 @@ bool compare_color(Vector4i first_color, Vector4i second_color)
     return (false);
 }
 
+/**
+ * @brief Display options
+ *
+ * @param display Has to display it ?
+ */
 void GameScene::display_option(bool display)
 {
     auto &drawables = _world.getRegistry().get_components<DrawableComponent>();

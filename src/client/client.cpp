@@ -246,6 +246,14 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     }
 }
 
+/**
+ * @brief Kill a bonus that has not been fetched
+ *
+ * @param world The world to update
+ * @param msg The message containing the entity data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
@@ -448,6 +456,14 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+/**
+ * @brief Update all positions
+ *
+ * @param world The world to update
+ * @param client The client to update
+ * @param msg The message containing the entity data
+ * @param current_scene The current scene
+ */
 void update_position(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_scene)
 {
     (void)client;
