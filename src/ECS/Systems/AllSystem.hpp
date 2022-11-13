@@ -105,6 +105,7 @@ int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<
  * @return negative value if there is an error
  */
 int collide_system(World &world, NetworkServer &server);
+
 /**
  * @brief Lobby system
  *
@@ -113,6 +114,7 @@ int collide_system(World &world, NetworkServer &server);
  * @return negative value if there is an error
  */
 int lobby_system(World &world, NetworkServer &server);
+
 /**
  * @brief Clickable system
  *
@@ -120,9 +122,18 @@ int lobby_system(World &world, NetworkServer &server);
  * @param click_pos pos of the click
  * @param current_screen current screen
  * @param client client struct
+ * @param volume volume
  * @return negative value if there is an error
  */
 int clickable_system(World &world, Vector2i click_pos, SceneScreen &current_screen, NetworkClient &client, float &volume);
+
+/**
+ * @brief Sends the locations of each entity to clients
+ *
+ * @param world world to act on
+ * @param server Server with all the informations
+ */
+int refresh_system(World &world, NetworkServer &server);
 
 /**
  * @brief Creates a music
