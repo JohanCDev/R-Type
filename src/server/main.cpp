@@ -15,7 +15,6 @@
  */
 #define _WIN32_WINNT 0x0601
 
-#include <chrono>
 #include <iostream>
 #include <thread>
 #include "../Common/Message/Message.hpp"
@@ -28,8 +27,7 @@
 static std::map<GameMessage, std::function<void(World &, ClientMessage, NetworkServer &)>> mapFunc = {
     {GameMessage::C2S_JOIN, player_joined}, {GameMessage::C2S_LEAVE, player_left},
     {GameMessage::C2S_MOVEMENT, player_moved}, {GameMessage::C2S_SHOOT, player_shot},
-    {GameMessage::C2S_SPEND_POINT, spend_point}, {GameMessage::C2S_START_GAME, start_game},
-    {GameMessage::C2S_SELECT_SHIP, select_ship}};
+    {GameMessage::C2S_START_GAME, start_game}, {GameMessage::C2S_SELECT_SHIP, select_ship}};
 
 /**
  * @brief Main function
@@ -45,6 +43,9 @@ int main()
     waves_t waves = {false, 0, DEFAULT_WAVE_DIFFICULTY, DEFAULT_WAVE_DIFFICULTY, sf::Clock()};
 
     world.register_all_drawable_object();
+    bonus_t bonus_stat;
+
+    world.create_border_entities();
 
     while (1) {
         while (server.HasMessages()) {
@@ -58,6 +59,7 @@ int main()
                 collide_system(world, server);
                 ia_system(world, server);
                 wave_system(world, server, waves);
+                bonus_system(world, server, bonus_stat);
                 break;
             default: break;
         }

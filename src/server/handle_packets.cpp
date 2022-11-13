@@ -29,6 +29,40 @@ void player_joined(World &world, ClientMessage msg, NetworkServer &server)
         return;
 }
 
+void bonus_creation(World &world, NetworkServer &server, Vector2f pos)
+{
+    size_t entity_id = 0;
+    Message<GameMessage> sending_msg;
+    GameObject tmp;
+    std::srand(std::time(nullptr));
+    int random_variable = std::rand();
+    Bonus bonus_name;
+
+    if (random_variable % 4 == 0) {
+        tmp = GameObject::BONUS_ATTACK;
+        bonus_name = Bonus::ATTACK;
+    } else if (random_variable % 3 == 0) {
+        tmp = GameObject::BONUS_ATTACK_SPEED;
+        bonus_name = Bonus::ATTACK_SPEED;
+    } else if (random_variable % 2 == 0) {
+        tmp = GameObject::BONUS_HEAL;
+        bonus_name = Bonus::HEAL;
+    } else {
+        tmp = GameObject::BONUS_SPEED;
+        bonus_name = Bonus::SPEED;
+    }
+
+    entity_id = world.create_bonus(
+        tmp, Vector2f{pos.x, pos.y}, Vector2i{0, 0}, 0.04f, bonus_name);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
+    sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
+    sending_msg << tmp;
+    sending_msg << entity_id;
+    sending_msg << Vector2f{pos.x, pos.y};
+    server.SendToAll(sending_msg);
+}
+
 void player_left(World &world, ClientMessage msg, NetworkServer &server)
 {
     registry &r = world.getRegistry();
@@ -64,6 +98,7 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     sparse_array<VelocityComponent> &velocity = r.get_components<VelocityComponent>();
     sparse_array<ClientIDComponent> &clients = r.get_components<ClientIDComponent>();
     sparse_array<EntityIDComponent> &entities = r.get_components<EntityIDComponent>();
+    sparse_array<SpeedComponent> &speed = r.get_components<SpeedComponent>();
     std::size_t index = 0;
     Message<GameMessage> sending_msg;
 
@@ -71,8 +106,8 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
     for (auto &i : clients) {
         if (i && i.has_value()) {
             if (i.value().id == msg.second) {
-                velocity[index]->speed.x = move.x * defaultValues[GameObject::PLAYER].spd;
-                velocity[index]->speed.y = move.y * defaultValues[GameObject::PLAYER].spd;
+                velocity[index]->speed.x = move.x * speed[index]->speed;
+                velocity[index]->speed.y = move.y * speed[index]->speed;
                 std::cout << "Player[" << msg.second << "]: Velocity{" << velocity[index]->speed.x << ", "
                           << velocity[index]->speed.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
@@ -126,37 +161,6 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
             }
         }
         index++;
-    }
-}
-
-void spend_point(World &world, ClientMessage msg, NetworkServer &server)
-{
-    auto &levels = world.getRegistry().get_components<LevelComponent>();
-    auto &teams = world.getRegistry().get_components<GameTeamComponent>();
-    auto &clients = world.getRegistry().get_components<ClientIDComponent>();
-    GameStat stat;
-
-    msg.first >> stat;
-
-    std::size_t index = 0;
-
-    for (auto &client : clients) {
-        if (!(client && client.has_value() && client->id == msg.second)) {
-            index++;
-        }
-        auto &level = levels[index];
-        if (level && level.has_value()) {
-            if (level->spent_points >= level->level) {
-                return;
-            }
-            auto &team = teams[index];
-            if (team && team.has_value() && team->team == GameTeam::PLAYER) {
-                stat_up(world, stat, index);
-                send_stats_to_players(world, server, index);
-                level->spent_points++;
-            }
-        }
-        break;
     }
 }
 

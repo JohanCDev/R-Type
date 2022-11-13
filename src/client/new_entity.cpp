@@ -119,5 +119,55 @@ void new_laser(World &world, size_t srv_entity_id, Vector2f pos)
     new_entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER, position.pos, Vector2i{0, 0}, 0.04f);
     world.getRegistry().add_component<EntityIDComponent>(
         world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+    world.getSoundEffects().find("laser")->second.get()->stop();
+#if __APPLE__
+    usleep(10000);
+#endif
+    world.getSoundEffects().find("laser")->second.get()->play();
     std::cout << "Laser[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+}
+
+void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos)
+{
+    size_t new_entity_id;
+    PositionComponent position(pos);
+
+    new_entity_id = world.create_bonus(GameObject::BONUS_ATTACK, position.pos, Vector2i{0, 0}, 0.04f, Bonus::ATTACK);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+    std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+}
+
+void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos)
+{
+    size_t new_entity_id;
+    PositionComponent position(pos);
+
+    new_entity_id =
+        world.create_bonus(GameObject::BONUS_ATTACK_SPEED, position.pos, Vector2i{0, 0}, 0.04f, Bonus::ATTACK_SPEED);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+    std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+}
+
+void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos)
+{
+    size_t new_entity_id;
+    PositionComponent position(pos);
+
+    new_entity_id = world.create_bonus(GameObject::BONUS_HEAL, position.pos, Vector2i{0, 0}, 0.04f, Bonus::HEAL);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+    std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
+}
+
+void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos)
+{
+    size_t new_entity_id;
+    PositionComponent position(pos);
+
+    new_entity_id = world.create_bonus(GameObject::BONUS_SPEED, position.pos, Vector2i{0, 0}, 0.04f, Bonus::HEAL);
+    world.getRegistry().add_component<EntityIDComponent>(
+        world.getRegistry().entity_from_index(new_entity_id), EntityIDComponent{srv_entity_id});
+    std::cout << "BONUS[" << srv_entity_id << "]: spawned at (" << pos.x << ", " << pos.y << ")" << std::endl;
 }
