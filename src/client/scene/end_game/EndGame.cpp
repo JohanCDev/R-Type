@@ -21,6 +21,7 @@ void EndGameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScr
     sf::Event event;
 
     if (this->_init == false) {
+        this->_world.register_end_game_assets();
         this->init_end_game(window);
         this->_init = true;
     }
@@ -45,5 +46,13 @@ void EndGameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScr
 
 void EndGameScene::init_end_game(sf::RenderWindow &window)
 {
-    this->_world.create_text("end game", "assets/font/EMINOR-BlackItalic.ttf", 50, Vector2f{0, 0});
+    this->_world.create_text(
+        "Game Over", "assets/font/EMINOR-BlackItalic.ttf", 50, Vector2f{(float)window.getSize().x / 2.0f - 112.5f, 50});
+
+    Vector2f pos;
+    pos = {static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 250};
+    _world.create_button("assets/background/bg-boutton.png", Vector4i{41, 28, 657, 284}, Vector4i{255, 255, 255, 255},
+        Vector2f{0.4, 0.4}, pos, &go_to_menu);
+    _world.create_text("MENU", "assets/font/EMINOR-BlackItalic.ttf", 40,
+        Vector2f{static_cast<float>(window.getSize().x / 2 - 40), 290});
 }

@@ -69,6 +69,12 @@ class World {
     void register_lobby_assets();
 
     /**
+     * @brief Register assets for end game scene
+     *
+     */
+    void register_end_game_assets();
+
+    /**
      * @brief register all assets of the game
      *
      */

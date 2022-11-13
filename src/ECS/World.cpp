@@ -155,6 +155,11 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Button/button_more_volume.png");
 }
 
+void World::register_end_game_assets()
+{
+    this->_manager.register_texture("assets/background/bg-boutton.png");
+}
+
 void World::register_option_assets()
 {
     this->_manager.register_texture("assets/Button/home.png");
