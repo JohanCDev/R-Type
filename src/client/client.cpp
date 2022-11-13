@@ -165,6 +165,7 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f, Networ
     {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
     {GameObject::BONUS_HEAL, new_bonus_heal},
     {GameObject::BONUS_SPEED, new_bonus_speed},
+    {GameObject::BONUS_DOUBLE, new_bonus_double},
 };
 
 /**
