@@ -111,6 +111,7 @@ int collide_system(World &world, NetworkServer &server);
  *
  * @param world The world
  * @param server The server
+ *
  * @return negative value if there is an error
  */
 int lobby_system(World &world, NetworkServer &server);
@@ -133,6 +134,8 @@ int clickable_system(
  *
  * @param world world to act on
  * @param server Server with all the informations
+ *
+ * @returns Negative value if there is an error
  */
 int refresh_system(World &world, NetworkServer &server);
 

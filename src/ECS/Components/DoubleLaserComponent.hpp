@@ -17,7 +17,7 @@
  */
 struct DoubleLaserComponent {
     /**
-     * @brief Is the component destroyable
+     * @brief Is it activated
      *
      */
     bool _double;
@@ -25,7 +25,7 @@ struct DoubleLaserComponent {
     /**
      * @brief Construct a new Destroyable Component object
      *
-     * @param destroy
+     * @param twoLaser Is the component activated
      */
     DoubleLaserComponent(bool twoLaser) : _double(twoLaser)
     {
