@@ -127,7 +127,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             if (bonus_stat.timer[i].second.speed > 0) {
                 speed[bonus_stat.timer[i].second.nbr]->speed -= 1;
             } else if (bonus_stat.timer[i].second.strengh > 0) {
-                laser[bonus_stat.timer[i].second.nbr]->_double = false;
                 weapons[bonus_stat.timer[i].second.nbr]->stat.x -= 20;
             } else if (bonus_stat.timer[i].second.strengh) {
                 weapons[bonus_stat.timer[i].second.nbr]->stat.y -= 20;
