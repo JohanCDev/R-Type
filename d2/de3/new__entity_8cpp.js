@@ -9,10 +9,11 @@ var new__entity_8cpp =
     [ "new_boss1", "d2/de3/new__entity_8cpp.html#a24f6100339494cd0ef234be940bac098", null ],
     [ "new_damage_player", "d2/de3/new__entity_8cpp.html#ab58ebea429129f200a2fbd32c9e73de8", null ],
     [ "new_enemy_focus", "d2/de3/new__entity_8cpp.html#a8fe3201fb49372a79355934037115a05", null ],
-    [ "new_enemy_odd", "d2/de3/new__entity_8cpp.html#a5a1ac44640f274d120d7dccbdc318904", null ],
+    [ "new_enemy_kamikaze", "d2/de3/new__entity_8cpp.html#ab1deeac144d342cd64e1d0ff7b8ef565", null ],
     [ "new_enemy_sniper", "d2/de3/new__entity_8cpp.html#a1da13e6456f716e102e8524a33a9140d", null ],
     [ "new_engineer_player", "d2/de3/new__entity_8cpp.html#ac76bc1027b4c1695e7d0996a8bc3c849", null ],
     [ "new_laser", "d2/de3/new__entity_8cpp.html#add5e5b1a678f340911ba3895a1f936e7", null ],
+    [ "new_laser_enemy", "d2/de3/new__entity_8cpp.html#a2d0d2dff938e3c55fe3adf05fcb3b138", null ],
     [ "new_player", "d2/de3/new__entity_8cpp.html#a13ff130241d30b95f9affd2f96707ee0", null ],
     [ "new_sniper_player", "d2/de3/new__entity_8cpp.html#aa28d4179c2621b08da9fdd7b7f6ec47d", null ]
 ];

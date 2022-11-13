@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: src/server/IASystem.cpp File Reference</title>
+<title>R-Type: src/server/AISystem.cpp File Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('d0/d8d/IASystem_8cpp.html','../../'); initResizable(); });
+$(document).ready(function(){initNavTree('d4/db1/AISystem_8cpp.html','../../'); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('d0/d8d/IASystem_8cpp.html','../../'); 
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">IASystem.cpp File Reference</div>  </div>
+<div class="title">AISystem.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="../../d3/d68/Message_8hpp_source.html">../Common/Message/Message.hpp</a>&quot;</code><br />
@@ -99,17 +99,20 @@ $(document).ready(function(){initNavTree('d0/d8d/IASystem_8cpp.html','../../'); 
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2d9b19805d187c015251e9a1b42d2db3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/IASystem_8cpp.html#a2d9b19805d187c015251e9a1b42d2db3">update_enemy_focus</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
-<tr class="memdesc:a2d9b19805d187c015251e9a1b42d2db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the focus of the enemy to go to the closest player.  <a href="../../d0/d8d/IASystem_8cpp.html#a2d9b19805d187c015251e9a1b42d2db3">More...</a><br /></td></tr>
+<tr class="memitem:a2d9b19805d187c015251e9a1b42d2db3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db1/AISystem_8cpp.html#a2d9b19805d187c015251e9a1b42d2db3">update_enemy_focus</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
+<tr class="memdesc:a2d9b19805d187c015251e9a1b42d2db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Goes to the left and follow the Y of player.  <a href="../../d4/db1/AISystem_8cpp.html#a2d9b19805d187c015251e9a1b42d2db3">More...</a><br /></td></tr>
 <tr class="separator:a2d9b19805d187c015251e9a1b42d2db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac128bef85d52ca9a6f9829db837c1d5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/IASystem_8cpp.html#ac128bef85d52ca9a6f9829db837c1d5f">update_enemy_sniper</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
-<tr class="memdesc:ac128bef85d52ca9a6f9829db837c1d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update sniper enemy actions.  <a href="../../d0/d8d/IASystem_8cpp.html#ac128bef85d52ca9a6f9829db837c1d5f">More...</a><br /></td></tr>
+<tr class="memitem:ac128bef85d52ca9a6f9829db837c1d5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db1/AISystem_8cpp.html#ac128bef85d52ca9a6f9829db837c1d5f">update_enemy_sniper</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
+<tr class="memdesc:ac128bef85d52ca9a6f9829db837c1d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stay on the right of the screen and move vertically.  <a href="../../d4/db1/AISystem_8cpp.html#ac128bef85d52ca9a6f9829db837c1d5f">More...</a><br /></td></tr>
 <tr class="separator:ac128bef85d52ca9a6f9829db837c1d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9010b78a97e2be619d666811b2e8c165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/IASystem_8cpp.html#a9010b78a97e2be619d666811b2e8c165">update_enemy_odd</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
-<tr class="memdesc:a9010b78a97e2be619d666811b2e8c165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update random enemy direction.  <a href="../../d0/d8d/IASystem_8cpp.html#a9010b78a97e2be619d666811b2e8c165">More...</a><br /></td></tr>
-<tr class="separator:a9010b78a97e2be619d666811b2e8c165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ddc60aece91af41db4a5986c5422e7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8d/IASystem_8cpp.html#a7ddc60aece91af41db4a5986c5422e7f">ia_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
-<tr class="memdesc:a7ddc60aece91af41db4a5986c5422e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the AI function of each type of entities.  <a href="../../d0/d8d/IASystem_8cpp.html#a7ddc60aece91af41db4a5986c5422e7f">More...</a><br /></td></tr>
+<tr class="memitem:ac7f33729beb54fcd94eaf061b9e855c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db1/AISystem_8cpp.html#ac7f33729beb54fcd94eaf061b9e855c9">update_enemy_kamikaze</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
+<tr class="memdesc:ac7f33729beb54fcd94eaf061b9e855c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Don't do anything for the kamikaze, it only goes to the left.  <a href="../../d4/db1/AISystem_8cpp.html#ac7f33729beb54fcd94eaf061b9e855c9">More...</a><br /></td></tr>
+<tr class="separator:ac7f33729beb54fcd94eaf061b9e855c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ba57a4b55166ef262734a43f056ad9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db1/AISystem_8cpp.html#a88ba57a4b55166ef262734a43f056ad9">update_boss_1</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server, size_t i)</td></tr>
+<tr class="memdesc:a88ba57a4b55166ef262734a43f056ad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stay on the right of the screen and follow the nearest player vertically.  <a href="../../d4/db1/AISystem_8cpp.html#a88ba57a4b55166ef262734a43f056ad9">More...</a><br /></td></tr>
+<tr class="separator:a88ba57a4b55166ef262734a43f056ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddc60aece91af41db4a5986c5422e7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db1/AISystem_8cpp.html#a7ddc60aece91af41db4a5986c5422e7f">ia_system</a> (<a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;world, <a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;server)</td></tr>
+<tr class="memdesc:a7ddc60aece91af41db4a5986c5422e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the AI function of each type of entities.  <a href="../../d4/db1/AISystem_8cpp.html#a7ddc60aece91af41db4a5986c5422e7f">More...</a><br /></td></tr>
 <tr class="separator:a7ddc60aece91af41db4a5986c5422e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -156,6 +159,50 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a88ba57a4b55166ef262734a43f056ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ba57a4b55166ef262734a43f056ad9">&#9670;&nbsp;</a></span>update_boss_1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void update_boss_1 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d9a/classNetworkServer.html">NetworkServer</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stay on the right of the screen and follow the nearest player vertically. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">i</td><td>The index of the entity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a2d9b19805d187c015251e9a1b42d2db3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d9b19805d187c015251e9a1b42d2db3">&#9670;&nbsp;</a></span>update_enemy_focus()</h2>
 
@@ -188,26 +235,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Change the focus of the enemy to go to the closest player. </p>
+<p>Goes to the left and follow the Y of player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">world</td><td>world to act on </td></tr>
-    <tr><td class="paramname">server</td><td>Server with all the informations </td></tr>
-    <tr><td class="paramname">i</td><td>Index of the player </td></tr>
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">i</td><td>The index of the entity </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a9010b78a97e2be619d666811b2e8c165"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9010b78a97e2be619d666811b2e8c165">&#9670;&nbsp;</a></span>update_enemy_odd()</h2>
+<a id="ac7f33729beb54fcd94eaf061b9e855c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7f33729beb54fcd94eaf061b9e855c9">&#9670;&nbsp;</a></span>update_enemy_kamikaze()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void update_enemy_odd </td>
+          <td class="memname">void update_enemy_kamikaze </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d6/d39/classWorld.html">World</a> &amp;&#160;</td>
           <td class="paramname"><em>world</em>, </td>
@@ -232,12 +279,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update random enemy direction. </p>
+<p>Don't do anything for the kamikaze, it only goes to the left. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">world</td><td>world to act on </td></tr>
-    <tr><td class="paramname">server</td><td>server containing all the informations </td></tr>
-    <tr><td class="paramname">i</td><td>index of the player </td></tr>
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">i</td><td>The index of the entity </td></tr>
   </table>
   </dd>
 </dl>
@@ -276,12 +323,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update sniper enemy actions. </p>
+<p>Stay on the right of the screen and move vertically. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">world</td><td>world to act on </td></tr>
-    <tr><td class="paramname">server</td><td>server containing all the informations </td></tr>
-    <tr><td class="paramname">i</td><td>index of the player </td></tr>
+    <tr><td class="paramname">world</td><td>The world </td></tr>
+    <tr><td class="paramname">server</td><td>The server </td></tr>
+    <tr><td class="paramname">i</td><td>The index of the entity </td></tr>
   </table>
   </dd>
 </dl>
@@ -293,7 +340,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="../../dir_075bb3ff235063c77951cd176d15a741.html">server</a></li><li class="navelem"><a class="el" href="../../d0/d8d/IASystem_8cpp.html">IASystem.cpp</a></li>
+    <li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="../../dir_075bb3ff235063c77951cd176d15a741.html">server</a></li><li class="navelem"><a class="el" href="../../d4/db1/AISystem_8cpp.html">AISystem.cpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

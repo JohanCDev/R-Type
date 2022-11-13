@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['waves_5ft_768',['waves_t',['../d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d',1,'game.hpp']]]
+  ['value_5ftype_776',['value_type',['../d6/d51/classsparse__array.html#ab7403a6f935fa66034cce5bdcf49a9fc',1,'sparse_array']]]
 ];

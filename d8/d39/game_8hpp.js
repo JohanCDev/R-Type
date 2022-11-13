@@ -1,6 +1,6 @@
 var game_8hpp =
 [
-    [ "values_s", "d1/dc0/structvalues__s.html", "d1/dc0/structvalues__s" ],
+    [ "myValues_s", "db/d81/structmyValues__s.html", "db/d81/structmyValues__s" ],
     [ "wave_s", "d6/d5c/structwave__s.html", "d6/d5c/structwave__s" ],
     [ "stat_bonus_s", "d5/dd2/structstat__bonus__s.html", "d5/dd2/structstat__bonus__s" ],
     [ "bonus_s", "d0/da2/structbonus__s.html", "d0/da2/structbonus__s" ],
@@ -17,8 +17,8 @@ var game_8hpp =
     [ "DEFAULT_WAVE_FREQUENCY_BOSS", "d8/d39/game_8hpp.html#a74cba2007c70c1ec154a673465361ec3", null ],
     [ "DEFAULT_WAVE_TIME_BETWEEN", "d8/d39/game_8hpp.html#a1bfacbd5b7446a24d8093b460764cb0c", null ],
     [ "bonus_t", "d8/d39/game_8hpp.html#a9b762a6dd03b2a79674b72079b2d3a80", null ],
+    [ "myValues_t", "d8/d39/game_8hpp.html#a422c132eda5ba6e56834b0dfb5d9c9b8", null ],
     [ "stat_bonus_t", "d8/d39/game_8hpp.html#ab968cd8ec01d2e8c0380db54c86cb4a0", null ],
-    [ "values_t", "d8/d39/game_8hpp.html#a1fabeb1ce0708ac0d3f41476ecd192db", null ],
     [ "waves_t", "d8/d39/game_8hpp.html#aaefa74bd3e815c00a1342d9cdcaac58d", null ],
     [ "bonus_creation", "d8/d39/game_8hpp.html#acde020fa50025e06d11f91206198c3c6", null ],
     [ "check_collision", "d8/d39/game_8hpp.html#a9d2c53819ce366cdd1e41309aad9bbfd", null ],

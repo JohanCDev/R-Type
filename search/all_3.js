@@ -37,15 +37,16 @@ var searchData=
   ['cooldown_5fas_5fmilliseconds_65',['cooldown_as_milliseconds',['../df/de1/structWeaponComponent.html#a5438832f87aef3f6e5dcf03717ce7da1',1,'WeaponComponent']]],
   ['create_5fbonus_66',['create_bonus',['../d6/d39/classWorld.html#a13cc678b11b6b52c4910259407a8cd65',1,'World']]],
   ['create_5fborder_5fentities_67',['create_border_entities',['../d6/d39/classWorld.html#ac6a6072fc555d6d139dec1a910ce6f6d',1,'World']]],
-  ['create_5fboss_68',['create_boss',['../db/d61/WaveSystem_8cpp.html#a0bee75d800f2c4deb4ab5309b627aa8b',1,'WaveSystem.cpp']]],
+  ['create_5fboss_5f1_68',['create_boss_1',['../db/d61/WaveSystem_8cpp.html#ab1924bdf4ed99dd9e722581be6844086',1,'WaveSystem.cpp']]],
   ['create_5fbutton_69',['create_button',['../d6/d39/classWorld.html#ad4776d0e112b74a660ffcbefd34417cd',1,'World']]],
   ['create_5fdrawable_5fobject_70',['create_drawable_object',['../d6/d39/classWorld.html#a1a627b5dbf74b12caa4eb9938f02378d',1,'World']]],
   ['create_5fenemy_71',['create_enemy',['../d6/d39/classWorld.html#a76f81ae8d702514f34d019a0841972b7',1,'World::create_enemy()'],['../d8/d39/game_8hpp.html#adafc73f58296ebeb87850869df90cb81',1,'create_enemy(World &amp;world, NetworkServer &amp;server):&#160;WaveSystem.cpp'],['../db/d61/WaveSystem_8cpp.html#adafc73f58296ebeb87850869df90cb81',1,'create_enemy(World &amp;world, NetworkServer &amp;server):&#160;WaveSystem.cpp']]],
   ['create_5fhealthbar_72',['create_healthbar',['../d6/d39/classWorld.html#a42cdab1e784f38ca97bd5d45ddac3441',1,'World']]],
   ['create_5flaser_73',['create_laser',['../d6/d39/classWorld.html#a876430228416672479bf510dc9128068',1,'World']]],
-  ['create_5fplayer_74',['create_player',['../d6/d39/classWorld.html#a8cfe8a760fbf6f429ed8e40e70850a7a',1,'World']]],
-  ['create_5fsettings_75',['create_settings',['../d6/d39/classWorld.html#a75f272d6514d0aabbe5feb63193949ad',1,'World']]],
-  ['create_5fskills_76',['create_skills',['../d6/d39/classWorld.html#acadce31599512385c3aded9488e6bf74',1,'World']]],
-  ['create_5ftext_77',['create_text',['../d6/d39/classWorld.html#a9304af66bf2ba80d857798dd310b53bc',1,'World']]],
-  ['create_5fwave_78',['create_wave',['../db/d61/WaveSystem_8cpp.html#ad6f241d741aa16b91a5aed2484e2c0e4',1,'WaveSystem.cpp']]]
+  ['create_5flaser_5fenemy_74',['create_laser_enemy',['../d6/d39/classWorld.html#a9138cc6bfdf2400574d15ba4e2ba6b72',1,'World']]],
+  ['create_5fplayer_75',['create_player',['../d6/d39/classWorld.html#a8cfe8a760fbf6f429ed8e40e70850a7a',1,'World']]],
+  ['create_5fsettings_76',['create_settings',['../d6/d39/classWorld.html#a75f272d6514d0aabbe5feb63193949ad',1,'World']]],
+  ['create_5fskills_77',['create_skills',['../d6/d39/classWorld.html#acadce31599512385c3aded9488e6bf74',1,'World']]],
+  ['create_5ftext_78',['create_text',['../d6/d39/classWorld.html#a9304af66bf2ba80d857798dd310b53bc',1,'World']]],
+  ['create_5fwave_79',['create_wave',['../db/d61/WaveSystem_8cpp.html#ad6f241d741aa16b91a5aed2484e2c0e4',1,'WaveSystem.cpp']]]
 ];

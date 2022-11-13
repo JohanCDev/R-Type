@@ -10,10 +10,12 @@ var proto_8hpp =
     [ "new_boss1", "dc/d78/proto_8hpp.html#a24f6100339494cd0ef234be940bac098", null ],
     [ "new_damage_player", "dc/d78/proto_8hpp.html#ab58ebea429129f200a2fbd32c9e73de8", null ],
     [ "new_enemy_focus", "dc/d78/proto_8hpp.html#a8fe3201fb49372a79355934037115a05", null ],
+    [ "new_enemy_kamikaze", "dc/d78/proto_8hpp.html#ab1deeac144d342cd64e1d0ff7b8ef565", null ],
     [ "new_enemy_odd", "dc/d78/proto_8hpp.html#a5a1ac44640f274d120d7dccbdc318904", null ],
     [ "new_enemy_sniper", "dc/d78/proto_8hpp.html#a1da13e6456f716e102e8524a33a9140d", null ],
     [ "new_engineer_player", "dc/d78/proto_8hpp.html#ac76bc1027b4c1695e7d0996a8bc3c849", null ],
     [ "new_laser", "dc/d78/proto_8hpp.html#add5e5b1a678f340911ba3895a1f936e7", null ],
+    [ "new_laser_enemy", "dc/d78/proto_8hpp.html#a2d0d2dff938e3c55fe3adf05fcb3b138", null ],
     [ "new_player", "dc/d78/proto_8hpp.html#a13ff130241d30b95f9affd2f96707ee0", null ],
     [ "new_sniper_player", "dc/d78/proto_8hpp.html#aa28d4179c2621b08da9fdd7b7f6ec47d", null ]
 ];

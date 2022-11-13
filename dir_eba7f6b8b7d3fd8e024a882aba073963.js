@@ -28,6 +28,9 @@ var dir_eba7f6b8b7d3fd8e024a882aba073963 =
     [ "EntityIDComponent.hpp", "dd/dad/EntityIDComponent_8hpp.html", [
       [ "EntityIDComponent", "d6/dae/structEntityIDComponent.html", "d6/dae/structEntityIDComponent" ]
     ] ],
+    [ "GameObjectComponent.hpp", "d2/d69/GameObjectComponent_8hpp.html", [
+      [ "GameObjectComponent", "d4/d2e/structGameObjectComponent.html", "d4/d2e/structGameObjectComponent" ]
+    ] ],
     [ "GameTeamComponent.hpp", "d0/d1d/GameTeamComponent_8hpp.html", "d0/d1d/GameTeamComponent_8hpp" ],
     [ "HealthComponent.hpp", "da/da5/HealthComponent_8hpp.html", [
       [ "HealthComponent", "d1/d29/structHealthComponent.html", "d1/d29/structHealthComponent" ]
