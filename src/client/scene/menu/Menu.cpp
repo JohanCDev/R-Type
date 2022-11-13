@@ -56,7 +56,7 @@ void MenuScene::init_menu(sf::RenderWindow &window)
         Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}, Vector2f{0, 0});
 
     // title
-    _world.create_text("MLG R-TYPE", "assets/font/EMINOR-BlackItalic.ttf", 70,
+    _world.create_text("AIR-TYPE", "assets/font/EMINOR-BlackItalic.ttf", 70,
         Vector2f{static_cast<float>(window.getSize().x / 2 - 175), 0.0f});
 
     // Play button

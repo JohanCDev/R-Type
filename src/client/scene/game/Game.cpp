@@ -42,14 +42,17 @@ void GameScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScreen
             this->_option = !this->_option;
             this->display_option(this->_option);
         }
+        if (this->_option == true && event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Subtract)
+            down_sound(_world, current_screen, client, volume);
+        if (this->_option == true && event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Add)
+            up_sound(_world, current_screen, client, volume);
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             if (clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y},
                     current_screen, client, volume)
                 == 1)
                 continue;
         }
-        if ((event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-            || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)) {
+        if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)) {
             client.send(shootMsg);
         }
     }
