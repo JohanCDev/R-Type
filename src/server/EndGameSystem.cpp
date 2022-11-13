@@ -28,6 +28,7 @@ int end_game_system(World &world, NetworkServer &server)
         msg.header.id = GameMessage::S2C_GAME_END;
         msg << "end";
         server.SendToAll(msg);
+        world.state = GameState::Over;
     }
     return 0;
 }
