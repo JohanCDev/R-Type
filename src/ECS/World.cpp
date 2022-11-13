@@ -227,6 +227,7 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(
             KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
+    this->_r.add_component<LevelComponent>(ent, {0, 0});
 
     return (ent.id);
 }

@@ -264,3 +264,9 @@ typedef struct bonus_s {
      */
     std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;
+
+void spend_point(World &world, ClientMessage msg, NetworkServer &server);
+
+void stat_up(World &world, GameStat &stat, std::size_t &e);
+
+void send_stats_to_players(World &world, NetworkServer &server, std::size_t index);

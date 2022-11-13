@@ -56,5 +56,6 @@ static std::map<GameStat, std::function<void(World &, std::size_t &)>> statFunc 
 
 void stat_up(World &world, GameStat &stat, std::size_t &e)
 {
-    statFunc[stat](world, e);
+    if (statFunc.contains(stat))
+        statFunc[stat](world, e);
 }
