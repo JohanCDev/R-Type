@@ -264,3 +264,38 @@ typedef struct bonus_s {
      */
     std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;
+
+/**
+ * @brief Spends a point to augment a player's stat
+ *
+ * @param world world to act on
+ * @param msg The client's message
+ * @param server The game's server
+ */
+void spend_point(World &world, ClientMessage msg, NetworkServer &server);
+
+/**
+ * @brief Augments a player's stat
+ *
+ * @param world world to act on
+ * @param stat stat to augment
+ * @param e Player's entity ID
+ */
+void stat_up(World &world, GameStat &stat, std::size_t &e);
+
+/**
+ * @brief Send stats to the player
+ *
+ * @param world world to act on
+ * @param server The game's server
+ * @param e Player's entity ID
+ */
+void send_stats_to_players(World &world, NetworkServer &server, std::size_t index);
+
+/**
+ * @brief Handles players' leveling up
+ *
+ * @param world world to act on
+ * @param e server The server
+ */
+int level_up_system(World &world, NetworkServer &server);

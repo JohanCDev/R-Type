@@ -56,10 +56,11 @@ int main(void)
     scenes.push_back(game);
     scenes.push_back(option);
     SceneScreen current_screen = SceneScreen::MENU;
+    float volume = 50.0f;
 
     while (window.isOpen()) {
         auto &scene = scenes[(int)current_screen].get();
-        scene.run(client, window, current_screen);
+        scene.run(client, window, current_screen, volume);
     }
     return 0;
 }

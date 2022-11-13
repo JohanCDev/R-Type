@@ -33,6 +33,7 @@ World::World(bool client) : _r(), _manager(), _clock(), _player_direction({0, 0}
     this->_r.register_components<SpeedComponent>();
     this->_r.register_components<ClickableComponent>();
     this->_r.register_components<DoubleLaserComponent>();
+    this->_r.register_components<LevelComponent>();
 
     this->_manager.register_font("assets/font/EMINOR-BlackItalic.ttf");
 
@@ -60,6 +61,7 @@ World::World() : _r(), _clock()
     this->_r.register_components<TextComponent>();
     this->_r.register_components<ClickableComponent>();
     this->_r.register_components<DoubleLaserComponent>();
+    this->_r.register_components<LevelComponent>();
 
     this->register_all_assets();
     this->register_all_sounds();
@@ -145,10 +147,14 @@ void World::register_game_assets()
     this->_manager.register_texture("assets/Boss/boss1.png");
     this->_manager.register_texture("assets/background/bkgd_1.png");
     this->_manager.register_texture("assets/background/bkgd_2.png");
+    this->_manager.register_texture("assets/background/bg-settings.png");
     this->_manager.register_texture("assets/Power-up/boost_attack.png");
     this->_manager.register_texture("assets/Power-up/boost_attack_speed.png");
     this->_manager.register_texture("assets/Power-up/boost_hp.png");
     this->_manager.register_texture("assets/Power-up/boost_speed.png");
+    this->_manager.register_texture("assets/Button/button_volume.png");
+    this->_manager.register_texture("assets/Button/button_less_volume.png");
+    this->_manager.register_texture("assets/Button/button_more_volume.png");
 }
 
 void World::register_option_assets()
@@ -227,7 +233,11 @@ size_t World::create_player(GameObject object, Vector2f pos, Vector2i speed, flo
     this->_r.add_component<ControllableComponent>(ent,
         ControllableComponent(
             KeyboardInput::Z, KeyboardInput::S, KeyboardInput::D, KeyboardInput::Q, MouseInput::Left_click));
+<<<<<<< HEAD
     this->_r.add_component<DoubleLaserComponent>(ent, DoubleLaserComponent(false));
+=======
+    this->_r.add_component<LevelComponent>(ent, {0, 0});
+>>>>>>> master
 
     return (ent.id);
 }
@@ -300,10 +310,10 @@ size_t World::create_text(std::string text, std::string font, int size, Vector2f
     return (ent.id);
 }
 
-size_t World::create_button(std::string asset, Vector4i rect, Vector2f scale, Vector2f pos,
-    std::function<void(World &, SceneScreen &, NetworkClient &)> callback)
+size_t World::create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
+    std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback)
 {
-    size_t id = this->create_drawable_object(asset, rect, Vector4i{255, 255, 255, 255}, scale, pos);
+    size_t id = this->create_drawable_object(asset, rect, color, scale, pos);
     this->_r.add_component((Entity)id, ClickableComponent(callback));
     return (id);
 }

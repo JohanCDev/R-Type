@@ -18,7 +18,7 @@
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &client);
+void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Go to menu screen
@@ -27,7 +27,7 @@ void go_to_lobby(World &world, SceneScreen &current_screen, NetworkClient &clien
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client);
+void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Go to game screen
@@ -36,7 +36,7 @@ void go_to_menu(World &world, SceneScreen &current_screen, NetworkClient &client
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client);
+void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Go to option screen
@@ -45,7 +45,7 @@ void go_to_game(World &world, SceneScreen &current_screen, NetworkClient &client
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &client);
+void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Quit the callback map
@@ -54,7 +54,7 @@ void go_to_option(World &world, SceneScreen &current_screen, NetworkClient &clie
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &client);
+void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Launch the game
@@ -63,7 +63,7 @@ void quit_callback(World &world, SceneScreen &current_screen, NetworkClient &cli
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void launch_game(World &world, SceneScreen &current_screen, NetworkClient &client);
+void launch_game(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Select the sniper ship
@@ -72,7 +72,7 @@ void launch_game(World &world, SceneScreen &current_screen, NetworkClient &clien
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient &client);
+void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Select the damage ship
@@ -81,7 +81,7 @@ void select_sniper_ship(World &world, SceneScreen &current_screen, NetworkClient
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient &client);
+void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Select the engineer ship
@@ -90,7 +90,7 @@ void select_damage_ship(World &world, SceneScreen &current_screen, NetworkClient
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClient &client);
+void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
 
 /**
  * @brief Select the armored ship
@@ -99,4 +99,24 @@ void select_engineer_ship(World &world, SceneScreen &current_screen, NetworkClie
  * @param current_screen current screen that will be moidified
  * @param client Class containing information on client's network
  */
-void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClient &client);
+void select_armored_ship(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
+
+/**
+ * @brief increase the sound volume
+ *
+ * @param world
+ * @param current_screen
+ * @param client
+ * @param volume
+ */
+void up_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
+
+/**
+ * @brief decrease the sound volume
+ *
+ * @param world
+ * @param current_screen
+ * @param client
+ * @param volume
+ */
+void down_sound(World &world, SceneScreen &current_screen, NetworkClient &client, float &volume);
