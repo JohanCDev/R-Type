@@ -57,7 +57,7 @@ void MenuScene::init_menu(sf::RenderWindow &window)
 
     // title
     _world.create_text("AIR-TYPE", "assets/font/EMINOR-BlackItalic.ttf", 70,
-        Vector2f{static_cast<float>(window.getSize().x / 2 - 175), 0.0f});
+        Vector2f{static_cast<float>(window.getSize().x / 2 - 140), 0.0f});
 
     // Play button
     Vector2f pos = {static_cast<float>(window.getSize().x / 2 - ((657 * 0.4) / 2)), 250};
