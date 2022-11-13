@@ -161,7 +161,6 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 sending_msg << entity_id;
                 sending_msg << Vector2i{defaultValues[GameObject::LASER].spd, 0};
                 server.SendToAll(sending_msg);
-                std::cout << "bonsoir" << msg.second << "\n" << std::endl;
                 if (laser[index]->_double == true) {
                     Vector2f shootPos2 = shootMap[draw[index]->path];
                     entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
@@ -210,7 +209,6 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
         sending_msg << entity_id;
         sending_msg << Vector2f{defaultValues[it->second].pos.x, defaultValues[it->second].pos.y};
         server.SendToAll(sending_msg);
-        std::cout << msg.second << "\n" << std::endl;
     }
     world.state = GameState::Playing;
 }
