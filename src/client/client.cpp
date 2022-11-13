@@ -212,21 +212,20 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
             if (entityId->id == id_entity.id) {
                 if (sound[index] && sound[index].has_value() && sound[index]->soundEffect.compare("explosion") == 0) {
                     sounds.find("dead")->second.get()->stop();
-// #if __APPLE__
+#if __APPLE__
                     usleep(10000);
-// #endif
+#endif
                     sounds.find("dead")->second.get()->setVolume(client.getSoundVolume());
                     sounds.find("dead")->second.get()->play();
                 }
                 if (sound[index] && sound[index].has_value() && sound[index]->soundEffect.compare("bonus") == 0) {
                     sounds.find("bonus")->second.get()->stop();
-// #if __APPLE__
+#if __APPLE__
                     usleep(10000);
-// #endif
+#endif
                     sounds.find("bonus")->second.get()->setVolume(client.getSoundVolume());
                     sounds.find("bonus")->second.get()->play();
                 }
-                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
             }
@@ -255,7 +254,6 @@ void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage>
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
-                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
             }
@@ -297,8 +295,6 @@ void movement(World &world, NetworkClient &client, Message<GameMessage> msg, Sce
     for (auto &idCompo : entityId) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
-                // std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
-                        //   << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
                 break;
@@ -335,8 +331,6 @@ void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, S
             if (idCompo->id == hit_id.id) {
                 health[index]->hp = curr_hp;
                 health[index]->max_hp = max_hp;
-                std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/"
-                          << max_hp << "HP" << std::endl;
                 break;
             }
         }

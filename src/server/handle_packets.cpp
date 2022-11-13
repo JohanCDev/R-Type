@@ -81,7 +81,6 @@ void player_left(World &world, ClientMessage msg, NetworkServer &server)
             sending_msg << entities[index]->id;
             server.SendToAll(sending_msg);
             sending_msg = Message<GameMessage>();
-            std::cout << "Player[" << msg.second << "]: left the game" << std::endl;
             server.clients.left.erase(msg.second);
             world.player_ships.erase(msg.second);
             break;
@@ -112,8 +111,6 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
             if (i.value().id == msg.second) {
                 velocity[index]->speed.x = move.x * speed[index]->speed;
                 velocity[index]->speed.y = move.y * speed[index]->speed;
-                // std::cout << "Player[" << msg.second << "]: Velocity{" << velocity[index]->speed.x << ", "
-                        //   << velocity[index]->speed.y << "}" << std::endl;
                 sending_msg.header.id = GameMessage::S2C_MOVEMENT;
                 sending_msg << entities[index]->id;
                 sending_msg << velocity[index]->speed;
@@ -149,8 +146,6 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                 entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
                     Vector2f{position[index]->pos.x + shootPos.x, position[index]->pos.y + shootPos.y},
                     Vector2i{defaultValues[GameObject::LASER].spd, 0}, 0.04f);
-                std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
-                          << position[index]->pos.y << "}" << std::endl;
                 world.getRegistry().add_component<EntityIDComponent>(
                     world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
                 sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
@@ -168,8 +163,6 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server)
                     entity_id = world.create_laser(GameObject::LASER, GameTeam::PLAYER,
                         Vector2f{position[index]->pos.x + shootPos2.x, position[index]->pos.y + shootPos2.y - 30},
                         Vector2i{defaultValues[GameObject::LASER].spd, 0}, 0.04f);
-                    std::cout << "Player[" << msg.second << "]: shot from Position{" << position[index]->pos.x << ", "
-                            << position[index]->pos.y << "}" << std::endl;
                     world.getRegistry().add_component<EntityIDComponent>(
                         world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
                     sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
@@ -205,7 +198,6 @@ void start_game(World &world, ClientMessage msg, NetworkServer &server)
             world.getRegistry().entity_from_index(entity_id), ClientIDComponent{it->first});
         world.getRegistry().add_component<EntityIDComponent>(
             world.getRegistry().entity_from_index(entity_id), EntityIDComponent{entity_id});
-        std::cout << "Player[" << msg.second << "]: joined the game. Entity{" << entity_id << "}" << std::endl;
         sending_msg.header.id = GameMessage::S2C_ENTITY_NEW;
         sending_msg << it->second;
         sending_msg << entity_id;
