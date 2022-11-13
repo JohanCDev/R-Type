@@ -31,10 +31,10 @@ int refresh_system(World &world, NetworkServer &server)
             auto &id = ids[index];
             if (!(id && id.has_value()))
                 continue;
+            msg.header.id = GameMessage::S2C_UPDATE_POSITION;
             msg << pos.value();
             msg << id.value();
             server.SendToAll(msg);
-            std::cout << "refresh finished for entity " << index << std::endl;
         }
         index++;
     }

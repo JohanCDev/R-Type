@@ -387,9 +387,7 @@ void update_position(World &world, NetworkClient &client, Message<GameMessage> m
     ClientIDComponent entity_id;
     PositionComponent pos({0, 0});
 
-    std::cout << "bro" << std::endl;
     msg >> entity_id >> pos;
-
     auto &entityIdCompo = r.get_components<EntityIDComponent>();
     auto &posCompo = r.get_components<PositionComponent>();
 
@@ -401,7 +399,6 @@ void update_position(World &world, NetworkClient &client, Message<GameMessage> m
                 break;
             if (idCompo->id == entity_id.id) {
                 posCompo[index] = pos;
-                std::cout << "Entity[" << entity_id.id << "]: at {" << posCompo[index]->pos.x << ", " << posCompo[index]->pos.y << "}" << std::endl;
                 break;
             }
         }
