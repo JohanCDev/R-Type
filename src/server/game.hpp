@@ -288,7 +288,7 @@ void stat_up(World &world, GameStat &stat, std::size_t &e);
  *
  * @param world world to act on
  * @param server The game's server
- * @param e Player's entity ID
+ * @param index Player's entity ID
  */
 void send_stats_to_players(World &world, NetworkServer &server, std::size_t index);
 
@@ -297,6 +297,8 @@ void send_stats_to_players(World &world, NetworkServer &server, std::size_t inde
  *
  * @param world world to act on
  * @param server The server
+ *
+ * @return Negative value in case of error
  */
 int level_up_system(World &world, NetworkServer &server);
 
@@ -305,5 +307,7 @@ int level_up_system(World &world, NetworkServer &server);
  *
  * @param world world to act on
  * @param server The server
+ *
+ * @return Negative value in case of error
  */
 int end_game_system(World &world, NetworkServer &server);

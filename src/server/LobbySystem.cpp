@@ -12,12 +12,6 @@
 #include "../ECS/World.hpp"
 #include "server.hpp"
 
-/**
- * @brief Manages the lobby state in the server
- *
- * @param world world to act on
- * @param server Server with all the informations
- */
 int lobby_system(World &world, NetworkServer &server)
 {
     Message<GameMessage> player_msg;
