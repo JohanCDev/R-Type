@@ -36,7 +36,6 @@ enum class GameMessage : uint32_t {
     S2C_BONUS_DEAD,
     S2C_LEVEL_UP,
     S2C_UPDATE_STATS,
-    S2C_BONUS_DEAD,
 };
 
 /**
