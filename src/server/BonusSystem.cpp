@@ -27,6 +27,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
     auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     auto &destroyables = world.getRegistry().get_components<DestroyableComponent>();
     auto &entityId = world.getRegistry().get_components<EntityIDComponent>();
+    auto &laser = world.getRegistry().get_components<DoubleLaserComponent>();
     auto &teams = world.getRegistry().get_components<GameTeamComponent>();
     Message<GameMessage> sending_msg;
     std::chrono::time_point<std::chrono::steady_clock> timer;
@@ -67,8 +68,11 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
 
                         if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1
                             && teams[j]->team == GameTeam::PLAYER) {
-                            std::cout << "hit bonus entity" << entityId[j]->id << "]." << std::endl;
+                            std::cout << "hit bonus entity [" << entityId[j]->id << "]." << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {
+                                // std::cout << laser[j]->_double <<"\n\n";
+                                laser[j]->_double = true;
+                                // std::cout << laser[j]->_double <<"\n\n";
                                 weapons[j]->stat.x += 20;
                                 std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t> time;
                                 time.first = std::chrono::steady_clock::now();
@@ -121,6 +125,7 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
             if (bonus_stat.timer[i].second.speed > 0) {
                 speed[bonus_stat.timer[i].second.nbr]->speed -= 1;
             } else if (bonus_stat.timer[i].second.strengh > 0) {
+                laser[bonus_stat.timer[i].second.nbr]->_double = false;
                 weapons[bonus_stat.timer[i].second.nbr]->stat.x -= 20;
             } else if (bonus_stat.timer[i].second.strengh) {
                 weapons[bonus_stat.timer[i].second.nbr]->stat.y -= 20;
