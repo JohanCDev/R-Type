@@ -235,6 +235,14 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     }
 }
 
+/**
+ * @brief Kill a bonus that has not been fetched
+ *
+ * @param world The world to update
+ * @param msg The message containing the entity data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)client;
@@ -431,6 +439,14 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+/**
+ * @brief Update all positions
+ *
+ * @param world The world to update
+ * @param client The client to update
+ * @param msg The message containing the entity data
+ * @param current_scene The current scene
+ */
 void update_position(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_scene)
 {
     (void)client;
@@ -479,7 +495,8 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},
         {GameMessage::S2C_WAVE_STATUS, wave_status}, {GameMessage::S2C_OK, ok_packet},
         {GameMessage::S2C_START_GAME, game_start}, {GameMessage::S2C_PLAYERS_READY, players_ready},
-        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_BONUS_DEAD, bonus_dead_entity}, {GameMessage::S2C_UPDATE_POSITION, update_position}};
+        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_BONUS_DEAD, bonus_dead_entity},
+        {GameMessage::S2C_UPDATE_POSITION, update_position}};
 
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)

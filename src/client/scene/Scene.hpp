@@ -38,6 +38,7 @@ class IScene {
      * @param client Class containing client's network information
      * @param window Window to update
      * @param current_screen Current screen of the game
+     * @param volume Volume of the game
      */
     virtual void run(NetworkClient &client, sf::RenderWindow &window, SceneScreen &current_screen, float &volume) = 0;
 

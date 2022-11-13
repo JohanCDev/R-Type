@@ -21,6 +21,7 @@
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -30,6 +31,7 @@ void new_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient 
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -39,6 +41,7 @@ void new_armored_player(World &world, size_t srv_entity_id, Vector2f pos, Networ
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -48,6 +51,7 @@ void new_damage_player(World &world, size_t srv_entity_id, Vector2f pos, Network
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -57,6 +61,7 @@ void new_engineer_player(World &world, size_t srv_entity_id, Vector2f pos, Netwo
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -66,6 +71,7 @@ void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos, Network
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -84,6 +90,7 @@ void new_enemy_kamikaze(World &world, size_t srv_entity_id, Vector2f pos, Networ
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -93,6 +100,7 @@ void new_enemy_sniper(World &world, size_t srv_entity_id, Vector2f pos, NetworkC
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -102,6 +110,7 @@ void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos, NetworkClie
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_laser(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -120,6 +129,7 @@ void new_laser_enemy(World &world, size_t srv_entity_id, Vector2f pos, NetworkCl
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_boss1(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -129,6 +139,7 @@ void new_boss1(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -138,6 +149,7 @@ void new_bonus_attack(World &world, size_t srv_entity_id, Vector2f pos, NetworkC
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -147,6 +159,7 @@ void new_bonus_attack_speed(World &world, size_t srv_entity_id, Vector2f pos, Ne
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -156,6 +169,7 @@ void new_bonus_heal(World &world, size_t srv_entity_id, Vector2f pos, NetworkCli
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
@@ -165,6 +179,7 @@ void new_bonus_speed(World &world, size_t srv_entity_id, Vector2f pos, NetworkCl
  * @param world The world
  * @param srv_entity_id The server entity ID
  * @param pos The position of the entity
+ * @param client Client network's information
  */
 void new_bonus_double(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 

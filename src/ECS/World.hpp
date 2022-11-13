@@ -178,10 +178,10 @@ class World {
     /**
      * @brief Create a text object
      *
-     * @param text
-     * @param font
-     * @param size
-     * @param pos
+     * @param text Text to display
+     * @param font Font to use
+     * @param size Font Size
+     * @param pos Position of the text
      *
      * @returns Negative value if there is an error
      */
@@ -190,12 +190,13 @@ class World {
     /**
      * @brief Create a button object
      *
-     * @param asset
-     * @param rect
-     * @param scale
-     * @param pos
-     * @param callback
-     * @return size_t
+     * @param asset asset of the button
+     * @param rect Size of the button
+     * @param color Color of the button
+     * @param scale Scale of the button
+     * @param pos Pos of the button
+     * @param callback Function to call on click
+     * @return ID of the button
      */
     size_t create_button(std::string asset, Vector4i rect, Vector4i color, Vector2f scale, Vector2f pos,
         std::function<void(World &, SceneScreen &, NetworkClient &, float &)> callback);
@@ -284,6 +285,11 @@ class World {
      *
      */
     std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
+
+    /**
+     * @brief Create a border entities object that will destroy objects passing through
+     *
+     */
     void create_border_entities();
 
   private:

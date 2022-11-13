@@ -13,12 +13,7 @@
 #include "server.hpp"
 
 #include <iostream>
-/**
- * @brief Sends the locations of each entity to clients
- *
- * @param world world to act on
- * @param server Server with all the informations
- */
+
 int refresh_system(World &world, NetworkServer &server)
 {
     auto &positions = world.getRegistry().get_components<PositionComponent>();
@@ -26,7 +21,7 @@ int refresh_system(World &world, NetworkServer &server)
     Message<GameMessage> msg;
 
     std::size_t index = 0;
-    for (auto& pos : positions) {
+    for (auto &pos : positions) {
         if (pos && pos.has_value()) {
             auto &id = ids[index];
             if (!(id && id.has_value()))
