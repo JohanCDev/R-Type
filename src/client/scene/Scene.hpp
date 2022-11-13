@@ -18,7 +18,7 @@
  * @brief All scenes represented as an enum going from 0 to 4
  *
  */
-enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME, OPTION, NONE };
+enum class SceneScreen : uint32_t { MENU = 0, LOBBY, GAME, OPTION, ENDGAME, NONE };
 
 /**
  * @brief Interface for all scenes

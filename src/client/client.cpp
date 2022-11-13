@@ -261,9 +261,12 @@ void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage>
  *
  * @param window The window to close
  */
-void game_end(sf::RenderWindow &window)
+void game_end(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
-    window.close();
+    (void)world;
+    (void)msg;
+    (void)client;
+    current_screen = SceneScreen::ENDGAME;
 }
 
 /**
@@ -454,14 +457,12 @@ static std::map<GameMessage, std::function<void(World &, NetworkClient &, Messag
         {GameMessage::S2C_MOVEMENT, movement}, {GameMessage::S2C_ENTITY_HIT, entity_hit},
         {GameMessage::S2C_WAVE_STATUS, wave_status}, {GameMessage::S2C_OK, ok_packet},
         {GameMessage::S2C_START_GAME, game_start}, {GameMessage::S2C_PLAYERS_READY, players_ready},
-        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_BONUS_DEAD, bonus_dead_entity}};
+        {GameMessage::S2C_PLAYERS_IN_LOBBY, players_numbers}, {GameMessage::S2C_BONUS_DEAD, bonus_dead_entity},
+        {GameMessage::S2C_GAME_END, game_end}};
 
 void NetworkClient::processMessage(
     Message<GameMessage> &msg, World &world, sf::RenderWindow &window, SceneScreen &screen)
 {
     if (mapFunc.contains(msg.header.id))
         (mapFunc[msg.header.id])(world, *this, msg, screen);
-    if (msg.header.id == GameMessage::S2C_GAME_END) {
-        game_end(window);
-    }
 }

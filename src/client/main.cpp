@@ -26,6 +26,7 @@
 #include "scene/lobby/Lobby.hpp"
 #include "scene/menu/Menu.hpp"
 #include "scene/option/Option.hpp"
+#include "scene/end_game/EndGame.hpp"
 
 /**
  * @brief Main function
@@ -49,12 +50,14 @@ int main(void)
     GameScene game;
     LobbyScene lobby;
     OptionScene option;
+    EndGameScene end_game;
 
     std::vector<std::reference_wrapper<IScene>> scenes;
     scenes.push_back(menu);
     scenes.push_back(lobby);
     scenes.push_back(game);
     scenes.push_back(option);
+    scenes.push_back(end_game);
     SceneScreen current_screen = SceneScreen::MENU;
     float volume = 50.0f;
 
