@@ -361,7 +361,7 @@ void World::register_all_drawable_object()
             "assets/r-typesheet39.gif", Vector4i{34, 2, 64, 64}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::BOSS_1,
         DrawableComponent(
-            "assets/Boss/boss1.png", Vector4i{0, 0, 245, 245}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
+            "assets/Boss/boss1.png", Vector4i{0, 0, 170, 211}, Vector4i{255, 255, 255, 255}, Vector2f{1.0, 1.0}));
     this->_drawMap.emplace(GameObject::BONUS_ATTACK,
         DrawableComponent("assets/Power-up/boost_attack.png", Vector4i{0, 0, 512, 494}, Vector4i{255, 255, 255, 255},
             Vector2f{0.08, 0.08}));
