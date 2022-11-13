@@ -94,8 +94,8 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat);
  * @param drawable drawable component of drawable
  * @return 1 if there is a collision
  */
-int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
-    std::optional<DrawableComponent> &drawable);
+int check_collision(
+    DrawableComponent &drawable, PositionComponent &pos, DrawableComponent &otherDrawable, PositionComponent &otherPos);
 
 /**
  * @brief Collide all entities

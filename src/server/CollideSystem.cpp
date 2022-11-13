@@ -13,23 +13,17 @@
 #include "../ECS/Components/AllComponents.hpp"
 #include "../ECS/World.hpp"
 
-int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
-    std::optional<DrawableComponent> &drawable)
+int check_collision(DrawableComponent &drawable, PositionComponent &pos, DrawableComponent &otherDrawable, PositionComponent &otherPos)
 {
-    sf::Sprite otherSprite;
-    if (drawable.has_value()) {
-        otherSprite.setPosition(position->pos.x, position->pos.y);
-        otherSprite.setTexture(manager.get_texture(drawable->path));
-        otherSprite.setScale(drawable->scale.x, drawable->scale.y);
-        if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
-                && drawable->rect.y_size == 0))
-            otherSprite.setTextureRect(
-                sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
-    }
-    if (sprite.getGlobalBounds().intersects(otherSprite.getGlobalBounds())) {
-        return (1);
-    }
-    return (0);
+    if (pos.pos.x + drawable.rect.x_size * drawable.scale.x < otherPos.pos.x)
+        return (0);
+    if (pos.pos.y + drawable.rect.y_size * drawable.rect.y < otherPos.pos.y)
+        return (0);
+    if (pos.pos.x + otherDrawable.rect.x_size * otherDrawable.scale.x < pos.pos.x)
+        return (0);
+    if (pos.pos.y + otherDrawable.rect.y_size * otherDrawable.rect.y < pos.pos.y)
+        return (0);
+    return (1);
 }
 
 int collide_system(World &world, NetworkServer &server)
@@ -51,15 +45,6 @@ int collide_system(World &world, NetworkServer &server)
         auto &drawable = drawables[i];
 
         if (position && drawable && weapon) {
-            sf::Sprite sprite;
-
-            sprite.setPosition(position->pos.x, position->pos.y);
-            sprite.setTexture(world.getResourcesManager().get_texture(drawable->path));
-            sprite.setScale(drawable->scale.x, drawable->scale.y);
-            if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
-                    && drawable->rect.y_size == 0))
-                sprite.setTextureRect(
-                    sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
 
             for (size_t j = 0; j < destroyables.size(); ++j) {
                 if (j != i && teams[i]->team != teams[j]->team && teams[i]->team != GameTeam::NEUTRAL
@@ -68,7 +53,11 @@ int collide_system(World &world, NetworkServer &server)
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
 
-                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1) {
+                        /* if (!(drawable && drawable.has_value() && position && position.has_value() && otherDrawable
+                                && otherDrawable.has_value() && otherPosition && otherPosition.has_value()))
+                            continue;*/
+                        if (check_collision(drawable.value(), position.value(), otherDrawable.value(), otherPosition.value())
+                            == 1) {
                             std::cout << "Entity[" << entityId[i]->id << "] hit entity[" << entityId[j]->id << "]."
                                       << std::endl;
                             health[j]->hp -= weapons[i]->stat.x;

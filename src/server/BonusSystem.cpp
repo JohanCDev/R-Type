@@ -38,16 +38,6 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
         auto &drawable = drawables[i];
 
         if (position && drawable && bonus_tmp) {
-            sf::Sprite sprite;
-
-            sprite.setPosition(position->pos.x, position->pos.y);
-            sprite.setTexture(world.getResourcesManager().get_texture(drawable->path));
-            sprite.setScale(drawable->scale.x, drawable->scale.y);
-            if (!(drawable->rect.x == 0 && drawable->rect.y == 0 && drawable->rect.x_size == 0
-                    && drawable->rect.y_size == 0))
-                sprite.setTextureRect(
-                    sf::IntRect(drawable->rect.x, drawable->rect.y, drawable->rect.x_size, drawable->rect.y_size));
-
             std::chrono::time_point<std::chrono::steady_clock> endbonus = std::chrono::steady_clock::now();
             double elapsed_time_bs =
                 double(std::chrono::duration_cast<std::chrono::seconds>(endbonus - bonus_tmp->_time).count());
@@ -66,7 +56,10 @@ int bonus_system(World &world, NetworkServer &server, bonus_t &bonus_stat)
                         auto &otherDrawable = drawables[j];
                         auto &otherPosition = positions[j];
 
-                        if (check_collision(world.getResourcesManager(), sprite, otherPosition, otherDrawable) == 1
+                        /* if (!(drawable && drawable.has_value() && position && position.has_value() && otherDrawable
+                                && otherDrawable.has_value() && otherPosition && otherPosition.has_value()))
+                            continue;*/
+                        if (check_collision(drawable.value(), position.value(), otherDrawable.value(), otherPosition.value()) == 1
                             && teams[j]->team == GameTeam::PLAYER) {
                             std::cout << "hit bonus entity [" << entityId[j]->id << "]." << std::endl;
                             if (bonus[i]->bonus_name == Bonus::ATTACK) {

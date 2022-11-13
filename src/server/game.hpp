@@ -123,8 +123,8 @@ static std::map<GameObject, values_t> defaultValues = {
     {GameObject::BOSS_1, {{800, 300}, 100, 40, 4, 2.0}},
 };
 
-int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
-    std::optional<DrawableComponent> &drawable);
+int check_collision(
+    DrawableComponent &drawable, PositionComponent &pos, DrawableComponent &otherDrawable, PositionComponent &otherPos);
 
 /**
  * @brief Create a player in server's world and send the packet to the client
