@@ -82,18 +82,32 @@
 
 /**
  * @brief Structure containing all the default values for the game
- *
- * @param pos Position of the object
- * @param hp Health of the object
- * @param atk Attack of the object
- * @param spd Speed of the object
- * @param scale Scale of the object
  */
 typedef struct values_s {
+    /**
+     * @brief Position of the object
+     *
+     */
     Vector2f pos;
+    /**
+     * @brief Health of the object
+     *
+     */
     int hp;
+    /**
+     * @brief Attack of the object
+     *
+     */
     int atk;
+    /**
+     * @brief Speed of the object
+     *
+     */
     int spd;
+    /**
+     * @brief Scale of the object
+     *
+     */
     float scale;
 } values_t;
 
@@ -109,15 +123,6 @@ static std::map<GameObject, values_t> defaultValues = {
     {GameObject::BOSS_1, {{800, 300}, 100, 40, 4, 2.0}},
 };
 
-/**
- * @brief check collision between 2 entities
- * 
- * @param manager 
- * @param sprite 
- * @param position 
- * @param drawable 
- * @return int 
- */
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
     std::optional<DrawableComponent> &drawable);
 
@@ -166,56 +171,96 @@ void player_shot(World &world, ClientMessage msg, NetworkServer &server);
 void create_enemy(World &world, NetworkServer &server);
 
 /**
- * @brief
+ * @brief Creation of bonus
  *
  * @param world The server's world
- * @param msg The message received from the client
+ * @param server server informations
  * @param pos bonus position
  */
 void bonus_creation(World &world, NetworkServer &server, Vector2f pos);
 
 /**
- * @brief
+ * @brief Start the game
  *
- * @param world
- * @param msg
- * @param server
+ * @param world The server's world
+ * @param msg Message to process
+ * @param server server informations
  */
 void start_game(World &world, ClientMessage msg, NetworkServer &server);
 
 /**
- * @brief
+ * @brief Select the ship
  *
- * @param world
- * @param msg
- * @param server
+ * @param world The server's world
+ * @param msg Message to process
+ * @param server server informations
  */
 void select_ship(World &world, ClientMessage msg, NetworkServer &server);
 
 /**
- * @brief
- *
- * @param in_wave Boolean to know if the wave is in progress
- * @param nb_wave The number of the current wave
- * @param base_difficulty The difficulty of the wave
- * @param remaining_difficulty The remaining difficulty of the wave
- * @param clock The clock of the wave
+ * @brief Structure containing wave information
  */
 typedef struct wave_s {
+    /**
+     * @brief Boolean to know if the wave is in progress
+     *
+     */
     bool in_wave;
+    /**
+     * @brief The number of the current wave
+     *
+     */
     size_t nb_wave;
+    /**
+     * @brief The difficulty of the wave
+     *
+     */
     size_t base_difficulty;
+    /**
+     * @brief The remaining difficulty of the wave
+     *
+     */
     size_t remaining_difficulty;
+    /**
+     * @brief The clock of the wave
+     *
+     */
     sf::Clock clock;
 } waves_t;
 
+/**
+ * @brief Struct containing bonus statistics
+ */
 typedef struct stat_bonus_s {
+    /**
+     * @brief Speed bonus
+     *
+     */
     int speed;
+    /**
+     * @brief Strength bonus
+     *
+     */
     int strengh;
+    /**
+     * @brief Fire rate bonus
+     *
+     */
     int attack_speed;
+    /**
+     * @brief Nbr of bonus
+     *
+     */
     int nbr;
 } stat_bonus_t;
 
+/**
+ * @brief Timer of the bonus
+ */
 typedef struct bonus_s {
+    /**
+     * @brief Timer of the bonuses
+     *
+     */
     std::vector<std::pair<std::chrono::time_point<std::chrono::steady_clock>, stat_bonus_t>> timer;
 } bonus_t;

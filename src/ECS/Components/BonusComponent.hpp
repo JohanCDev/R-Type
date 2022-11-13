@@ -11,28 +11,38 @@
 
 #pragma once
 
-#include <string>
 #include <chrono>
+#include <string>
 
 /**
  * @brief enum to get bonus effect
- * 
+ *
  */
-enum Bonus : uint32_t {ATTACK, ATTACK_SPEED, HEAL, SPEED};
-
+enum Bonus : uint32_t { ATTACK, ATTACK_SPEED, HEAL, SPEED };
 
 /**
  * @brief Make the entity able to get bonus
- * 
+ *
  */
 struct BonusComponent {
+    /**
+     * @brief Bonus name of the component
+     *
+     */
     Bonus bonus_name;
+
+    /**
+     * @brief Chrono of the bonus
+     *
+     */
     std::chrono::time_point<std::chrono::steady_clock> _time;
 
     /**
      * @brief Construct a new bonus Component object
      *
-     * @param nameBonus
+     * @param nameBonus bonus name
+     * @param time Display time of the bonus
      */
-    BonusComponent(Bonus nameBonus, std::chrono::time_point<std::chrono::steady_clock> time) : bonus_name(nameBonus), _time(time) {};
+    BonusComponent(Bonus nameBonus, std::chrono::time_point<std::chrono::steady_clock> time)
+        : bonus_name(nameBonus), _time(time){};
 };
