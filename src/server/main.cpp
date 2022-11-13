@@ -51,7 +51,8 @@ int main()
     while (1) {
         while (server.HasMessages()) {
             ClientMessage msg = server.PopMessage();
-            mapFunc[msg.first.header.id](world, msg, server);
+            if (mapFunc.contains(msg.first.header.id))
+                mapFunc[msg.first.header.id](world, msg, server);
         };
         switch (world.state) {
             case GameState::Lobby: lobby_system(world, server); break;
