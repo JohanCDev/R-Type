@@ -88,10 +88,10 @@ void player_moved(World &world, ClientMessage msg, NetworkServer &server)
 }
 
 static std::map<std::string, Vector2f> shootMap = {{"assets/r-typesheet5.gif", Vector2f{50, 10}},
-    {"assets/SpaceShip/ship_armored_spritesheet.png", Vector2f{130, 40}},
-    {"assets/SpaceShip/ship_damage_spritesheet.png", Vector2f{130, 40}},
-    {"assets/SpaceShip/ship_engineer_spritesheet.png", Vector2f{130, 40}},
-    {"assets/SpaceShip/ship_sniper_spritesheet.png", Vector2f{130, 40}}};
+    {"assets/SpaceShip/ship_armored_spritesheet.png", Vector2f{130, 55}},
+    {"assets/SpaceShip/ship_damage_spritesheet.png", Vector2f{110, 60}},
+    {"assets/SpaceShip/ship_engineer_spritesheet.png", Vector2f{128, 62}},
+    {"assets/SpaceShip/ship_sniper_spritesheet.png", Vector2f{116, 60}}};
 
 void player_shot(World &world, ClientMessage msg, NetworkServer &server)
 {
