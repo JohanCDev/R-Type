@@ -24,8 +24,20 @@ struct WeaponComponent {
      *
      */
     std::string name;
+
+    /**
+     * @brief Damage of the weapon
+     *
+     */
     uint32_t damage;
 
+    /**
+     * @brief Construct a new Weapon Component object
+     *
+     * @param weapon_name name of the weapon
+     * @param damage_amount Damage of the weapon
+     * @param cooldown Fire rate of the weapon
+     */
     WeaponComponent(std::string weapon_name, uint32_t damage_amount, std::size_t cooldown)
         : name(weapon_name), damage(damage_amount), cooldown_as_milliseconds(cooldown){};
 

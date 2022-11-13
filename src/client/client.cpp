@@ -420,6 +420,14 @@ void players_ready(World &world, NetworkClient &client, Message<GameMessage> msg
     client.set_players_ready(ready);
 }
 
+/**
+ * @brief Handle the level up
+ *
+ * @param world The world to update
+ * @param msg The message containing data
+ * @param client The client to update
+ * @param current_screen The current screen
+ */
 void level_up(World &world, NetworkClient &client, Message<GameMessage> msg, SceneScreen &current_screen)
 {
     (void)world;

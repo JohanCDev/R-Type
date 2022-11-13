@@ -139,7 +139,6 @@ class World {
      * @param object type of the object
      * @param pos base pos of the enemy as a Vector2f. ex: {150.0, 120.0}
      * @param speed base speed of the enemy as a Vector2i. ex: {0, 0}
-     * @param health base health of the enemy as an unsigned int
      * @param refresh_time time before the laser is refreshed
      * @param enumBonus enumeration of bonus stats
      * @return size_t
@@ -155,7 +154,6 @@ class World {
      * @param pos Pos of the object
      * @param speed Speed of the object
      * @param refresh_time Time before the object is refreshed
-     * @param elapsed_time Time elapsed since the last refresh
      *
      * @returns Negative value if there is an error
      */
