@@ -45,6 +45,8 @@ int main()
     world.register_all_drawable_object();
     bonus_t bonus_stat;
 
+    world.create_border_entities();
+
     while (1) {
         while (server.HasMessages()) {
             ClientMessage msg = server.PopMessage();

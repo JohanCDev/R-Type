@@ -271,6 +271,7 @@ class World {
      *
      */
     std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
+    void create_border_entities();
 
   private:
     /**
