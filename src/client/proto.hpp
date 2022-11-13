@@ -76,6 +76,16 @@ void new_sniper_player(World &world, size_t srv_entity_id, Vector2f pos, Network
 void new_enemy_focus(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
 /**
+ * @brief Create a enemy of type KAMIKAZE in the world
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ * @param client Client network's information
+ */
+void new_enemy_kamikaze(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
+
+/**
  * @brief Create a enemy of type SNIPER in the world
  *
  * @param world The world
@@ -104,6 +114,16 @@ void new_enemy_odd(World &world, size_t srv_entity_id, Vector2f pos, NetworkClie
  * @param client Client network's information
  */
 void new_laser(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
+
+/**
+ * @brief Create a laser in the world for enemy team
+ *
+ * @param world The world
+ * @param srv_entity_id The server entity ID
+ * @param pos The position of the entity
+ * @param client Client network's information
+ */
+void new_laser_enemy(World &world, size_t srv_entity_id, Vector2f pos, NetworkClient &client);
 
 /**
  * @brief Create a enemy of type BOSS_A in the world

@@ -85,7 +85,7 @@ void LobbyScene::run(NetworkClient &client, sf::RenderWindow &window, SceneScree
             select_sniper_ship(_world, current_screen, client, volume);
         }
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition().x, sf::Mouse::getPosition().y},
+            clickable_system(this->_world, Vector2i{sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y},
                 current_screen, client, volume);
         }
     }

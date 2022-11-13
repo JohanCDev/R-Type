@@ -88,6 +88,19 @@ class World {
     size_t create_laser(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
 
     /**
+     * @brief Create a laser entity in the enemy team
+     *
+     * @param object type of the object
+     * @param team Team of the laser
+     * @param pos base pos of the laser as a Vector2f. ex: {150.0, 120.0}
+     * @param speed base speed of the laser as a Vector2i. ex: {0, 0}
+     * @param refresh_time time before the laser is refreshed
+     *
+     * @returns id of the laser
+     */
+    size_t create_laser_enemy(GameObject object, GameTeam team, Vector2f pos, Vector2i speed, float refresh_time);
+
+    /**
      * @brief Create a player entity
      *
      * @param object type of the object
@@ -191,11 +204,6 @@ class World {
      *
      */
     void register_all_drawable_object();
-    /**
-     * @brief Registers all sounds
-     *
-     */
-    void register_all_sounds();
 
     /**
      * @brief Get the Registry object
@@ -240,13 +248,6 @@ class World {
     Vector2i &getDirection();
 
     /**
-     * @brief Get the Sound effects map
-     *
-     * @return Reference to the map
-     */
-    const std::map<std::string, std::shared_ptr<sf::Music>> &getSoundEffects();
-
-    /**
      * @brief Set the Direction object
      *
      * @param direction new direction as a Vector2i. ex: {0, 0}
@@ -264,12 +265,6 @@ class World {
      *
      */
     std::map<std::size_t, GameObject> player_ships;
-
-    /**
-     * @brief Map containing all sound effects
-     *
-     */
-    std::map<std::string, std::shared_ptr<sf::Music>> _sound_effects;
 
     /**
      * @brief Create a border entities object that will destroy objects passing through

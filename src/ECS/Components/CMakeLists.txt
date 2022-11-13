@@ -10,6 +10,7 @@ list(
   ${INCROOT}/ControllableComponent.hpp
   ${INCROOT}/DestroyableComponent.hpp
   ${INCROOT}/EntityIDComponent.hpp
+  ${INCROOT}/GameObjectComponent.hpp
   ${INCROOT}/GameTeamComponent.hpp
   ${INCROOT}/DrawableComponent.hpp
   ${INCROOT}/HealthComponent.hpp

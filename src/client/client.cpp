@@ -58,8 +58,6 @@ void NetworkClient::handle_receive(const std::error_code &error, std::size_t byt
             boost::archive::binary_iarchive ia(s);
             ia >> gameMsg;
 
-            // std::cout << gameMsg.body
-
             if (gameMsg.size() != 0)
                 incomingMessages.push(gameMsg);
         } catch (...) {
@@ -159,9 +157,10 @@ static std::map<GameObject, std::function<void(World &, size_t, Vector2f, Networ
     {GameObject::SHIP_SNIPER, new_sniper_player},
     {GameObject::BOSS_1, new_boss1},
     {GameObject::ENEMY_FOCUS, new_enemy_focus},
+    {GameObject::ENEMY_KAMIKAZE, new_enemy_kamikaze},
     {GameObject::ENEMY_SNIPER, new_enemy_sniper},
-    {GameObject::ENEMY_ODD, new_enemy_odd},
     {GameObject::LASER, new_laser},
+    {GameObject::LASER_ENEMY, new_laser_enemy},
     {GameObject::BONUS_ATTACK, new_bonus_attack},
     {GameObject::BONUS_ATTACK_SPEED, new_bonus_attack_speed},
     {GameObject::BONUS_HEAL, new_bonus_heal},
@@ -203,31 +202,12 @@ void dead_entity(World &world, NetworkClient &client, Message<GameMessage> msg, 
     (void)current_screen;
     EntityIDComponent id_entity;
     auto &entityIdCompo = world.getRegistry().get_components<EntityIDComponent>();
-    auto &sound = world.getRegistry().get_components<SoundEffectComponent>();
     size_t index = 0;
-    auto &sounds = world.getSoundEffects();
 
     msg >> id_entity;
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
-                if (sound[index] && sound[index]->soundEffect.compare("explosion") == 0) {
-                    sounds.find("dead")->second.get()->stop();
-#if __APPLE__
-                    usleep(10000);
-#endif
-                    sounds.find("dead")->second.get()->setVolume(client.getSoundVolume());
-                    sounds.find("dead")->second.get()->play();
-                }
-                if (sound[index] && sound[index]->soundEffect.compare("bonus") == 0) {
-                    sounds.find("bonus")->second.get()->stop();
-#if __APPLE__
-                    usleep(10000);
-#endif
-                    sounds.find("bonus")->second.get()->setVolume(client.getSoundVolume());
-                    sounds.find("bonus")->second.get()->play();
-                }
-                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
             }
@@ -256,7 +236,6 @@ void bonus_dead_entity(World &world, NetworkClient &client, Message<GameMessage>
     for (auto &entityId : entityIdCompo) {
         if (entityId && entityId.has_value()) {
             if (entityId->id == id_entity.id) {
-                std::cout << "Entity[" << id_entity.id << "] was destroyed" << std::endl;
                 world.getRegistry().kill_entity(world.getRegistry().entity_from_index(index));
                 break;
             }
@@ -298,8 +277,6 @@ void movement(World &world, NetworkClient &client, Message<GameMessage> msg, Sce
     for (auto &idCompo : entityId) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == moved_id.id) {
-                std::cout << "Entity[" << moved_id.id << "]: Velocity{" << velocity.x << ", " << velocity.y << "}"
-                          << std::endl;
                 velocityCompo[index]->speed.x = velocity.x;
                 velocityCompo[index]->speed.y = velocity.y;
                 break;
@@ -322,24 +299,20 @@ void entity_hit(World &world, NetworkClient &client, Message<GameMessage> msg, S
     (void)client;
     (void)current_screen;
     registry &r = world.getRegistry();
-    ClientIDComponent hit_id;
-    int damage = 0;
-    size_t max_hp = 0;
-
-    msg >> max_hp >> damage >> hit_id;
-
     auto &health = r.get_components<HealthComponent>();
     auto &entityIdCompo = r.get_components<EntityIDComponent>();
-
+    ClientIDComponent hit_id;
     size_t index = 0;
+    int damage = 0;
+    size_t max_hp = 0;
+    int curr_hp = 0;
 
+    msg >> max_hp >> curr_hp >> damage >> hit_id;
     for (auto &idCompo : entityIdCompo) {
         if (idCompo && idCompo.has_value()) {
             if (idCompo->id == hit_id.id) {
-                health[index]->hp -= damage;
+                health[index]->hp = curr_hp;
                 health[index]->max_hp = max_hp;
-                std::cout << "Entity[" << hit_id.id << "]: -" << damage << "HP, now has " << health[index]->hp << "/"
-                          << max_hp << "HP" << std::endl;
                 break;
             }
         }

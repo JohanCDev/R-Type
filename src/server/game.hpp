@@ -56,7 +56,7 @@
 /**
  * @brief Default starting wave difficulty
  */
-#define DEFAULT_WAVE_DIFFICULTY 3
+#define DEFAULT_WAVE_DIFFICULTY 10
 
 /**
  * @brief Default time between each waves
@@ -83,7 +83,7 @@
 /**
  * @brief Structure containing all the default values for the game
  */
-typedef struct values_s {
+typedef struct myValues_s {
     /**
      * @brief Position of the object
      *
@@ -109,18 +109,23 @@ typedef struct values_s {
      *
      */
     float scale;
-} values_t;
+} myValues_t;
 
 /**
  * @brief Default values for each GameObject (pos, hp, atk, spd, scale)
  */
-static std::map<GameObject, values_t> defaultValues = {
-    {GameObject::PLAYER, {{50, 200}, 100, 100, 6, 2.0}},
-    {GameObject::LASER, {{-1, -1}, 1, -1, 5, 1.0}},
-    {GameObject::ENEMY_FOCUS, {{800, -1}, 100, 40, 4, 1.0}},
-    {GameObject::ENEMY_ODD, {{800, -1}, 100, 40, 4, 1.0}},
-    {GameObject::ENEMY_SNIPER, {{800, -1}, 100, 40, 4, 1.0}},
-    {GameObject::BOSS_1, {{800, 300}, 100, 40, 4, 2.0}},
+static std::map<GameObject, myValues_t> defaultValues = {
+    {GameObject::LASER, {{-1, -1}, 1, -1, 14, 1.0}},
+    {GameObject::LASER_ENEMY, {{-1, -1}, 1, -1, -14, -1.0}},
+    {GameObject::PLAYER, {{64, 540}, 100, 100, 12, 2.0}},
+    {GameObject::SHIP_ARMORED, {{64, 540}, 200, 50, 12, 1.0}},
+    {GameObject::SHIP_DAMAGE, {{64, 540}, 80, 120, 14, 1.0}},
+    {GameObject::SHIP_ENGINEER, {{64, 540}, 100, 100, 12, 1.0}},
+    {GameObject::SHIP_SNIPER, {{64, 540}, 100, 200, 10, 1.0}},
+    {GameObject::BOSS_1, {{1920, 300}, 2000, 40, 8, 2.0}},
+    {GameObject::ENEMY_FOCUS, {{1920, -1}, 100, 40, 10, 1.0}},
+    {GameObject::ENEMY_KAMIKAZE, {{1920, -1}, 100, 40, 20, 1.0}},
+    {GameObject::ENEMY_SNIPER, {{1920, -1}, 100, 40, 10, 0.75}},
 };
 
 int check_collision(ResourcesManager &manager, sf::Sprite sprite, std::optional<PositionComponent> &position,
